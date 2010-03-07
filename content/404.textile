@@ -1,0 +1,10 @@
+---
+title: Page not found
+is_hidden: true
+---
+
+h1. (404) Page Not Found
+
+Morethanseven is the blog of Gareth Rushgrove, a web developer, programmer and occasional sysadmin living in Cambridge and working in London.
+
+Sorry, but the page you are looking for doesn't appear to be here.
