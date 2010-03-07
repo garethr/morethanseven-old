@@ -1,6 +1,5 @@
 require 'nanoc3/tasks'
 require 'fileutils'
-require 'active_support'
 
 namespace :create do
   @now = Time.now
