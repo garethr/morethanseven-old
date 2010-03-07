@@ -1,0 +1,80 @@
+---
+---
+:ruby
+  # may be set by partials
+  @config[:include_disqus_js] = false
+
+  def keywords
+    if is_front_page?
+      tag_set.join(', ') 
+    else
+      @item[:tags].nil? ? '' : @item[:tags].join(', ') 
+    end
+  end
+  def link_unless_current(s)
+    "<li><a href='/#{s}.html'>#{s}</a></li>" if @item.identifier != "/#{s}/" 
+  end
+  def logo
+    if is_front_page?
+      site_name
+    else
+      "<a href='/'>&laquo; #{site_name}</a>"
+    end
+  end
+
+!!! Strict
+%html
+  %head
+    %title= "#{@item[:title]}"
+    %meta(content="text/html; charset=utf-8" http-equiv="Content-Type")
+    %meta(name="keywords" content="#{keywords}") 
+    %link(href="/assets/css/reset.css" rel="stylesheet" type="text/css")
+    %link(href="/assets/css/style.css" media="screen" rel="stylesheet" type="text/css")
+    %link(href="/assets/css/code.css" rel="stylesheet" type="text/css")
+    %link(rel="openid.server" href="http://www.myopenid.com/server")
+    %link(rel="openid.delegate" href="http://garethr.myopenid.com/")
+    %link(rel="alternate" type="application/atom+xml" title="Morethanseven Atom Feed" href="/articles.atom")
+    
+    %script(src="http://morethanseven.net:91/mint/?js" type="text/javascript")
+
+  %body
+    -# needed since some content render <pre> blocks
+    - content = find_and_preserve(yield)
+    #main
+      #header 
+        .logo
+          = logo
+        #nav
+          %ul
+            != link_unless_current "about"
+            != link_unless_current "archives"
+            != link_unless_current "tags"
+            %li
+              %a(href='/articles.atom') rss
+      .clear
+
+      - if @item[:kind] == 'article'
+        = render('_article', :item => @item, :content => content)
+        = render('_other_articles_nav', :reference_item => @item)
+        .clear
+        - if disqus_shortname && !is_front_page?
+          = render('_disqus', :item => @item)
+      - else
+        = content
+      .clear
+
+    -# disqus: inserts number of commments
+    - if @config[:include_disqus_js] == true
+      :javascript
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/#{disqus_shortname}/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+ 
+    = render('_ganalytics')

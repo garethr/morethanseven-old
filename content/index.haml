@@ -1,0 +1,34 @@
+---
+title: morethanseven - a blog by Gareth Rushgrove
+---
+
+#sticky
+  - item = item_by_identifier('/sticky/')
+  - if item[:title]
+    .title= item[:title]
+  .body
+    != partial(item)
+
+- oldest_item = nil
+- current_index = 0
+
+- sorted_articles[current_index, featured_count].each do |item|
+  - oldest_item = item
+  - current_index += 1
+  .featured
+    = render('_article', :item => item, :is_embedded => true)
+
+- sorted_articles[current_index, excerpt_count].each do |item|
+  - oldest_item = item
+  = render('_excerpt', :item => item) 
+                
+-#= render('_other_articles_nav', :reference_item => oldest_item, :older_only => true)
+
+.clear
+
+-# for SEO, but make it disappear
+#taglist
+  - tags = count_tags()
+  - tags.each.sort_by {|k,v| k}.each do |tag_count|
+    - tag = tag_count[0]
+    %a(href="/tags/#{tag}/" class='tag')= tag

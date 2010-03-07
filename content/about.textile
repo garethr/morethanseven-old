@@ -1,0 +1,25 @@
+---
+title: about morethanseven
+---
+
+h1. About This Site
+
+Morethanseven is the blog of Gareth Rushgrove, a web developer, programmer and occasional sysadmin living in Cambridge and working in London.
+
+h2. Collophon
+
+This site is now tied together with pieces of string and the following bits of technology:
+
+* Nanoc3 - lovely static site compiler in Ruby
+* "Nanoc3_blog":http://github.com/mgutz/nanoc3_blog - sample blog for nanoc, also provides the rather nice theme
+* Coderay - for the pretty syntax highlighting
+* HAML - because nanoc3_blog uses it and I'm at least willing to give it a go
+* Textile - friendly text to html processing using the RedCloth Ruby gem
+* Less - nice CSS preprocessing
+* "Tumblr":http://tumblr.com - used as a content management system, mainly because of the API and mobile clients
+* Ruby-Tumblr - for creating nanoc items from tumblr posts
+* Nginx - small, fast web server
+* Git - for versioning everything
+
+I wanted a blog that was easy to manage for me, easy to serve, low on server resources and fast. Bonus points if I got to play with something interesting along the way. You can't get much faster than static files and Nanoc seems a good balance of features and extensibility. Nanoc_blog provided a good starting point for much of what you see here. I've hacked on it to use things like coderay, less and textile by default. For adding new content I can use vim if I'm at my (or any) computer and if I'm out and about or feeling fancy I can use Tumblr or even GitHub.
+
