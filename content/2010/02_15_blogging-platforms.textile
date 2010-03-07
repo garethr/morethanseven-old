@@ -1,5 +1,5 @@
 ---
-created_at: 2010/02/15}
+created_at: 2010/02/15
 kind: article
 publish: true
 tags: [blogging, tumblr]
