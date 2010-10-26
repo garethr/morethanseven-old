@@ -11,7 +11,7 @@ Now I'm generally an Ubuntu guy, but I've just had the need to setup some boxes 
 First up I needed to install Apache and start the service running.
 
 <pre>pfexec pkg install SUNWapch22
-svcadm enabe http:apache22</pre>
+svcadm enable http:apache22</pre>
 
 You should be able to test that's running by hitting localhost on a browser running on the same box. Now for MySQL.
 
