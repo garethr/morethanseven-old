@@ -34,9 +34,6 @@
     %link(rel="openid.server" href="http://www.myopenid.com/server")
     %link(rel="openid.delegate" href="http://garethr.myopenid.com/")
     %link(rel="alternate" type="application/atom+xml" title="Morethanseven Atom Feed" href="/articles.atom")
-    
-    %script(src="http://morethanseven.net:91/mint/?js" type="text/javascript")
-
   %body
     -# needed since some content render <pre> blocks
     - content = find_and_preserve(yield)
