@@ -35,5 +35,5 @@ excerpt_count: 6
 other_articles_max: 3
 
 # DISQUS Site Shortname. Comment out to disable.
-#disqus_shortname: morethanseven
+disqus_shortname: morethanseven
 
