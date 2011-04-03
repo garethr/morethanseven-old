@@ -42,6 +42,17 @@
       #header 
         .logo
           = logo
+        #carbonads-container
+          .carbonad
+            #carbon
+            :javascript
+              var z = document.createElement("script");
+              z.type = "text/javascript";
+              z.async = true;
+              z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(z, s);
+
         #nav
           %ul
             != link_unless_current "about"
