@@ -6,6 +6,8 @@ tags: []
 title: "Posting to Twitter using PHP"
 ---
 
+_Please note that Twitter no-longer support Basic Auth via the API so the following code no longer works. Please see the "official docs":http://dev.twitter.com/pages/oauth_faq for more info_
+
 <p>Like others I&#8217;ve found myself becoming something of a fan of <a href="http://twitter.com">Twitter</a>, the impossible to explain social networking site. If you&#8217;re reading this, have a twitter account and not already my <em>friend</em> then <a href="http://twitter.com/garethr">add me</a> if you like.</p>
 
 <p>Apart from the interesting social aspects I&#8217;m also interested in Twitter as an API for all sorts of communications, remember Twitter already deals nicely with SMS messaging, Instant Messaging, subscription and the like and has a <a href="http://twitter.com/help/api">nice XML and JSON based API</a>. I&#8217;ve been using the <a href="http://www.zamano.com/">Zamano</a> SMS gateway at work for a few projects and Twitter actually lets me some more and doesn&#8217;t come with a price tag.</p>

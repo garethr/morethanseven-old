@@ -1,0 +1,28 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    RedCloth (4.2.7)
+    activesupport (3.0.6)
+    builder (3.0.0)
+    coderay (0.9.7)
+    haml (3.0.25)
+    kramdown (0.13.2)
+    mime-types (1.16)
+    nanoc3 (3.0.9)
+    rack (1.2.2)
+    rake (0.8.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  RedCloth
+  activesupport
+  builder
+  coderay
+  haml
+  kramdown
+  mime-types
+  nanoc3 (= 3.0.9)
+  rack
+  rake

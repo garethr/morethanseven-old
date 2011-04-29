@@ -1,2 +1,1 @@
-rvm use ruby-1.8.7-p248
-rvm gemset use morethanseven
+rvm use ree@morethanseven
