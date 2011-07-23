@@ -1,5 +1,17 @@
-require 'nanoc3/tasks'
 require 'fileutils'
+
+namespace :deploy do
+
+  desc "Deploy to staging"
+  task :staging do
+    system "rsync -r --delete --exclude='.DS_Store' ./output/ deploy@staging.morethanseven.net:/srv/morethanseven"
+  end
+
+  desc "Deploy to production"
+  task :production do
+    system "rsync -rv --delete --exclude='.DS_Store' ./output/ morethanseven.net:/srv/morethanseven"
+  end
+end
 
 namespace :create do
   @now = Time.now
