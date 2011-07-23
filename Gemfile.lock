@@ -6,11 +6,19 @@ GEM
     builder (3.0.0)
     coderay (0.9.7)
     haml (3.0.25)
+    i18n (0.5.0)
     kramdown (0.13.2)
+    less (1.2.21)
+      mutter (>= 0.4.2)
+      treetop (>= 1.4.2)
     mime-types (1.16)
+    mutter (0.5.3)
     nanoc3 (3.0.9)
+    polyglot (0.3.1)
     rack (1.2.2)
     rake (0.8.7)
+    treetop (1.4.9)
+      polyglot (>= 0.3.1)
 
 PLATFORMS
   ruby
@@ -21,7 +29,9 @@ DEPENDENCIES
   builder
   coderay
   haml
+  i18n
   kramdown
+  less (= 1.2.21)
   mime-types
   nanoc3 (= 3.0.9)
   rack
