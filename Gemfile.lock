@@ -16,6 +16,7 @@ GEM
     nanoc3 (3.0.9)
     polyglot (0.3.1)
     rack (1.2.2)
+    rainpress (1.0)
     rake (0.8.7)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
@@ -35,4 +36,5 @@ DEPENDENCIES
   mime-types
   nanoc3 (= 3.0.9)
   rack
+  rainpress
   rake
