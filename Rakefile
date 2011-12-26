@@ -9,7 +9,7 @@ namespace :deploy do
 
   desc "Deploy to production"
   task :production do
-    system "rsync -rv --delete --exclude='.DS_Store' ./output/ morethanseven.net:/srv/morethanseven"
+    system "rsync -rv --delete --exclude='.DS_Store' ./output/ deploy@morethanseven.net:/srv/morethanseven"
   end
 end
 
