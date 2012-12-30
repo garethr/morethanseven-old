@@ -1,0 +1,11 @@
+---
+created_at: 2009/11/05}
+layout: post
+comments: true
+categories: [django, djugl]
+title: "DJUGL December"
+---
+
+As mentioned at the last event I've taken over organising the Django User Group London event from Rob. Tickets are now available for the next event which is going to be on the 3rd of December at The Guardian offices in Kings Cross.
+
+You can sign up on "eventwax":http://londonpython.eventwax.com/djugl-december

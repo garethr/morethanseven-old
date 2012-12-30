@@ -1,0 +1,45 @@
+---
+created_at: 2008/11/09}
+layout: post
+comments: true
+categories: [django, python, profiling, morethanseven]
+title: "Django Performance Tip - Profile Your Filters"
+---
+
+I've been doing some performance profiling of this here blog. Not because I really need to due to huge amounts of traffic unfortunately, more because I'm planning on releasing the code and wanted to give it a good once over before I do.
+
+pre. 69396 function calls (67324 primitive calls) in 0.479 CPU seconds
+Ordered by: internal time, call count
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      123    0.138    0.001    0.154    0.001 build/bdist.macosx-10.5-i386/egg/textile.py:2478(qtags)
+     6300    0.058    0.000    0.079    0.000 build/bdist.macosx-10.5-i386/egg/textile.py:453(preg_replace)
+    15705    0.045    0.000    0.059    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:219(_compile)
+       20    0.025    0.001    0.026    0.001 /Users/gareth.rushgrove/Documents/www/django/django/db/backends/sqlite3/base.py:165(execute)
+     1087    0.021    0.000    0.026    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:136(sub)
+      123    0.014    0.000    0.017    0.000 build/bdist.macosx-10.5-i386/egg/textile.py:2701(links)
+       18    0.012    0.001    0.030    0.002 build/bdist.macosx-10.5-i386/egg/textile.py:892(split_text)
+    12719    0.011    0.000    0.063    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:178(compile)
+      123    0.011    0.000    0.104    0.001 build/bdist.macosx-10.5-i386/egg/textile.py:2372(glyphs)
+      123    0.009    0.000    0.009    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:159(findall)
+      191    0.008    0.000    0.008    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:154(split)
+       18    0.005    0.000    0.005    0.000 build/bdist.macosx-10.5-i386/egg/textile.py:803(grab_links)
+       11    0.005    0.000    0.005    0.000 /Users/gareth.rushgrove/Documents/www/django/django/utils/text.py:52(truncate_html_words)
+
+The above profile is from the home page which seemed a good starting point. The majority of the other pages are more straightforward, generally displaying just one article with a few related bits and pieces.
+
+What jumped out was that the majority of the slow traces (the list is ordered with the slowest calls first) were to do with the use of the textile filter packaged with Django. Textile is a simple markup language which converts to HTML, I've used it for all my writing activities since I used Textpattern on this blog many moons ago. It's not just the traces that explicitly mentioned textile either - the regular expression calls are also to do with template filters.
+
+I quickly added a hidden html field to my model and a custom save method. On saving an article I now automatically transform the textile version of the content and save it in the html field. In the template where I used to have <code>article.content|textile</code> I now have <code>article.html</code>. A quick check of the profile on the same page showed a dramatic increase in performance:
+
+pre. 15054 function calls (13248 primitive calls) in 0.081 CPU seconds
+Ordered by: internal time, call count
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       20    0.017    0.001    0.018    0.001 /Users/gareth.rushgrove/Documents/www/django/django/db/backends/sqlite3/base.py:165(execute)
+   978/54    0.003    0.000    0.006    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/copy.py:144(deepcopy)
+     82/1    0.003    0.000    0.069    0.069
+
+From nearly half a second (0.479 CPU seconds) to 0.081 CPU seconds - roughly a 500% improvement in performance!
+
+If you are using text transforming filters in Django that make use of regular expressions I would look to try and get rid of them and move the conversion into a save method. You might not see quite as much of a performance gain as I did here but I'd be surprised if it's not taking an awful lot longer than you might thing.
+
+Their are a few tools that are handy to have around if you're wanting to profile your own applications. Django Snippets has a handy "profiling middleware":http://www.djangosnippets.org/snippets/70/ and the really rather nice "Command Extensions":http://code.google.com/p/django-command-extensions/ provides a few more tools including profile graph generation.

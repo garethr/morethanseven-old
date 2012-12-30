@@ -1,0 +1,16 @@
+---
+created_at: 2011/11/02
+excerpt: 
+layout: post
+comments: true
+categories: [puppet facter]
+title: "Exposing Puppet And Facter Information On The Web"
+---
+
+I don't appear to have been in a writing mood recently but I've been getting back into hacking on a couple of pet projects. The first fruits of this coding (mainly backwards and forwards on the train) I've just made available to anyone interested.
+
+"Web Facter":https://github.com/garethr/web-puppet is a gem which takes the output from "Facter":https://github.com/puppetlabs/facter and exposes this as JSON over HTTP. In theory you could run this on a configurable port on each of your machines and have a URL you can hit to get information on uptime, networking setup, hostnames or anything else exposed by Facter. It comes with a simple built-in web server and optional http basic authentication if you're not going to do this via a proxy. The JSON display should be both human and machine readable, and I have a few ideas for projects which needed this information.
+
+The other project is very similar, and even has a similar name, "Web Puppet":https://github.com/garethr/web-facter. You can run this on your puppet master and it exposes the node information (currently including the facts and tags) again as JSON over HTTP. I'm still working on this to make it a little more usable. At the moment it just shows you all nodes and all information, if you're working with a larger cluster this isn't really sensible. Recent versions of Puppet do have an "HTTP based API":http://docs.puppetlabs.com/guides/rest_api.html but it requires some hoops to be jumped through and I'm not quite sure from the docs it lets me do what I want (I have a specific usecase, of which more soon all being well).
+
+Both projects have had me reading the source code of Puppet and Facter, which for the most part has been enjoyable and informative. Puppet in particular has some great comments lying around :) Both of the above projects are available as gems for anyone else to play around with and build on, but my main aim is a little more high level. All being well I'll have a couple of projects built atop these APIs shortly.

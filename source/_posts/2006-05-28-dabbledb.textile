@@ -1,0 +1,32 @@
+---
+created_at: 2006/05/28}
+layout: post
+comments: true
+categories: []
+title: "DabbleDB"
+---
+
+<p>I dont often just post links to things I find interesting. I try and warble on more about something or other that&#8217;s on my mind. However, being rather busy and coming across something that really stood out makes this here post different.</p>
+
+
+ <p>I stumbled upon <a href="dabbledb.com">DabbleDB</a> the other day. Watched the <a href="http://www.dabbledb.com/utr/">video</a>. Thought to my self &#8220;That&#8217;s pretty darn slick&#8221;.</p>
+
+
+ <p>DabbleDB is, pretty simply, an online database. For everyone. Ever. The blurb from the site says:</p>
+
+
+ <blockquote>
+  <p>Dabble DB combines the best of group spreadsheets, custom databases, and intranet web applications into a new way to manage and share your information on the web</p>
+ </blockquote>
+
+
+ <p>What does that mean? It&#8217;s basically MS Access, but better and available through a web browser. Too complicated you say? Too hard to grasp? Watch the video. Be impressed.</p>
+
+
+ <p>One claim I&#8217;m interested in getting first hand experience of is the one regarding Spreadsheets. Most people use spreadsheets as light weight (ie. flimsy) databases, rather than the number crunching powerhouses they really are. DabbleDB seems an ideal replacement to the former, but what about the latter? I remeber seeing <a href="http://dean.edwards.name/">Dean Edwards&#8217;</a> playing with a <a href="http://dean.edwards.name/base/spreadsheet/">Javascript Spreadsheet</a> a while back.</p>
+
+
+ <p>I have to say I haven&#8217;t used DabbleDB yet. I haven&#8217;t signed up for a one month trial because I know I wouldn&#8217;t have time to explore properly just now. Everything that I&#8217;m excited about comes from the video, the site and the attached blog. When (not if) I get round to having a proper look I&#8217;ll try and remeber to post something.</p>
+
+
+ <p>Pretty much all your common desktop apps are <a href="http://www.basecamphq.com/">now</a> <a href="http://www.campfirenow.com/">available</a> <a href="http://www.writely.com">through</a> <a href="http://calendar.google.com">a</a> <a href="http://gmail.com">browser</a>, except crazy things like image editing. Oh and the browser itself. Now their&#8217;s an idea. A meta browser. Within your browser window open up several smaller windows, maybe using different rendering engines or setups running remotely?</p>

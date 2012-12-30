@@ -1,0 +1,147 @@
+---
+created_at: 2008/03/02}
+layout: post
+comments: true
+categories: []
+title: "Generating Charts using Google Charts API"
+---
+
+I had need recently to produce some nice looking charts and immediately turned to the very nice "Google Charts API":http://code.google.com/apis/chart/. Just before Christmas "Brian":http://suda.co.uk had written up "a great introduction":http://24ways.org/2007/tracking-christmas-cheer-with-google-charts on "24ways":http://24ways.org and ever since I'd been looking for an excuse.
+
+"Chris":http://www.wait-till-i.com wrote up a pretty nice approach to "enhancing well marked up data tables":http://www.wait-till-i.com/2008/01/08/generating-charts-from-accessible-data-tables-using-the-google-charts-api/ using the Charts API with a dash of Javascript and I decided to start with that. I made only a couple of changes to this approach based on personal requirements and preferences. 
+
+For a table like this:
+
+<table class="tochart">
+  <caption>Caption</caption>  
+  <tr>
+    <th scope="row">Label</th>
+    <td>Data</td>
+  </tr>
+  <tr>
+    <th scope="row">Label</th>
+    <td>Data</td>
+  </tr>
+</table>
+
+I prefer to use the table header element to mark up the table row and the original script relied on these being _td_ elements. A couple of changes to the javascript fixed that. I also decided to display the _caption_ as a title on the resulting graph.
+
+<pre><code>
+<table class="tochart">
+  <caption>Caption</caption>  
+  <tr>
+    <th scope="row">Label</th>
+    <td>Data</td>
+  </tr>
+  <tr>
+    <th scope="row">Label</th>
+    <td>Data</td>
+  </tr>
+</table>
+</code></pre>
+
+The original script only supported the 3D pie charts and in a couple of cases I wanted to generate bar-charts from the data or flat pie-charts. A few modifications later and you can pass a type parameter into the script via a class on the table.
+
+The default if the parameter isn't set is the flat pie-chart, which can also be specified via:
+
+<pre><code><table class="tochart typep"></code></pre>
+
+For the 3D pie-chart: 
+
+<pre><code><table class="tochart typep3"></code></pre>
+
+The horizontal bar-chart is created with:
+
+<pre><code><table class="tochart typebhg"></code></pre>
+
+And finally the vertical bar-chart is set based on:
+
+<pre><code><table class="tochart typebvg"></code></pre>
+
+The complete modified version of Chris' script is below:
+
+<pre><code>(table2graph = function(){
+
+  /* variables */
+  var triggerClass = 'tochart';
+  var chartClass = 'fromtable';
+  var hideClass = 'hidden';
+  var chartColor = 'FFCC33';
+  var chartSize = '900x300';
+  var chartType = 'p';
+  
+  var toTableClass = 'totable';
+  var tableClass = 'generatedfromchart';
+  /* end variables */
+
+  var tables = document.getElementsByTagName('table');
+  var sizeCheck = /\s?size([^\s]+)/;
+  var colCheck = /\s?color([^\s]+)/;
+  var typeCheck = /\s?type([^\s]+)/;
+  for(var i=0;tables[i];i++){
+    var t = tables[i];
+    var c = t.className;
+    var data = [];
+    var labels = []
+    if(c.indexOf(triggerClass) !== -1){
+      var size = sizeCheck.exec(c);
+      size = size ? size[1] : chartSize;
+      var col = colCheck.exec(c);
+      col = col ? col[1] : chartColor;
+      var type = typeCheck.exec(c);
+      type = type ? type[1] : chartType;
+      
+      if (type == 'bhg') {
+        var label = 'chxl=1:|';
+      } else {
+       var label = 'chl=';
+      }
+      
+      var caption = t.getElementsByTagName('caption')[0].innerHTML;
+      var charturl = 'http://chart.apis.google.com/chart?cht=' + type + '&chtt=' + caption + '&chxt=x,y&chco=' + col + '&chs=' + size + '&chd=t:';
+      t.className += ' '+ hideClass;
+      var ths = t.getElementsByTagName('tbody')[0].getElementsByTagName('th');
+      var tds = t.getElementsByTagName('tbody')[0].getElementsByTagName('td');
+      for(var j=0;tds[j];j+=1){
+        labels.push(ths[j].getElementsByTagName('em')[0].innerHTML.toLowerCase());
+        data.push(tds[j].innerHTML);
+      };
+      var chart = document.createElement('img');
+      chart.setAttribute('src',charturl+data.join(',') + '&' + label + labels.join('|'));
+      chart.setAttribute('alt',t.getAttribute('summary'));
+      chart.className = chartClass;
+      t.parentNode.insertBefore(chart,t);
+    };
+  };
+  
+  /* convert charts to tables */
+  var charts = document.getElementsByTagName('img');
+  for(var i=0;charts[i];i++){
+    if(charts[i].className.indexOf(toTableClass) !== -1){
+      var t = document.createElement('table');
+      var tbody = document.createElement('tbody');
+      var data = charts[i].getAttribute('src');
+      var th,td,tr;
+      var values = data.match(/chd=t:([^&]+)&?/)[1];
+      var labels = data.match(/chl=([^&]+)&?/)[1];
+      var l = labels.split('|');
+      var v = values.split(',');
+      for(var j=0;l[j];j++){
+        tr = document.createElement('tr');
+        th = document.createElement('th');
+        th.appendChild(document.createTextNode(l[j]));
+        th.setAttribute('scope','row');
+        td = document.createElement('td');
+        td.appendChild(document.createTextNode(v[j]));
+        tr.appendChild(th);
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+      };
+      t.appendChild(tbody);
+      t.setAttribute('summary',charts[i].getAttribute('alt'));
+      charts[i].parentNode.insertBefore(t,charts[i]);
+      charts[i].setAttribute('alt','');
+      t.className = tableClass;
+    };
+  };
+}());</code></pre>

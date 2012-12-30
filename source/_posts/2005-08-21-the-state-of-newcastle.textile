@@ -1,0 +1,24 @@
+---
+created_at: 2005/08/21}
+layout: post
+comments: true
+categories: []
+title: "The State of Newcastle"
+---
+
+<p>I&#8217;ve been a practicing web designer/developer/whatever in Newcastle for over three years now and about a year ago I set up a mailing list to try and act as a useful resource, shamelessly stealing from <a href="http://brightonnewmedia.org">brightonnewmedia.org</a></p>
+
+
+ <p>So was born <a href="http://newcastlenewmedia.org">newcastlenewmedia.org</a>.</p>
+
+
+ <p>The grand plan was to find other people like me with an interest. Anyone I could learn new bits from and hopefully the utopian dream of everyone getting something out of particupating in a community. It&#8217;s been, I guess, something of a partialy something. Traffic goes up and down depending on, well I dont really know. Hopefully it&#8217;s been useful on occasion.</p>
+
+
+ <p>One issue was I never really promoted it. So, with a little time on my hands rather than redesigning this site (again) I did a little work freshening up the website, adding a showcase of local designers personal sites in the process and the plan is to promote it a little. Hopefully get some more people on their and in particular some students from the local Uni&#8217;s &#8211; quite a few of which teach something along the lines of web design but approach it in wildly different ways &#8211; something I might write about next.</p>
+
+
+ <p>Anyway, I guess the main aim is to get a snap shot of the industry and in particularly the people who make up the industry, in and around the North East. Are their people in their bedrooms going crazy CSS zen Garden designs? Are their any DOM Scripting leviathans? British web designers seem to be the cream of the crop, or at least make up a decent percentage of the cream (why do Standards based design analogies always end up being <a href="http://www.stuffandnonsense.co.uk/archives/web_standards_trifle.html">cake related</a>?), but where are the Northern designers, never mind the North East.</p>
+
+
+ <p>Anyone else think differently? Let me know. Send me sites of designers and developers in and around the North East and I&#8217;ll post them into the <a href="http://www.newcastlenewmedia.org">newcastlenewmedia.org</a> site and we shall see.</p>

@@ -1,0 +1,23 @@
+---
+created_at: 2007/08/28}
+layout: post
+comments: true
+categories: []
+title: "OpenCoffee Newcastle"
+---
+
+!http://morethanseven.net/_assets/media/imgOpenCoffee.png(Open Coffee)!
+
+OpenCoffee Newcastle is a new, open, informal and regular meetup for technology entrepreneurs, designers, bloggers, developers, geeks, investors and anyone else whoâ€™s interested.
+
+We are going to meet every Thursday morning, between 10am and 12pm, at "The Side":http://maps.google.co.uk/maps?q=the+side+cafe+newcastle just off Newcaste Quayside. 
+
+The first event will be held on September 13th. So come and share ideas, demo, get to know each other or just have a coffee.
+
+OpenCoffee Newcastle is part of the global community effort over at "opencoffeeclub.org":http://www.opencoffeeclub.org. Here's "the blog post that started it all":http://localglobe.blogspot.com/2007/02/opencoffee-club.html 
+
+With all that out of the way a little bit of background and some geekier links. I'd been meaning to get an OpenCoffee event up and running for a while and after a couple of chats in nice pubs with "Sam":http://sam.aaron.name/ and a trip to The Side we had a date and a vague plan. Worst case is it's me and Sam just meeting up but hopefully a few more people will make it along. We should have wireless as well for any demos.
+
+Note I'll likely be somewhat wired. I might be up in edinburgh the night before for "FOWA roadtrip":http://www.futureofwebapps.com/roadtrip/ and in any case I'll have been up all night at "barcampbrighton":http://www.barcampbrighton.org/. 
+
+You can register for the "event on upcoming":http://upcoming.yahoo.com/event/254890/ or even register for "the group":http://upcoming.yahoo.com/group/3537/. Or you could just turn up. See you there! Any questions post a comment (either here on on upcoming) or drop me an email.

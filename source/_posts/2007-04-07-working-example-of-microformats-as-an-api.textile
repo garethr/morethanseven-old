@@ -1,0 +1,40 @@
+---
+created_at: 2007/04/07}
+layout: post
+comments: true
+categories: []
+title: "Working example of Microformats as an API"
+---
+
+"Drew":http://allinthehead.com/ posted a while ago asking "can-your-website-be-your-api":http://allinthehead.com/retro/301/can-your-website-be-your-api. The simple idea is that you just might be able to live without a dedicated API in favour of good use of microformats.
+
+It also turns out "Tantek":http://tantek.com/ has also been on the case with his presentation "Can your website be your API? - Using semantic XHTML to show what you mean":http://tantek.com/presentations/20040928sdforumws/semantic-xhtml.html and
+
+"Glenn":http://www.glennjones.net has "spoken on the subject too":http://www.webdd.org.uk/ViewSession.aspx?SessionID=60 at "WebDD":http://www.webdd.org.uk and "BarCamp":http://barcamp.org/BarCampLondon2.
+
+This has interested me for a while and I've finally gotten around to writing some code, in fact I wrote the bulk of it during "The Highand Fling":http://thehighlandfling.com/2007/ and then the rest before the "Refresh":http://refreshedinburgh.com/ event after I got to te venue an hour early.
+
+I used Drew's "hKit":http://allinthehead.com/hkit for the microformat parsing so everything that follows is PHP5 only I'm afraid. The also means I dont have a working example on this server at the moment but you can "grab the code":http://morethanseven.net/_assets/downloads/microformatsapi/microformatsapi.zip and try it out yourself. It also makes use of a couple of "PEAR":http://pear.php.net modules; PEAR "Validate":http://pear.php.net/package/Validate and PEAR "HTTP_Request":http://pear.php.net/package/HTTP_Request.
+
+At the moment I've worked on a simple hCard example. It demonstrates the idea of a website exposing methods based on the presense of microformats, plus using that exposed method to extract the information we're looking for.
+
+First we create objects for the parser and the website:
+
+<pre><code>$parser = new hKit;
+$website = new Website('http://morethanseven.net',$parser);</code></pre>
+
+Then we'll ask what methods the website exposes:
+
+<pre><code>$website->expose();</code></pre>
+
+In this example we get back an array of the available methods, in this case _getContacts_. Then just as an example lets print out some contact details:
+
+<pre><code>foreach ($website->getContacts() as $contact) {
+   echo $contact->getFN();
+}</code></pre>
+
+This is a very early release, more of a proof of concept and as such their is no documentation and only a portion of hCard is supported. Hell, their's not even a name beginning with h! Having said that I have a plan for a little project to kick the tyres and so I'l l be adding to it and hopfully have a proper release at some point.
+
+The plan is to introduce methods like getReviews, getEvents, etc. which allow for the extraction of the relevant details. The part I find most interesting however is the idea of the expose method - asking a web page if it has an API, and if it does then what information you can extract automagically. If you're interested let me know what you think.
+
+"Download example":http://morethanseven.net/_assets/downloads/microformatsapi/microformatsapi.zip

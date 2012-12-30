@@ -1,0 +1,24 @@
+---
+created_at: 2006/10/21}
+layout: post
+comments: true
+categories: []
+title: "An apology to XSLT"
+---
+
+<p>I have to admit to thinking that XSL was something of a waste of time a while back. I&#8217;ve changed my mine and wanted to muse about why.</p>
+
+
+ <p>XML is simple enough to jump right in, and a few years back it had a big enough band wagon to mean jumping on was pretty much required. I think in hindsight, at least in my mind, alot of this was just a little gratuitous. XML abstraction layers, XML content management systems, SOAP, etc.</p>
+
+
+ <p>I&#8217;d often seen XSLT as the template layer in an XML based content management system and after several looks went back to using light weight systems that made sense. The idea of going from a database to XML then outputting HTML via XSLT just made me wonder why. The rationale that you could then output it as anything (WML, PDF, whatever) was very nice, but rarely actually realised from what I saw, and easy enough to do with any half decent templating system. You also always seemed to need more XSLT that it looked like you should.</p>
+
+
+ <p><a href="http://rubyonrails.org">Ruby on Rails</a> even wore as a badge of honor that it didn&#8217;t need to do any XML pushups to deal with configuration. And even those with a penchant for Java seem to have problems with using <a href="http://www.sdtimes.com/printArticle/column-20060901-05.html">XML as a programming language</a>.</p>
+
+
+ <p>Of late though I&#8217;ve been back playing with APIs, many of which produce XML in one way or another (whether that&#8217;s RSS, Atom or some custom format), and XSL actually comes in pretty handy here for just thowing around content. I did some work with a <a href="http://mini.google.co.uk">Google Mini</a> too using XSLT and their are some <a href="http://suda.co.uk/projects/X2V/">interesting tricks</a> with <a href="http://microformats.org">Microformats</a> to boot. I haven&#8217;t listened to the <a href="http://muffinresearch.co.uk/wsg/audio/index.xml">podcast</a> yet so I&#8217;m just guessing at the moment but I could see <a href="http://allinthehead.com/">Drew&#8217;s</a> &#8220;Your website as your API&#8221; talk at the <a href="http://muffinresearch.co.uk/archives/2006/10/21/following-the-wsg-microformats-event/">recent WSG meeting</a> making use of XSLT?</p>
+
+
+ <p>So, I think I might have changed my mind a bit. XSL, I think, is going to be a useful skill to have in your toolkit in a world of microformats and APIs. The <a href="http://www.w3schools.com/xsl/">W3Schools XSL tutorial</a> is a pretty good starting place if you&#8217;ve not used it previously at all. Thought I&#8217;d still rather use a <a href="http://www.cheetahtemplate.org/">decent templating engine</a> for site rendering tasks.</p>

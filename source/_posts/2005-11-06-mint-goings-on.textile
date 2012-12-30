@@ -1,0 +1,52 @@
+---
+created_at: 2005/11/06}
+layout: post
+comments: true
+categories: []
+title: "Mint goings on"
+---
+
+<p>Well. Lots of goings on since the <a href="http://cssreboot.com">reboot</a>. Rather than fill up lots of posts I thought I&#8217;d summarise &#8211; If something is interesting enough I&#8217;ll probably come back to it.</p>
+
+
+ <p>Thanks everyone for positive comments about the redesign, lots of new visitors to the site from the reboot site itself and people who liked the design and said so on their sites:</p>
+
+
+ <ul>
+ <li><a href="http://pixelicious.co.uk/">pixelicious.co.uk</a></li>
+  <li><a href="http://www.net-lounge.de">net-lounge.de</a></li>
+  <li><a href="http://brainfuel.tv/">brainfuel.tv</a></li>
+ </ul>
+
+
+ <p>I even got onto <a href="http://screenspire.com/view/morethanseven.net/">screenspire</a> which was nice.</p>
+
+
+ <p>All of this I&#8217;ve had the joy of watching from the vantage point of <a href="http://www.haveamint.com">mint</a>. I mentioned that I&#8217;d installed it a while back, as much to have a play around as anything but as many before me had stated, you can easily get hooked on the stats &#8211; and I&#8217;m enough of a numbers fan as it is. So what follows is a very brief, but real world opinion, of Mint. In case your only interested in the final opinion &#8211; I&#8217;m a fan (you could tell that anyway).</p>
+
+
+ <p>First things first, purchase, download and installation was an absoolute breeze. OK so I&#8217;m fine with all kinds of command line driven installs but their was non of that anyhow. Just change a simple text configuration file, create a database and upload. Everything else was just point at a URL and away we go.</p>
+
+
+ <p>I decided to install a couple of the official peppers (plugins) along the way, again a simple matter of upload, login and click install.</p>
+
+
+ <p>Login presents the nice interface everyone was googling over. It&#8217;s all nice shades of green, shadows and javascript scrolling. The pane&#8217;s themselves provide information about Visits, Referrers, Pages and Searches. This isn&#8217;t all the information you might be used to from other log file based packages but once you get over that you dont really need anything else under most circumstances.</p>
+
+
+ <p>One thing that did interest me was information about screen resolutions and that&#8217;s where the User Agent 007 pepper comes in. Displaying information about screen resolution, along with details of Browser and Flash versions. It&#8217;s all very voyeuristic I know but hey.</p>
+
+
+ <p>The Visits and Referrers panes are probably where most of the action is. The Referrers section is great from my point of view for seeing who is linking to me, really useful for tracking down interesting people I have no other way of finding out about. Visits details lots of information about the number of visits and visitors &#8211; cunningly logged using javascript so as to avoid lots of referrer (ie. spider) spam. Having said that, Google cropped up in my User Agent 007 pane so maybe Google triggers it too?</p>
+
+
+ <p>So. Is it for you? I get the feeling that it depends. It&#8217;s come out of the blogging scene so to speak and it shows. Design decisions have been made that strengthen it immeasurably for blogs while, in my mind, weaken it for other kinds of sites &#8211; in particular from my past experience for campaign style sites where you really want to look at this sort of detail.</p>
+
+
+ <p>For example the choice of PHP, how many well known blogs (at least in the corner of the web inhabited by web designers) dont use PHP? So for blogs that&#8217;s not a problem but for other sites it can be.</p>
+
+
+ <p>Another area is the ability to query the statistics. For a blog you just want to know traffic all the time probably. For a campaign you want to know what happened when. And that might mean going back in time so to speak &#8211; when putting together a report for instance. It might be possible to mine this data, even build a pepper around it &#8211; but I&#8217;m not sure that&#8217;s playing to Mints strengths.</p>
+
+
+ <p>As I said initially, these aren&#8217;t really critisisms. Specialist software is where it&#8217;s at in my mind. And this is definately a very nice piece of software.</p>

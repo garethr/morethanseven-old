@@ -1,0 +1,48 @@
+---
+created_at: 2008/10/13}
+layout: post
+comments: true
+categories: [css, unittesting, mozilla, webkit]
+title: "Unit Testing CSS - Looking for a Solution"
+---
+
+bq. I think it's an epic failure of web standards that CSS is the only essentially untestable technology invented in last decade - "Tomasz":http://twitter.com/t_a_w/statuses/957359524
+
+Talking today on Twitter with "Tomasz":http://twitter.com/t_a_w got me thinking again about one of those problems that I come back to once in a while. Unit testing CSS. CSS development is a pain, even with some sort of "system":http://natbat.net/2008/Sep/28/css-systems/. Admit it. I actually like CSS most of the time but it's still painful at times. Hopefully with that out of the way you feel better.
+
+bq. unit testing is a method of testing that verifies the individual units of source code are working properly. A unit is the smallest testable part of an application.
+
+All testing past simple validation of CSS seems to be done visually at present.
+Thinking about this from the point of view of CSS seems straight forward, but turns out not to be so for a variety of reasons. The problem lies in the cascading and compounding nature of the beast. Each individual CSS rule might do something which is self contained, but the chances on a real site are probably slim. For instance:
+
+pre. body {
+   font-size: 100%;
+}
+p {
+   font-size: 2em;
+}
+
+What is the size of the font size of a paragraph? It turns out it depends. Not just on more than one unit of source code (we have two rules here) but also on things like the browser. And how do we get this font size from a browser in the first place? I generally dislike "Selenium":http://selenium.openqa.org/ but does it provide a mechanism for getting at the calculated DOM attribute values? Do we have to interface directly with a browser at a lower level?
+
+"wxMozilla":http://wxmozilla.sourceforge.net/, "wxWebKit":http://wxmozilla.sourceforge.net/ or maybe "pywebkitgtz":http://code.google.com/p/pywebkitgtk/ might prove useful, but I'm not sure at what level they operate. What I'm imagining here is maybe something like (excuse the Python, hopefully you get the idea):
+
+pre. def test_text_size_is_12px(self):
+    response = fetch_with_browser('http://www.google.com')
+    self.assertEquals(12, response.search("p").fontSize    
+
+So we could use CSS selectors (ie. _p_) to find elements and then assert various DOM properties (ie. _fontSize_) are equal to values we specify. The magic is in getting access to those calculated DOM attribute values from an actual browser engine.
+
+Another approach would seem to be looking at visual rendering and comparing against a known good version. This seems to be something that the "Mozilla folks got up to a while back":http://weblogs.mozillazine.org/roc/archives/2005/03/visual_regressi.html to test different browser versions. Their are a few tools that might help us out here too; "BrowserCam":http://www.browsercam.com/ provides a paid for service, "Webkit2png":http://www.paulhammond.org/webkit2png/ is a handy command line script I've had fun with in the past and "IECapt":http://iecapt.sourceforge.net/ appears to be a similar beast for Internet Explorer. "CutyCapt":http://cutycapt.sourceforge.net/ is another cross platform webkit based utility. I can see a few gotchas lurking here. Animations or slow loading javascript would obviously throw this into disarray. But disabling these in the browser might get up somewhere. How to compare images  produced I'm not yet sure, but I reasons someone reading this might have a good idea?
+
+As the title would suggest this post does not contain the answer, only a few useful links and two possible approaches to the problem. The questions at this stage are:
+
+* Does any of this exist already? If so who do we need to cuddle up to to get access to it?
+* Are any of the technical hurdles to either of the approaches mentioned above insurmountable? If not what is the best solution?
+* Does anyone except me and Tomasz even want this?
+
+I reason their are a fair few things that would be needed to make this first practical and later standard; nice APIs, run times in various languages, and working out whether or not it actually helps CSS development to name but a few. But right now I'd go for a limited proof of concept that works on my machine. If anyone has any links to thinks that might be good starting points please let me know. Other ideas welcome as well.
+
+One last thing; "Mozilla's latest employees":http://ajaxian.com/archives/ajaxians-join-mozilla-creating-developer-tools are looking at the whole spectrum of developer tools. I'd love for them to start with something like this.
+
+
+

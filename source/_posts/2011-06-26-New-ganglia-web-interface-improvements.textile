@@ -1,0 +1,31 @@
+---
+created_at: 2011/06/26
+excerpt: 
+layout: post
+comments: true
+categories: [ganglia]
+title: "New Ganglia Web Interface Improvements"
+---
+
+So I'm a huge "Ganglia":http://ganglia.sourceforge.net/ fan. It's my go-to tool for standard low level metrics and for more ad-hoc higher level stuff as well. So I'm very happy to see the "newly released":http://ganglia.info/?p=393 version of the Ganglia Web interface.
+
+Here's the old look and feel:
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiZ8gEM" alt="Old Ganglia UI"/>
+
+And here's the new version:
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRix6gEM" alt="New Ganglia UI"/>
+
+The first thing that stands out to me is the wide range of new options. We have a navigation bar with items like search, views, agregate graphs, events and mobile. And we have dynamic date ranges, and filtering and sorting options for metrics. 
+
+* Search is what you'd expect. A search as you type facility for hosts and metrics, great if you have a large cluster and want to find something quickly.
+* Views are interesting. Basically a way of putting together a specific set of metrics on one screen and linking to them, rather than always having to go via the node or grid overview.
+* You could always create agregate graphs in Ganglia, but you had to delve into writing some PHP to get what you wanted. Not you can do certain types of graph on the fly, simply by specifying what you want.
+* I'm cheating slightly here and using the very latest code rather than the 2.0.0 release. But it's worth it for the Events feature. Events gives you the ability to record events like a deploy or a daily backup onto your graphs, immediately making some types of diagnosis easier. More about how I'm using this when I finish automating it.
+* Gnaglia always worked OK on a mobile device mainly because all you really wanted was the graphs. The new mobile UI however just makes navigating much easier. It's not yet doing device detection and automatically redirecting my iphone to that view which would be nice but it's definately a good addition.
+* Combined with views, automatic rotation shows a series of graphs, one every 30 seconds. Particularly useful for big screen dashboards, in fact I've built this exact feature before more than once before.
+
+I've concentrated here on the new visual features, but the new UI also contains CSV and JSON output for all metrics as well as a much easier JSON based approach to defining custom metrics. The amount of stuff in this release is huge. Massive thanks to the folks behind all the new features, in particular "Vladimir Vuksan":http://vuksan.com/.
+
+Ganglia is such a staple that I'm used to just using whatever is in the latest distro provided packages. When it comes to the web UI however I'm going to make an exception from now on. Not only can you run the new UI in parallel with the old, deployment is simply copying a directory into place (It's easy to forget just how simple PHP deployment is sometimes). If you're already using Ganglia spend a few minutes installing the new UI. If you've rejected Ganglia previously because it didn't have one feature or another then now is the time to look again. 

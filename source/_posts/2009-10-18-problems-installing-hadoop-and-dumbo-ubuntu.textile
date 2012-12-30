@@ -1,0 +1,26 @@
+---
+created_at: 2009/10/18}
+layout: post
+comments: true
+categories: [hadoop, dumbo]
+title: "Problems Installing Hadoop 0.20 and Dumbo 0.21 on Ubuntu"
+---
+
+The Hadoop wiki has a great introduction to <a href="http://wiki.apache.org/hadoop/Running_Hadoop_On_Ubuntu_Linux_(Single-Node_Cluster)">installing this piece of software</a>, which I wanted to do to have a play with "Dumbo":http://klbostee.github.com/dumbo/. The Dumbo docs also have a good "getting started":http://wiki.github.com/klbostee/dumbo/building-and-installing section which includes a few patches than need to be applied.
+
+bq. Dumbo can be considered to be a convenient Python API for writing MapReduce programs
+
+Unfortunately it's not quite that simple, at least on Ubuntu Jaunty. Hadoop now uses Java6, but if you just follow the instructions on the wikis you'll hit a problem when you run ''ant package'', namely that a third party application ("Apache Forrest":http://forrest.apache.org/) requires Java 1.5. Once you fix that, the build script will complain again that you need to install Forrest. Here's what I did to get everything working:
+
+pre. sudo apt-get install ant sun-java5-jdk
+
+pre. su - hadoop
+wget http://mirrors.dedipower.com/ftp.apache.org/forrest/apache-forrest-0.8.tar.gz
+tar xzf apache-forrest-0.8.tar.gz
+cd /usr/local/hadoop
+patch -p0 < /path/to/HADOOP-1722.patch
+patch -p0 < /path/to/HADOOP-5450.patch
+patch -p0 < /path/to/MAPREDUCE-764.patch
+ant package -Djava5.home=/usr/lib/jvm/java-1.5.0-sun -Dforrest.home=/home/hadoop/apache-forrest-0.8/
+
+With all that out of the way you should be able to run the "simple examples":http://dumbotics.com/2009/05/31/dumbo-on-clouderas-distribution/ found on the rather excellent "dumbotics":http://dumbotics.com blog. If you're using the Cloudera distribution, or when the Hadoop 0.21 gets a release, these problems will disappear but in the meantime hopefully this saves someone else a bit of head scratching.

@@ -1,0 +1,20 @@
+---
+created_at: 2009/03/02}
+layout: post
+comments: true
+categories: [dmigrations]
+title: "Quick dmigrations Update"
+---
+
+I've finally been getting round to doing a bit of work on "dmigrations":http://code.google.com/p/dmigrations/, the Python based database migration tool we developed at "work":http://thisisglobal.com.
+
+bq. dmigrations offers a simple but flexible way of managing changes to the database in your Django projects. It is a replacement for Django's built in syncdb command.
+
+I still have some work to do to merge in a number of modifications we've been running internally for a while but I've triaged the issues list that had been left alone for too long and merged in a fantastic collection of patches from a few people including Alexander Robbins and "Chris Lamb":http://chris-lamb.co.uk/. Thanks hugely to everyone for these.
+
+Everything is available in "trunk in SVN":http://code.google.com/p/dmigrations/source/browse/#svn/trunk at the moment ahead of me cleaning a few thinks up and updating the download version. I've added a setup.py file as well ahead of hopefully adding it to the "Python Package Index":http://pypi.python.org/pypi.
+
+I obviously wasn't the only one who had decided to do some work on the project in the last couple of days. "msaelices":http://www.djangosnippets.org/users/msaelices/ has just submitted "a patch":http://code.google.com/p/dmigrations/issues/detail?id=21 which adds a "PostgreSQL":http://www.postgresql.org/ backend. I don't tend to use PostgreSQL personally so if anyone does want to have a look at running dmigrations with the patch I'd love to hear about it.
+
+
+

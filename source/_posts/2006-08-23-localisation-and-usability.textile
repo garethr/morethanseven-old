@@ -1,0 +1,27 @@
+---
+created_at: 2006/08/23}
+layout: post
+comments: true
+categories: []
+title: "Localisation and Usability"
+---
+
+<p>Some interesting observations after a post and comments over at <a href="http://www.thewatchmakerproject.com/journal/345/review-newsgator-online">The Watchmaker Project</a></p>
+
+
+ <p>It turns out, after me jumping to conclusions, that the interface for <a href="http://newsgator.com">Newsgator Online</a> (my favourite newsreader for the last year or so since I went web native) varies depending on locale. From a brief look at the US, French and UK versions the US version has a newer (and from a quick look nicer) interface than the others.</p>
+
+
+ <p>First the US only version:</p>
+
+
+ <p><a href="http://www.flickr.com/photos/garethr/223079659/"><img src="http://static.flickr.com/81/223079659_bd1c59c415_m.jpg" alt="" /></a></p>
+
+
+ <p>And then the UK (the French version is the same, except with the relevant language changes):</p>
+
+
+ <p><a href="http://www.flickr.com/photos/garethr/223060658/"><img src="http://static.flickr.com/86/223060658_ec4901fa9f_m.jpg" alt="" /></a></p>
+
+
+ <p>The usability issue I have with this is the user chooses the locale when they login, wherever you login from (<a href="http://newsgator.com">newsgator.com</a>, <a href="http://newsgator.co.uk">newsgator.co.uk</a> or <a href="http://newsgator.fr">newsgator.fr</a>). OK so it&#8217;s an edge case issue, but I now know I have a choice of interfaces. Do I stick with being honest and saying I&#8217;m a brit and get an seemingly inferior interface? or do I lie and pretend to be a yank? If I was a French speaker I wouldn&#8217;t have that choice either? I dont actually know yet. I&#8217;m definately going to lie a few times just to see the new features and the interface though.</p>

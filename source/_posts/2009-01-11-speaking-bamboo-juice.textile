@@ -1,0 +1,23 @@
+---
+created_at: 2009/01/11}
+layout: post
+comments: true
+categories: [conference, bamboojuice]
+title: "Speaking at Bamboo Juice"
+---
+
+It's the start of another year so that means it's time to start thinking about conferences.
+
+I just found out at the end of last week ("via Twitter no less":http://twitter.com/binarytales/status/1106721057) that I've been confirmed as one of the speakers for "Bamboo Juice":http://bamboojuice.co.uk. Thanks to "Jon":http://twitter.com/binarytales and "Rich":http://twitter.com/richquick for having me. I'm really looking forward to that as it's a new event outside London (at the rather fabulous looking Eden project in Cornwall), which should hopefully mean a chance for a new set of people to go along to what looks like a decent event. I'll have more information about what I'm going to be talking about some time between then and now I would imagine, but the emphasis is on practical learnings for working developers and designers.
+
+Apart from that the only other conference I've confirmed I'l be attending so far is "Thinking Digital":http://www.thinkingdigital.co.uk/ in May. It was great last year even if I spent the majority of the time running round organising barcamp, moving house or leaving Newcastle. This time I'm not involved in any organising ("sorry Andy":http://twitter.com/andybudd/status/1095746624)  so I plan on making the most of the talks and general experience. Rumour has it that their will be another barcamp as well so I'll look forward to that too. It will be good to get back up to Newcastle and see people again.
+
+I'm also looking forward to "what Patrick is up to for @media":http://twitter.com/ptg/status/1096802734. It was the conference that started this whole thing rolling in the UK back in the day and now it appears it might be set for a change.
+
+bq. Time to finalise the line-up and web site for a very different (and lower price!) @media '09
+
+As well as these three I'll be keeping my eye out for any news about Xtech, The Highland Fling and any other new upcoming conferences. If you know of anything else leave a comment. I didn't find out about "Think Visibility":http://www.thinkvisibility.com/ until it had sold out but I like the idea of smaller, specialised events. 
+
+Overall it already looks like being a good year for conference goers in the UK. I'll be on the lookout for barcamp style events as well but I do like a good formal conference as well. Hopefully see a few people at some of these events?
+
+

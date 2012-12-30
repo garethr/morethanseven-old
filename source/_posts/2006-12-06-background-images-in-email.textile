@@ -1,0 +1,41 @@
+---
+created_at: 2006/12/06}
+layout: post
+comments: true
+categories: []
+title: "Background Images in Email"
+---
+
+<p>Whatever you might think about image rich emails you have to admit clients are a fan, and sometimes needs must.</p>
+
+
+ <p>The web, as always, comes to the rescue and their are a few good articles around &#8211; many of them over on <a href="http://campaignmonitor.com">campaignmonitor.com</a> including a set of <a href="http://www.campaignmonitor.com/blog/archives/2005/11/html_email_desi.html">Email Design Guidelines for 2006</a>, <a href="http://www.campaignmonitor.com/blog/archives/2005/08/optimizing_css_1.html">Optimizing CSS presentation in HTML emails</a> and the excellent <a href="http://www.campaignmonitor.com/blog/archives/2006/03/a_guide_to_css_1.html">A Guide to CSS Support in Email</a></p>
+
+
+ <p><a href="http://alistapart.com/">A List Apart</a> also has an <a href="http://www.alistapart.com/articles/cssemail/">older article</a> and their is some good infmation over on <a href="http://www.xavierfrenette.com">xavierfrenette.com</a> about the <a href="http://www.xavierfrenette.com/articles/css-support-in-webmail/">support in web mail clients</a>.</p>
+
+
+ <p>Another little bit of useful info I thought worth posting, after a quick conversation with a colleague, concerns the use of background images in emails.</p>
+
+
+ <p>Assuming your going down the inline styles route you might want to have something like this:</p>
+
+
+<code>
+&lt;div style="background: url(image.jpg) top left no-repeat; width: 500px;"&gt;&lt;/div&gt;;
+</code>
+
+ <p>But this just doesn&#8217;t work. The image doesn&#8217;t appear when the email is sent. A quick fix is to include the image inline, but hide it as much as possible with a height and width of 1px and a style of display: none.</p>
+
+
+<code>
+&lt;img src="image.jpg" width="1px" height="1px" style="display: none;"/&gt;
+</code>
+
+ <p>This throws up one of those interesting annoyances in Outlook. If you&#8217;re sending the email using Outlook the image appears twice in the editing pane, hence the 1px trick as well as the style display: none. When it&#8217;s received the style rule gets applied.</p>
+
+
+ <p>This assumes you are sending the images along with the email, rather than simply linking to them online were you dont have this problem &#8211; but do have a host of other issues with blocked images and the like.</p>
+
+
+ <p>I haven&#8217;t admittedly tested this extensively, however I&#8217;ve had a lot of luck with Outlook, which for business to business emails accouts for something like 75% of the audience according to Campaign Monitor (and probably around what I&#8217;d expect based on my experience).</p>

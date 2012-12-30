@@ -1,0 +1,18 @@
+---
+created_at: 2010/11/07
+excerpt: 
+layout: post
+comments: true
+categories: [amazon, heroku, devops]
+title: "Books For People Interested In Devops"
+---
+
+Before starting with FreeAgent I decided I should spend a bit more time with Ruby and set about building something I'd been thinking about for a while. I've just launched the first one of my related pet projects so thought I better link to it from here.
+
+<a href="http://devopsbooks.com"><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRihnAEM"/></a>
+
+"Devops Books":http://devopsbooks.com is exactly what it sounds like; a list of books that people interested in the whole devops concept should read. It's not a complete list just yet and I'll try and keep it up to date as new interesting books get released. Any suggestions to add to the list most welcome.
+
+It gave me a proper excuse to use "Heroku":http://heroku.com which has been very pleasant. Under the hood it's a very simple sinatra application using the Mustache template language. The majority of the code is a build script that pulls down information from the Amazon API and mixes it with my own content. It then creates a JSON document that is used as the basis for generating the pages. I love static generators and hand rolling your own for a particular domain is often worthwhile. It means I have the json already lying around if I want to make a JSONP style badge for instance.
+
+I plan on using the code as a bit of learning tool. Try out some different testing approaches, maybe add in GEOIP detection, make some of the commands I'm running into Rake tasks, that sort of thing. Given how easy it will be to throw up little sites like this using the generator I have a few other similar things in mind too.

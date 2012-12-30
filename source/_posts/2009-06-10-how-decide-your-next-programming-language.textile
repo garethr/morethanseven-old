@@ -1,0 +1,34 @@
+---
+created_at: 2009/06/10}
+layout: post
+comments: true
+categories: [programming]
+title: "How to Decide on Your Next Programming Language"
+---
+
+"Neil Crosby":http://neilcrosby.com/ got me thinking yesterday about which language to learn/play with next by "tweeting":http://twitter.com/NeilCrosby/statuses/2090500164
+
+bq. so, lovely people of the interwebs. What webly language should I be spending my time learning then? Right now, I'm all about the PHP.
+
+Neil appears to have gone for Python, but more specifically I'm interested in how you decide what to learn next? And improving the likelihood of you seeing it through and being able to add it to you toolbox. Personally I've messed around with a wide range of languages but I would say I'm proficient in only a few of those. 
+
+So here goes with a list of questions to ask yourself.
+
+* Do you have a small pet project you can use the new language on straight away?
+* Is the language increasing or decreasing in popularity?
+* Does the language overlap with what you already know in terms of applicability?
+* Is it a different style of programming to what you're used to? Say a pure functional language if all you normally do is object orientated.
+* Is the language in demand in the jobs market? If not why not?
+* Could you use the language in your current job if you were allowed to?
+* What are the learning materials like? Are there books or websites that teach the language without passing on bad practices.
+* What is the community around a language like? Do they have an IRC room where beginners can ask questions without being mocked?
+* Does the language have an interactive mode? Sorry but I find anything without to be a chore to learn.
+* What is it going to cost you in terms of time? Remember some languages are bigger that others.
+* What is it going to cost you in terms of money? Do you need specialist software, or hardware, or licenses?
+* Do you have friends or acquaintances who use the language and who will help you out with pointing you in the right direction of resources or helping review your code?
+* Do you have somewhere you can go to meet other people who write the language. That might be a formal user group or it might just be a more general pub meetup that you know a few people attend.
+* How is the language represented on GitHub? Seeing what other people build and being able to read working code is hugely useful when learning anything.
+
+I don't think all of these apply to everyone or apply all the time, but it's worth considering and rejecting them when they don't. 
+
+Feel free to disagree in the comments or, even better, add extra ones. Or alternatively just cut to the chase and tell me what I should learn next.

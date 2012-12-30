@@ -1,0 +1,41 @@
+---
+created_at: 2007/10/28}
+layout: post
+comments: true
+categories: []
+title: "PHP Asset Packager"
+---
+
+Performance used to be something other people thought about. If you were working on a high traffic site for a large company, chances are they would throw inordinate amounts of expensive hardware at the problem. If you had a personal site only if you got really popular would you need more than a shared host. But the number of web applications being launched by small companies or individuals from their bedrooms is raising the awareness of the importance of performant websites.
+
+Credit to YAHOO! here. Google and Amazon might be the first companies that spring to mine when it comes to thinking about infrastructure but YAHOO! have been publishing lots of useful, practical and interesting information in this area. "Steve Souders":http://stevesouders.com/, the Chief Performance YAHOO! has a "new book":http://www.amazon.co.uk/o/ASIN/0596529309/ going into detail about "YAHOO!s performance rules":http://developer.yahoo.com/performance/rules.html. The recent release of the "YSlow":http://developer.yahoo.com/yslow/ extension and another "upcoming book":http://website-performance.org/ from "Stuart Colville":http://muffinresearch.co.uk/archives/2007/09/27/css-sprite-generator-tool/ and "Ed Eliot":http://www.ejeliot.com/ cap things off nicely.
+
+According to "YAHOO!":http://developer.yahoo.com/performance/rules.html#num_http
+
+bq. Combined files are a way to reduce the number of HTTP requests by combining all scripts into a single script, and similarly combining all stylesheets into a single stylesheet. It's a simple idea that hasn't seen wide adoption. The ten top U.S. web sites average 7 scripts and 2 stylesheets per page. Combining files is more challenging when the scripts and stylesheets vary from page to page, but making this part of your release process improves response times.
+
+While all that has been going on I've been working with a "few":http://rbd.shiftnetwork.co.uk/ "people":http://www.bofh.org.uk/ on a Rails project and come across a great plugin; "asset_packager":http://synthesis.sbecker.net/pages/asset_packager from "Scott Becker":http://synthesis.sbecker.net/. Inspired by the "Vitamin article":http://www.thinkvitamin.com/features/webapps/serving-javascript-fast by "Cal Henderson":http://www.iamcal.com/ (of Flickr and "another good book":http://www.amazon.co.uk/Building-Scalable-Web-Sites-Henderson/dp/0596102356 fame), asset_packager compresses and merges CSS and Javascript based on a prescribed configuration.
+
+I'm also working on a few PHP projects and wanted the same experience in these as well, so  I've gone a put together a quick release of "php asset packager":http://code.google.com/p/php-asset-packager/. At the moment this is a CSS only release, with Javascript features coming later, along with all the rest of the features of the Rails plugin and anything else I can think of or need.
+
+First off you define your stylesheet setup. I used "YAML":http://www.yaml.org/ as my goal was to stick as close as possible to the Rails plugin.
+
+<code><pre>stylesheets:
+- base:
+  - screen
+  - header
+- secondary:
+  - foo
+  - bar</pre></code>
+
+The above simply states that you want to merge screen and header CSS files together to form a base stylesheet, and merge foo and bar together to create a secondary CSS file.
+
+All you then have to do is include the following:
+
+<code><pre>// define("ENVIRONMENT", "production");
+
+echo Asset_packager::stylesheet_link_merged();</pre></code>
+
+If the ENVIRONMENT constant is set to _production_ the line includes the merged stylesheet links, otherwise each file is included seperately. This again mirrors the behaviour of the Rails plugin. A command line script is also included in the "source":http://code.google.com/p/php-asset-packager/source to actually merge (and "tidy":http://csstidy.sourceforge.net/) the CSS files.
+
+The vague plan is to add the rest of the features and then maybe package up as a plugin for whatever software or frameworks I'm working with at the time. At the moment that probably means wordpress, "symfony":http://www.symfony-project.com/ and "code igniter":http://codeigniter.com/. Everything is open source and available from svn over on the "Google Code site":http://code.google.com/p/php-asset-packager. Contributions, in the way of code, bugs, documentation or thoughts welcome.

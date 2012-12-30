@@ -1,0 +1,31 @@
+---
+created_at: 2009/06/17}
+layout: post
+comments: true
+categories: [css, sass, ruby]
+title: "Less CSS"
+---
+
+Ruby people _really_ don't like CSS do they? But "Less":http://lesscss.org/ is actually pretty cool. It's basically an attempt to bootstrap features, specifically Variables, Mixins, Operations and Nested Rules, into CSS. The best part about this is it uses CSS syntax and a simple one step compiler. I'd be interested to know what the folks at the W3C think about this.
+
+So for instance you can do:
+
+pre. /* LESS */
+@brand_color: #4D926F;
+#header {
+  color: @brand_color;
+}
+h2 {
+  color: @brand_color;
+}
+
+and compile it down to:
+
+pre. /* CSS */
+#header {
+  color: #4D926F;
+}
+h2 {
+  color: #4D926F;
+}
+

@@ -1,0 +1,60 @@
+---
+created_at: 2009/03/21}
+layout: post
+comments: true
+categories: [appengine, hackernews]
+title: "Hacker Posts"
+---
+
+I've been playing again with App Engine, and going back to an on/off pet project that I've build variations of for a while.
+
+<a href="http://hackerposts.appspot.com"><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRihHww" alt="Hacker Posts"/></a>
+
+It's basically a pretty straightforward aggregation platform, taking content from a number of feeds and creating relationships between the items. It's mainly an experiment in creating a decent size site on App Engine - it can be surprising how many urls you can get out of a good corpus of data:
+
+* 400 items, each with a unique url
+* each item has a variable number of tags generated, at the moment that amounts to about 1000 unique urls
+* each month and year of content gets a url so that's another 4 or so
+* each day for which we have items we also get a url, so that's another 90 or so
+
+So starting off with 1500 or so pages isn't bad. The site also grows over time as new items are posted or I add more feeds. Everything else I've done with App Engine has been more "application":http://imified-demo.appspot.com/ "focused":http://image-host.appspot.com/ so seeing how a content site performs is interesting in and of itself.
+
+The data in question I used for this first experiment was the feeds I could find from the "top posters on Hacker News":http://news.ycombinator.com/leaders. Hence the name "Hacker Posts":http://hackerposts.appspot.com. That left me with 35 feeds:
+
+* http://www.matasano.com/log/feed/
+* http://feeds2.feedburner.com/ThinkGene
+* http://www.mechanicalrobotfish.com/rss.xml
+* http://feeds.feedburner.com/Cloudknow
+* http://mark.nirv.net/rss
+* http://feeds.feedburner.com/seldomlogical
+* http://feeds.feedburner.com/mattmaroon/AAcm
+* http://www.swombat.com/rss.xml
+* http://feeds.feedburner.com/woobius
+* http://feeds2.feedburner.com/danieltenner
+* http://www.nilkanth.com/feed/
+* http://feeds.feedburner.com/NewCartographer
+* http://inthebox.webmin.com/feed
+* http://www.maximise.dk/blog/xml/rss.xml
+* http://www.pchristensen.com/blog/feed/
+* http://280north.com/blog/feed/
+* http://tlrobinson.net/blog/feed/
+* http://www.WhatToFix.com/atom.xml
+* http://alexkrupp.typepad.com/sensemaking/atom.xml
+* http://feeds.feedburner.com/yegg
+* http://scotchi.net/feed/atom/
+* http://paulbuchheit.blogspot.com/feeds/posts/default
+* http://www.owenbyrne.com/feed/
+* http://blog.jrock.us/feeds/articles/atom
+* http://www.kalzumeus.com/feed/
+* http://feeds.feedburner.com/gojomo
+* http://davidpiccione.com/blog/feed/
+* http://blog.blinker.net/feed/
+* http://dambalah.com/feed/
+* http://dustincurtis.com/rss.xml
+* http://blog.jodoro.com/feeds/posts/default
+* http://arantaday.com/blog/feed/
+* http://www.allanjosephbatac.com/blog/feed
+* http://feeds.feedburner.com/offbytwo
+* http://feeds.feedburner.com/FoundersBlog-Cluttermecom
+
+I have a couple of other communities or events that I'd like to do the same thing around, as well as a few features I want to add to the underlying software. The nice thing with App Engine is rolling new instances out is as simple as running a command.

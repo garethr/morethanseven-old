@@ -1,0 +1,41 @@
+---
+created_at: 2011/05/08
+excerpt: 
+layout: post
+comments: true
+categories: [vagrant, rubygems, vagrantboxes]
+title: "Vagrant Plugin For Interacting With Vagrantbox.es"
+---
+
+After "Patrick":http://www.jedi.be/blog released "Sahara":https://github.com/jedi4ever/sahara/, a nifty extension for the "Vagrant":http://vagrantup.com command line tool, I've been meaning to put together a similar extension for interacting with the growing list of base boxes on "vagrantbox.es":http://www.vagrantbox.es.
+
+After a bit of hacking this morning I've just pushed out an initial release of the "vagrantboxes gem":https://rubygems.org/gems/vagrantboxes and you can find the "source code and some documentation on GitHub":https://github.com/garethr/ruby-vagrantboxes.
+
+The extensions adds a vagrantboxes namespace to the vagrant command line tool which provides a few useful commands. Specifically you can list all the available boxes, do text searches, show the full details of a box and most handily of all add a box that takes your fancy to your local base box store, all without having to worry about the URLs of the boxes if you don't want to.
+
+Here's an example of a simple search:
+
+<pre>>> vagrant vagrantboxes search centos
+3    centos 5.5                http://dl.dropbox.com/u/15307300/vagrant-0.7-centos-64-base.box
+6    opscode centos 5          http://opscode-vagrant-boxes.s3.amazonaws.com/centos5-gems.box
+7    opscode ubuntu 10.04      http://opscode-vagrant-boxes.s3.amazonaws.com/ubuntu10.04-gems.box
+9    puppet centos 5.5 64      http://puppetlabs.s3.amazonaws.com/pub/centos5_64.box
+10   puppet centos 4 64        http://puppetlabs.s3.amazonaws.com/pub/centos4_64.box
+21   centos 5.6 32             http://yum.mnxsolutions.com/vagrant/centos_56_32.box</pre>
+
+And another quick example, this time of show printing the full description. In the future I might look to store more structured metadata and make this more useful.
+
+<pre>>> vagrant vagrantboxes show 18
+puppet debian lenny 64
+http://puppetlabs.s3.amazonaws.com/pub/debian_lenny_64.box
+
+Debian Lucid 64 bit vagrant box. Puppet 2.6.6 installed and ready to provision using the Puppet provisioner in Vagrant.
+
+For good sample modules, try the jeffmccune-motd and jeffmccune-mockbuild modules posted to http://forge.puppetlabs.com/
+
+Created by Ken Barber, ken@puppetlabs.com</pre>
+
+This proved a good excuse to delve into the Vagrant source code which is pretty readable for the most part once you understand the libraries it's build upon. It's simple enough to extend for adding commands like this too, which bodes well for other more useful additions in the future.
+
+If anyone has any problems with this extensions do let me know. Error handling currently consists of returning blank output rather than sensible error codes or messages, and as I've yet to add a small test suite so their might (will) be a few bugs lying around. I'll try and make it better behaved in the next week or two but reasoned it's useful straight away.
+

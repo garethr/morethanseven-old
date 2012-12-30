@@ -1,0 +1,18 @@
+---
+created_at: 2006/11/01}
+layout: post
+comments: true
+categories: []
+title: "JRuby Vs Python.NET"
+---
+
+<p>I got to thinking recently, after playing around with more <a href="http://www.codeplex.com/Wiki/View.aspx?ProjectName=IronPython">IronPython</a> and talking with a Ruby fan, about the future of computer languages. Is their a war brewing between Python and Ruby in unexpected quarters? That quarter being the .NET and Java croud.</p>
+
+
+ <p>Personally I&#8217;m too much of a fan of dynamic languages to be wholly impartial, but working in a mainly .NET shop I&#8217;m following IronPython when I get a chance, and a friendly Java officionando seemed pretty pleased with <a href="http://jruby.codehaus.org/">JRuby</a> (although why not <a href="http://www.jython.org/Project/index.html">Jython</a> I&#8217;m not sure?) when last I spoke with them.</p>
+
+
+ <p>Java and .NET are the prime candidates when it comes to big companies buying software, and all of that investment isn&#8217;t going to go to waste any time soon. But the potential speed benefits of Python or Ruby, and the work already going on with the likes of JRuby, Jython and IronPython, could make for a smooth transition.</p>
+
+
+ <p>I guess only time will tell, and I&#8217;m sure some people are still not convinced when it comes to dynamic languages (heathens). In the meantime I&#8217;ve ordered <a href="http://www.amazon.co.uk/Beyond-Java-Bruce-Tate/dp/0596100949">Beyond Java</a> by <a href="http://weblogs.java.net/blog/batate/">Bruce Tate</a> to do some swatting up.</p>

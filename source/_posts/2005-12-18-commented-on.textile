@@ -1,0 +1,27 @@
+---
+created_at: 2005/12/18}
+layout: post
+comments: true
+categories: []
+title: "@commented-on"
+---
+
+<p><strong>Update</strong> I&#8217;ve updated this site to include a list of recent comments I&#8217;ve made powered by <a href="http://del.icio.us">del.icio.us</a> and @commented-on. A quick hack of the <a href="http://textpattern.org/plugins/163/txpicious">txt.icio.us</a> plugin and some thinking on at rules for del.icio.us later and their we go. Expect more details soon.</p>
+
+
+ <p><strong>Update</strong> <a href="http://ben-ward.co.uk">Ben</a> has posted an <a href="http://ben-ward.co.uk/journal/follow-me-with-delicious/">update to his post</a> with a quick hack of the <a href="http://del.icio.us">del.icio.us</a> bookmarklet.</p>
+
+
+ <p>Ah Ha. Nice when you have a vague need and think about spending some time coming up with a quick solution, only to forget about it until you come across a solution.</p>
+
+
+ <p>I&#8217;m busy (ok sometimes) but only part of that is down to my blog reading habit. I only occasionally find time to comment and then often forget where I&#8217;ve commented and no doubt miss the follow up. If only their was a quick way of keeping track. Where did I comment and when? What if (strange, probably stalkerish) people wanted to know where I had been commenting and what I&#8217;d been saying? Well thanks to <a href="http://www.ben-ward.co.uk">Ben</a> we may have a solution.</p>
+
+
+ <p>Enter <a href="http://del.icio.us">del.icio.us</a>. Ben has suggested using the tag @commented-on and who am I to argue? By tagging any page I make a comment on in this way del.icio.us will keep a record at <a href="http://del.icio.us/garethr/@commented-on">del.icio.us/garethr/@commented-on</a> as well as make a feed available at <a href="http://del.icio.us/rss/garethr/@commented-on">del.icio.us/rss/garethr/@commented-on</a></p>
+
+
+ <p>Nothing on those at the moment but as I comment on things around the web I&#8217;ll try and remember. The whole <a href="http://flock.com">flock</a> thing would be particularly useful for this (at least once it&#8217;s a bit more stable) with it&#8217;s built in del.icio.us setup. A couple of apps spring to mind on that back of this, and playing with rss is still one of my fave things. A textpattern plugin (I&#8217;ve been meaning to at least have a look at building one at some point) or some social network app would be interesting. Watch this space (maybe).</p>
+
+
+ <p>Anyone else start using this technique leave a comment. I&#8217;d be interested to see it catch on.</p>

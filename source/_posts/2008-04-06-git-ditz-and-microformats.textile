@@ -1,0 +1,17 @@
+---
+created_at: 2008/04/06}
+layout: post
+comments: true
+categories: []
+title: "Git, Ditz and Microformats"
+---
+
+I finally got round to making use of "Git":http://git.or.cz/, the distributed source code management tools much loved by Open Source projects like the Linux Kernel and now Ruby on Rails. It had been on the long list of things to have a look at for quite a while but for the majority of my personal projects SVN is just fine. The reason that led me to finally run _sudo port install git-core_ was the new "Ditz":http://ditz.rubyforge.org/ command line issue tracking software release on "Gitorious":http://gitorious.org/projects/ditz by "William Morgan":http://cs.stanford.edu/people/wmorgan/. 
+
+Now, a command line issue tracker is maybe kind of niche and a little geeky. But most desktop or web based issue trackers just seem to wind me up and I like small tools that fit in with my command line centric workflow. I managed to clone "my own copy":http://gitorious.org/projects/ditz/repos/ditz-microformats of Ditz to have a play with. I ran into a few initial problems but nothing a "good tutorial":http://www.kernel.org/pub/software/scm/git/docs/tutorial.html and a "helpful mailing list":http://groups.google.com/group/gitorious couldn't fix.
+
+I'm not just playing around either; Ditz comes with the nice ability to generate a set of static HTML files representing your issue database. I've committed and pushed a few modifications and enhancements onto my clone - mainly validation, semantic markup improvements and a smattering of microformats (work in progress) in the templates and a couple of markup generation helpers in the Ruby code. I plan on working up the interface a little as well but like any good web designer I'm starting with the underlying markup structure.
+
+A few other enhancements I'd love to see in Ditz or a clone I could pull from include the ability to use  "SQLite":http://www.sqlite.org/ rather than the default YAML for larger projects, automatic generation of RSS feeds alongside the HTML (although I've started implementing hAtom) and maybe automated deployment to a remote host over FTP or SSH.
+
+The distributed nature of Git appears to be pushed as the main advantage to those developers taking a look. But I think this is, in many cases, is not _that_ important compared to the familiarity that comes from having used SVN or similar for a while. What I think just might be it's real strength is that Git is a *social source control system*. For Open Source projects like Ditz this is a potentially game changing move. The ease with which anyone can contribute and take things in strange directions without affecting the overall effort is fantastic. It removes barriers to entry for contributors and means making small quick changes is much easier and more immediate. With both Gitorious and "Github":http://github.com/ wrapping Git in a shiny web based interface that focuses on these social aspects it will be interesting to see if this leads to more or faster Open Source collaboration efforts.

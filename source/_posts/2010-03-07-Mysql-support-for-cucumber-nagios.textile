@@ -1,0 +1,38 @@
+---
+created_at: 2010/03/07
+excerpt: 
+layout: post
+comments: true
+categories: [mysql, cucumber-nagios]
+title: "Mysql Support For Cucumber Nagios"
+---
+
+I just noticed Lindsay had "committed":http://github.com/auxesis/cucumber-nagios the amqp steps for cucumber-nagios and remembered I hadn't mentioned on here some other work I've been doing on the same project. We use MySQL quite a bit at work and I've been wanting to extent our monitoring for a while. So I set about thinking how that would work with cucumber-nagios. What I've come up with looks something like this:
+
+<notextile>
+<pre>
+Feature: localhost
+  To make sure the rest of the system is in order
+  Our database server should not be overloaded
+
+  Scenario: check running processes count
+    Given I have a MySQL server on localhost
+    And I use the username root
+    Then it should have less than 10 processes
+
+  Scenario: check queries per second
+    Given I have a MySQL server on localhost
+    And I use the username root
+    Then it should have less than 200 select queries per second
+    Then it should have less than 300 queries per second
+    Then it should have less than 5 slow queries pers second
+    Then it should have at least 10 queries per second
+</pre>
+</notextile>
+
+The numbers, username details and host details are all variables. So you can write senarios for your specific deployments. The tests over time are based on a very short lived sampling mechanic which I've yet to test in anger. I'm not sure just yet is this approach will lead to too many false positives but we'll have to see.
+
+This "mysql gmetric script":http://codeinthehole.com/archives/8-Monitoring-MySQL-with-Ganglia-and-gmetric.html gave me lots of the ideas for invidual steps. I'll be writing more about some work I've been doing with cucumber-nagios and ganglia soon as well.
+
+For the moment if anyone want's to try these steps out you can either check out "my cucumber-nagios":http://github.com/garethr/cucumber-nagios fork or just grab the steps from the "mysql_steps.rb":http://github.com/garethr/cucumber-nagios/blob/master/lib/generators/project/features/steps/mysql_steps.rb file. Any feedback much appreciated.
+

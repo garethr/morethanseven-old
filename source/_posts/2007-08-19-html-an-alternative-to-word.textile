@@ -1,0 +1,21 @@
+---
+created_at: 2007/08/19}
+layout: post
+comments: true
+categories: []
+title: "HTML. An alternative to Word?"
+---
+
+When I'm writing code, be it CSS, Javascript, Ruby, whatever, I don't like big bulky IDE's. Give me "TextMate":http://macromates.com/ or Vim any day. Going all freelance I now have the occasional need to produce nice documents and being in charge means I get to decide what I use to produce them. I never really liked working in Microsoft Word so decided against it. But rather than sensibly going for an obviously alternative I decided to just use HTML, or rather more specifically, "Textile":http://textism.com/tools/textile/.
+
+!http://morethanseven.net/_assets/media/imgOnlineDocs.png(An example of a current document)!
+
+As an old time "textpattern":http://textpattern.com I learned to love the simple text transformation language and it's inclusion in the "37signals":http://37signals.com apps made me smile and more likely to use them. Why use it over HTML you may ask? For me I think about HTML like a browser, as a tree of nodes. I end up spending quite a bit of time writing content then going backwards and wrapping what I just wrote in markup. This is fine for your typical site, but for writing documents it's hard to get into a flow. With textile I can flow in one direction.
+
+So far I'm liking it alot. I can seperate content from presentation (Word styles are a myth), easily repurpose my content (text, html, pdf) and write documents in anything I like, including Word if I chose to. 
+
+It's been a pretty good excuse to play with various bits of CSS3, including multi-columns, advanced layout, generated content and the various print offerings. Given I can control the rendering engine then produce a PDF to distribute I can use anything that the latest browser builds can deal with.
+
+I've not got all the workflow steps automated yet, I'm using Firefox to print documents to PDF (via Preview) at the moment which works fine but is still a manual process I can get rid of using something like "css2xslfo":http://www.re.be/css2xslfo/ and "fop":http://xmlgraphics.apache.org/fop/. I'm also pretty sure the PDFs won't be accessible, although the original markup certainly should be.
+
+As I produce more complex documents I'll likely miss things like automated table of contents generation, footnotes and page numbering but, then again, I can write that in Javascript (or on the server) if I so choose. I was impressed listening to HÃ¥kon Wium Lie at "@media":http://vivabit.com/atmedia2007/ about the process they used to format his last book using CSS and "PrinceXML":http://www.princexml.com/. I'm half tempted to spend time rolling all this together into a web app. It would be pretty good fun really; APIs, XSLT, CSS, PDF, some nice UI problems, etc. Only problem I see would be entering a market contested by Microsoft, Google, Sun and er, lots of others.

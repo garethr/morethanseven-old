@@ -1,0 +1,29 @@
+---
+created_at: 2008/01/27}
+layout: post
+comments: true
+categories: []
+title: "Questions, Pointers and Reality"
+---
+
+Along with an awful lot of noise, the whole X-UA-COMPATIBLE IE8 issue is also bringing out some well rounded and thought through arguments from people I admire.
+
+I still disagree with "Jeremy Keith":http://adactio.com/journal/1403/ on the default issue but agree with everything else. Jeremy says:
+
+bq. Let me make it perfectly clear: I understand the need for version targeting. But the onus must be on the publisher to enable it.
+
+At the moment it comes down to a sense of stubborn realism on my part. All the people who know about the issue and the need for the new header (that would be me, Jeremy, probably you and the whole _web standards developer_ crowd) are probably also in a position to add it fairly easily. All those that don't know about the header _don't have to know_ about it. Ever. I would prefer if this wasn't the case but alas I think it might be.
+
+"Mike Davies":http://www.isolani.co.uk/blog/standards/InternetExplorerReality has one of the most well argued points out their. Throwing into the pot the issue of content not served via a web server raises even more issues that make changing the default behaviour difficult. I think Mike sums this up pretty well:
+
+bq. Every other browser has either started from scratch from the ground up (Firefox and Opera), or created a browser after the browser-wars (Safari). As such, all three have benefited from not having to support Microsoft's excess baggage. And Microsoft being dragged to a complete stop because of it. This is Microsoft's browser-war victory biting them in the ass.
+
+Whether we like it or not this issue is about Microsoft, and I (maybe naively) believe Microsoft would like nothing better than to get back up from the mat and innovate in the browser space. But they can't because of the ball and chain. 
+
+Who hasn't written at least some code that, in hindsight, turned into a horrible maintenance nightmare? You might dream of jumping in and rewriting it from scratch but if that code has already been shipped to a client then what is that client doing to do? Turning around and saying _actually, what we gave you originally was pretty rubbish_ isn't going to go down well - even when it's the right thing to do. 
+
+Mike is right in that the IE team are actually going to be shipping two browsers. That has got to be a massive issue for them - certainly a bigger issue than me adding a new header to my site or a meta element to my pages. But if it lets the second of those browsers support CSS3, HTML5, XHTML, Canvas and anything else we dream of then I'm all for it. We all know the first of those browsers just won't be up to the task.
+
+One particular thorny problem I wasn't aware of was issues surrounding accessibility. "Bruce Lawson":http://www.brucelawson.co.uk/index.php/2008/accessibility-implications-microsoft-versioning/ has some of the details but in short by locking a large number of sites into the ways of IE7 we essentially freeze the (poor) state of accessibility on the web. "Patrick Lauke":http://splintered.co.uk also raises a related issue in the comments regarding further alienating screen reader and assistive technology developers. These points for me are ones I want addressing by Microsoft and one's without resolution which would make me change my mind on this whole issue of defaults.
+
+So, the jury is still out in my mind. I hope it is in the minds of those working closer to the heart of this problem at Microsoft. Like "Molly":http://molly.com I'm glad this issue has been raised now, rather than simply revealed at launch. I just hope the reason for that was to get the sort of high quality feedback we're seeing in some areas of the community in order to test the waters and come to a consensus.

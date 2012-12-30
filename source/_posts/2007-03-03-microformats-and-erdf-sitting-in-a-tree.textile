@@ -1,0 +1,68 @@
+---
+created_at: 2007/03/03}
+layout: post
+comments: true
+categories: []
+title: "Microformats and eRDF sitting in a tree"
+---
+
+Following on from "my previous post":http://morethanseven.net/posts/what-erdf-can-learn-from-microformats/ on "eRDF":http://www.w3.org/RDF/ I've started to play around with it. For anyone bored enought to have read the source of this site today you'll have seen a couple of behind the scenes changes - specifically I've added a dash of "FOAF":http://www.foaf-project.org/.
+
+The FOAF, or Friend of a Friend, project is:
+
+bq. creating a Web of machine-readable pages describing people, the links between them and the things they create and do.
+
+I sort of see it as a bigger and more complicated older brother to "XFN":http://gmpg.org/xfn and "hCard":http://microformats.org/wiki/hcard.
+
+First things first, unlike "Microformats":http://microformats.org, using eRDF needs a bit of setup outside just adding classes and attributes - specifically you need to add a profile to the _head_ element of your document and then add some namespaces links into the _head_ like so:
+
+<pre><code><head profile="http://purl.org/NET/erdf/profile">
+  <link rel="schema.rdfs" href="http://www.w3.org/2000/01/rdf-schema#" />
+  <link rel="schema.foaf" href="http://xmlns.com/foaf/0.1/" />
+</head></code></pre>
+
+Then you're onto the more familiar ground (if you're used to Microformats) of adding semantic attributes. I already had the following snippet markup up in hCard, i just needed to add a few more classes (-foaf-Person, foaf-weblog and foaf-name) to existing elements.
+
+<pre><code><div id="iHead">
+  <h2 class="vcard -foaf-Person" id="gareth">
+  <a href="/" class="url org foaf-weblog">Morethanseven</a>
+  <span>is where <a href="mailto:&#103;&#097;&#114;&#101;&#116;&#104;&#064;&#109;&#111;&#114;&#101;&#116;&#104;&#097;&#110;&#115;&#101;&#118;&#101;&#110;&#046;&#110;&#101;&#116;" 
+    class="email fn foaf-name">Gareth Rushgrove</a> plays with the web
+    </span></h2>
+</div></code></pre>
+
+The full "FOAF Specification":http://xmlns.com/foaf/0.1/ details a huge range of other elements - everything from "foaf:Project":http://xmlns.com/foaf/0.1/#term_Project for making associations between yourself and projects you have worked on, to "foaf:OnlineGamingAccount":http://xmlns.com/foaf/0.1/#term_OnlineGamingAccount which is pretty self explanatory.
+
+When parsed out that gives you a foaf document a little something like:
+
+<pre><code><?xml version="1.0" encoding="utf-8" standalone="no"?>
+<rdf:RDF xmlns:admin="http://webns.net/mvcb/" 
+  xmlns:doap="http://usefulinc.com/ns/doap#" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:foaf="http://xmlns.com/foaf/0.1/" 
+  xmlns:h="http://www.w3.org/1999/xhtml" 
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about="">
+    <admin:generatorAgent 
+      rdf:resource="http://purl.org/NET/erdf/extract"/>
+  </rdf:Description>
+  <rdf:Description rdf:about=""/>
+  <rdf:Description rdf:about="#gareth">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <ns_13:weblog xmlns:ns_13="http://xmlns.com/foaf/0.1/">
+      Morethanseven
+    </ns_13:weblog>
+    <ns_14:name xmlns:ns_14="http://xmlns.com/foaf/0.1/">
+      Gareth Rushgrove
+    </ns_14:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://morethanseven.net"/>
+  <rdf:Description rdf:about="mailto:gareth@morethanseven.net"/>
+</rdf:RDF></code></pre>
+
+So far I'd agree with "Ben":http://ben-ward.co.uk/journal/fao-rdf/. All I've done is something people (including me) have been doing already with hCard. But I've done it in a way, using eRDF, that doesn't in any way stop me continuing using Microformats.
+
+Marking things up with Microformats for it's own sake was only ever really of interest to markup junkies (including me again). It's only when you can parse that information out that it gets more interesting. I've got a follow up post to this on just that subject involving some XSL, Javascript, PHP and some standing on the shoulder of giants. It will be left to a post after that when I try do something a little different. 
+
+On a related note; so far I've found only scattered and often overly technical and verbose documentation on eRDF and RDF in general. I've been adding links to "del.icio.us":http://del.icio.us/garethr as I find useful resources but I can see how useful "Get Semantic":http://getsemantic.com has the potential to be if any of this is going to take off in the web standards community.

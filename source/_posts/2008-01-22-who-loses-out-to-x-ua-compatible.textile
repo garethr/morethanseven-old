@@ -1,0 +1,44 @@
+---
+created_at: 2008/01/22}
+layout: post
+comments: true
+categories: []
+title: "Who loses out to X-UA-Compatible?"
+---
+
+If you work on the web you'll probably have already seen or noted the existence of the "latest issue of A List Apart":http://alistapart.com/issues/251:
+
+* "Beyond DOCTYPE: Web Standards, Forward Compatibility, and IE8":http://alistapart.com/articles/beyonddoctype
+* "From Switches to Targets: A Standardista's Journey":http://alistapart.com/articles/fromswitchestotargets
+
+My twitter feed positively exploded with negative feedback on this issue but I've only just got round to reading (and re-reading) the various interesting articles and (some half through through) comments. I though I'd have a think through who this affects.
+
+What we're disucssing is either adding a meta element to your documents or alternatively sending the relevant HTTP header. The code for that looks like:
+
+<pre><code><meta http-equiv="X-UA-Compatible" content="IE=8" /></code></pre>
+
+h3. IE Users 
+
+Users of Internet Explorer get a bum deal here I think. Their browser is going to get bigger - potentially a lot bigger. With all those rendering engines rolled into one it's also likely to need lots of memory. How this affects the mobile version of IE is anyones guess. Memory and file size are even more important here.
+
+h3. Other Browser Vendors
+
+I have a feeling they will all go _Meh_ and move along as if nothing happened. Certainly my experience of upgrades to Firefox, Safari and Opera (including recent bleeding edge versions) doesn't break any of my bits of the web or the bits I frequent.
+
+h3. Web Standards Savvy Designers and Developers
+
+A really cool feature for us designers and developers has gone unmentioned I feel. We've been asking Microsoft for one application in which we can test all their browsers in. IE8 will be that browser. Think about it. By changing the contents of the meta element (or the header) we can trigger the rendering engine to use IE6, IE7 or IE8.
+
+I'm a big fan of the whole progressive enhancement approach, using new browser features that not everyone supports (generated content, CSS3 selectors, etc.) in a way that they don't affect older browsers. If I were to use a feature not yet supported by IE7 but expected in IE8 for instance in this way I would expect it work in IE8. If I include an IE7 _X-UA-Compatible_ declaration this won't happen. Which is why I probably won't include one. The problem is if I don't include it at all I still have the same problem. I'll come back to the solution (and the problem with the solution) in a moment.
+
+h3. Other Web Designers and Developers
+
+Not everyone is using Web Standards, and even less get progressive enhancement. Most of the web is broken and we _are not going to fix this_. Virtually no one thinks XHTML2 is a good idea because it starts with this fact and says _"Let's start again, but get it right this time"_. The fact that all those websites (and more importantly for Microsoft the users of those websites) standardise on IE7 is fine by me. IE7 isn't that bad remember.
+
+So, all in all I don't see a major problem for me, or other savvy web designers and developers. I have one issue; namely the strong language around the use of _edge_.
+
+bq. This option, though strongly discouraged, will cause a site to target the latest IE browser versions as they release.
+
+What this is describing is how things work now. It's also how I want to work - using progressive enhancement to make my websites better when people have browsers that support them. I'll be adding the relevant _edge_ headers to my sites by default as I get a moment to tinker.
+
+In my view this should allow the web to move forward faster with newer features hitting IE sooner, leaving a ghetto populated by IE users who don't upgrade quickly and designers and developers who don't want to be professional about their craft (or tools that aim for the lowest common denominator). Yes, I'll need to add a header to all of my sites in the future but in return I get the latest version of IE that lets me test all previous versions of IE.

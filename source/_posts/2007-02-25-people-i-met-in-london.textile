@@ -1,0 +1,19 @@
+---
+created_at: 2007/02/25}
+layout: post
+comments: true
+categories: []
+title: "People I met in London"
+---
+
+Meeting likeminded people is always good fun and the UK web conference scene provides lots of good opportunities for that. Sometimes it's meeting up with past _aquaintances_ or _friends_ and other times mainly about making new _contacts_. Oh, and their are always a few _co-worker's_ in tow. 
+
+Mainly as a reminder but also as a "hello" to some of those I met down in London for "BarCamp":http://barcamp.org/barcamplondon2 (BarcampLondon2) and "Future of Web Apps":http://futureofwebapps.com (FOWALondon07) here goes with a list of some of the people, mainly _colleague_ and a few _neighbor_ I met on my travels:
+
+"Tom Croucher":http://www.kid666.com/blog, "Tom Morris":http://blogs.opml.org/tommorris, "Gareth Rogers":http://www.garethrodger.com/, "Ben Ward":http://ben-ward.co.uk, "Jeremy Keith":http://adactio.com, "Ben Darlow":http://kapowaz.net, "Norm":http://cackhanded.net, "Ian Forrester":http://www.cubicgarden.com/, "Stuart Colville":http://muffinresearch.co.uk/, "Andy Hume":http://thedredge.org/, "Mike Stenhouse":http://www.donotremove.co.uk/, "Pete Lambert":http://pixelicious.co.uk/, Lisa Price, "Meri Williams":http://blog.meriwilliams.com/, "Elly Williams":http://www.ellythompson.co.uk/blog/, "Steve Marshall":http://nascentguruism.com/, "Niqui Merret":http://niquimerret.com/, "Natalie Downe":http://notes.natbat.net/, "Alistair MacDonald":http://www.agm.me.uk/blog/.
+
+Between them they now have me interested in doing more with mobile messaging (SMS, MMS, Jabber), finding our more about eRDF, playing with Pipes, organising a Barcamp, getting some Moo cards, playing more with the flickr machine tags api and, oh, about a hundred and one other things including drinking beer (ok, that one was Ben). Consider that a partial list of the sorts of things I'm likely to post on over the next month or so.
+
+If their is anyone I have yet to add to "Flickr":http://flickr.com, "Upcoming":http://upcoming.org or "Twitter":http://twitter.com hopefully I'll find you soon or feel free to drop me a line. If I missed someone sorry, probably all the sleep I've been trying to catch up on.
+
+This post brought to you by some of XFN.

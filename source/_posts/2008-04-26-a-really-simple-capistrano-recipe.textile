@@ -1,0 +1,41 @@
+---
+created_at: 2008/04/26}
+layout: post
+comments: true
+categories: []
+title: "A Really Simple Capistrano Recipe"
+---
+
+Build scripts. I think I've probably mentioned before; everyone knows they should but not many actually do. I'm not talking about your large in-house development teams or your sexy web startups; both probably have a good-enough build process for different reasons. But smaller teams, web design agencies or freelancers often rely on FTP and a prayer. One of the problems is definitely finding _suitable_ documentation. It's not that their isn't a lot of good quality documentation - it's the suitability of it for those with only a passing interest and a limited systems administration experience.
+
+"Capistrano":http://capify.org/ is a tool for automating tasks on remote servers. It can be used for all sorts of useful things but we'll concentrate on it's utility for web site deployment. It's been popular with the "Rails":http://rubyonrails.com/ crowd for a while and is written in Ruby, but it can be used for deploying sites in Python, PHP, Django, whatever you happen to be using at the time.
+
+You'll first need to install Ruby and Capistrano. The Capistrano site has "installation instructions":http://capify.org/install which should get you up and running. You'll need to be able to use a console on your machine and have a passing acquaintance with your webserver. I've also assumed that you're using source control, mainly because if you're not you should start their. Automation becomes much more useful and practical on the back of a good source control system. 
+
+Right, lets get started. Create a file called _capfile_ somewhere on your local machine. The following two code snippets should go in that file.
+
+<pre><code>set :username, "<username>"
+set :host, "<host>"
+set :path, "<path>"
+set :restart, "/etc/init.d/apache2 restart"
+set :checkout, "svn export --force"
+set :repo, "<repository address>"</code></pre>
+
+Just replace the variables (marked with angle brackets) with your own values. The path is the full path on the remote server where you want to deploy your files to. Note that I've abstracted out the webserver restart command and the source control checkout command. The above example values assume you're using apache and subversion (and want to do a subversion export). It should be easy enough to change these for your preferred combination of source control system and webserver.
+
+<pre><code>desc "Remote checkout and restart of webserver"
+task :deploy, :hosts => "#{username}@#{host}" do
+  run "#{checkout} #{repo} #{path}; #{restart}"
+end</code></pre>
+
+If your platform of choice doesn't require a server restart (say PHP) you can always remove the _; #{restart}_ portion of the command. 
+
+Now we're all set up just bring up a console in the folder containing the _capfile_ and run the following command:
+
+<pre><code>cap deploy</code></pre>
+
+After prompting for a password to access the remote machine this should display the output from the commands being run. Depending on the size of the repository you're checking out
+
+Of course for most projects you would want to expand this basic recipe. Maybe you have database updates to run or need to deploy to multiple machines at once? You'll might have machine specific configuration files which aren't in the source control system. You will also probably want to be able to revert back if something goes wrong and you might want to only change files that have been altered. Capistrano has lots of powerful features built in that will let you do just that, and once you get started with this sort of build scripting you'll find lots of areas to improve. And you'll find lots of good tutorials online that will take you further.
+
+The difficult part with project automation and build scripts is often the _getting started_ in the first place; especially if you're not the server admin type. Unfortunately the documentation and articles written on the subject tend to be somewhat arcane and aimed at the more hardcore developer. Hopefully this simple, usable, example convinces someone else to give it a try.

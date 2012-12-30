@@ -1,0 +1,11 @@
+---
+created_at: 2008/02/19}
+layout: post
+comments: true
+categories: []
+title: "Invited to Join WaSP"
+---
+
+I had a great time at "SemanticCamp":http://semanticcamp.tommorris.org/ over the weekend which was not too much of a surprise. What was a surprise was getting back home to find out that I've been invited to join the "Web Standards Project":http://www.webstandards.org/ (WaSP) on the "Education Task Force":http://www.webstandards.org/action/edutf. I even have my "own page":http://www.webstandards.org/about/members/grushgrove/.
+
+Thanks for inviting me guys. Anyone who has had the misfortune of having me present during a discussion of the current state of web education knows it's one of my favourite subjects. Hopefully I can make myself useful around the place and help with getting a few things done. More on this when I know more but in the meantime feel free to pester me endlessly if you have a particular axe to grind.

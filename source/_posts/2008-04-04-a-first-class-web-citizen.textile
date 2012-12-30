@@ -1,0 +1,17 @@
+---
+created_at: 2008/04/04}
+layout: post
+comments: true
+categories: []
+title: "A First Class Web Citizen"
+---
+
+I'm just back from another great few days in Scotland for "The Highland Fling":http://thehighlandfling.com. The biggest difference for me this year was I was lucky enough to be one of the speakers. Amongst such internet luminaries as "Simon Willison":http://simonwillison.co.uk/, "Norm":http://cackhanded.net/, "Chris Mills":http://dev.opera.com/author/974138, "Christian Heilman":http://wait-till-i.com/, "Aral Balkan":http://aralbalkan.com/ and "Paul Boag":http://boagworld.com/ I presented on a few web building blogs (HTTP, URLs) and on some suggestions for API design. The presentation is available on "slideshare":http://www.slideshare.net/garethr/a-first-class-web-citizen/ for anyone who would like a peek.
+
+<object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slideshare.net/swf/ssplayer2.swf?doc=webcitizen-1207330793788509-9"/><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slideshare.net/swf/ssplayer2.swf?doc=webcitizen-1207330793788509-9" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object>
+
+I think the topic went down well and it triggered some good discussion around the nascent issue of API design. One thing is clear - we need some good resources filled with examples on the subject. More and more people are going to be extending various bits of software with an API and it would be nice to think they will all be a pleasure to use. In the meantime is you have any features or guidelines your like to see in APIs then suggest them "over here":http://doesyourapi.com/suggest/.
+
+The rest of the conference was great. I particularly enjoyed Norms little history lesson and Aral has me at least thinking about installing all the Flash and Flex tool chain. The highlight for me was probably the format. After each presentation we got a little grilling by Paul. He came up with a few thorny questions for each of us as well as fielding questions from the audience. Hopefully my stint on the sofa made sense to a few people, certainly everyone else threw out a few interesting titbits that probably wouldn't have been talked about otherwise. Also, Chris Mills nearly managed to make Paul cry with laughter by striking something of a rock star pose for most of his interview.
+
+I've just uploaded a "handful of photos":http://www.flickr.com/photos/garethr/sets/72157604386886719/ from the event and surrounding geek gatherings too. All in all the event was great (again). With the close venue, interviews mixed in and general friendly atmosphere The Highland Fling had an intimate feel often missing from events. Huge credit goes to "Alan":http://www.azcazandco.com/ and hopefully we'll all be back next year.

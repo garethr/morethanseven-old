@@ -1,0 +1,48 @@
+---
+created_at: 2011/05/07
+excerpt: 
+layout: post
+comments: true
+categories: [cron, deployment, puppet, chef, whenever]
+title: "Version Control And Deployment Of Cron Jobs"
+---
+
+A recent question on Twitter prompted me to write a quick blog post about managing cron jobs. As more and more people want to automate provisioning and deployment of web applications some, maybe previously manually managed, items come into the fold.  
+
+Cron jobs are interesting because you may prefer to see them as part of the infrastructure (like apache or mysql) or as part of your application code. I think both are valid, sometimes at the same time. For instance you might have a cron job which deals with scheduled database backups. All that requires is the database and the script to be present. At other times your cron jobs might require your entire application stack. For instance a rake task which uses a Rails application model, or a django management command.
+
+h2. Configuration Management and Cron
+
+Both "Chef":http://opscode.com/chef/ and "Puppet":http://puppetlabs.com/puppet/ provide a cron resource type. This is particularly handy for things like database backup scripts or ganglia gmetric scripts. You probably want these scripts and cron jobs to be installed on machines that have the related software installed, and you're probably already describing this in your Chef recipes or Puppet manifests. If you're not already using one of these tools using them to manage just your cron jobs is a nice way of starting out.
+
+Using the "Puppet Cron Type":http://docs.puppetlabs.com/references/latest/type.html#cron looks like this:
+
+<pre><code>cron { command:
+  command => "/usr/local/sbin/command",
+  hour => 2,
+  minute => 0
+}</code></pre>
+
+And the equivalent "Chef Reasource":http://wiki.opscode.com/display/chef/Resources#Resources-Cron looks like:
+
+<pre><code>cron "describe your job" do
+  hour "2"
+  minute "0"
+  command "/usr/local/sbin/command"
+end</code></pre>
+
+The important part is that by describing your cron jobs in code you can then version control them easily, and both Chef and Puppet have mechanisms to push these jobs out to be installed by the relevant hosts. With cron jobs you might not want all your machines to be running the same jobs for instance.
+
+h2. Using Whenever
+
+An alternative, or complimentary, approach to versioning and deploying cron jobs would be to tie it in with your application code. This makes sense when those jobs are tightly coupled to your application, for instance rails specific rake tasks or django management commands. "Whenever":https://github.com/javan/whenever is a tool I've been using recently that makes this pretty simple. You describe your cron jobs in a file called schedule.rb like so:
+
+<pre><code>every 3.hours do
+  command "/usr/local/sbin/command"
+end</code></pre>
+
+And then running the provided whenever command line application will generate a working crontab. Whenever ships with capistrano integration and some useful shortcuts for running rake tasks or accessing Ruby code, but it's simple to write your own command shortcuts without having to write ruby code too.
+
+h2. Other Approaches
+
+I have seen some tools which replace cron completely, but I've never liked that idea much. Cron works pretty well, and is clever enough to deal with things like daylight saving time and leap years inteligently if needed. I know other folks who are centralising all regular jobs into something like Jenkins. I can see advantages to that, although I've yet to find a really nice way of automating this outside the gui interface or manually modifying configuration files.

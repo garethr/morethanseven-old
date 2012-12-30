@@ -1,0 +1,17 @@
+---
+created_at: 2007/02/28}
+layout: post
+comments: true
+categories: []
+title: "UK Web Design Meetups Map"
+---
+
+I've posted a list before of events and meetups I know about around the UK but had got playing with the "Google Maps API":http://www.google.com/apis/maps/documentation/ and decided to go one stage further and create a hopefully useful place to put all that info in the shape of a quick mashup.
+
+Have a look over on "morethanseven.net/presents/meetup":http://morethanseven.net/presents/meetup for a hopefully useful tool. I'll try and keep this up to date manually for the time being, so if you know of any other get togethers please leave a comment and I'll add them to the list. Thanks to the excellent, if a little technical (well, it is Google) API documentation and "Jeremy's":http://adactio.com "Adactio Austin":http://austin.adactio.com for inspiration.
+
+!http://morethanseven.net/_assets/media/imgMapSample.jpg(Sample map of UK Meetups)!
+
+I'd like to make this even more flexible, ideally all I should have to do is point the page at the group urls and then parse out the geo-coded microformats data and then display it on the map and page, rather than duplicate this information and maintain it by hand. So if any of the owners of these sites want to geo-code up their sites and let me know that would be great. Some "Upcoming":http://upcoming.org integration might be on the cards too.
+
+Hopefully it should be of some use to anyone looking for things going on in their area, or if you find yourself in a strange part of the country for whatever reasons then you'll know how to find the local geek community without risking life and limb with an odd T-Shirt.

@@ -1,0 +1,81 @@
+---
+created_at: 2009/07/15}
+layout: post
+comments: true
+categories: [django, asteroid]
+title: "Asteroid - simple app for running scripts and recording the results"
+---
+
+Asteroid is a simple web interface for running scripts and recording the results. It's like a much simpler and more general purpose version of something like Cruise Control. You can "get the code on Github":http://github.com/garethr/Asteroid/tree/master.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRj5VQw" alt="Asteroid Dashboard"/>
+
+I built it to solve two main problems:
+
+* It's sometimes useful to have a historical record of a scripts execution, in particular whether it passed or failed and what the output was. Just running a command line script probably doesn't give you that. It's also useful to have a more graphical interface for those members of the team who don't use the command line.
+* When working in a team you often want to run scripts against shared infrastructure, for instance deploying a testing release or running a test suite. Seeing what is running at present helps with that.
+
+So it should be useful for running deployments, running test suites, running backups, etc. It currently doesn't have scheduling or similar build in, but as everything is triggered by hitting a URL it would be simple enough to use cron for something like that. It should also be useful whatever language you write your scripts in; rake, ant, shell scripts, etc. At the end of the day it just executes a command at the console.
+
+h2. Requirements
+
+Asteroid uses the Django Python framework under the hood.
+
+* Django - "http://www.djangoproject.com/":http://www.djangoproject.com/
+
+You'll also need a database. The default in the shipped settings is to use sqlite but this should work with any database supported by Django.
+
+You'll also need a decent web browser. I've gone and used HTML5 as an experiment and with this being a developer tool I'm hoping to stick with it. It would be easy enough to convert the templates if this is a problem however.
+
+The application has an optional message queue backend which can be enabled in the settings file. This is used to improve the responsiveness of the application as well as allow commands to be executed on a remote machine, rather than on the box Asteroid is running.
+
+* AMQPlib - "http://barryp.org/software/py-amqplib/":http://barryp.org/software/py-amqplib/
+* RabbitMQ - "http://www.rabbitmq.com/":http://www.rabbitmq.com/
+
+Other AMQP compliant message queues should work but it's currently only tested with Rabbit.
+
+If you are intending to do any development on Asteroid, or just want to look more closely at the code, I'd recommend installing 
+
+* Clue - "http://github.com/garethr/django-clue/tree/master":http://github.com/garethr/django-clue/tree/master
+* Test Extensions - "http://github.com/garethr/django-test-extensions/tree/master":http://github.com/garethr/django-test-extensions/tree/master
+
+h2. Usage Instructions
+
+You should be able to just download asteroid and run it from wherever you put it, once you setup the database.
+
+<pre>cd asteroid/configs/common
+manage.py syncdb
+manage.py runserver</pre>
+
+This should bring the local web server up on port 8000 so visit http://localhost:8000 and see.
+
+If you're using the message queue backend you'll need to run the listener script in order to get your commands executed. At the moment that means modifying a constant in the listener script to point at a running message queue instance at asteroid/bin/asteroid_listen.py.
+
+<pre>cd asteroid/bin
+./asteroid_listen.py</pre>
+
+Once you're up and running you should be able to add commands via the admin interface at http://localhost:8000/admin/. The username and password should be those you added when creating the database via the syncdb command above.
+
+The development configs include a few additional applications (mentioned above) which I use for testing and debugging. You can run the test suite like so:
+
+<pre>cd asteroid/configs/development
+manage.py test --coverage
+</pre>
+
+h2. Todo
+
+This is an early release that just about _works for me_. I can already see a number of areas I'd like to clean up a little or extend. For instance:
+
+* Other deployment options, including a WSGI file and a spawning startup script.
+* Use a database migration system to make upgrades easier.
+* Make the message queue listener script more robust.
+* Make the command entry more robust, it sometimes takes a bit of fiddling with to get something to run correctly.
+* Formalise running scripts on remote machines, including support for running on multiple machines.
+* Paging for long lists of commands or runs.
+
+h2. Notes
+
+I'm pretty happy with how it's shaping up so far. Under the hood it works by having the web app put a JSON document on the message queue. The JSON contains the command to be run and a callback URL. The script listening to the message queue picks up the message, runs the command, and posts a JSON document back to the webhook url. It keeps the web interface snappy, as well as meaning it can show which commands are currently in progress at any given time. It also has the side benefit of meaning you can execute commands on a remote machine, as the listener doesn't care where it's running.
+
+As noted above I have a few ideas of where I want to take it, but I'm going to try using it for a bit and see how that goes. If anyone else finds it useful then do let me know.
+

@@ -1,0 +1,26 @@
+---
+created_at: 2011/09/11
+excerpt: 
+layout: post
+comments: true
+categories: [nagios, rundeck]
+title: "Rundeck And Nagios Nrpe Checks"
+---
+
+I've been playing with "Rundeck":http://rundeck.org/ recently. For those that haven't seen it yet it's an application for running commands across a cluster of machines and recording the results. It has both a command line client and a very rich web interface which boths allows you to trigger commands and shows the results.
+
+I've played with a few different jobs so far, including triggering Puppet runs across machines triggered by a Jenkins plugin. I've also been looking at running all my monitoring tasks at the click of a button (or again as part of a smoke test triggered by Jenkins) and I thought that might make a nice simple example.
+
+My checks are written as Nagios plugins, and run periodically by Nagios. I also trigger them manually, using Dean's "NRPE runner script":http://www.unixdaemon.net/tools/commandline/introducing-nrpe-runner.html.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiJoQIM" alt="Rundeck showing a job output"/>
+
+The above shows a successful run across a few machines I use for experimenting with tools. Hopefully you can see the summary of the run on each of the four machines, each ran five NRPE checks and all passed. On failure we'd see the results as well as different symbols and colous. We can easily save the output to a file if we need to, rerun or duplicate the job (maybe to have it run against a different group of machines) or we can export the job definition file to load into another instance.
+
+The same job can also be run on the command line (which makes use the of Rundeck API)
+
+<pre>./run -j "Run NRPE checks" -p PRGMR</pre>
+
+This example shows running a specific pre-defined job, but it's also equally possible to fire of adhoc commands to some or all of the machines rundeck knows about.
+
+One thing in particular that I prefer about this approach to say using Capistrano or Fabric for remote execution tasks is that you have a centralised authentication and logging capability. It would be easy enough to encapsulate the jobs into cap or fabric tasks (and manage that in source control) which means you're not stuck if Rundeck isn't available.

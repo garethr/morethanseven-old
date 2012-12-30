@@ -1,0 +1,9 @@
+---
+created_at: 2009/02/02}
+layout: post
+comments: true
+categories: [dvcs, pep]
+title: "PEP 374"
+---
+
+The Python core developers are currently "discussing whether to move away from SVN to a distributed version control system":http://www.python.org/dev/peps/pep-0374/. It's a worthwhile read for anyone involved in this sort of decision in any capacity. It features hands on examples of each of the contenders (Bazaar, Git and Mercurial), some interesting observations about all of them as well as  some benchmarks against a mature codebase. Lots of conversations keep cropping up on Twitter about why bother switching to Git or other distributed systems - this is a good place to start whether you use Python or not.

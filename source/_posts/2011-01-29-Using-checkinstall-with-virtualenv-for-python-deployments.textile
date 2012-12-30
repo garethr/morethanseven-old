@@ -1,0 +1,66 @@
+---
+created_at: 2011/01/29
+excerpt: 
+layout: post
+comments: true
+categories: [python, packaging, checkinstall]
+title: "Using Checkinstall With Virtualenv For Python Deployments"
+---
+
+Michael Brunton-Spall wrote last week about some "frustrations with packagings and deploying Python web applications":http://www.brunton-spall.co.uk/post/2011/01/26/packaging-and-deploying-python-web-apps/. Although his experience was with Python, the problems he describes are the same for Ruby and PHP and a whole host of languages. The following example uses Python, but works equally as well for anything else.
+
+Michael has three simple rules for his servers:
+
+# they cannot access the internet
+# they cannot access internal services that are for development
+# they cannot have compilers / utilities on them
+
+I won't go into all the reasons for doing this (you can read the blog post linked to above) but these are pretty sensible security precautions.
+
+My approach to this problem would be to use your friendly system packages and using a handy tool called "Checkinstall":http://www.asic-linux.com.mx/~izto/checkinstall/ to create a deb or rpm. I'm going to use as an example the "Eventlet":http://wiki.secondlife.com/wiki/Eventlet library. This is available in PyPi and one of it's dependencies (Greenlets) provides a C extension. The same approach would work for an entire Python web application too. I'm as ever using the apt package management tool but this should work with yum as well.
+
+The first step is to build the package on a build machine. This should be a machine or virtual machine running the same operating system as your production web servers. You might build these packages manually or as part of a continuous integration system. On this machine we'll need the compilers and development tools: 
+
+<pre>sudo apt-get install build-essential python-dev python-setuptools checkinstall
+sudo easy_install virtualenv</pre>
+
+We'll also create a virtualenv into which we'll be installing our packages:
+
+<pre>sudo virtualenv --no-site-packages /usr/local/environment
+source /usr/local/environment/bin/activate</pre>
+
+Now, instead of just calling easy_install to install the package, we prefix it with checkinstall. 
+
+<pre>sudo checkinstall /usr/local/environment/bin/easy_install eventlet</pre>
+
+This will prompt for various meta data about the package you want to create, including the name and version of the package. If you're using this method in the real world you'll want to decide on a versioning and naming scheme for your packages to avoid clashes with system provided packages. You can also set many of these options from the command line rather than having to manually fill them in each time. 
+
+Once everything has been filled in successfully this should run through, installing eventlet and greenlets and eventually creating a deb or rpm package depending on what platform you're running on. You should see something like:
+
+<pre>Done. The new package has been installed and saved to
+
+ /home/vagrant/eventlet-gareth_20110129-1_i386.deb
+
+ You can remove it from your system anytime using: 
+
+      dpkg -r eventlet-gareth</pre>
+
+Now lets grab that package and take it to one of our front end web servers via a controlled deployment process. That front end web server needs the virtualenv creating but nothing else. So:
+
+<pre>sudo apt-get install python-virtualenv
+sudo virtualenv --no-site-packages /usr/local/environment</pre>
+
+(Now you might be thinking that installing the python-virtualenv package in this way breaks rule 1 above. And you'd be right in most cases, but I'm guessing Michael's systems team have a local package repo for authorised packages, or alternatively you could download the package to the build machine and push it to the production environment.)
+
+Now install the package we created earlier.
+
+<pre>sudo dpkg -i eventlet-gareth_20110129-1_i386.deb</pre>
+
+That should throw all the required files into the virtualenv environment we created. No compilers. No calls to internal or external systems. Just move some precompiled binaries and text files to predefined places on disk.
+
+I used a PyPi package as an example. Checkinstall could have been pointed at a custom build file written especially for your own application, one that moves files and folders to where they are needed. Say something that looks like this:
+
+<pre>#!/bin/sh
+cp /home/stage/myapplication /var/www/apps/</pre>
+
+The running checkinstall against that (or a more complex build file using capistrano or ant or fabric) you can create a package containing your application code and install it into the specified place.

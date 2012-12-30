@@ -1,0 +1,52 @@
+---
+created_at: 2010/11/28
+excerpt: 
+layout: post
+comments: true
+categories: [java, jruby, glassfish, sinatra]
+title: "Sinatra On Glassfish Example"
+---
+
+I magically turned into a Java developer last week for a bit when I had to do some integration with a SOAP based API that really really wanted me to write Java on client as well. That led me down the route of having a good look at Jruby (which I've used before, mainly for testing using celerity) and in particular how easy it was to use native Java classes in Jruby (very, very easy as it turns out).
+
+All that meant I'll probably end up writing a nice Jruby application in the not too distant future, and not knowing too much about running such a thing in a production environment I thought I'd take a quick look. I went with Glassfish as the application server for no other reason that it took my fancy. I'd definately be interested in hearing about any positive or negative experiences people may have with it or other similar servers. My quick look turned into running a tiny Sinatra application.
+
+First install the required gems for our little experiment. You'll obviously need jruby which is sort of the point, I'd recommend using RVM for that.
+ 
+<pre><code>gem install sinatra warbler</pre></code>
+
+Now create a sinatra app. OK, it could be any Ruby rack based application but I like Sinatra. First we need a rackup file.
+
+<pre><code># config.ru
+require 'init'
+
+set :run, false
+set :environment, :production
+
+run Sinatra::Application</pre></code>
+
+Now for our application itself.
+
+<pre><code># init.rb
+require 'rubygems'
+require 'sinatra'
+get '/' do
+  "Hello World!"
+end</pre></code>
+
+Warble is the gem we're going to use to create a WAR file, which is basically an all in one bundle of our application and it's dependencies which we can deploy to a java application server.
+
+<pre><code># config/warble.rb
+Warbler::Config.new do |config|
+  config.dirs = %w(config)
+  config.includes = FileList["init.rb"]
+  config.gems += ["sinatra"]
+  config.gems -= ["rails"]
+  config.gem_dependencies = true
+end</pre></code>
+
+Now we're ready to generate our WAR file.
+
+<pre><code>warble</pre></code>
+
+This should create a file called sample.war or similar. Then just deploy that to your application server and away you go. I got this working very easily with Glassfish which seemed to be the recommended tool for such things. Installing Glassfish was time consuming but "well documented here":http://www.nabisoft.com/tutorials/glassfish/installing-glassfish-301-on-ubuntu. Uploading to Glassfish was done via the web interface for the moment. I just selected a Ruby project from the deployment drop down and uploaded the war file.

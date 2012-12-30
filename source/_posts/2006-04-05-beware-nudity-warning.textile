@@ -1,0 +1,12 @@
+---
+created_at: 2006/04/05}
+layout: post
+comments: true
+categories: []
+title: "Beware. Nudity Warning"
+---
+
+<p>Rejoice. It&#8217;s <a href="http://naked.dustindiaz.com/">CSS Naked Day</a>!</p>
+
+
+ <p>Come on everybody, get your markup out for the ladies.</p>

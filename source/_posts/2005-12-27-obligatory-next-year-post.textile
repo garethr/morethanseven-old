@@ -1,0 +1,45 @@
+---
+created_at: 2005/12/27}
+layout: post
+comments: true
+categories: []
+title: "Obligatory next year post"
+---
+
+<p>Well, that&#8217;s nearly 2005 over and done with. Quite an eventful year all told and I couldn&#8217;t let it end without the obligatory <a href="http://www.andybudd.com/archives/2005/12/web_design_and_development_trends_for_2006/">next</a> <a href="http://www.hicksdesign.co.uk/journal/come-with-me-on-a-journey">year</a> <a href="http://www.molly.com/2005/12/13/mollys-unabashedly-biased-picks-2005-blogs-design-books-and-achievements/">post</a> .</p>
+
+
+ <p>So without further ado, this year various things happened to me:</p>
+
+
+ <ul>
+ <li><a href="http://www.atmedia2005.co.uk">@media</a> was great. Met <a href="http://mrpatto.com/">lots</a> of <a href="http://www.molly.com/">nice</a> <a href="http://theintranetblog.blogspot.com/">people</a> and had a blast. Roll on next year.</li>
+  <li>I <a href="http://morethanseven.net/posts/thnking-about-a-move">moved jobs</a></li>
+  <li>I actually started blogging. I redesigned the site around that goal and now I&#8217;m hooked. Oh well.</li>
+  <li>The <a href="http://www.cssreboot.com">Reboot</a> was a massive success. It got me to redo my site properly, got me all of ten minutes of minor fame and I&#8217;m still on the front page. Thanks to everyone.</li>
+ </ul>
+
+
+ <p>Next year my crystal ball predicts:</p>
+
+
+ <ul>
+ <li>The <a href="http://carsonworkshops.com/summit/index.html">Carson Workshops Summit</a> will be huge.</li>
+  <li>I&#8217;ll find something more specific to write about rather than jumping around all the time.</li>
+  <li><a href="http://www.newcastlenewmedia.org">Newcastle New Media</a> will kick into action with some real world meetups and then who knows?</li>
+ </ul>
+
+
+ <p>On less of a self centred trip:</p>
+
+
+ <ul>
+ <li><a href="http://www.nwpropertysolutions.com">Elastic</a> and <a href="http://www.cssliquid.com">Liquid</a> design will be essential.</li>
+  <li><a href="http://www.37signals.com/svn/archives2/yahoo_vs_google_an_academics_vs_inthetrenches_entrepreneurs_showdown_.php">Yahoo Vs Google</a> will really hot up. With more buying and innovating that you can shake a stick at.</li>
+  <li>Intel powered Apples will be launch to a crazy ipod fueled public. Who still wont buy them. They will however by the machine of choice for the discerning conference attending web design geek next year.</li>
+  <li>Some crazy, web 2.0, buzzword compliant CMS/Blogging software will hit the streets causing a ruckus. Textpattern will still be great.</li>
+  <li>Some cools stuff has to come out of <a href="http://pages.alexa.com/prod_serv/WebInfoService.html">Alexa opening up their archive via web services</a></li>
+ </ul>
+
+
+ <p>All in all, I&#8217;m looking forward to next year for a range of reasons including the above. Hope to see (or meet) all of you (again) over the coming year.</p>

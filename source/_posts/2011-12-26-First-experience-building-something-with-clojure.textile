@@ -1,0 +1,22 @@
+---
+created_at: 2011/12/26
+excerpt: 
+layout: post
+comments: true
+categories: [jenkins, clojure, noir]
+title: "First Experience Building Something With Clojure"
+---
+
+I nearly always try and grab some time over Christmas to try something new and this year I'd been planning on spending some time with Clojure. I have several friends who are big fans, but dipping in and out of a book hadn't really worked. What I needed was an itch to scratch.
+
+I stuck with a domain I'm pretty familiar with for this first project, namely building a little web application. It renders a web page, makes HTTP requests, parses JSON into native data structures and does a bit of data juggling. Nothing fancy or overly ambitious, I was mainly interested in picking up the syntax, understanding common libraries and getting something built. Here's what I've got:
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjBuAIM" alt="Dasboard for Jenkins builds"/>
+
+Jenkins has various API endpoints, but most dashboards I've seen concentrate on showing you the current status of all the builds. This is hugely useful when it comes to the simple case of continuous integration, but I've also been using Jenkins for other automation tasks, and making extensive use of parameterized builds. What the dashboard above concentrates on is showing recent builds for a specific job, along with the parameters used to run them.
+
+Overall it was a fun project. Clojure made much more sense to me building this application than it had from simple examples. The "Noir":http://webnoir.org/ web framework is excellent and proved easy enough to jump into and simple enough that I could read the source code if I was interested in how something worked. The "Leiningen":https://github.com/technomancy/leiningen build tool made getting started, downloading and managing dependencies and running tests and the application itself easy.
+
+What I didn't find particularly appealing was the lack of a strong standard library coupled with the difficulty of tracking down suitable libraries. JSON parsing, dealing with HTTP requests and date handing are very common activities in web programming and all needed me to jump around looking at the best way of dealing with the common case. I settled on "clj-http":https://github.com/dakrone/clj-http, "chesire":https://github.com/dakrone/cheshire and using Java interop for date formatting. clj-http suffered from having lots of forks on GitHub to navigate through. I started with clojure-json before discovering it had been deprecated. And neither clj-time or date-clj appeared to support unix timestamps as far as I could tell from the source. Throw in some uncertainty over the status of clojure-contrib that isn't well documented on the official site and it needs some effort to get started.
+
+The working code for this is already up on "GitHub":https://github.com/garethr/jenkins-build-list and I'd be interested in any Clojure experts showing me the error of my ways.

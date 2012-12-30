@@ -1,0 +1,18 @@
+---
+created_at: 2012/07/01
+excerpt: 
+layout: post
+comments: true
+categories: [vagrant, github, heroku]
+title: "The Vagrantbox.es Story"
+---
+
+A few weeks ago now "Vagrantbox.es":http://www.vagrantbox.es/ (a website I maintain for third party hosted "Vagrant":http://vagrantup.com/ base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people "ep.io":https://www.ep.io/ had unfortunately closed down the service they had in beta and I'd been so busy that I hadn't had chance to move it elsewhere.
+
+The original version of the site (I had the code and good backups of the data) was a pretty simple Django application, but I'd used it to experiment (read over-engineer) with various bits of tech including Varnish, Solr, some ORM caching and lots more. This had been great, but it made it less portable. I had everything described in Puppet, but with virtually no spare time I decided to go a different route.
+
+I threw a flat version of the site up on "GitHub":https://github.com/garethr/vagrantboxes-heroku, served it using Nginx on "Heroku":http://www.heroku.com/ and added a quick _Fork me on GitHub_ badge to the top. Suggest a box moved from being a web form to a pull request. It's fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I've had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.
+
+What I'm going to take from this is, if you're building a community project that's aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that's secondary. Pull requests are much better than any content management system or workflow you're likely to build, and even more importantly the time to implement something drops hugely.
+
+With all the spare time I don't have I'll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.

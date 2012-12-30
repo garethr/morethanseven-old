@@ -1,0 +1,45 @@
+---
+created_at: 2007/11/23
+layout: post
+comments: true
+categories: [python, twitter]
+title: "Archiving Twitter data with Python"
+---
+
+"Alex":http://www.al3x.net/ from "Twitter":http://twitter.com just got round to adding the ability to export your entire archive of tweets via the "API":http://groups.google.com/group/twitter-development-talk/web/api-documentation. A few people on the mailing list had been asking for this for a while so good to see it get released.
+
+I couldn't resist knocking together a very quick and simple Python script to go off and get all your tweets, presented here for anyone else to play around with. Note that simple, fast and works on my machine were watchwords here. Don't expect fancy parameters, much error handling or artificial intelligence.
+
+<notextile>
+<% syntax_colorize :python, type=:coderay do %>
+import urllib2
+username = '<YOUR USERNAME>'
+password = '<YOUR PASSWORD>'
+format = 'json' # json or xml
+filename = 'archive.json' # filename of the archive
+tweets = 164 # number of tweets
+pages = (int(float(tweets)/float(80)))+1
+auth = urllib2.HTTPPasswordMgrWithDefaultRealm()
+auth.add_password(None, 'http://twitter.com/account/', username, password)
+authHandler = urllib2.HTTPBasicAuthHandler(auth)
+opener = urllib2.build_opener(authHandler)
+urllib2.install_opener(opener) 
+i = 1
+response = ''
+print 'Downloading tweets. Note that this may take some time'
+while i <= pages:
+    request = urllib2.Request('http://twitter.com/statuses/user_timeline/account.' \
+    + format + '?page=' + str(i))
+    response = response + urllib2.urlopen(request).read()
+    i = i + 1
+handle = open(filename,"w")
+handle.write(response)
+handle.close()
+print 'Archived ' + str(tweets) + ' of ' + username + \
+'\'s tweets to ' + filename
+<% end %>
+</notextile>
+
+The main thing to note here though is the ideal of "data portability":http://www.dataportability.org/. Let's just say I wanted to move to Jaiku or Pownce instead of Twitter, but didn't want to lose all that data. If I can knock up an export script in half an hour then all you need are import data API calls and a little more scripting.
+
+As it is, I'm more interesting in seeing what I can do with my data now I can get at it. "Brian":http://suda.co.uk just suggested a "quick visualisation tool":http://simile.mit.edu/timeline/ (which already eats JSON) and I'd already been thinking about "language analysis":http://morethanseven.net/posts/pygunfog/ and maybe having a look at "APML":http://www.apml.org/ some more. Open data is simply more fun.

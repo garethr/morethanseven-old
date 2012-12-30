@@ -1,0 +1,57 @@
+---
+created_at: 2009/01/24}
+layout: post
+comments: true
+categories: [ant, apache]
+title: "In Defence of Apache Ant"
+---
+
+I'm a big fan of the "Ant":http://ant.apache.org/ build tool. Their I said it. Nearly everyone else I end up talking to about build scripts (more people that you'd think, but OK, it's hardly the most exciting topic of conversation) either hates it or treats it with disdain.
+
+I've been using it for a few years on and off, in several jobs and for personal projects as well. I've used it while writing Python, .NET and PHP. It might be somewhat unfashionable (it's written in Java and you write your commands in XML) but, for me at least, it's incredibly handy to have around.
+
+Ant is a build tool. It lets you define tasks in a config file (called build.xml) and then execute them via running the _ant_ command line application. It supports dependencies between tasks as well as defining properties that can be used by multiple tasks. It supports a lot of Java specific stuff as well but also has the ability to simply execute commands on the host OS.
+
+As a really simple example of a few tasks I use on more than one project involve simple backups and deployment.
+
+First I set up a few properties including details of where my site files live and the SSH access details for the remote site.
+
+pre. <property name="username" value=""/>
+<property name="host" value=""/>
+<property name="dir" value=""/>
+
+The first example task simply runs a backup of everything in the target directory using scp.
+
+pre. <target name="backup" description="backup site" >
+   <exec executable="scp" dir="." failonerror="true">
+      <arg value="-r"/>
+      <arg value="${username}@${host}:${dir}"/>
+      <arg value="backups/${TODAY_UK}"/>
+   </exec>
+</target>
+
+If I make local changes and want to push them to the live site I have another simple task which shells out to rsync.
+
+pre. <target name="deploy" description="deploy usng rsync" >
+  <exec executable="rsync" dir="." failonerror="true">
+      <arg value="-r"/>
+      <arg value="."/>
+      <arg value="${username}@${host}:${dir}"/>
+      <arg value="--exclude-from=rsync.excludes"/>
+      <arg value="-v"/>
+  </exec>
+</target>
+
+I know "some people":http://simonwillison.net hate this separate arguments as individual elements. Yes it's excessively XML but it makes everything incredibly clear to anyone who might sneak a look. And build scripts change little compared to project code so the verbosity never bothers me overly. If you really want you can put everything on one line, but I find that harder to follow and maintain.
+
+pre. <target name="deploy" description="deploy usng rsync" >
+  <exec executable="rsync" dir="." failonerror="true">
+      <arg line="-r . "${username}@${host}:${dir} --exclude-from=rsync.excludes -v"/>
+  </exec>
+</target>
+
+For bigger projects I tend to create more complex backup and deployment tasks, or more often than not add in various dependencies. But you hopefully get the idea. Even for simple commands like this that would be a single line bash script I tend to use ant. I find by putting things together into a build script I'm more likely to add useful functionality to it later, and to remember and therefore run the commands more often.
+
+A good reference for finding out more than is in the "manual":http://ant.apache.org/manual/index.html is the "Apache Ant Wiki":http://wiki.apache.org/ant/FrontPage. More than anything it features real examples that you can learn from which with Ant is definitely the best way to discover new tricks.
+
+I know their are a number of other tools in languages I like more. On occasion I use "Rake":http://rake.rubyforge.org/, "Fabric":http://savannah.nongnu.org/projects/fab and "Capistrano":http://www.capify.org/. I've looked at "Vellum":http://www.zedshaw.com/projects/vellum/ and good old make. I know others who swear by just writing simple bash scripts or using straight Ruby, PHP or Python (or not writing build scripts at all and doing everything by hand. But I like having my build scripts separate and simple. It might not be pretty or fashionable, but Ant does almost perfectly what I want it to do.

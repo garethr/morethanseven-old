@@ -1,0 +1,18 @@
+---
+created_at: 2006/06/22}
+layout: post
+comments: true
+categories: []
+title: "IE 7 Readiness toolkit"
+---
+
+<p><a href="http://blogs.msdn.com/ie/archive/2005/03/09/391362.aspx">Chris Wilson</a>, during his <a href="http://vivabit.com/atmedia2006">@media</a> presentation mentioned in passing the <a href="http://www.microsoft.com/downloads/details.aspx?familyid=D13EE10D-2718-47F1-AA86-1E32D526383D&#38;displaylang=en">IE 7 Readiness Toolkit</a>. This vaguely uninspiring title hides a very nice collection of essential tools for discerning web developers on Windows.</p>
+
+
+ <p><a href="http://poisonedminds.com/comics/pm20060621.png">IE is painful</a> we already know that. We have a large number of tools available in Firefox to help us out, but sometimes you need to go to the source. Along with a nice <del>rip off</del> <ins>implementation</ins> of a web developer toolbar, it also put me onto <a href="http://www.fiddlertool.com/fiddler/">the Fiddler</a> (what is it about these names) which is an HTTP Debugging proxy. What? Well it sits next to IE and monitors all HTTP traffic, allowing you to find out exactly what&#8217;s going on. Very handy indeed, and worth running just to see what&#8217;s really going on, especially in Ajax land.</p>
+
+
+ <p>A couple of other interesting tools are included that I&#8217;ve not had a look at yet, the Expression Finder looks particularly interesting. It basically tracks down any hacks in your files and tells you off.</p>
+
+
+ <p>All in all a good move from Microsoft. What with <a href="http://opensearch.a9.com/">Open Search</a> being integrated into IE 7 as well, and RSS maybe reacing a tipping point eventually (Non geeks will believe my predictions one day) things might be looking up.</p>

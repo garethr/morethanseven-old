@@ -1,0 +1,15 @@
+---
+created_at: 2005/04/04}
+layout: post
+comments: true
+categories: []
+title: "php-eml"
+---
+
+<p>php-eml is a sourceforge open source project I started a while back to develop a php based email mailing list. At the moment this in at a stage where it works but is not really pretty or easy to install unless you enjoy a little sysadmin.</p>
+
+
+ <pre><code>Both these, and some new features should be added in the future, time permitting.</code></pre>
+
+
+ <pre><code>See <a href="http://php-eml.com">www.php-eml.com</a> for more information or to download the source.</code></pre>

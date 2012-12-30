@@ -1,0 +1,12 @@
+---
+created_at: 2005/10/25}
+layout: post
+comments: true
+categories: []
+title: "about"
+---
+
+<p>morethanseven is the personal playground of Gareth Rushgrove, a 26 year old web designer and developer living and working in Newcastle, UK.</p>
+
+
+ <p>Before bored people ask, morethanseven is a reference to an interesting essay The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information, by George A. Miller, originally published in The Psychological Review, 1956, vol. 63, pp. 81-97. It&#8217;s about people&#8217;s ability to remember sets of data.</p>

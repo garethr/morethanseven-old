@@ -1,0 +1,27 @@
+---
+created_at: 2009/01/02}
+layout: post
+comments: true
+categories: [api, webhook, xmpp]
+title: "APIs in 2009 - XMPP and WebHooks"
+---
+
+Everyone has to have a post with a year in the title at the start of the year so I thought I better write something. Rather than one of those personal retrospective emails I thought I'd go for something different - a look at what I'd like to see in APIs in the coming year.
+
+h2. Webhooks
+
+I'm pretty interested in the idea of applications exposing "Webhooks":http://webhooks.pbwiki.com/ at the moment. It's a pretty simple idea. As a user of a service you can register your own HTTP end points to receive information whenever events occur in the service.  Both "Shopify":http://wiki.shopify.com/WebHook and "GiHub":http://github.com/guides/post-receive-hooks have pretty nifty hooks for extending their capabilities for instance. When someone pushes code to a git repository you could send a ping to trigger a process to update the documentation for example.
+
+With the rise of hosted application development environments like "AppEngine":http://code.google.com/appengine/ writing small, nearly throwaway, apps to subscribe to these hooks could become incredibly powerful. It's a lot like how unix programmers think, by piping lots of small applications together to get to the expected end result. It's not a replacement for the more standard read/write API, but it's a potential solution to the need to constantly poll that API for some types of applications.
+
+The idea of public webhooks would be hugely powerful, but would also likely be a scalability nightmare. Imagine if Flickr exposed a hook that you could subscribe to whenever anyone added a public photo. Or Twitter added a hook for when anyone tweeted. These sorts of hooks would quickly be swamped with subscribers. The number of HTTP requests being sent by a service like Flickr under these circumstances would be _rather large_ to say the least. Which is where another technology that's designed for this sort of problem becomes useful.
+
+h2. XMPP Interfaces
+
+"XMPP":http://xmpp.org/ or the Extensible Messaging and Presence Protocol has been around for a while, although originally under the name Jabber. It's predominantly being used at the moment as a instant messaging protocol, but in reality it's far more general purpose than that. Or rather, IM is generally considered to be between two or more people. But their is no reason that either or all the participants in an XMPP session can't be programs.
+
+On my local machine I'm a big fan of the command line for all sorts of simple, and sometimes complex, tasks.  If applications expose their APIs via an XMPP bot then you basically have a ready made command line interface to online services via your IM client of choice. Combined with a solution to the public webhook problem mentioned above and you can hopefully see why I find XMPP pretty interesting.
+
+I've been playing with writing XMPP bots recently, both at our internal hackday and at the recent "Last.fm event":http://github.com/garethr/lastbot/tree/master. Their are various libraries and code examples lying around the internet that make getting started easy enough. With services like "Imified":http://imified.com/ getting setup last year I'd imagine it will get easier still this year.
+
+As for what I'm going to be up to along these lines, we'll have to wait and see. I have a few pet projects that I'd like to get off the ground which might be good test beds for this sort of thing. Apart from that I'd like to write some _getting started_ style tutorials on some of the technologies involved or maybe a full blown article on the theory if I can find somewhere to publish it. A barcamp presentation or two might also fall off the back if I do get the time to play around a little more. But that's just me. If you're building, or planning on developing, an API for a product at the moment I'd suggest having a look at these two areas. They might turn out to just be potential extensions to what you had planned. Or they might turn out to be just the right approach to the problems you'll face getting people to use your API.

@@ -1,0 +1,17 @@
+---
+created_at: 2008/01/13}
+layout: post
+comments: true
+categories: []
+title: "On Process and Design"
+---
+
+I consider myself something of a hybrid, flirting with both the design and development side of things. I also like to think of myself as something of a student of the discipline; reading and consuming as much knowledge as possible on the process as well as the practice. Something I took to pondering while reading "My Job Went to India":http://www.pragprog.com/titles/mjwti was why the majority of theory books tend to be from the software side?
+
+It's appears the same when it comes to discussions of process, and in turn innovation within process. Their is lots of talk around Agile processes and practices amongst software developers, but I don't see lots of designers discussing the how. User Centred Design is maybe a slight exception, but again it seems to be the software people and information architects, as apposed to those who consider themselves designers, who talk about this. I'm just wondering whether others have found this too?
+
+The "Design Council":http://www.designcouncil.org.uk published a pretty good resource "About Design":http://www.designcouncil.org.uk/en/About-Design/ but I haven't seen much other real literature on a modern design process. "Communicating Design":http://www.communicatingdesign.com/ is a fantastic book on design documentation, but doesn't frame this in terms of a discussion of process. If anyone knows of any books or blogs out their on the subject I'd love to know about them. I'd love to be proved wrong and end up with a good reading list.
+
+"My Job Went to India":http://www.pragprog.com/titles/mjwti (which is excellent by the way) contains 52 hints and tips for your career as a programmer. In reality most of these ideas apply to any creative discipline, only the examples and analogies need changing. You could probably argue the same for books like "The Pragmatic Programmer":http://pragmaticprogrammer.com/the-pragmatic-programmer, "Practices of an Agile Developer":http://www.pragprog.com/titles/pad and "Peopleware":http://en.wikipedia.org/wiki/Peopleware. I'm also thinking whether or things like "the mythical man month":http://en.wikipedia.org/wiki/The_Mythical_Man-Month apply? Or if other _truths_ of the design practice exist? 
+
+The importance of design in any discipline is becoming increasingly well recognised. But where will the next generation of managers learn about how to manage designers and the design process? One of the problems with front end web development and design work has been the difficulty of learning the craft. Is this the same for managing the web design process?

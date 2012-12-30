@@ -1,0 +1,23 @@
+---
+created_at: 2008/06/21}
+layout: post
+comments: true
+categories: []
+title: "Of Hacking, Continuous Integration and Django"
+---
+
+I've not written anything here for a good few weeks, my tweeting has slowed down some and I'm behind on my feed reading. I'm going to blame the new job and the daily commute from Cambridge to London I think. I've definitely not been any less busy that usual:
+
+h3. Hacking
+
+We had an internal hackday on Thursday and Friday last week where lots of us over at GCap/Global downed tools and build cools stuff for a couple of days. This is exactly the sort of reason I took the job in London - for the opportunity to build interesting things quickly with other smart people. I got to play around with an event driven, music orientated, API hack and a more useful but less sexy documentation hack. Yes, I said documentation hack. I might be able to release the latter all being well but I need to finish it off first and kick the tyres on some internal projects 
+
+h3. Django
+
+As a development team we're using "Django":http://djangoproject.com/ for everything which is proving to be huge fun. It's a decent size project and we're pushing Django (and in particular new-forms admin) in interesting ways. Having worked previously with PHP, ASP.NET and Rails I'm loving lots of bits of Django. I mentioned the "template system":http://morethanseven.net/posts/why-the-webstandards-world-appears-to-be-choosing-django/ before but their are lots of other things to appreciate. Some of this just comes from working with people like "Simon":http://simonwillison.com and "Rob":http://www.siudesign.co.uk/ who know Django pretty well. Some of it just from being able to write Python every day.
+
+h3. Continuous Integration
+
+When not working on Django, or writing HTML, CSS or Javascipt (now mainly using "JQuery":http://jquery.com), I've been busy pushing the benefits of Continuous Integration. As someone who is actually pretty bad at writing unit tests I like the process of working with "Cruise Control":http://cruisecontrol.sourceforge.net/ as a gatekeeper. I also like automation in general so have been busy with Ant scripts and some Twill scripts as well for more functional testing. Django's test suite is pretty nifty and easy to use. "The official documentation":http://www.djangoproject.com/documentation/testing/ is a pretty good starting point but I'm still on the lookout for some more in depth best practices articles.
+
+So, between writing lots of code I've had less time to write words other than internal documentation. I'm finding the change pretty refreshing at the moment but want to keep up with writing every now and again. Who knows how that will work out? I have a feeling that I might blog more geeky code related stuff but time will see how that plays out.

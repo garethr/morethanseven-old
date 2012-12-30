@@ -1,0 +1,18 @@
+---
+created_at: 2010/03/28
+excerpt: 
+layout: post
+comments: true
+categories: [django]
+title: "More Django Project Templates"
+---
+
+Quite a while ago I released some handy scripts for building up Django project layouts. Part of the reason behind this was to kick off discussions about ideal pproject layouts and maybe even get a few user submitted layouts into the project. Paster makes this soft of thing really easy to do and I was interested in what people might come up with.
+
+Well, the team over at "The Chicargo Tribune":http://chicagotribune.com/ have done just that, creating a branch of the original project and "adding a very rich example project to it":http://github.com/ryanmark/django-project-templates/
+
+I've finally gotten around to merging that back into "my branch":http://github.com/garethr/django-project-templates/ and releasing a new version to "PyPi":http://pypi.python.org/pypi/django-project-templates/0.11. It's got a good number of PostGreSQL commands that might be of use, as well as several Amazon S3 and EC2 examples. Even if none of these complete templates fit what you're looking for exactly their are lots of smaller fabric recipes worth taking a look at.
+
+You can read all about what is in the project over on their "developer blog":http://blog.apps.chicagotribune.com/2010/03/08/advanced-django-project-layout/, which if filled with other interesting web and operations goodness.
+
+So, huge thanks to "Chris":http://blog.apps.chicagotribune.com/author/cgroskopf/, "Brian":http://blog.apps.chicagotribune.com/author/bboyer/, "Ryan":http://blog.apps.chicagotribune.com/author/ryanthomasmark/ and "Joe":http://blog.apps.chicagotribune.com/author/joegermuskact/ for some great work.

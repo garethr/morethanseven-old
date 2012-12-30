@@ -1,0 +1,32 @@
+---
+created_at: 2006/07/25}
+layout: post
+comments: true
+categories: []
+title: "YUI lovin"
+---
+
+<p>I&#8217;m working on some redesign work for one of my under maintained sites at the moment, with something of a redesign in the works. It seemed a good opportunity to play more with <a href="http://developer.yahoo.com/yui/">YUI</a>, the Yahoo User Interface Library, which I&#8217;d had a peak at before and heard nice things about (sorry, I like the long namespaces).</p>
+
+
+ <p>I&#8217;ve nothing finished yet past a proof of concept, but I thought a couple of lines of javascript wouldn&#8217;t go a miss. Nothing fancy mind, just some nice bits I like so far.</p>
+
+
+ <p>The case in point was wanting to add event handlers to an unknown number of links within an unordered list.</p>
+
+
+ <p>First off a quick, clever, one liner. <em>onAvailable</em> checks for the availability of the object (if you remove the quotes) or an object with a specified id in this case. It executes the callback function, <em>init</em> in this case, when the condition is true.</p>
+
+
+<div><code>YAHOO.util.Event.onAvailable("iList", init);</code></div>
+
+ <p>Moments later we have events added to all the links.</p>
+
+
+<div><code><pre>
+function init() {
+   var links = document.getElementById("iList").getElementsByTagName("A");
+   YAHOO.util.Event.addListener(links, "click", clickCallback);
+}</pre></code></div>
+
+ <p>Again you just throw in whatever you happen to be working with (in this case an array returned by <em>getElementsByTagName</em>) and everything just gets dealt with. I originally had a <em>for</em> loop, iterating over the links and adding events, then I worked out YUI just did it all for me if I let it. I like that. I <strong>could</strong> have done it myself. YUI would have let me and not complained. But if I want to delve a bit I can find cool, quick, clean ways of doing the same thing. I refactored my code, with the help of YUI in ten minutes. I like that, but I think I said that.</p>

@@ -1,0 +1,29 @@
+---
+created_at: 2009/02/15}
+layout: post
+comments: true
+categories: [personal]
+title: "Looking for a New Job in June"
+---
+
+As I think a few people are aware I'll be leaving "Global":http://thisisglobal.com at the end of May. 
+
+It's going to have been a pretty good year all told. I got to work with some great people and we built some pretty good stuff from the group up. The "Capital Radio":http://www.capitalradio.co.uk/ website was part of it but it's the systems behind the scenes where all the interestingness lies. But as the team as a whole was just getting started the economy got bored of growing each year and went south. Global is first and foremost a radio company that makes money from advertising and, in need of cash, it decided to "cut lots of the interactive department":http://radiotoday.co.uk/news.php?extend.4270. All of that meant lots of redundancies and less interesting work and I decided I'd rather go now than wait around.
+
+It's an odd situation to be in but I'm not going to dwell on that and I'm not bitter about any of the goings on. I got to play with Django full time in what, I think, was the biggest Django development team in the UK. I got to work, and argue, with smart people every day. We had two internal hackdays where I got to play with XMPP and messaging apps. And I'm definitely a far better programmer than a year ago.
+
+I'll be sticking around at Global for the next three months to finish off a number of projects that I've been involved in and tidy up a few loose ends, as well as to work out what to do next. Which is where you (might) come in. Think of it like a job vacancy in reverse.
+
+* I'm looking for a job to start in June or thereabouts.
+* I live in Cambridge and have been working in London for the last 9 months, so I don't mind a commute. I'd also consider something that had me working remotely and traveling further afield as needed.
+* My main focus is on finding something where I get to _build interesting things_. By that I mean a web development role that also involves bit of system design and other bits thrown in.
+* I'd like something that tallies with my current interests. This blog, "Slideshare":http://slideshare.net/garethr and "my GitHub profile":http://github.com/garethr should give you an idea about what they are but to name but a few: testing, REST, APIs, messaging, content distribution, aggregation and development team tools.
+* Technology wise I'd be more than happy with something using Python or Ruby. I'd love to do more than just play around at home with Erlang as well, or the opportunity to pick up Scala. Having said all that if it's interesting enough I don't mind too much, I learn new tricks for fun and have 3 months of free time to kill.
+* Big company or small? It depends on the company, and probably depends more on the people. I'd choose smart people over a fancy company name any day of the week. I also don't mind the idea of getting involved with a startup where some salary is offset against equity - but only if the idea is good enough.
+* I've got around 8 years of wide ranging professional experience, I write articles, speak at conferences and get things done. I know roughly what the going rate for good professional web developers is as well.
+* "Ask the internet about me":http://www.google.com/search?q=gareth+rushgrove if you want to know more.
+
+So if anyone knows of something that would be up my street I'd be grateful. Even better, if you or your company are looking for someone at the moment and don't mind waiting a few months then I might be what you're looking for. For those that don't already have an email address you can find me on "gareth@morethanseven.net":mailto:gareth@morethanseven.net
+
+(There is obviously a chance that you might be a recruiter, rather than someone who wants me to work with or for them. I won't ignore you out of hand but please don't try and ring me unless I ask you to. Email is both quicker and easier for me to deal with. Also if you just want my CV for your files, have only a vague job description, or you want to tell me about a job in a company you can't tell me the name of please don't be offended if I don't get back to you.)
+

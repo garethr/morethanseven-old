@@ -1,0 +1,23 @@
+---
+created_at: 2007/12/26}
+layout: post
+comments: true
+categories: []
+title: "Nice bits of symfony: Web Debug Toolbar"
+---
+
+I "mentioned previously":http://morethanseven.net/posts/getting-going-with-symfony/ that I'd been playing with the "symfony":http://www.symfony-project.org/ framework on a couple of projects and I have to admit to being more and more impressed as I wade in looking for things. I've worked with enough MVC-like frameworks to know they are all quite similar in more ways than they are dramatically different. So it's the little bits and pieces that win you over.
+
+One of my favourite little bits in symfony has to be the Web Debug Toolbar. When running in development mode you get a little menu floating above your application like so (top right hand corner).
+
+!http://morethanseven.net/_assets/media/imgSymfonyToolbar.png(Web page showing the symfony web debug toolbar in the top right corner)!
+
+This gives you all sorts of useful information as you're developing your application - from the number of database queries to the rendering time, with a full logger built in. It's also been particularly useful in learning symfony - being able to follow the entire request through the stack from the logger is really handy when you don't know what is going on.
+
+!http://morethanseven.net/_assets/media/imgSymfonyToolbar2.png(Web page showing the symfony web debug toolbar fully expanded)!
+
+With the increasing use of object relational mapping in web frameworks it's quite easy to end up with a _working_ application on your development box that turns out to absolutely hammer your database when used in the real world by only a few hundred people (I'm looking at you tagging). The database utilities, showing the number of queries and the SQL for those queries, is particularly handy for finding bottlenecks here.
+
+!http://morethanseven.net/_assets/media/imgSymfonySQL.png(Web page showing the symfony web debug toolbar SQL view)!
+
+I've not come across something similar in other frameworks, PHP or otherwise. I'd be interested to know if similar things do exist for Rails or Django in particular.

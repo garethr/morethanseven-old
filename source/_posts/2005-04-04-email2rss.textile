@@ -1,0 +1,13 @@
+---
+created_at: 2005/04/04}
+layout: post
+comments: true
+categories: []
+title: "email2rss"
+---
+
+<p>email2rss is one of my php projects. The aim is to allow simple access to rss feeds from any email client. Ideally suited to mobile devices without a reader or to less technical users.</p>
+
+It makes use of the lastRSS library to read external rss feeds and output the details, as well as a few tricks to read in an email (from stdin) sent to its own address and to email back the user with the news requested in the subject line.
+
+Visit <a href="http://www.morethanseven.net/email2rss">www.morethanseven.net/email2rss</a> for more details.

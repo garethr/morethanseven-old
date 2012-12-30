@@ -1,0 +1,17 @@
+---
+created_at: 2008/05/20}
+layout: post
+comments: true
+categories: []
+title: "Newcastle Web Week"
+---
+
+The North East is stealing a march on London this week with all sorts going on for those who like a real world get together. Although not quite as busy as "London Web Week":http://www.londonwebweek.co.uk/ next week we have the "Thinking Digital":http://thinkingdigital.co.uk/ conference kicking off tomorrow, followed by a "Geek Dinner":geekdinner.co.uk/ on Friday night and then "BarCampNorthEast":http://barcamp.org/BarCampNorthEast over the weekend. I'm even planning on popping out tonight with a few people in town for the festivities. As if fate somehow got involved the weather is also pretty darn nice today too.
+
+If you didn't already know about these events and you're in the area their just might still be the chance to come along. We have a few places left for barcamp in particular, you just need to "register over on eventwax":http://barcampnortheast.eventwax.com/barcampnortheast/register. And the Geek Dinner on friday night at The Pitcher and Piano is open to all, at least until it fills up.
+
+It really is great to see thing happening at this end of the country, and a real shame I'm leaving the area so soon afterwards. I really hope the local community gets behind all these events and they act as a catalyst for interesting things. I've always been of the mind that if you can get enough smart, interested people together in one place then good things will happen. It's why I enjoy going along to conferences, hackdays and barcamps. It's also one of the main reasons I joined GCap.
+
+Once I've recovered from the next two weeks (which may take a while as next week I'm in London for "@media":http://www.vivabit.com/atmedia2008/london/, "BarCampLondon4":http://barcamp.org/BarCampLondon4 and anything else I can get along to) I'll hopefully write more about trying to organise a barcamp and, if I really get time to think, about knowledge workers outside and inside London. 
+
+But in the meantime leave a comment if you're going to be around in Newcastle over the next week. It should be a great opportunity to meet new and old friends alike.

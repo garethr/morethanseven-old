@@ -1,0 +1,72 @@
+---
+created_at: 2008/09/20}
+layout: post
+comments: true
+categories: [django]
+title: "Django Admin Options "
+---
+
+Working on a decent sized Django project at work means I've found myself delving into Django's admin interface more than a few times. Although it's always possible to just use a custom template and do everything yourself it's nearly always easier and often quicker to use the generated admin views. One of the problems with that is, even with therecent 1.0 release, some of the options are not that well documented outside the source code or in posts buried on mailing lists.
+
+I'll assume a little bit of familiarity with the new-forms-admin way of doing things which is now the default in Django 1.0. If you're just getting started with building Django sites then you might want to first have a look at a tutorial or two. It's quite different to the examples found in the original Django book or older online tutorials but it's also much more powerful and flexible with a better separation of concerns.
+
+We'll start off with a very simple model in models.py which defines a simple Article class with a couple of fields.
+
+pre. from django.db import models
+class Article(models.Model):    
+    	title = models.CharField(max_length=200)
+	content = models.TextField()
+	publish_date = models.DateTimeField(default=datetime.today)
+
+Django 1.0 introduced the concept of admin autodiscovery. By playing your admin declarations in admin.py in an application (most likely next to models.py and views.py) you can tell django to find these automatically. To enable auto loading of admin modules you can add the following to your urls.py.
+
+.pre from django.contrib import admin
+admin.autodiscover()
+
+This will load the module admin.py for each of the apps in the installed apps list. Now Lets add an admin class in your admin.py to go with the above models.py. We'll call it ArticleAdmin:
+
+pre. from django.contrib import admin
+from models import Article
+class ArticleAdmin(admin.ModelAdmin):
+	pass
+admin.site.register(Article, ArticleAdmin)
+
+The important line is the last one, in which we register the admin for the Article class. This will display the relevant admin views in the Django admin for that model - allowing us to add new articles, list existing ones and delete old ones. But by default the admin is quite sparse. 
+
+Once we have a few articles in the system we'll find it hard to find them again. Lets add a few more lines to our admin.py file:
+
+pre. class ArticleAdmin(admin.ModelAdmin):
+	list_display=('title', 'publish_date')
+	ordering = ['-publish_date']
+	list_per_page = 25
+	search_fields = ['title','content']
+	date_hierarchy = 'publish_date'
+
+Lets step though each of these statements and see what we've done:
+
+* setting _list_display_ for the title and publish_date means these two fields will appear in the changelist. This is the view you get when you hit Articles in the admin and allows you to find the article you are looking for.
+* _ordering_ is self explanatory, in that we choose to order the items in the changelist by the publish_date rather than the auto generated numeric id.
+* _list_per_page_ is another straightforward option, setting the maximum number of articles to show in the changelist before the list starts paging over multiple pages.
+* _search_fields_ adds a simple search to the changelist, the fields specified set which fields to search; title and content in this case.
+* _date_hierarchy_ is great when you have a date associated with an object. This outputs a separate filter list which displays the years by which to filter. The option you pass to this setting is the field name which stores the date.
+
+The simple example above hopefully demonstrates the ease of which the admin can be configured. Knowing about these capabilities already built into Django can save you quite a bit of time when it comes to producing production ready admin interfaces. Except for more complex systems this should suffice. Below is a table of the Django admin options I've been using. If anyone has any more let me know and I'll add them here, along with a brief description.
+
+|Option|Description|
+|model| Set the model for which this is the admin |
+|form| Set the form class if one has been created |
+|list_display| Set which fields should appear in the changelist view |
+|list_filter| Se which fields should be used to provide a filter in the changelist view |
+|raw_id_field| Useful when you have a Foreign Key on another model with lots of records. This changes the default interface from the a select box to a custom widget|
+|ordering| Specify the order of the objects in the changelist |
+|fieldset| Fieldsets allow for control over the changeform view, setting which fields to display and whether to separate them out into individual fieldsets. Worth investigating |
+|save_on_top| If you have a long form it's useful to be able to display the save buttons at the top as well as the bottom |
+|date_hierachy| Add date based filtering to the chaneglist view |
+|radio_fields| Another alternative widget for Foreign key fields, this time using radio buttons. Useful for fixed small lists of objects |
+|list_per_page| How may objects to list per page on the changelist view |
+|search_fields| Enable search for the model and specify which fields to search |
+|prepopulated_fields| Some fields might be prepopulated based on the user entering text into another field. This is often used to prepopulate slugs based on the title of an object |
+|filter_horizontal| The default widget for many to many fields is the rather shoddy multiple select box. Filter horizontal enhances this with some super javascript, making it much more usable. Never use many to many fields without this or filter_vertical |
+|filter_vertical| Does exactly the same as filter_horizontal, except the filter lists appear one above the other rather than side to side. Useful for thinner admin views|
+
+As you can see you can customise the default admin views a great deal even without creating your own templates and defining custom admin views. The best part is still that as well as being useful for demonstrations and prototypes these interfaces are useful on a live production site. Quite an achievement I think.

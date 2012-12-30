@@ -1,0 +1,33 @@
+---
+created_at: 2006/06/14}
+layout: post
+comments: true
+categories: []
+title: "Internet? Check. @media. Check!"
+---
+
+<p>Right. It might have taken an overlong trip to London but I&#8217;ve finally got a spare moment <em>and</em> internet access. All back to normal hopefully soon. (mmmm)</p>
+
+
+ <p>Anyway&#8230; <a href="http://vivabit.com/atmedia2006">@media</a>! It was ages ago, then some magical time warp type thing happened and it&#8217;s June all of a sudden. And I cant wait. Which is fairly handy as I&#8217;ll shortly be heading out to the pre show party to meet at least some people I know (or at least vaguely recognise from somewhere, once, maybe) and hopefully some new faces, always a solid part of the conferences I think.</p>
+
+
+ <p>Some of the things I want to do over the next couple of days, besides listen to alot of good stuff. (Rereading this I realised I just refered to Molly, Tantek,  Jeffrey, Eric and everyone as <em>good stuff</em>. This is likely to be something of an understatement. No offence intended!)</p>
+
+
+ <ul>
+ <li>Take photos</li>
+  <li>More SubEthaEdit note taking</li>
+  <li>Eat food (You know who I&#8217;m <a href="http://cackhanded.net">talking</a> <a href="http://splintered.co.uk">about</a>)</li>
+  <li>Keep updating the syndicator thing</li>
+  <li>Watch the football (sorry, it is the World Cup)</li>
+ </ul>
+
+
+ <p>And I&#8217;ve no idea which sessions I&#8217;m going along to before you ask. I&#8217;m still pretending I can go to all of them to avoid the disapointment.</p>
+
+
+ <p>I&#8217;ve been doing all sorts of stuff I want to blog about; I&#8217;m doing a Masters type usability and testing certificate, playing with more PEAR, I&#8217;ve been having a play with <a href="http://codeigniter.com">Codeigniter</a> quite a bit as well, which is lovely (thanks <a href="http://thewatchmakerproject.com">Matt</a>) and have a couple more small apps in the oven. I also want to clean up a couple of olders ones (the mailing list, the feed syndicator, etc.) and still need to get round to writing a proper article. And that&#8217;s before @media, I dont want to thing how busy I&#8217;ll make myself after than once I get even more ideas.</p>
+
+
+ <p>Oh, and apologies for the <a href="http://www.hicksdesign.co.uk/journal/ical-schedule-for-media#comment">delay</a> in getting <a href="http://www.google.com/calendar/ical/rp1ahkacn9nkhuqnjtihno34mg@group.calendar.google.com/public/basic">the calendar</a> updated. And I&#8217;ve no idea why some people couldn&#8217;t find it with the search tool. Anyway, updated now, so at least people shouldn&#8217;t get lost tomorrow.</p>

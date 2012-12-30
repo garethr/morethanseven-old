@@ -1,0 +1,46 @@
+---
+created_at: 2009/03/18}
+layout: post
+comments: true
+categories: [wsgi]
+title: "Simple WSGI Middleware (for App Engine)"
+---
+
+bq. WSGI is the Web Server Gateway Interface. It is a specification for web servers and application servers to communicate with web applications (though it can also be used for more than that). It is a Python standard, described in detail in "PEP 333":http://www.python.org/dev/peps/pep-0333/.
+
+For Ruby people WSGI is the "Rack":http://rack.rubyforge.org/ in Python. In fact it was one of the inspirations behind Rack. Rack descriptions itself as:
+
+bq. Rack provides an minimal interface between webservers supporting Ruby and Ruby frameworks.
+
+Which I think is a clearer explanation, except in WSGI's case we replace Ruby with Python.
+
+As well as being able to write WSGI middleware for Django or Pylons we can also write WSGI middleware for App Engine applications - which is what I spent some time doing today. For the most part I found the examples and documentation interesting but overkill for what I needed to do. Specifically I wanted a piece of middleware which modified the response content, adding extra content into the response. Most of the examples I found didn't focus on middleware, or where full blown examples making them hard to follow. 
+ 
+So for anyone looking for a simple example of WSGI middleware which adds content into the response here goes. I used the "WebOb":http://pythonpaste.org/webob/ framework because it provides a nicer interface to the request and response objects and it's included in the standard App Engine SDK. The following sample middleware simple adds _Hello World_ to the end of every response. 
+
+pre. from webob import Request
+class SimpleMiddleware(object):
+    "Example middleware that appends a message to all 200 html responses"    
+    def __init__(self, app):
+        self.app = app
+    def __call__(self, environ, start_response):       
+        # deal with webob request and response objects
+        # due to a nicer interface
+        req = Request(environ)
+        resp = req.get_response(self.app)
+        # add a string to the end of the body
+        body = resp.body + "Hello World"
+        # set the body to the new copy
+        resp.body = body
+        return resp(environ, start_response)
+
+In reality you might want to append something to a specific place in the response, or introduce conditionals. This is easy enough to do by parsing the initial value of _resp.body_ in the example above.
+
+To use the middleware in your application you simple wrap your current WSGIApplication instance with the middleware class.
+
+pre. application = webapp.WSGIApplication(ROUTES, debug=settings.DEBUG)
+# add simple middleware
+application = SimpleMiddleware(application)
+run_wsgi_app(application)
+
+WSGI middleware is both a useful place for common functionality to live in your App Engine application as well as being a handy tool for anyone working across multiple Python frameworks to share code.

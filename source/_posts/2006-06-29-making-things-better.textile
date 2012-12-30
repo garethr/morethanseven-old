@@ -1,0 +1,18 @@
+---
+created_at: 2006/06/29}
+layout: post
+comments: true
+categories: []
+title: "Making things better"
+---
+
+<p>I love this idea. It has a nice warm fuzzy feeling about it. <a href="http://www.molly.com/2006/06/27/web-professionals-code-of-ethics/">Molly was musing</a> about a code of ethics for <a href="http://www.molly.com/2005/11/14/web-standards-and-the-new-professionalism/">professional</a> web developers. Talk went on at <a href="http://vivabit.com/atmedia2006">@media</a> about certification and education and the like, and the general concensus was pretty negative, for good reason in my opinion.</p>
+
+
+ <p>However, a code of ethics, more a stamement of intent from professional to professional, strikes me as a really good idea. It&#8217;s easy to forget that it can be difficult when learning (and aren&#8217;t we always learning in this job?) to really get down to best practice. It can be difficult to just do it at times, never mind do it <em>properly</em> what ever that means.</p>
+
+
+ <p>After reading on the comments I was feeling pretty good, and a few from the bottom I was thinking, I&#8217;ll set up a wiki, as suggested. Well, <a href="http://www.meriwilliams.com">Meri</a> got their first so good job Meri, it keeps it in Newcastle any how. <a href="http://www.meriwilliams.com/ethics/index.php?title=Main_Page">Head over there now</a>, it&#8217;s fairly light on content at the moment but I guess that is the point of this point.</p>
+
+
+ <p>What do other people think of this anyhow? Now I need to find some time. Or rather more time. I love being all enthusiastic, if only I found the time! I&#8217;m going to have to cut down on sleep, and I so like sleep.</p>

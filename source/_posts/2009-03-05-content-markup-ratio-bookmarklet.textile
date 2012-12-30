@@ -1,0 +1,17 @@
+---
+created_at: 2009/03/05}
+layout: post
+comments: true
+categories: [javascript, html]
+title: "Content to Markup ratio bookmarklet"
+---
+
+"Stoyan Stefanov":http://www.phpied.com/ just released an excellent little "bookmarklet to calculate a content to markup ratio":http://www.phpied.com/content-to-markup-ratio-bookmarklet/
+
+It's interesting browsing around a few sites and comparing ratios:
+
+* This site - 0.55
+* "bbc.co.uk":http://bbc.co.uk - 0.26
+* "capitalradio.co.uk":http://capitalradio.co.uk - 0.45
+* "clearleft.com":http://clearleft.com - 0.48
+* "alistapart.com":http://alistapart.com/ - 0.44

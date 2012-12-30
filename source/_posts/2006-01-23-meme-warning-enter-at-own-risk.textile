@@ -1,0 +1,84 @@
+---
+created_at: 2006/01/23}
+layout: post
+comments: true
+categories: []
+title: "Meme Warning! Enter at Own Risk"
+---
+
+<p>Help! I&#8217;m not sure what to do? I appear to have been set upon by nearly published author <a href="http://collylogic.com">simon</a> in an attempt to spread a deadly meme. Oh well.</p>
+
+
+ <h3>Four jobs IÃ¢â‚¬â„¢ve had in my life
+ <ol>
+ <li>Paper Boy</li>
+  <li>Kitchen Porter</li>
+  <li>Packager of Shower Fittings </li>
+  <li><a href="http://www.garrettdimon.com/archives/the-time-is-now-for-front-end-architects">Front End Architect</a></li>
+ </ol></h3>
+
+
+ <h3>Four movies I can watch over and over
+ <ol>
+ <li>Black Hawk Down</li>
+  <li>Serenity</li>
+  <li>28 Days Later</li>
+  <li>Impostor</li>
+ </ol></h3>
+
+
+ <h3>Four places I have lived
+ <ol>
+ <li>Bradford</li>
+  <li>Durham</li>
+  <li>Belmont (not to be confused with Belmarch)</li>
+  <li>Newcastle</li>
+ </ol></h3>
+
+
+ <h3>Four TV shows I love to watch
+ <ol>
+ <li>Alias</li>
+  <li>The Wire</li>
+  <li>The Shield</li>
+  <li>The West Wing</li>
+ </ol></h3>
+
+
+ <h3>Four places I have been on vacation
+ <ol>
+ <li>Cornwall</li>
+  <li>Rome</li>
+  <li>France</li>
+  <li>Denmark (Lego Land)</li>
+ </ol></h3>
+
+
+ <h3>Four of my favourite dishes
+ <ol>
+ <li>Sausage Casserole with Guinness Gravy</li>
+  <li>Seabass</li>
+  <li>Falafel, Spicy Chutney and Chilli Rice</li>
+  <li>Wild Mushroom and Real Ale Pie</li>
+ </ol></h3>
+
+
+ <h3>Four websites I visit daily
+ <ol>
+ <li>Google</li>
+  <li>Newsgator</li>
+  <li>Del.icio.us</li>
+  <li>Newcastlenewmedia.org</li>
+ </ol></h3>
+
+
+ <h3>Four bloggers I am tagging
+ <ol>
+ <li><a href="http://swoo.co.uk">Steve Woods</a></li>
+  <li><a href="http://xlab.co.uk">Phil Lindsay</a></li>
+  <li><a href="http://pixeldiva.co.uk">Pixeldiva</a></li>
+  <li><a href="http://www.mcskiver.com/blog/">Lee</a></li>
+ </ol></h3>
+
+
+ <p>Here endeth the lists. I&#8217;d be intrigued to see a rather cumbersome tree diagram of this meme thang in action. You know, track it back to it&#8217;s source, looking at relationships and all that jazz. But it&#8217;s late and I&#8217;m tired.</p>

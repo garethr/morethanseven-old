@@ -1,0 +1,16 @@
+---
+created_at: 2011/04/02
+excerpt: 
+layout: post
+comments: true
+categories: [theguardian, vagrant]
+title: "Vagrant At The Guardian"
+---
+
+As recent blog posts on here make clear, I'm a big fan of "Vagrant":http://vagrantup.com. And when "Michael":http://www.brunton-spall.co.uk/ asked if I'd fancy talking to some of his colleagues at The Guardian about how I use it I really couldn't say no.
+
+I gave a short talk, running through the following slides, and running a few demos showing creating, destroying and provisioning new machines.
+
+<object id="__sse7492432" width="595" height="497"> <param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=vagrant-110402104037-phpapp01&rel=0&stripped_title=vagrant-and-configuration-management&userName=garethr" /> <param name="allowFullScreen" value="true"/> <param name="allowScriptAccess" value="always"/> <embed name="__sse7492432" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=vagrant-110402104037-phpapp01&rel=0&stripped_title=vagrant-and-configuration-management&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"></embed> </object>
+
+More interesting I thought were the questions and conversations that followed. We talked a little about how Vagrant might fit into a continuous integration setup. Another aspect some of the systems folk took to was how flexible the network configuration was and whether they might be able to use this to more effectively test firewall configurations well before the final push into a production environment. It's not something I've been doing but it sounds feasable and useful in some organisations. If anyone is doing interesting things with Vagrants network config I'd be interested to know.

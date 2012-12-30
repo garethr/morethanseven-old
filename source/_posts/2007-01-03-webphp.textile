@@ -1,0 +1,41 @@
+---
+created_at: 2007/01/03}
+layout: post
+comments: true
+categories: []
+title: "Web.php"
+---
+
+<p><a href="http://webpy.org">Web.py</a> is a really nice lightweight web framework written in Python. It&#8217;s not trying to be Rails or Django, it&#8217;s trying to be as simple as possible. Web.php is my homage to Web.py. I&#8217;ve unashamedly copied the ideas and build a very simple web framework in PHP. It&#8217;s not a complete port, nor does it do everything in the same way.</p>
+
+<p>The code example from the project home page was what originally piqued my interest:</p>
+
+<pre><code>import web
+urls = (
+   '/(.*)', 'hello'
+)
+class hello:        
+   def GET(self, name):
+       i = web.input(times=1)
+       if not name: name = 'world'
+       for c in xrange(int(i.times)): print 'Hello,', name+'!'
+if __name__ == "__main__": web.run(urls, globals())</code></pre>
+
+<p>My PHP versions goes something like this, I&#8217;m sure you can see the similarities:</p>
+
+<pre><code>&lt;?php
+require('webphp/web.php');
+$urls = array(
+   '/' =&gt; 'hello',
+);
+class hello {
+   function GET($path) {
+      echo 'hello world';
+   }
+}
+web::run($urls);
+?&gt;</code></pre>
+
+<p>I&#8217;ve used it so far on a couple of projects, but it&#8217;s never been properly tested as such nor do I have lots of time to develop it. It&#8217;s purposely feature and code light (the core file is only 80 odd lines of code, includig comments).</p>
+
+<p><a href="/_assets/downloads/web-php/web-php.zip">Download Zip</a></p>

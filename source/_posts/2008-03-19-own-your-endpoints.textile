@@ -1,0 +1,17 @@
+---
+created_at: 2008/03/19}
+layout: post
+comments: true
+categories: []
+title: "Own your endpoints"
+---
+
+If "URLs are people too":http://google-code-updates.blogspot.com/2008/02/urls-are-people-too.html then you better make sure you control your URLs.
+
+Although some people use blog hosting services like "blogger":http://www.blogger.com the majority of serious bloggers, web designers or companies generally use their own domain name to host their site. Controlling your own domain name is increasingly important when that URL is a representation of you on the internet.
+
+With all these social networks we're starting to have pieces of us scattered all over the place. I've joked previously about the utility of domain names over real names for interpersonal communication but this breaks down a little when not all the urls that represent me are owned by me. I control morethanseven.net/photos but I only have some influence over "flickr.com/photos/garethr":http://flickr.com/photos/garethr. With external hosts you also need to be aware of cybersquatting. I own morethanseven.net so no one else can use it. However with services that give you your own URL as part of registration everywhere people can cybersquat in hundreds of new domains that you might not even know about.
+
+It's not just web pages you have to worry about. Feeds are another example of URLs you just might want to keep control over. This last one is also something I see lots of people handing off to others - specifically "Feedburner":http://feedburner.com. Now I'm a big fan of feedburner and use it for the feeds on this site. But I don't use the feedburner URL, anyone subscribing to the feeds here does so using morethanseven.net/feed/. If I decide to stop using feedburner I can, without having to upset the few people who subscribe to it by moving my feed address. It's the same with email addresses; I love gmail but rarely actually give my gmail email address out.
+
+So, start looking after your domain names a little more carefully. They are pieces of you scattered around the internet, and losing control of them is going to become increasingly socially painful.

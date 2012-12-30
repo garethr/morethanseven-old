@@ -1,0 +1,41 @@
+---
+created_at: 2011/12/31
+excerpt: 
+layout: post
+comments: true
+categories: [ec2, fabric, python]
+title: "EC2 Tasks For Fabric"
+---
+
+For running ad-hoc commands across a small number of servers you really can't beat "Fabric":http://fabfile.org. It requires nothing other than ssh installed on the servers, is generally just a one-line install and requires next to no syntaxtic fluff between you and the commands you want running. It's much more of a swiss army knife to Capistranos bread knife.
+
+I've found myself doing more and more EC2 work of late and have finally gotten around to making my life easier when using Fabric with Amazon instances. The result of a bit of hacking is "Cloth":https://github.com/garethr/cloth (also "available on PyPi":http://pypi.python.org/pypi/cloth). It contains some utility functions and a few handy tasks for loading host details from the EC2 API and using them in your Fabric tasks. No more static lists of host names that constantly need updating in your fabfile.
+
+Specifically, with a fabfile that looks like:
+
+<pre>#! /usr/bin/env python
+from cloth.tasks import *</pre>
+
+You can run:
+
+<pre>fab all list</pre>
+
+And get something like:
+
+<pre>instance-name-1 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-2 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-3 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-4 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-5 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-6 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-7 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-8 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+...</pre>
+
+And then you could run:
+
+<pre>fab -P all uptime</pre>
+
+And you'd happily get the load averages and uptime for all your EC2 instances.
+
+A few more tricks are documented in the "GitHub README":https://github.com/garethr/cloth, including filtering the list by a regex and some convention based mapping to Fabric roles. I'll hopefully add a few more features as I need them and generally tidy up a few things but I'm pretty happy with it so far.

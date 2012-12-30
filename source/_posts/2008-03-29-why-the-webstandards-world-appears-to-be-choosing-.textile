@@ -1,0 +1,29 @@
+---
+created_at: 2008/03/29}
+layout: post
+comments: true
+categories: []
+title: "Why the webstandards world appears to be choosing Django"
+---
+
+I've been noticing an interesting trend recently, not one I have any empirical evidence for mind, but one I though interesting non-the-less. Parts of the webstandards world appear to all be playing with "Django":http://djangoproject.com. Part of this has been the odd mention down the pub, at barcamps or at SXSW this year. But the main source of information on the topic has been "twitter":http://twitter.com. To name but a few I've seen tweets from "Steve":http://nascentguruism.com, "Ross":http://thecssdiv.co.uk and "Aral":http://aralbalkan.com recently and "Stuart":http://muffinresearch.co.uk/ and "Cyril":http://cyril.doussin.name/thoughts/ literally wont shut up about it.
+
+What's interesting is that this didn't happen with Rails, not in the corner of the pub that generally talks more about markup, javascript and CSS anyway. I've worked on a couple of Rails projects both personally and commercially, and I've just launched a little pet project build with django called "doesyourapi":http://doesyourapi.com. What follows is, to my mind, a few reasons why I think this trend exists and also why I think it will continue, at least for the time being.
+
+h3. People
+
+You can't ignore the personal touch, and in "Simon Willison":http://simonwillison.com and "Stuart Langridge":http://www.kryogenix.org/ we already have two people who bridge the Python/Django community and the web standards crowd, at least in the UK. Personal technology choices at least are often driven by personal correspondence. 
+
+h3. Templating
+
+Django's templating introduces a very simple syntax _and nothing else_. Rails lets you have the full power of Ruby to do with as you will within your views. Rails also makes heavy use of helpers, further adding to the complexity of views. Now I have mixed views here, based on my own skills more than anything. I know I'd feel much more comfortable throwing someone with good markup skills at a project using Django than Rails. For the most part with Django you use the html you're used to, Rails often wants you to change this to helpers - in much the same way as ASP.NET does in fact. I think some of this comes from the Rails _don't repeat yourself_ -philosophy- +obsession+. Sometimes this leads to programmatic complexity which makes working with templates more akin to programming, even if it means less duplication. I've yet to work on a particularly complex Django project so maybe this simplicity might become a limitation to work around? Always a possibility.
+
+h3. Default craziness
+
+Some of the bits and pieces that come bundled with Rails are just plain wrong, the Javascript helpers being one example. The abuse of HTTP by default in some of the scaffolding code being another. Oh, and the markup coming out of various helpers as well. In trying to help the application developer Rails gets in the way of the professional webstandards types. Django does next to none of this for you. Programmers coming from Rails might see this as missing features. Frontend types prefer this clean slate approach because it means you don't have to fight the backend (sometimes including people) for control of the output. Note that you can work around much of this (in the same way as you can work _around_ ASP.NET if you have to), it's just nicer to not have to.
+
+h3. Other craziness
+
+Rails people love Ruby. After all it's better than Java (it's also a pretty loveable programming language too). But like computer science departments everywhere many Rails people also dislike or simply put up with HTML, CSS and Javascript. If they can find a way of not having to write these and write something else (Rails people are also obsessed with domain specific languages) instead. Hence we have the likes of "HAML":http://haml.hamptoncatlin.com/ and "SASS":http://lab.hamptoncatlin.com/play/with/sass. The problem is that us frontend loving folk quite like writing CSS (well, sometimes) and absolutely love writing HTML. Most of the time for good reasons too - just look at microformats for an example. Frontend developers tend to like using a mix of tools, predominantly backend developers not so much it seems.
+
+Personally I find it interesting. You could quite easily flip many of these arguments around to support why so many people are using Rails. For two frameworks with similar goals and uses it's interesting to see the early philosophical differences playing out in the real world. It might be interesting to see what happens with frameworks like "Merb":http://merbivore.com/ as well which seems to be set out to avoid many of these perceived issues with Rails. So, have anyone else noticed anything similar? Or even the complete opposite?

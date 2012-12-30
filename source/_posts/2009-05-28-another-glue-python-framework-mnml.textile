@@ -1,0 +1,42 @@
+---
+created_at: 2009/05/28}
+layout: post
+comments: true
+categories: [mnml, python]
+title: "Another Glue Python Framework - MNML"
+---
+
+Although still a big fan of Django, but for some problems I'm finding more and more cases where I prefer less code and more freedom. My biggest issue for some types of problems being Django's assumption that you'll be using a relational database, or a database at all. Django wasn't the reason I started using webapp for App Engine stuff, but in doing so I found that webapp often did all that I needed.
+
+So when I small, non appengine project cropped up I started looking at the "different options available":http://wiki.python.org/moin/WebFrameworks and played with a few of them. 
+
+* I played with Pylons but again got lost in code. I'll probably play with Pylons more in the future and for bigger, team based, projects it looks a good mix of component parts and shared conventions.
+* Web.py - I'd used web.py before I started with Django (I even wrote a very "basic PHP clone":http://morethanseven.net/2007/01/03/webphp/) and although I still like somethings about it, it felt like more code than was required for what I wanted.
+* "Juno":http://github.com/breily/juno/tree/master is similar in design to Sinatra but again it wasn't really what I was after this time. I prefer separating my routing from my code and I'm not sure I like that it comes with it's own templating engine.
+* "Newf":http://github.com/JaredKuolt/newf/tree/master was more like it. Basically a hugely stripped down WSGI framework which provides the very basic building blocks. Something to build on perhaps?
+* "MNML":http://github.com/bradleywright/mnml/tree/master (by an ex-colleague "Brad Wright":http://intranation.com/) is build atop Newf adding a few more features and cleaning up some of the interfaces. My only problems here were that I prefer regex based routes and wanted individual methods for each HTTP verb. The former was a specific design decision Brad had made in order to be able to reverse routes, the later was on the todo list. 
+
+So, I set "about forking MNML to create my own branch":http://github.com/garethr/mnml/tree/master. I added extra comments as I was making my way through the code, wrote a few tests to checks thinks worked and allowed for pluggable routing mechanisms. MNML applications look a bit like the following:
+
+pre. from mnml import RegexBasedApplication, RequestHandler, HttpResponse, development_server
+class HelloWorld(RequestHandler):
+    def GET(self):
+        return HttpResponse("<h1>Hello World</h1>")
+routes = (
+    (r'^/$', HelloWorld),
+)
+application = RegexBasedApplication(routes)
+if __name__ == '__main__':
+    development_server(application)
+
+If you want to use the token based routing you would substitute in something like the following:
+
+pre. routes = (
+    ('/', Foo),
+    ('/myview/:stuff/', Bar)
+)
+application = TokenBasedApplication(routes)
+
+The best bit is that it's only about 350 lines of code, a great deal of which is accounted for by comments. It's also really quite fast - especially using something like spawning to run the WSGI application. The other thing I like is the ease with which you can add WSGI middleware into the mix.
+
+So, if you have a small scale problem where simple and fast beats everything else then have a look and let me know what you think. It will take less time to read the code and tests than it will be read the introductory chapter on whichever larger framework you choose to look at.

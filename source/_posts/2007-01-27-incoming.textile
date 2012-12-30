@@ -1,0 +1,43 @@
+---
+created_at: 2007/01/27}
+layout: post
+comments: true
+categories: []
+title: "Incoming!"
+---
+
+<p>Just a few things coming up in the next month that I&#8217;m attending that I thought warranted a post.</p>
+
+
+ <table>
+  <tr>
+   <td>WebDD</td>
+   <td>3rd February</td>
+   <td>Heading down to Microsoft in Reading for <a href="http://webdd.org.uk">Web Developer Day</a> for a weekend of web design and development discussions and listening to <a href="http://brucelawson.co.uk">Bruce</a> and <a href="http://www.splintered.co.uk">Patrick</a> go on about something interesting.</td>
+  </tr>
+  <tr>
+   <td>Newcatle Rails Usergroup</td>
+   <td>8th February</td>
+   <td>I&#8217;m giving a talk on using <a href="http://radiantcms.org">Radiant</a> to our local <a href="http://rubyandrails.org/usergroups/newcastle/">Ruby and Rails Usergroup</a> so we&#8217;ll see how that goes. I&#8217;ll publish the slides afterwards given the chance.</td>
+  </tr>
+  <tr>
+   <td>BarCamp London</td>
+   <td>17th-18th February</td>
+   <td>Yeah. I got a ticket for <a href="http://barcamp.pbwiki.com/BarCampLondon2">Barcamp</a> thanks to <a href="http://blog.meriwilliams.com/">Meri</a>. I just need to think of something to talk about now. Oh, and sort travel.</td>
+  </tr>
+  <tr>
+   <td>Future of Web Apps</td>
+   <td>20th-21st February</td>
+   <td>Been looking forward to heading down to <a href="http://futureofwebapps.com">FOWA</a> for a while and a few people from <a href="http://thinkco.com">work</a> are coming too. Be good to see all the usual suspects as well, at least those that aren&#8217;t going to Barcamp a few days before.</td>
+  </tr>
+  <tr>
+   <td>Geek Dinner</td>
+   <td>21st February</td>
+   <td>I&#8217;d already booked the day after FOWA off work knowing that something would come up. As if by magic I&#8217;m finally in London for one of <a href="http://cubicgarden.com">Ian&#8217;s</a> famous <a href="http://www.geekdinner.co.uk/">GeekDinners</a>.</td>
+  </tr>
+ </table>
+
+
+
+
+ <p>Now I think about it, or rather now I write them all down in one place, I think I might have got carried away.</p>

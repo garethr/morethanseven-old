@@ -1,0 +1,18 @@
+---
+created_at: 2010/09/09
+excerpt: 
+layout: post
+comments: true
+categories: [websockets, javscript, ruby, eventmachine]
+title: "Script Running Web Interface With Websockets"
+---
+
+After something of a break I found a bit of time for some hacking at the weekend and decided to scratch a personal itch. I like writing shell scripts for everything from checking on things to deploying code. For anything that is more than just executing one command, or anything with detailed output or that takes a while I like to be able to see what's going on. I also like to (OK, only sometimes) let other people run those commands and not all those people want to check something out and run a console. The web maks a pretty good interface for this sort of situation.
+
+Enter "Bolt":http://github.com/garethr/bolt/. It's my first proper go at using websockets for the communication between client and server, and my first stab at EventMachine. The code at the moment needs some improvement (tests, configurability, deployment options) but it works as a proof of concept. 
+
+It's pretty simple, designed for running a single command at the push of a button and showing the results scroll past as they happen.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRi5lAEM" alt="Bolt script running interface"/>
+
+Hopefully it's useful to a few more people, or at least it will be when I clean it up a bit. For more information head over to the "GitHub page":http://github.com/garethr/bolt/.

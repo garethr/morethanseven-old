@@ -1,0 +1,15 @@
+---
+created_at: 2007/12/08}
+layout: post
+comments: true
+categories: []
+title: "Writing Elsewhere"
+---
+
+As well as the eclectic ramblings on this blog I've taken to writing longer bits and pieces for some other nice folk, two of which went up over the last few days.
+
+"Drew" and "Brian":http://suda.co.uk are doing a great job of gathering together some really good articles in a silly time-scale over on "24ways.org":http://24ways.org at the moment. "My little ditty on minification":http://24ways.org/2007/minification-a-christmas-diet was day 6.
+
+"Chris Mills":http://my.opera.com/chrismills/blog/, in his new position as Opera mascot, has also rapidly started to build up a great collection of articles over on "dev.opera":http://dev.opera.com. My contribution to what is looking like a great new resource is a piece on "using JSON for configuration in your Javascript applications":http://dev.opera.com/articles/view/json-configuration-for-javascript/.
+
+Writing for other people is different to just posting interesting stuff on your blog. And it wouldn't work at all without some pretty dedicated people editing, compiling and chasing to get us all those high quality articles for sites such as "alistapart":http://alistapart.com, "Digital Web":http://digital-web.com and "Sitepoint":http://sitepoint.com. So if you meet any of these people on your travels then pat them on the back and "buy them a beer":http://foamee.com. Without the information sharing community we probably wouldn't be doing all this for a living.

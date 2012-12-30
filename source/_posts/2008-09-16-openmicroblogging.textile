@@ -1,0 +1,9 @@
+---
+created_at: 2008/09/16}
+layout: post
+comments: true
+categories: [oauth, openmicroblogging]
+title: "openmicroblogging"
+---
+
+"Open Microblogging":http://openmicroblogging.org/ looks pretty interesting. An open standard built upon other "open standards":http://oauth.net/ for the purpose of passing information between micro blogging services like Twitter or Facebook.

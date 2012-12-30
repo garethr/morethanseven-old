@@ -1,0 +1,51 @@
+---
+created_at: 2007/01/20}
+layout: post
+comments: true
+categories: []
+title: "Posting to Twitter using PHP"
+---
+
+_Please note that Twitter no-longer support Basic Auth via the API so the following code no longer works. Please see the "official docs":http://dev.twitter.com/pages/oauth_faq for more info_
+
+<p>Like others I&#8217;ve found myself becoming something of a fan of <a href="http://twitter.com">Twitter</a>, the impossible to explain social networking site. If you&#8217;re reading this, have a twitter account and not already my <em>friend</em> then <a href="http://twitter.com/garethr">add me</a> if you like.</p>
+
+<p>Apart from the interesting social aspects I&#8217;m also interested in Twitter as an API for all sorts of communications, remember Twitter already deals nicely with SMS messaging, Instant Messaging, subscription and the like and has a <a href="http://twitter.com/help/api">nice XML and JSON based API</a>. I&#8217;ve been using the <a href="http://www.zamano.com/">Zamano</a> SMS gateway at work for a few projects and Twitter actually lets me some more and doesn&#8217;t come with a price tag.</p>
+
+<p>I started out playing with <a href="http://curl.haxx.se/">curl</a> to send updates like so (obviously with a real username and password):</p>
+
+<code>curl -u username:password -d status="twittering from curl" http://twitter.com/statuses/update.xml</code>
+
+I then used the PHP curl features to do the same thing from PHP:
+
+<pre><code>&lt;?php
+// Set username and password
+$username = 'username';
+$password = 'password';
+// The message you want to send
+$message = 'is twittering from php using curl';
+// The twitter API address
+$url = 'http://twitter.com/statuses/update.xml';
+// Alternative JSON version
+// $url = 'http://twitter.com/statuses/update.json';
+// Set up and execute the curl process
+$curl_handle = curl_init();
+curl_setopt($curl_handle, CURLOPT_URL, "$url");
+curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
+curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($curl_handle, CURLOPT_POST, 1);
+curl_setopt($curl_handle, CURLOPT_POSTFIELDS, "status=$message");
+curl_setopt($curl_handle, CURLOPT_USERPWD, "$username:$password");
+$buffer = curl_exec($curl_handle);
+curl_close($curl_handle);
+// check for success or failure
+if (empty($buffer)) {
+    echo 'message';
+} else {
+    echo 'success';
+}
+?&gt;</code></pre>
+
+<p>Obviously you could do more with the return than print out a success or failure message. The $buffer variable has the returned XML or JSON for you&#8217;re parsing pleasure.</p>
+
+<p>I&#8217;m going to try out some of the other API methods too, probably play more with XSL or look more closely at the <a href="http://pear.php.net/pepr/pepr-proposal-show.php?id=198">PEAR JSON module</a> in building up a simple library as a quick search didn&#8217;t throw up much of interest and the API is nice and simple; making it fun to hack on.</p>

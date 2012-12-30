@@ -1,0 +1,42 @@
+---
+created_at: 2006/04/23}
+layout: post
+comments: true
+categories: []
+title: "A Proliferation of Feed Standards"
+---
+
+<p>Google just announced <a href="http://code.google.com/apis/gdata/overview.html">GData</a>, which is apparently a:</p>
+
+
+ <blockquote>
+  <p>...simple standard protocol for reading and writing data on the web.</p>
+ </blockquote>
+
+
+ <p>It is basically an amalgamation of Atom, RSS and bits and pieces of Goodle juice. It piqued my interest for a couple of reasons:</p>
+
+
+ <ul>
+ <li>What was termed <em>Optimistic Concurrency</em></li>
+  <li>A promise of <em>Authentication</em></li>
+  <li><em>REST</em> based</li>
+ </ul>
+
+
+ <p>The former relates to a simple solution to the problem of concurrent updates. Say I grab a file and make a change, but in between another individual grabs the same file, and after I submit my changes, they also try top submit changes all my changes could be lost. GData specifies a solution to this by introducing version numbers, only if the version you are modifying has the latest version number will it be accepted. The version number is simply provided in the edit URI in the feed. Nice.</p>
+
+
+ <p>I wont ramble too much about <a href="http://www.xfront.com/REST-Web-Services.html">REST,</a> safe to say if you like URLs then it makes perfect sense and you can just get on with it. Lots of other posts about <a href="http://billburnham.blogs.com/burnhamsbeat/2004/12/rest_vs_soap_wh.html">why</a> if you missed the (ongoing) debate. It&#8217;s a bit like <a href="http://microformats.org">Microformats</a> and the Semantic Web. The bariers to entry for microformats are the the same as those for building web pages.</p>
+
+
+ <p>I say the promise of Authentication above because it turns out that part of the system is not in place yet. The other part of that I&#8217;m sceptical about is, from my reading, a complete reliance on Google to provide the <a href="http://code.google.com/apis/gdata/protocol.html#Authentication">authentication</a>. For some applications that&#8217;s fine, for others you probably dont want Google in charge of the keys.</p>
+
+
+ <p>It also has simple proscribed methods of dealing with categories and search queries, including <a href="http://opensearch.a9.com/">Opensearch</a> integration.</p>
+
+
+ <p>I was thinking about playing with a PHP based client/server for GData, or at least having a look, but I think I&#8217;ll wait until I know more about the authentication side.</p>
+
+
+ <p>I have a feeling Microsoft will do something like this as well, take existing open standards and republish them with a few bells and whistles. And again the developers, ie. us, are left supporting multiple slight variations on a theme. Maybe I&#8217;m just suspicious. Time will tell.</p>

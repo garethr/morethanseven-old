@@ -1,0 +1,40 @@
+---
+created_at: 2010/06/01
+excerpt: 
+layout: post
+comments: true
+categories: [ganglia, gmetrics, devops]
+title: "Very Simple Custom Ganglia Metrics"
+---
+
+Logging useful information from running systems for monitoring purposes is pretty important if you want to see how your software is behaving in the real world. It's one thing to test something locally, another to test something under load on a testing environment and quite something else to watch production code while running. 
+
+The numbers can be useful for checking newly released code isn't having a detrimental effect on performance, observing what changes in load are doing to systems over time and planning for future capacity growth.     
+
+Creating log files, agregating files from multiple machines and then analysing the results is one approach. Another is using something like "Ganglia":http://ganglia.sourceforge.net/. Ganglia is great for trending data over time, and ties in nicely to Nagios for reporting. Installing the monitoring daemon on machines and generally getting the default checks (memory, disk, network, etc.) up and running is nice and easy. From there using the gmetric command line to create custom metrics (say checking some mysql statistics) is again straight forward.
+
+So far, so good. The only issue I've run into was creating custom metrics on the fly from a machine outside the network. For bonus points these metrics were nothing to do with the machine on which they were collected, but to do with the system overall. More specifically the metrics were web site performance data gathered via some cucumber and "celerity":http://celerity.rubyforge.org/ scripts.
+
+For this I knocked up a tiny web service wrapper around the gmetric command line. It's very feature light at the moment (I only needed it to collect time based stats at regular intervals) but it could be made more featureful and expose the rest of the gmetric API if needs be. It does it using a very simple URL scheme:
+
+<notextile>
+<% syntax_colorize :bash, type=:coderay do %>
+/{metric-name}/{metric-value}/ 
+<% end %>
+</notextile>
+
+So for example I can create metrics on the fly simply using an HTTP client or a web browser.
+
+<notextile>
+<% syntax_colorize :bash, type=:coderay do %>
+/GarethsCommuteTime/3600/
+/ExternalPageLoad/2.005/
+<% end %>
+</notextile>
+
+The "code is up on GitHub":http://github.com/garethr/gmetric-web and is completely self contained. I've been running it mainly using spawning but any small WSGI server could surfice. I looked very briefly at the API for Ganglia but found the gmetric approach to be much simpler.
+
+And if you're a Ganglia expert and know a much better way of doing this then let me know. Ganglia is awesome, and collecting metrics is both useful and fun (for me at least) but it's not always obvious how to get into creating simple custom metrics which tell you something about your own appliction code.
+
+
+

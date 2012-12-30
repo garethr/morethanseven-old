@@ -1,0 +1,66 @@
+---
+created_at: 2009/01/18}
+layout: post
+comments: true
+categories: [lastfm, xmpp, python, apis]
+title: "A Simple Python Jabber Bot"
+---
+
+I've been knocking together various little instant messaging bots recently, partly as a way to play around with XMPP. As well as using the low level "xmppy":http://xmpppy.sourceforge.net/ and "XMPP4R-Simple":http://code.google.com/p/xmpp4r-simple/ libraries I've been having lots of fun with the "JabberBot":http://thpinfo.com/2007/python-jabberbot/ framework.
+
+Jabberbot lets you write simple bots incredibly quickly, using simple conventions to determine what commands the bot exposes. It's easier to explain with a simple example. The following bot lets you send the command _time_ to it and returns the current time on the server on which the bot is running. The magic is in the name of the method _bot_time_. Any methods that start bot_ are automatically exposed as commands for the bot to accept.
+
+You'll need an xmpp server for the bot to connect to but you could always just register an additional google account and use it over gtalk if you wanted to. Personally I'm running "ejabberd":http://www.ejabberd.im on a local Ubuntu VM as well for testing.
+
+pre. from jabberbot import JabberBot
+import datetime
+class SystemInfoJabberBot(JabberBot):
+    def bot_time( self, mess, args):
+        """Displays current server time"""
+        return str(datetime.datetime.now())
+username = 'my-jabberid@jabberserver.example.org'
+password = 'my-password'
+bot = SystemInfoJabberBot(username,password)
+bot.serve_forever()
+
+The JabberBot site has a few more examples as well with fancier features. At the recent Last.fm hackday I spent a bit of time knocking together a bot which talks to the Last.fm API (using the "PyLast":http://code.google.com/p/pylast/ library for the API backwards and forwards.) I did this mainly as a demonstration of how simple it can be to create a useful command line interface to your API using an instant messaging client.
+
+The code for "LastBot":http://github.com/garethr/lastbot/tree/master is on GitHub. It has a few limitations and doesn't intent to cover anywhere near all the API. When up and running you should be able to talk to it with your IM client. Simply send the user specified in the settings file a message like so:
+
+pre. search {query}
+
+So if you wanted to search for “astley” you would type:
+
+pre. search astley
+
+Which would probably give you:
+
+pre. you probably mean Never Gonna Give You Up by Rick Astley
+http://www.last.fm/music/Rick_Astley/_/Never_Gonna_Give_You_Up
+Richard Paul Astley (born February 6, 1966) is an English dance-pop singer,
+songwriter and musician. He was born in Newton-le-Willows, St Helens,
+Lancashire, England. Astley currently resides in Richmond, Surrey with his 
+Danish girlfriend, Lene Bausager, and their daughter, Emilie. In 1985, Astley 
+was playing the club circuit as a singer with a soul band named FBI, when he 
+was seen by the record producer Pete Waterman and persuaded to come to London 
+to work at the PWL recording studio.
+
+If the first result that comes back isn’t the one you wanted you can ask for the next result by simply sending next in another message. You can use prev as well to come back through the set.
+
+pre. next
+
+You can always send it a call for help at any time which should return the instructions to you via an IM message.
+
+pre. help
+
+Which should return something like:
+
+pre. Personal LastFM search bot. Useful for looking for tracks you can't 
+remember the full name of. Or for findind out who sung a track.
+search: do a search for tracks
+prev: get details about the previous track in the list
+next: get details about the next track in the list
+
+More instructions, and the code behind the bot, can be found in the "README":http://github.com/garethr/lastbot/tree/master. 
+
+As developers we spend a lot of time using command line interfaces - mainly for speed and because you can cram a lot of functionality into a small amount of screen real estate. We're increasingly spending time debugging API calls as well and exposing your API calls for use by instant messaging clients has the potential to make development easier. Think of the Python interactive shell or of IRB, but for APIs.

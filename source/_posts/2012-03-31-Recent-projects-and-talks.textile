@@ -1,0 +1,18 @@
+---
+created_at: 2012/03/31
+excerpt: 
+layout: post
+comments: true
+categories: [presentations]
+title: "Recent Projects And Talks"
+---
+
+I've been pretty busy with all things "GOV.UK":https://www.gov.uk recently but I've managed to get a few bits of unrelated code up and a few talks in. I'm _still_ pretty busy so here's a list of some of them rather than a proper blog post.
+
+* "Puppet Data Mining":http://www.slideshare.net/garethr/mining-puppet talk from last weeks PuppetCamp in Edinburgh. 
+* "Introducting Web Operations":http://www.slideshare.net/garethr/web-operations talk I gave at work to give my mainly non-development colleagues an idea about what it's all about.
+* "Learning from building GOV.UK":http://www.slideshare.net/garethr/learnings-from-govuk talk I gave a month back or so to Cambridge Geek Night. We did an excellent full project retrospective after the beta launch and this lists some of the things we learnt.
+
+After someone bugged me on Twitter I realised the small bit of code we've been using for our Nagios dashboard wasn't out in the wild. So introducing "Nash":https://github.com/garethr/nash, a very simple high level check dashboard which screenscrapes nagiosand runs happily on Heroku.
+
+Although I've not been writing too much on here I've been keeping "Devops Weekly":http://devopsweekly.com/ going each week for over a year now. I've just crossed 3000 subscribers which is pretty neat for a pet project.

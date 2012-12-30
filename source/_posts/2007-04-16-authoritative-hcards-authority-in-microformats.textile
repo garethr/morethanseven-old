@@ -1,0 +1,17 @@
+---
+created_at: 2007/04/16}
+layout: post
+comments: true
+categories: []
+title: "Authoritative hCards - Authority in microformats"
+---
+
+I've been pondering lots of potential uses for "microformats":http://microformats.org of late and came up on one thing I thought worth asking what people thought; namely the issue of authority in microformatted data.
+
+"Technorati":http://technorati.com provide a very interesting "Microformats search engine":http://kitchen.technorati.com/contact/search/ that allows you to search for a person and get back their contact details via hcards that it knows about. For instance try doing a "search for me":http://kitchen.technorati.com/contact/search/rushgrove and you get seven results (ironic given the domain name), try with one of those "famous people":http://adactio.com and you get "lots more":http://kitchen.technorati.com/contact/search/jeremy+keith. This poses a problem, what is the various hcard disagree?
+
+You can always look at the publication date but this might not be enough. I could publish an hcard with incorrect data for anyone right now on this site and it would be more recent that the other, possibly correct, information already available on the web. Note that this isn't a problem with Microformats per ce, more an ever present problem with the web. It's just that Microformats make the matter more of a potential issue.
+
+Is their a need for the ability to provide an authoritative hCard, or other Microformat instance? One that can always be trusted? If I publish an hcard of my details I'd like to think the latest version of that would be the most trustworthy. But how do you make a claim of ownership over a piece of data on the web (microformatted or not)? And for some of this data do you need a way of deciding who has access to it and who does not in a standard manner?
+
+I'm pretty interested in the issue of identity at the moment, spurred on by the likes of "OpenID":http://openid.net/ and "MicroID":http://microid.org/. I'm wondering if their isn't some clever cross over here? Sites like "ClaimID":http://claimid.com/ are doing some things in this space already so we'll have to see.

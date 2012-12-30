@@ -1,0 +1,84 @@
+---
+created_at: 2009/08/21}
+layout: post
+comments: true
+categories: [solaris, django, wsgi]
+title: "Django and WSGI deployment on Solaris"
+---
+
+Now I'm generally an Ubuntu guy, but I've just had the need to setup some boxes running Solaris for Django and a handful of WSGI applications. I know my way around Ubuntu pretty well. I know all the packages I need to install and in what order. Hell, I even have all that scripted so I can just run a command and it works by magic. I'll script the following steps if I can do when I get round to it but here, in one list, are the installation instructions for Apache, mod_wsgi, Mysql, MySQLdb, setuptools and memcached that worked for me on the latest version of "Open Solaris":http://www.opensolaris.com/ (2009.06 at the time of writing).
+
+First up I needed to install Apache and start the service running.
+
+<pre>pfexec pkg install SUNWapch22
+svcadm enable http:apache22</pre>
+
+You should be able to test that's running by hitting localhost on a browser running on the same box. Now for MySQL.
+
+<pre>pfexec pkg install SUNWmysql5
+svcadm enable mysql:version_50</pre>
+
+This installs the mysql binary into /usr/mysql/5.0/bin/mysql on the system I'm working on. As I want to talk to the MySQL database server using Python I need to install MySQLdb.
+
+<pre>pfexec pkg install SUNWmysql-python
+ln -s /usr/mysql/5.0/lib/mysql/libmysqlclient_r.so.15 /usr/lib/libmysqlclient_r.so.15</pre>
+
+This installs the library files into /usr/mysql/5.0/lib and Python doesn't know were to find them. The above command links them into the more standard /usr/lib folder were Python will pick it up nicely.
+
+I tend to use "mod_wsgi":http://code.google.com/p/modwsgi/ for serving Python apps behind Apache,  however a mod_wsgi package isn't part of the default package list. It is however available in the pending list so first you need to add that list of packages.
+
+<pre>pfexec pkg set-authority -O http://pkg.opensolaris.org/pending pending
+pfexec pkg refresh
+pfexec pkg install mod-wsgi</pre>
+   
+This installs the module but you then need to tell Apache to load it. Add the following line to /etc/apache2/2.2/conf.d/modules-32.load or /etc/apache2/2.2/conf.d/modules-64.load depending on your architecture.
+
+<pre>LoadModule wsgi_module    libexec/mod_wsgi.so</pre>
+
+To get Apache to load that module you need to restart it like so:
+
+<pre>svcadm restart http:apache22</pre>
+
+I use "Pip":http://pypi.python.org/pypi/pip for installing Python code, but tend to install setuptools to make installing Pip easier. I don't know if an up to date Pip package exists.
+
+<pre>pfexec pkg install python-setuptools</pre>
+
+This should leave you with easy_install on your path so installing Pip, then virtualenv should be a breeze.
+
+As an added bonus I also installed memcached for some snappy caching.
+
+<pre>pfexec pkg install SUNWmemcached</pre>
+
+This won't start up by default and needs a little configuration. The first command will launch you into a prompt where you can type the rest of the commands.
+   
+<pre>svccfg
+svc:> select memcached
+svc:/application/database/memcached> setprop memcached/options=("-u" "nobody")
+svc:/application/database/memcached> quit</pre>
+
+Once you'd done that you should be able to start memcache on the standard port.
+
+<pre>svcadm refresh memcached
+svcadm enable memcached</pre>
+
+Et voila. The internet helped massively on my quest to track down this information. Not all of the following links turned out to work for me but all of them led me in the right direction. Thanks everyone.
+
+* http://blogs.sun.com/quenelle/entry/jazz_guitar_and_rpath
+* http://blogs.sun.com/natarajan/entry/installing_amp_stack_within_glassfish
+* http://blogs.sun.com/overstre/entry/django_on_solaris10_with_the
+* https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_SMI-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=Web-Stack-1.5-OTH-G-F@CDS-CDS_SMI
+* http://wiki.joyent.com/mod_wsgi
+* http://textusers.com/wiki/AcceleratorDjango
+* http://wiki.joyent.com/accelerators:kb:django
+* http://www.b-list.org/weblog/2007/sep/04/django-accelerated/
+* http://blogs.sun.com/natarajan/entry/getting_ruby_or_amp_apache
+* http://blogs.sun.com/overstre/entry/opensolaris_with_mod_wsgi
+* http://branesks.blogspot.com/2009/01/installing-modwsgi-on-opensolaris.html
+* http://blogs.sun.com/overstre/entry/django_on_opensolaris
+* http://code.google.com/p/modwsgi/wiki/InstallationOnSolaris
+* http://groups.google.com/group/modwsgi/browse_thread/thread/7e2cc7ce366253cc
+* http://blogs.sun.com/lr/entry/django_setup_mysql_python_opensolaris
+* http://blogs.sun.com/trond/entry/memcached_in_solaris
+* http://blog.hendrikvolkmer.de/2009/1/29/deploying-a-rails-application-on-opensolaris-with-passenger-aka-modrails/
+
+I'm not a Solaris admin. I'm not really a sysadmin at all, I just end up pretending to be one of late. Any experienced Solaris people with experience of these tools reading this I'd be grateful for any hints and tips. Hopefully this saves a few people from the head scratching I've been doing for the last few days.

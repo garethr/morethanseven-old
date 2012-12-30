@@ -1,0 +1,20 @@
+---
+created_at: 2007/11/12}
+layout: post
+comments: true
+categories: []
+title: "Activity"
+---
+
+Sorry, shameless _what's going on_ post for historical posterity.
+
+Before that starts thought here are a couple of useful microformatted schedules for "Future of Mobile":http://future-of-mobile.com and "@media Ajax":http://vivabit.com/atmediaAjax/ created by the really rather handy "Conference Schedule Creator":http://dmitry.baranovskiy.com/work/csc/. Hat tip to "Jeremy":http://adactio.com and "Brian":http://suda.co.uk for the lovely styles.
+
+* "Future of Mobile Conference Schedule":http://morethanseven.net/presents/schedules/future-of-mobile-07/
+* "@media Ajax Conference Schedule":http://morethanseven.net/presents/schedules/atmedia-ajax-07/
+
+I'm spending the next few weeks circling London, first up attending "Future of Mobile":http://future-of-mobile.com, on to "Pubstandards":http://upcoming.yahoo.com/event/313568/ and then popping in to see "Joost":http://dev.joost.com/. After a short break I'll be back for "@media Ajax":http://vivabit.com/atmediaAjax/ and "BarCamp London":http://barcamp.org/BarCampLondon3. Throw in a few business meetings and we're all set. I even have new "Moo":http://moo.com cards.
+
+!http://morethanseven.net/_assets/media/imgWebGeek.jpg(Web Geek Moo cards)!
+
+If you're around at any of these events, or just happen to be in London, and are one of the two people who read such self serving ramblings as this let me know and we can "drink beer":http://foamee.com/. Actually scratch that. Due to the wonder of "Dopplr":http://dopplr.com "I":http://dopplr.com/traveller/garethr already know where you're going to be.

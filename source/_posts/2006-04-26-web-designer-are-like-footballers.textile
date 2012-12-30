@@ -1,0 +1,36 @@
+---
+created_at: 2006/04/26}
+layout: post
+comments: true
+categories: []
+title: "Web Designer are like Footballers"
+---
+
+<p>I do quite a bit of musing on the subject of <em>the community</em>. Lots of other people do similar, just a few of the groups I know about:</p>
+
+
+ <ul>
+ <li><a href="http://newcastlenewmedia.org">Newcastle New Media</a> (Ok, thats me again)</li>
+  <li><a href="http://www.southwestnewmedia.com/">South West New Media</a></li>
+  <li><a href="http://www.brightonnewmedia.org/">Brighton New Media</a></li>
+  <li><a href="http://www.skillswap.org/">Skillswap</a></li>
+  <li><a href="http://www.thinkandadrink.com/">Think and a Drink</a></li>
+  <li><a href="http://www.refreshdallas.org/">Refresh</a></li>
+  <li><a href="http://www.multipack.co.uk/">Multipack</a> (sorry!)</li>
+  <li><a href="http://geekup.org/">GeekUp</a> (and one I missed)</li>
+ </ul>
+
+
+ <p>Conferences are massive as well. With <a href="http://www.carsonworkshops.com/summit/">Carson</a> going down a storm, <a href="http://vivabit.com/atmedia2006">@media</a> looking to rock the summer again and some people spoke highly of <a href="http://www.sxsw.com">SXSW</a>, but then I wasn&#8217;t there (this year).</p>
+
+
+ <p>We all know each other. Think about it?</p>
+
+
+ <p>We are like footballers. We are the Premiership. We hang out in the trendy bars (conferences), we do everything we can to get mentioned in the papers (A-list blogs, A List Apart) and we get multi million pound book deals (<a href="http://domscripting.com">DOM Scripting</a>).</p>
+
+
+ <p>But theirs a difference. Youth players (students), the lower leagues (Z-list) and amateurs watch football every week. They read about it every day online and in the papers. Everyone knows who the best players are, whether they like football or not. Even then thats before you get to scouts from the big clubs getting along to youth and lower league games to find the next big thing, or the World Cup. Web design still seems spit between those in the know (probably you) and those not, for whatever reason.</p>
+
+
+ <p>So my question, if their is one, is &#8211; is football simply more mature? Do we need scouting systems? World Cups and better training facilities? Or alternatively have I taken this football analogy way too far?</p>

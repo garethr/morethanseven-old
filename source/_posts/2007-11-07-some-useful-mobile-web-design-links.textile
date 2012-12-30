@@ -1,0 +1,25 @@
+---
+created_at: 2007/11/07}
+layout: post
+comments: true
+categories: []
+title: "Some useful mobile web design links"
+---
+
+Earlier in the year I set aside some time to get my head into the mobile web. Most of this was reading and tinkering. Since then I've pointed a number of people (including clients and people in the pub) towards some or all of the following links. A good starting point for anyone starting to get interested in the mobile web.
+
+A good starting place is "Mobile Web Design":http://mobilewebbook.com/ by Cameron Moll which is available as a PDF, and now as a "hard copy from lulu":http://www.lulu.com/content/1281648. Definitely worth your while. If you're not convinced then you can read the "original series of articles":http://www.cameronmoll.com/archives/000398.html to get started.
+
+The "Mobile Web Best Practices 1.0":http://www.w3.org/TR/mobile-bp from the W3C Mobile Web Initiative and "Global Authoring Practices for the Mobile Web":http://www.passani.it/gap are more good starting points, this time with more of an implementation focus. "Blue Flavor":http://www.blueflavor.com/ also have an intersting presentation you can download on the subject of "Designing for Mobile":http://www.blueflavor.com/presentations/DesigningforMobile.pdf
+
+Once you have a basic understanding, or if you just want _the facts_ then check out "The Wireless FAQ":http://www.thewirelessfaq.com/. Everything from "What is WAP?":http://www.thewirelessfaq.com/in_short_what_is_wap up to "Nokia S60 WAP browser cursor skip some links on my WAP site! What is wrong?":http://www.thewirelessfaq.com/nokia_s60_wap_browser_cursor_skip_some_links_on_my_wap_site_what_is_wrong is in there somewhere.
+
+If you're too busy to be reading everything written about mobile, or just prefer listening to the voice of "Paul Boag":http://www.boagworld.com/, then have a listen to "Boagworld episode 96":http://www.boagworld.com/archives/2007/10/show_96_moll_on_mobile.html. Heidi Pollock at the recent "Future of Web Apps":http://futureofwebapps.com was also excellent, especially if you let your numbers. You can get the "presentation":http://www.slideshare.net/heidipollock/heidi-pollock-fowa-07/ and "audio":http://cdn.libsyn.com/carsonsystems/heidi_pollock.mp3 of the talk now.
+
+If you have still have questions after reading a few good articles or books then their are a couple of high quality mailing lists, namely "wmlprogramming":http://tech.groups.yahoo.com/group/wmlprogramming/ and "mobiledesign":http://tech.groups.yahoo.com/group/mobiledesign/. It's worth being subscribed to both, thought their is quite a bit of audience cross over.
+
+The ".mobi site":http://mtld.mobi also has lots of useful information regarding mobile. Whether you buy into the need for a new top level domain or not it's worth reading.
+
+Lots of reading to get you started and not one mentioned of the iPhone...
+
+Have any other good links for getting started in the mobile web? Leave a comment with further suggestions.

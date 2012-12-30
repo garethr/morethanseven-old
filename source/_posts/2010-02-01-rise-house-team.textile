@@ -1,0 +1,20 @@
+---
+created_at: 2010/02/01}
+layout: post
+comments: true
+categories: [industry]
+title: "The rise of the in-house team?"
+---
+
+I was just thinking about the "Design it Build it":http://www.dibiconference.com/ conference later in the year (full disclosure: I'm speaking). Specifically the people speaking on the developer track. Between myself, Michael Brunton-Spall from The Guardian, David Singleton from Last.fm and Emma Persky from Gumtree four of the six speakers work on in-house teams. Not early stage start-ups, not large software/advertising companies, not as freelancers but in a reasonable sized company on a development team.
+
+My original background was working in agencies, and then a stint working for myself and I'm constantly interested by the different facets of the web software industry. I think conferences or magazines aimed at your average interested web developer or designer play an interesting role in what people perceive as normal. If all you see are people who work as a freelancer you start to think that must be way cooler than whatever it is you're doing at the time. I remember attending the first @media event and being surprised at the small number of people from larger agencies. Everyone was from smaller boutique places, or Yahoo! or a freelancer. Now lots of people I see at events are involved in startups.
+
+Interestingly as well none of it is about a particular language or framework. Thinking about it as I type I think between the four of us we spend are day jobs mainly using different languages (java, python, php, perl). But I bet we all work in environments where we use other languages at least occasionally, or at the least the people around us do. Mixed environments are commonplace in companies that have been around a good while and run on software. They are far less common elsewhere with startups using whatever is cool (lets build a mobile search engine in Haskel anyone?) and small agencies often using whatever they built their first client website with (probably PHP).
+
+What I'm really interested in though is the type of topics that are going to be talked about. Last.fm vs the Xbox, Scaling the Guardian, my rambling thoughts on a modern toolbox for developers beyond your average LAMP or .NET stack. This is the sort of think I'm interested in. It's the sort of problems I like having. It's also, I think, the sort of stuff that doesn't get a showing a many mainstream conferences. I'm hoping it's all going to be fairly practical too - things that whatever role people have they can take away and apply. 
+
+
+ 
+
+

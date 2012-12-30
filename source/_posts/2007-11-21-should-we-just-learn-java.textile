@@ -1,0 +1,17 @@
+---
+created_at: 2007/11/21}
+layout: post
+comments: true
+categories: []
+title: "Should we just learn Java?"
+---
+
+As a wandering web designer cum developer and now occasional consultant I'm generally pretty technology agnostic. At some point or another I've written HTML, CSS, Javascript, PHP, C#, Python and Rails for a living - often on the same day. But something has me thinking and I thought I'd see what other people thought as well.
+
+That thing is _Java_. I have books on Java. I've done the usual examples (hello world in 20 lines for instance). I didn't really like it and left it at that. But a few presentations, both from Google, at both "Future of Mobile":http://future-of-mobile.com/ and "@media Ajax":http://vivabit.com/atmediaAjax/ got me thinking. First you have "Android":http://code.google.com/android/ in the mobile space which Dave Burke did a good job of making look pretty interesting. Then you had the guys from "Ajaxian":http://ajaxian.com talking about using Java for "everything":http://code.google.com/webtoolkit/.
+
+A few other thinks to throw into the pot. "Beyond Java":http://www.amazon.co.uk/Beyond-Java-Bruce-Tate/dp/0596100949 is an interesting read - summing up with a call for more fragmentation and for small nimble languages to be used where it makes sense. Oh, and I think "Tom":http://tommorris.org/blog/ is busy learning Java as well. Mmmmm.
+
+Some good coverage around of "both":http://ben-ward.co.uk/journal/ajaxising/ "conferences":http://www.blackphoebe.com/msjen/2007/11/london-day-6-future.html#more and I know my first impression was basically _this way lies madness_. But it would have been more interesting had their been a few more Java people around to argue with. 
+
+Note that I'm not advocating a Google like disregard for the web here. Markup really matters, I happen to disagree with "Douglas":http://crockford.com/ and think CSS rocks and I love writing Javascript. But should we just learn Java anyhow and try to subvert some of the existing tools to be more web like?

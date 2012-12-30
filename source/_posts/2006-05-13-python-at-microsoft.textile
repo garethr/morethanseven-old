@@ -1,0 +1,37 @@
+---
+created_at: 2006/05/13}
+layout: post
+comments: true
+categories: []
+title: "Python at Microsoft"
+---
+
+<p>At work we mainly use Microsoft technologies, .NET and such like, for our development. As I mentioned previously I&#8217;m playing with <a href="http://python.org">Python</a> at the moment, and getting on quite nicely. With .NET being a framework, aimed at allowing a variety of different languages to access the same class library, I though</p>
+
+
+ <blockquote>
+  <p>I wonder if you can use Python with the .NET framework?</p>
+ </blockquote>
+
+
+ <p>The rather large <a href="http://www.amazon.co.uk/exec/obidos/ASIN/0596000855/202-7885728-2282211">Programming Python</a> tome alludes to it being on the cards after the implementation of <a href="http://www.jython.org">Jython</a> but no more details than that.</p>
+
+
+ <p>I came across a few dated references indicating that it was possible but, and mentioning very slow reference implementations, all of which didn&#8217;t bode too well. Then up popped <a href="http://ironpython.com/">IronPython</a> from an <a href="http://www.python.org/pycon/dc2004/papers/9/">article</a> by <a href="http://hugunin.net/">Jim Hugunin</a>. This looked like what I was looking for. But it looked unmaintained, the page not having been updated for a couple of years!</p>
+
+
+ <p>But the story continued. Jim, having moved to Microsoft, was still working on IronPython and it looks like it&#8217;s moving forwards apace. The latest beta was released on the 20th of April and it looks like 4 more betas before a 1.0 release.</p>
+
+
+ <p>This discovery makes Python appear even more interesting. A nicely designed, cross platform scripting language with full access to the might of the .NET framework and it&#8217;s own good looking web development framework in <a href="http://djangoproject.com">Django</a>.</p>
+
+
+ <p>So, for anyone else looking around for similar details here&#8217;s a brief list of up to date information:</p>
+
+
+ <ul>
+ <li>Video of <a href="http://msdn.microsoft.com/msdntv/episode.aspx?xml=episodes/en/20051110PythonJH/manifest.xml">Jim showing IronPython off</a></li>
+  <li><a href="http://wiki.python.org/moin/IronPython">Python Wiki page about IronPython</a></li>
+  <li>Good <a href="http://en.wikipedia.org/wiki/IronPython">WikiPedia entry</a> </li>
+  <li>The <a href="http://www.gotdotnet.com/workspaces/workspace.aspx?id=ad7acff7-ab1e-4bcb-99c0-57ac5a3a9742">official workspace</a></li>
+ </ul>

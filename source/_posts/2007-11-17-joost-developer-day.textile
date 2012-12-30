@@ -1,0 +1,27 @@
+---
+created_at: 2007/11/17}
+layout: post
+comments: true
+categories: []
+title: "Joost Developer Day"
+---
+
+I spent yesterday afternoon over with "Joost":http://joost.com in London as part of their UK developer day. The event was mainly for them to show off their new widget platform and to get some input from prospective developers about what they would like to see next. About 20 people or so came along from the BBC, Ebay and a couple of london agencies, with me and "Tom":http://tommorris.org/ loitering around the edges. The afternoon was split into a series of short talks from people on the team. What follows is some of the interesting bits.
+
+Joost describe themselves as _The Best of the Internet and best of TV_, if you haven't seen it yet it's basically TV running on the Mozilla platform. All in all pretty impressive. "Dan Brickley":http://danbri.org had a different slant, seeing Joost as Web 2.0 +/- 1 _Built and extended with modern web technology, modern web attitude_. The idea of taking an unashamedly desktop piece of software and learning lessons from the web is pretty interesting. 
+
+The "Joost development site":http://dev.joost.com is now public, although not linked to from the main site as yet. Their is some documentation of the various APIs but we can expect more in the future, including some videos from the developer days in a development channel.
+
+The main emphasis for developers at this moment was on overlays and widgets (_little bundles of web technology_) which integrate with the Joost client. We got a sneak peak (and a chat with some of the developers) of the first commercial Joost widget for Coca Cola - "Coke Bubbles":http://cokebubbles.com and "Libby Miller":http://www.ilrt.bris.ac.uk/~ecemm/ and "Jim Ley":http://jibbering.com showed off a few of the default widgets.
+
+The most interesting bits from my point of view were to do with the technology. Joost has an interesting advantage as a platform being a single, dedicated client. No more cross browser testing here. They also keep  pretty close to trunk for Mozilla, which gives them quite a bit of CSS3 support too. You can also try out other new technologies not available in too many browsers yet: SVG, RDF, Canvas and E4X for example. This was the second time in a few days I'd seen SVG pushed as cool, the first being at Future of Mobile which I'll jot down some thoughts on later.
+
+What was interesting was that the people along from the development team came from a W3C background rather than say an product development or design companies. Joost makes extensive use of Semantic Web technologies under the hood and exposes quite a bit of RDFa if you go looking for it. It also follows along with various other web-like ideas, unique URLs for channels and programmes, including the ability to pass these parameters for instance to deep link into a video at a current time. The widget platform as well is starting to align with standards work going on at the W3C - we saw a quick demo of a widget build for the Opera browser which worked seamlessly with Joost too. The development team are now working on dealing with signed widgets, local storage APIs, interwidget communication, as well as usable, clear privacy models. All pretty interesting.
+
+Some of the event was hampered by a shoddy internet connection but the general mood was relaxed and friendly and no one seemed to mind too much. The beer probably helped. I did chuckle when a senior alternative marketing guy from Coke described as _Insane_ the typical agency setup though (rich guy in Notting Hill -> account manager -> project manager -> developers).
+
+Their will be a Coke sponsored widget competition announced after the rest of the developer days (in Amsterdam and New York) with the title of _International widgets champion of Joost_ up for grabs along with some cash and _a t-shirt_.
+
+My only real complaint was probably the low level mutterings about Javascript! Audience members and Joost developers alike made a couple of digs during the course of the day. Javascript rocks, people. Oh well, I'm back in London for "@media Ajax":http://vivabit.com/atmediaAjax where I don't think I'll have that problem.
+
+If any of this sounds interesting (or you just want to watch more TV) I'd recommend having a look through the "development site":http://dev.joost.com, jumping on the joost-dev freenode IRC channel, signing up to the "mailing list":http://groups.google.com/group/joost-dev or reading the "development teams blog":http://blogs.joost.com/dev.

@@ -1,0 +1,15 @@
+---
+created_at: 2009/06/08}
+layout: post
+comments: true
+categories: [personal]
+title: "garethrushgrove.com update"
+---
+
+I've updated my vanity domain at "garethrushgrove.com":http://garethrushgrove.com with a bit of information in case anyone might be interested in my services.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRjDPgw" alt="my personal site"/>
+
+The short version is I'm on the lookout for future projects, probably of a freelance or contract basis but if it's particularly interesting then maybe a full time position. Basically I'm in quite a nice position and able to wander about a bit looking for something cool to do. 
+
+If you reading this site then you know what floats my boat. Python, testing, automation, system design, maybe get into Ruby or another language properly, etc. I'd particularly like to help people get started with testing, continuous integration or automated deployment and the like.

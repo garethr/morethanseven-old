@@ -1,0 +1,36 @@
+---
+created_at: 2009/05/25}
+layout: post
+comments: true
+categories: [webdev, tools]
+title: "Beyond Basic Web Development"
+---
+
+I did a talk at the recent barcamp North East on web development tools. Specifically I wanted to talk about the fact that an awful lot of people just use the basic stack of tools they are familiar with. So Microsoft people will just use C#, MSSQL and ISS and lots of people just use PHP, MySQL and Apache. I'm not saying their is anything wrong with those tools, but if they are all you have in your tool box you're limited how well designed your software can be.
+
+<object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=beyondbasicwebdev-090525052654-phpapp02&stripped_title=beyond-basic-web-development" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=beyondbasicwebdev-090525052654-phpapp02&stripped_title=beyond-basic-web-development" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object>
+
+I'd knocked the presentation together in my hotel room pretty quickly before heading down to barcamp and the lack of an internet connection meant I didn't have links and didn't cover a few tools I should have. It did seem to have the desired result in any case as several people spoke to me afterwards about wanting to use one of the tools I mentioned for something specific.
+
+* "Memcached":http://www.danga.com/memcached/
+* Non relational databases ("Hbase":http://hadoop.apache.org/hbase/, "Couchdb":http://couchdb.apache.org/)
+* "Tokyo Tyrant":http://tokyocabinet.sourceforge.net/tyrantdoc/
+* "Apache Bench":http://httpd.apache.org/docs/2.0/programs/ab.html
+* "Continuous Integration":http://integrityapp.com/
+* "Django":http://djangoproject.com/ (specifically for nearly free admin interfaces)
+* Small web servers - "Nginx":http://nginx.net/, "Thin":http://code.macournoyer.com/thin/ and "Spawning":http://pypi.python.org/pypi/Spawning/0.7
+* Message queues - "RabbitMQ":http://www.rabbitmq.com/ and "Stompserver":http://stompserver.rubyforge.org/
+* HTTP tools - "Pound":http://www.apsis.ch/pound/, "Varnish":http://varnish.projects.linpro.no/ and "Squid":http://www.squid-cache.org/
+* "Hadoop":http://hadoop.apache.org/core/
+
+We also had a good discussion afterwards and people mentioned a few other tools.
+
+* "Puppet":http://reductivelabs.com/products/puppet/
+* "Nagios":http://www.nagios.org/
+* "Ganglia":http://ganglia.info/
+* "Jetty":http://www.mortbay.org/jetty/
+* "Solr":http://lucene.apache.org/solr/
+
+Now it's possible to spend too much time playing with small tools that are likely to be peripheral to the bulk of your application. But the number of stories I've head of people writing their own messages queuing systems in PHP, or using PHPMyAdmin as an application admin interface or ignoring the fact that their fancy new application only supports a few people at once.
+
+

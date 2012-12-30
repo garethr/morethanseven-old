@@ -1,0 +1,9 @@
+---
+created_at: 2010/02/11}
+layout: post
+comments: true
+categories: [djugl, django]
+title: "DJUGL February"
+---
+
+The next Django User Group London is in two weeks time. You can register over on "Eventwax":http://londonpython.eventwax.com/djugl-february. So far we have "Brad":http://intranation.com talking with more speakers to be announced shortly. Hope to see a few people there.

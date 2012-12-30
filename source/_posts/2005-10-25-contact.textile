@@ -1,0 +1,12 @@
+---
+created_at: 2005/10/25}
+layout: post
+comments: true
+categories: []
+title: "Contact"
+---
+
+<p>If you want to talk to me about, well anything really, let me know. Your best bet is probably emailing me on <a href="mailto:gareth@morethanseven.net">gareth@morethanseven.net</a> and hopefully I should get back to you. Unless you&#8217;re a spam bot in which case expect to be automatically deleted or ignored.</p>
+
+
+ <p>On the other hand I can be found wandering the corridors over at <a href="http://www.designersinhouse.com/">designersinhouse.com</a> or appearing in person at anything I can get along to that sounds interesting.</p>

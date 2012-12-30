@@ -1,0 +1,48 @@
+---
+created_at: 2006/01/26}
+layout: post
+comments: true
+categories: []
+title: "The Meaning of  Scale"
+---
+
+<p>I&#8217;m quite a <em>numbers</em> person and have something of a penchant for statistics  As if you couldn&#8217;t guess from the site name. So it is with <a href="http://google.com">Google</a> (who also have a mathematical inspired site name). But unlike me they have more people (it&#8217;s just me) and lets face it, more computing power (only so many computers I can get in my house without getting told off).</p>
+
+
+ <p>So they bring us something of a <a href="http://code.google.com/webstats/index.html">large, automated, study</a> (including some decent analysis) of what markup is <em>actually</em> being used, interestingly also including common class names. I&#8217;d love to do something like that &#8211; over 1,000,000,000 sites analysed!</p>
+
+
+ <p>On a standards front seems to be good news and bad news, some of the common classes are things like:</p>
+
+
+ <ul>
+ <li>footer  </li>
+  <li>menu </li>
+  <li>title, header, top </li>
+  <li>small, smalltext </li>
+  <li>text, content, main, body </li>
+  <li>nav </li>
+  <li>copyright </li>
+  <li>search </li>
+  <li>date</li>
+ </ul>
+
+
+ <p>Most of those I can see use for. They <strong>Mean</strong> something for a start. Although some of the other top entries included things such as:</p>
+
+
+ <ul>
+ <li>white</li>
+  <li>link</li>
+  <li><del>button</del></li>
+  <li>style1 (my personal fave)</li>
+ </ul>
+
+
+ <p>Which maybe aren&#8217;t as well chosen.</p>
+
+
+ <p>On the other hand there are still lots of weirdness, proprietary   tags and bizarre attributes. iWeb might be using crazy nested divs but <a href="http://kurafire.net/log/archive/2006/01/26/iweb-is-not-evil">it&#8217;s still valid</a>.</p>
+
+
+ <p>Being Google it&#8217;s all written fairly amusingly, including a few digs at competitors with applications which generate nightmare markup. Overall, a good read. There are probably a good number of other useful nuggets of information burried in the document as well. Anyone coming across anything of particular relevance leave a comment.</p>

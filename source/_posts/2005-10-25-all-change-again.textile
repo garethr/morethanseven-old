@@ -1,0 +1,21 @@
+---
+created_at: 2005/10/25}
+layout: post
+comments: true
+categories: []
+title: "All change (again)"
+---
+
+<p>I&#8217;m actually going on holiday soon and seem to be getting all sorts done before I go away. The obvious one is the change of scenery around these parts. Let me know what you think. It&#8217;s not complete as yet and I have a few more bits to add and check (yes I mean you IE) but I&#8217;m all for release early and often.</p>
+
+
+ <p>I&#8217;d been meaning to move on a little recently, and the move to <a href="http://textpattern.com">textpattern</a> cemented that. I&#8217;m still impressed with it and wanted to delve further into setting up flexible forms and pages. I&#8217;ve set up a few areas of the site to hopefully make me organise things a little better &#8211; specifically an experiments section to play with code and an articles section if I every actually get round to writing something properly. Both appear in the sidebars.</p>
+
+
+ <p>Another reason for the sudden change was, after using <a href="http://www.shauninman.com/plete/2004/03/shortstat-beta-3">ShortStat</a> for quite a while and looking over the Mint information on the <a href="http://haveamint.com">haveamint.com</a> site I made the plunge. Some had moaned about the cost but really Ã‚Â£17 is the price of a DVD and with a DVD you dont get the sense of supporting a really <a href="http://shauninman.com">smart developer</a>. Ok so I could have seemlessly moved from one to the other without a change in the design but I didn&#8217;t want to (confuse my database).</p>
+
+
+ <p>I&#8217;ll hopefully post a review of sorts (better late than never) as the dicussion doesn&#8217;t seem to have died down yet. I&#8217;d personally like to see more of this sort of small, clever, personal application development. I&#8217;ve been a bit Open Source advocate for a good while which has it&#8217;s merits but I&#8217;m still of the mind that something as focused and polished as Mint is more likely to come out of one mind. The question is, I guess, about the market? If you&#8217;re <a href="http://www.hicksdesign.co.uk/journal/pimp-my-mint">friends</a> <a href="http://www.mikeindustries.com/blog/archive/2005/09/mint-the-flavor-of-the-month">blog</a> to a huge number of other web designers, bloggers and developers then you have an <em>in</em> on the promotional front but will that become the norm rather than a very clever marketing ploy?</p>
+
+
+ <p>Also on the paying part, lots of people thought $30 was quite steep, I disagreed but will we be back to Shareware and people not paying? Lots of questions. Not many answers yet. But should be interesting to see where things go &#8211; at least for people like me with an interest in the sociology of software.</p>

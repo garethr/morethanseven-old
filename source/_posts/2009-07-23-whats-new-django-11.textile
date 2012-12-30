@@ -1,0 +1,35 @@
+---
+created_at: 2009/07/23}
+layout: post
+comments: true
+categories: [django]
+title: "What's new in Django 1.1"
+---
+
+With the "release candidate for Django 1.1":http://www.djangoproject.com/weblog/2009/jul/21/rc/ out the door I decided to have a quick look at what's new. This isn't a complete list, rather the bits I found most interesting.
+
+h2. "Conditional Views":http://docs.djangoproject.com/en/dev/topics/conditional-view-processing/
+
+bq. Django now has much better support for conditional view processing using the standard ETag and Last-Modified HTTP headers. This means you can now easily short-circuit view processing by testing less-expensive conditions. For many views this can lead to a serious improvement in speed and reduction in bandwidth.
+
+A nice set of decorators for dealing with ETags and Last-Modified headers. Again very simple to use and set up, and a simple way of squeezing a little more performance out of you application.
+
+h2. "Admin Actions":http://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/#ref-contrib-admin-actions
+
+bq. The basic workflow of Django’s admin is, in a nutshell, “select an object, then change it.” This works well for a majority of use cases. However, if you need to make the same change to many objects at once, this workflow can be quite tedious. In these cases, Django’s admin lets you write and register “actions” – simple functions that get called with a list of objects selected on the change list page.
+
+Anything that makes the admin a little more powerful and a little more flexible is a good idea in my book. Admin actions allow you to run code over multiple objects at once, simple select them with a checkbox then select an action to run. This is worth it for the delete action alone, but you can write your own actions simply enough as well (for instance for approving a batch of comments, or archiving a set or articles.)
+
+h2. "Editable Admin List Items":http://docs.djangoproject.com/en/dev/ref/contrib/admin/#admin-list-editable
+
+bq. You can now make fields editable on the admin list views via the new list_editable admin option. These fields will show up as form widgets on the list pages, and can be edited and saved in bulk.
+
+Another time saving admin addition, this time for making some fields editable from the change list rather than the object view. For quick changes, especially to boolean fields, I think this again is a nice addition.
+
+h2. "Unmanaged Models":http://docs.djangoproject.com/en/dev/ref/models/options/#django.db.models.Options.managed
+
+bq. You can now control whether or not Django creates database tables for a model using the managed model option. This defaults to True, meaning that Django will create the appropriate database tables in syncdb and remove them as part of reset command. That is, Django manages the database table’s lifecycle. If you set this to False, however, no database table creating or deletion will be automatically performed for this model. This is useful if the model represents an existing table or a database view that has been created by some other means.
+
+I particularly like this addition. One of the issues I had with Django was some of the built in assumptions, in particular that you'd be using a SQL database backend. Using unmanaged models looks like a great approach to using an alternative database like couchdb, tokyotyrant or mongodb or representing a webservice interface in your application.
+
+I'm sure I'll have missed a few other interesting changes or additions. Anyone else have a favourite?

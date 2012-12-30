@@ -1,0 +1,21 @@
+---
+created_at: 2010/01/26}
+layout: post
+comments: true
+categories: [sed, awk]
+title: "Processing large files with sed and awk"
+---
+
+I found myself using a couple of powerful but underused command line applications this week and felt like sharing.
+
+My problem involved a large text file with over three million lines and a script that processed the file line by line, in this case running a SQL query against a remote database.
+
+My script didn't try and process everything in one go, rather taking off large chunks and processing them in turn, then stopping and printing out the number of lines processed. This was mainly so I could keep an eye on it and make sure it wasn't having a detrimental affect on other systems. But once I'd run the script once (and processed the first quarter of a million records or so) I wanted to run it again, except without the first batch of lines. For this I used sed. The following command creates a new file with the contents of the original file, minus the first 254263 lines.
+
+<pre>sed '1,254263d' original.txt > new.txt</pre>
+
+I could then run my script with the input from new.txt and not have to reprocess the deleted lines. My next problem came when the network connection between the box running the script and the database dropped out. The script printed out the contents of the last line successfully processed, so what I wanted was a new file with the all contents of the old file past the last line. The following awk command does just that, assuming the last line processed was f251f9ee0b39beb5b5c4675ed4802113.
+
+<pre>awk '/^f251f9ee0b39beb5b5c4675ed4802113/{f=1;next}f' original.txt > new.txt</pre>
+
+Now I could have made the script that did the work more complicated and ensure it dealt with these cases. But it would have involved much more code and the original scripts where only a handful of throw away code. For one off jobs like this a quick dive into the command line seemed more prudent.

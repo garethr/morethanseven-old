@@ -1,0 +1,43 @@
+---
+created_at: 2008/04/18}
+layout: post
+comments: true
+categories: []
+title: "Resourceful Vs Hackable Search URLs"
+---
+
+I often end up pondering URL design given a moment and something that keeps coming up is hackable search queries. But first a very quick primer on the idea of resourceful design.
+
+"REST":http://en.wikipedia.org/wiki/Representational_State_Transfer is a series of architectural principals more than a defined architecture. The "Resource Orientated Architecture":http://en.wikipedia.org/wiki/Resource_oriented_architecture builds on those ideas with a series of concrete guidelines put down by "Sam Ruby":http://intertwingly.net for designing RESTful systems. The simple version is that you try to design your system around "resources":http://en.wikipedia.org/wiki/Resource_%28Web%29 represented by URLs.
+
+I'd thoroughly recommend reading "RESTful web services":http://www.amazon.co.uk/RESTful-Web-Services-Leonard-Richardson/dp/0596529260 whenever you get a moment as this subject is covered in detail.
+
+Flickr isn't a truly resourceful design but it does have many of the hallmarks. For example the URL that describes me is at:
+
+<pre><code>http://flickr.com/people/garethr</code></pre>
+
+When it comes to searching on flickr we have:
+
+<pre><code>http://flickr.com/search/?w=all&q=pubstandards&m=text</code></pre>
+
+The pattern of using a query string argument named _q_ to pass a search string is pretty common. One of the guidelines mentioned as part of the ROA discussed query strings:
+
+bq. Query string parameters are appropriate if they are inputs to a Resource which is an algorithm. Otherwise, these values should be moved into the URI.
+
+Search is definitely algorithmic. Now you could maybe argue that a global search should be done on the root of a site, with specific resource searches on the resource in questions. eg. _/people/?q=_. This would likely work fine but require some behind the scenes complexity as well as probably not being as obvious to the end user. Global searches are in many cases much more common that restricted searches and even in resourceful designs the root of the site (ie. the home page) might not act as a list of available site resources. A notable exception might would have to be the excellent "BBC Programmes":http://www.bbc.co.uk/programmes site which is basically one big semantic catalogue.
+
+But we have another kind of URL that's cropping up for search results, one that treats the URL much more like a fundamental part of the user interface for search. An example from a site I use all the time is "The Accessible UK Train Timetable":http://traintimes.org.uk/ which allows for URLs like the following:
+
+<pre><code>http://traintimes.org.uk/newcastle/london</code></pre>
+
+You can basically squash all the search parameters from the form into the URL, meaning you can easily bookmark search results. Note however the actual content is likely to change. The above example for instance would use the current time to get a list of trains from Newcastle to London. In an hours time the results will be different.
+
+Another good example would be the new Yahoo! UK TV listings which has URLs like these: 
+
+<pre><code>http://uk.tv.yahoo.com/listings/bbc-two/2008-04-17/</code></pre>
+
+<pre><code>http://uk.tv.yahoo.com/listings/itv1/2008-04-17/21-00/</code></pre>
+
+Again this is really a search query, or at least specifying the time and date is. In some ways it's the return of the command line - allowing searches to be run very quickly from a textual interface.
+
+Now, both these approaches treat URLs with the respect they deserve. But they do have the potential to clash somewhere in the middle if care isn't taken. The Accessible Train Times site is a single purpose site which just does searches while BBC Programmes does feature a search engine but it's just the global BBC search which takes you off site. And if that wasn't enough potential competition then a question raised by "Simon":http://simonwillison.net at The Highland Fling regarding URL design and the search engine optimisation crowd go me thinking too. From being a somewhat niche area of interest URLs might just become a sort after part of a good website design - fought over by the varying disciplines of modern web design and development.

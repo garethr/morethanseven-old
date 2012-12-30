@@ -1,0 +1,59 @@
+---
+created_at: 2007/01/10}
+layout: post
+comments: true
+categories: []
+title: "Some ponderings on CSS3"
+---
+
+<p>I&#8217;m starting to get properly interested in CSS3 for a few reasons. I&#8217;ve subscribed to the <a href="http://www.w3.org/Mail/Lists.html#www-style">mailing list</a>, read up on some of the <a href="http://www.w3.org/Style/CSS/current-work">working group goings on</a> and done a bit of research ahead of really jumping in with some code play. Some of this could be of interest to others so here goes:</p>
+
+
+ <p>The best two resources I&#8217;ve found are the CSS Working group home page and the <a href="http://www.css3.info/">CSS3 Info</a></p>
+
+
+ <p>The <a href="http://www.w3.org/Style/CSS/current-work">CSS Working Group Under Construction</a> site over at the <a href="http://www.w3.org">W3C</a> has a huge ammount of information. For those that dont know CSS is being split into a number of distinct modules, namely:</p>
+
+
+ <ul>
+ <li>Advanced layout</li>
+  <li>Aural Style Sheets</li>
+  <li>Backgrounds and Borders</li>
+  <li>Basic User Interfaces</li>
+  <li>Box Model </li>
+  <li>Cascading and Inheritance</li>
+  <li>Color</li>
+  <li>Fonts</li>
+  <li>Generated Content for Paged Media</li>
+  <li>Generated and Replaced Content</li>
+  <li>Hyperlink Presentation</li>
+  <li>Introduction</li>
+  <li>Line Layout</li>
+  <li>Lists</li>
+  <li>Maths</li>
+  <li>Multi Column Layout</li>
+  <li>Namespaces</li>
+  <li>Object Model</li>
+  <li>Paged Media</li>
+  <li>Positioning</li>
+  <li>Presentation Levels</li>
+  <li>Reader Media Types</li>
+  <li>Ruby</li>
+  <li>Scoping</li>
+  <li>Speech</li>
+  <li>Syntax</li>
+  <li>Tables</li>
+  <li>Text</li>
+  <li>Text Layout</li>
+  <li>Values and Units</li>
+  <li>Web Fonts</li>
+ </ul>
+
+
+ <p>Phew. Their is also some work going on on profiles for TV, Printed media and Mobile. I&#8217;m interested in a few of these modules &#8211; particularly those dealing with Web Typography and the Basic User Interface module which deals with <em>the look of form elements in their various states and more cursors and colors to describe GUIs (graphical user interfaces) that blend well with the user&#8217;s desktop environment.</em></p>
+
+
+ <p><a href="http://css3.info">CSS3 Info</a> also has lots of information worth reading, including some good examples of parts of CSS3 that have been implemented ahead of recommendation in the <a href="http://www.css3.info/preview/">preview section</a>. My favourite bit however has to be the <a href="http://www.css3.info/selectors-test/test.html">CSS selector test</a> by <a href="http://rakaz.nl/">Niels Leenheer</a>. You can read a little more about that, and <a href="http://rakaz.nl/item/how_well_do_browsers_support_css_selectors">how different browsers do</a>, or at least how they did in October. The <a href="http://www.w3.org/Style/CSS/Test/CSS3/Selectors/current/html/index.html">W3C test suite</a> is available too, but no where near as slick.</p>
+
+
+ <p>I&#8217;ve even gone and installed a <a href="http://nightly.webkit.org/">WebKit nighly build</a> to try out some of the features only supported their at the moment. Who knows? I might even add new designs to the site using new selectors as a treat for those <em>silly</em> enough to be using such experimental browsers.</p>

@@ -1,0 +1,23 @@
+---
+created_at: 2009/02/28}
+layout: post
+comments: true
+categories: [business]
+title: "Startup Hubs in the UK - Where To Put One?"
+---
+
+I always enjoy reading things by "Paul Graham":http://www.paulgraham.com, even if I'd like to be able to disagree with his conclusions on occasion. It's not just that I love "Hackers and Painters":http://www.paulgraham.com/hackpaint.html, but also he often says things like the following that make me smile:
+
+bq. hackers are much more constrained by gentlemen's agreements than regulations. If they shake your hand on a promise, they'll keep it. But show them a lock and their first thought is how to pick it.
+
+His latest short essay concerns "startup hubs":http://www.paulgraham.com/maybe.html again, something that I'm actually pretty interested in, end up talking to "people":http://imranali.name/ "about":http://twitter.com/herbkim, but hardly ever writing anything on. Mike over at Techcrunch Uk elicited some good comments last year with a "post on the subject":http://uk.techcrunch.com/2008/07/29/starting-the-campaign-for-the-techhub/. As usual Graham focuses on the US, but what about translating his idea of buying a Startup Hub and applying it to the UK? He sets several criteria for success:
+
+* Do you have good weather? 
+* Do people live downtown, or have they abandoned the center for the suburbs?
+* Would the city be described as "hip" and "tolerant," or as reflecting "traditional values?"
+* Are there good universities nearby? Are there walkable neighborhoods?
+* Would nerds feel at home?
+
+Lets assume for the moment that the idea would work. Take £15-20million and invest in 30 or so well chosen startups on the condition they move into town. The question is then: *where in the UK would this be most likely to work? And are their any UK specific criteria that would increase the success rate?*
+
+Some people might be thinking "but no UK city is going to invest £20million in a scheme to encourage startups". Leeds is "doing just that":http://www.yorkshireeveningpost.co.uk/business-news/Universities-bid-to-help-.4979184.jp. Or rather Yorkshire Forward are putting up £35million along with Leeds University putting up £31milion. What are they doing with all that money? They are going to build a big building with it - which is exactly what Graham says won't work.

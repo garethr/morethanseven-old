@@ -1,0 +1,121 @@
+---
+created_at: 2008/09/14}
+layout: post
+comments: true
+categories: [stomp, python, ruby, stompserver]
+title: "Using Python and Stompserver to Get Started With Message Queues"
+---
+
+Message Queues are cool. It's official. Now, banks and financial institutions have been using big Enterprise Java message systems for years. But it's only really over the last year or two that the web community at large have got interested. Wonder what all the interest is in Erlang, Scala or Haskell? Distributed systems and a lack of shared state - hopefully leading to some sort of scalability nirvana - that's what.
+
+Matt Biddulph of Dopplr has spoken at varying levels of technical detail on the subject over the last year or so. At "barcamps":http://adamcohenrose.blogspot.com/2007/11/messaging-scales-matt-biddulph.html and more recently at "dconstruct":http://2008.dconstruct.org/. But you still don't find that many people actually starting to use any of this stuff. Looking around the internet I couldn't find that many examples of how to get started. Their are some pretty mature standards, good libraries, server interoperability, but few tutorials aimed at people who don't know all about it.
+
+The first problem is looking for a simple use case that most developers will have experienced problems with. The example I like to give is sending email. If you have a simple form on your site that sends email you probably just submit the request to the backend, it sends the email and then renders the success page back to the user. The problem here comes with scale. How many connections can your mailserver sustain? How many emails can you send from it before you start looking like you've been turned into a spam factory? At what point does the time taken for the mail server to respond to the web server cause the web server to time out or respond so slowly the user left or pressed refresh? If you're sending lots of emails you need to think about this sort of stuff. For your average site this might not be a problem, but for the newer breed of applications or social networks this might bite you sooner than you think. You can gain more control over this process by introducing a message queue. Submitting the form simply adds a work task to the queue. A listener reads from the queue and sends the email. The advantage comes when you realise by removing the rendering of the page form the same process as sending the email you can throttle the system without affecting page rendering time.
+
+So onto a simple working example. I've decided to use Python as that's my language of choice at the moment. It's also easy to read in a -sudo-+pseudo+ code sort of way. Writing these examples using equivalent libraries in Ruby or PHP should be straightforward enough. As for the message queue itself I've opted for "stompserver":http://stompserver.rubyforge.org/ which is available as a Ruby gem. So assuming you have Ruby and gem installed (good instructions for this on the "Rails wiki":http://wiki.rubyonrails.com/rails/pages/GettingStartedWithRails) you can just run:
+
+<pre><code>sudo gem install stompserver</code></pre>
+
+Starting the queue is as simple as running:
+
+<pre><code>stompserver</code></pre>
+
+This will get you up and running quickly. Stompserver has a number of arguments you can pass in to use different ports or backends but for the purposes of getting started it's enough to just run it. This ease of use is the thing I love about stompserver. ApacheMQ is something of a tricky beast to setup, though you might want to use that in a production environment.
+
+So now we have the server up and running we can get on with talking to it. I used the Python "stomp.py":http://www.briggs.net.nz/log/projects/stomppy/ library to deal with the heavy lifting. All the other modules are in the standard library. Their are equivalents for "PHP":http://stomp.codehaus.org/PHP and "Ruby":http://stomp.codehaus.org/Ruby+Client available as well.
+
+The first script is a listener. Its job is to listen for activity on the queue and then act upon it. You pass the script an argument of the name of the queue to listen to.
+
+<pre><code>./stomp_listen.py /queue/test</code></pre>
+
+This example simply prints the messages from the queue to the console, but in reality the on_message handler would be were you act upon the message received. In our email example above it would be were you parse out the email address, subject line and message and actually send the email.
+
+Stompserver currently exposes a queue for monitoring the queue server at _/queue/monitor_. You can use this script to subscribe to that queue and get information about the current state of the server. It will tell you which queues currently have items in them and if these are currently being processed.
+
+You can run multiple instances of this script subscribing to a single queue. This is one of the real advantage of message based systems, two listeners should clear a queue in half the time. This sort of horizontal scaling is hugely useful as you grow a site or application.
+
+pre. #!/usr/bin/python
+import time
+import sys
+import logging
+import socket
+import stomp
+# the stomp module uses logging so to stop it complaining
+# we initialise the logger to log to the console
+logging.basicConfig()
+# first argument is the que path
+queue = sys.argv[1]
+# defaults for local stompserver instance
+hosts=[('localhost', 61613)]
+# we want the script to keep running
+def run_server():
+    while 1:
+        time.sleep(20)
+class listener(object):
+    '''define the event handlers'''
+    # if we recieve an error from the server
+    def on_error(self, headers, message):
+        print 'received an error %s' % message
+    # if we retrieve a message from the server
+    def on_message(self, headers, message):
+        print 'received a message %s' % message
+# do we have a connection to the server?
+connected = False
+while not connected:
+    # try and connect to the stomp server
+    # sometimes this takes a few goes so we try until we succeed
+    try:
+        conn = stomp.Connection(host_and_ports=hosts)
+        # register out event hander above
+        conn.add_listener(listener())
+        conn.start()
+        conn.connect()
+        # subscribe to the names que
+        conn.subscribe(destination=queue, ack='auto')
+        connected = True
+    except socket.error:
+        pass
+# we have a connection so keep the script running
+if connected:
+    run_server()
+
+The second script allows us to send messages to the queue:
+
+<pre><code>./stomp_send.py /queue/test "test message 1"</code></pre>
+
+The script takes a couple of arguments, the first one is the name of the queue, the second is the message you want to send.
+
+pre. #!/usr/bin/python
+import time
+import sys
+import logging
+import socket
+import stomp
+# the stomp module uses logging so to stop it complaining
+# we initialise the logger to log to the console
+logging.basicConfig()
+# first argument is the queue
+queue = sys.argv[1]
+# second argument is the message to send
+message = sys.argv[2]
+# defaults for local stompserver instance
+hosts=[('localhost', 61613)]
+# do we have a connection to the server?
+connected = False
+while not connected:
+    try:
+        # connect to the stompserver
+        conn = stomp.Connection(host_and_ports=hosts)
+        conn.start()
+        conn.connect()
+        # send the message
+        conn.send(message,destination=queue)    
+        # disconnect from the stomp server
+        conn.disconnect()
+        connected = True
+    except socket.error:
+        pass
+
+Both these scripts are pretty simple examples. In the real world you would probably want to make them a little more robust and user friendly. Both could probably do with checking they have the relevant arguments and providing help information if you run them without. I'd also probably move the hosts into a config file as it's currently hardcoded into the scripts. I've also not tested them with other stomp compatible servers like ApacheMQ. In theory they should work fine assuming stomp.py works as advertised.
+
+Overall, it's surprisingly easy to get started with message queues. If you've been hearing about the advantages of distributed message based architectures but assumed you had to be "Matt Biddulph":http://www.hackdiary.com/ to use them, think again.

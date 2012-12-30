@@ -1,0 +1,92 @@
+---
+created_at: 2011/04/29
+excerpt: 
+layout: post
+comments: true
+categories: [cucumber-nagios, fpm, packaging]
+title: "Creating A Cucumber Nagios Package With Fpm"
+---
+
+I've written "before":http://morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages.html about why I like System Packages, but even I'll admit that the barriers to creating them mean I don't use them for everything. "FPM":https://github.com/jordansissel/fpm however is making it much easier, to the point where I'm starting to create a few packages I can reuse on projects. I thought a write up of how I'm doing that for "Cucumber-Nagios":http://cucumber-nagios.org/ might be useful.
+
+For those that haven't seen it yet, FPM (or Effing Package Management) is a tool that helps you build packages, like RPMs and DEBs, quickly. It can take in gems, python packages, node.js npm files or just plain directories and make files and from that create you one or more system packages. Lets have a look at a full example with a Ruby gem.I really like using cucumber-nagios, whatever platform or language I happen to be using at the time. I have a number of Django projects for instance with cucumber-nagios checks, so being able to not worry about most of the Ruby install is useful.
+
+In order to use FPM you'll need to install it. It's available as a Ruby gem so lets start there. I'm not going to delve into setting up a Ruby Gems environment as it's annoying and covered for most platforms elsehere on the internet.
+
+<pre><code>gem install fpm</code></pre>
+
+First off lets install the cucumber-nagios gem, along with all it's dependencies, into a local folder on my build machine. This might be a virtual machine or a separate machine in your cluster. It should be running the same OS as the intended production machines however. The following examples are from Ubuntu, but it's much the same for RPM based distros.
+
+<pre><code>gem install --no-ri --no-rdoc --install-dir ~/tmp/gems cucumber-nagios</code></pre>
+
+Cucumber-nagios has a large number of dependencies, so we're going to need to create packages for all of those too. FPM will cleverly deal with maintaining the specified dependencies thought. We'll use find to do this quickly, and then instruct FPM to convert from a gem to a deb. You could obviously do this line by line if you prefer.
+
+<pre><code>find ~/tmp/gems/cache -name '*.gem' | xargs -rn1 fpm -s gem -t deb -a all</code></pre>
+
+That should leave us with lots of new .deb files that we can have a closer look at:
+
+<pre><code>dpkg --info rubygem-cucumber-nagios_0.9.0_i686.deb
+dpkg -c rubygem-cucumber-nagios_0.9.0_i686.deb</code></pre>
+
+If you already have a private apt repository set up then just upload these packages and away you go. I'd like to use apt for installing them so I can leave it to manage all the dependencies easily. If not then I'll show you briefly how to create a local file system repo, it's not much more work to create a shared repo available over HTTP.
+
+First create a directory to store our packages and move our newly created .deb files into it. You'll need to be able to execute some of these commands as root but given the topic I'm assuming you'll be able to deal with that. 
+
+<pre><code>mkdir /usr/local/repo
+cp *.all.deb /usr/local/repo</code></pre>
+
+For the next part you'll need to install the dpkg development tools, and then create a file that can be read by apt when it's looking for packages it can install.
+
+<pre><code>apt-get install dpkg-dev
+dpkg-scanpackages /usr/local/repo /dev/null | gzip -9c > /usr/local/repo/Packages.gz</code></pre>
+
+Now add your new package repo to your apt sources and update your package cache.
+
+<pre><code>/etc/apt/sources.list
+deb file:/usr/local/repo ./
+apt-get update</code></pre>
+
+At this point everything should be up and running. Let's do a search in our repo:
+
+<pre><code>apt-cache search rubygem-
+rubygem-amqp - AMQP client implementation in Ruby/EventMachine
+rubygem-builder - Builders for MarkUp.
+rubygem-bundler - The best way to manage your application's dependencies
+rubygem-cucumber - cucumber-0.10.2
+rubygem-cucumber-nagios - Systems testing plugin for Nagios using Cucumber.
+rubygem-diff-lcs - Provides a list of changes that represent the difference between two sequenced collections.
+rubygem-eventmachine - Ruby/EventMachine library
+rubygem-extlib - Support library for DataMapper and Merb
+rubygem-gherkin - gherkin-2.3.6
+rubygem-highline - HighLine is a high-level command-line IO library.
+rubygem-json - JSON Implementation for Ruby
+rubygem-mechanize - The Mechanize library is used for automating interaction with websites
+rubygem-net-ssh - Net::SSH: a pure-Ruby implementation of the SSH2 client protocol.
+rubygem-nokogiri - Nokogiri (鋸) is an HTML, XML, SAX, and Reader parser
+rubygem-rack - a modular Ruby webserver interface
+rubygem-rack-test - Simple testing API built on Rack
+rubygem-rspec - rspec-2.5.0
+rubygem-rspec-core - rspec-core-2.5.1
+rubygem-rspec-expectations - rspec-expectations-2.5.0
+rubygem-rspec-mocks - rspec-mocks-2.5.0
+rubygem-templater - Templater has the ability to both copy files from A to B and also to render templates using ERB
+rubygem-term-ansicolor - Ruby library that colors strings using ANSI escape sequences
+rubygem-webrat - Ruby Acceptance Testing for Web applications</code></pre>
+
+And finally lets install cucumber-nagios from our shiny new package.
+
+<pre><code>apt-get install rubygem-cucumber-nagios</code></pre>
+
+If everything has worked out you should be able to run the cucumber-nagios-gen command to create a new project. Note that the path may be different, and in the case of debian based distros the gem bin path is not on the Path.
+
+<pre><code>/usr/lib/ruby/gems/1.8/bin/cucumber-nagios-gen project test
+Generating with project generator:
+     [ADDED]  .gitignore
+     [ADDED]  .bzrignore
+     [ADDED]  Gemfile
+     [ADDED]  README
+     [ADDED]  features/steps
+     [ADDED]  features/support</code></pre>
+
+
+

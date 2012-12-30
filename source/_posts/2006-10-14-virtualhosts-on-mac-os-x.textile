@@ -1,0 +1,26 @@
+---
+created_at: 2006/10/14}
+layout: post
+comments: true
+categories: []
+title: "Virtualhosts on Mac OS X"
+---
+
+<p><a href="http://www.thewatchmakerproject.com">Matthew</a> just posted a quick write up of <a href="http://www.thewatchmakerproject.com/journal/378/virtual-hosts-and-the-proper-way-to-work-offline">setting up virtual hosts</a> on windows and a little of the rationale behind why you would bother.</p>
+
+
+ <p>Being a Mac person when I&#8217;m not in the office I thought a quick follow up would be useful for those that way inclined.</p>
+
+
+ <p>On OS X their are a couple of things needed to setup a virtual host. As well as the apache virtualhost directives the host needs adding to NetInfoManager.</p>
+
+
+ <p>Although you can do all of this manually I&#8217;m more of a fan of a quick shell script and, as it happens, so are others. I&#8217;ve been using a modified version of <a href="http://patrickgibson.com/">Patrick Gibsons</a> <a href="http://patrickgibson.com/utilities/virtualhost/">Virtualhost&#8217;s script</a> for a while. Just drop it somewhere on your path (or run it from a specific folder) from Terminal like so:</p>
+
+
+<div><code>sudo virtualhost.sh morethanseven.dev</code></div>
+
+ <p>Where morethanseven.dev is the local domain you want setting up. The default version of the script makes the assumption that you are using the default web server which comes with OS X. I&#8217;m not, but it&#8217;s easy enough to modifiy the configuration parameters at the top of the (well commented) script to point where you want. I have it working perfectly with a copy of the <a href="http://www.mamp.info/">MAMP</a> installation package for instance.</p>
+
+
+ <p>I&#8217;m something of a fan of utility scripts. Often repeated tasks can be bundled up into a shell script, python script or automator workflow. Automatic screen capture? Batch image processing? Backup? It can help keep everything tidy, as well as minimising repeated effort. Anyone else with any good examples of process automation with regards web design want to share?</p>

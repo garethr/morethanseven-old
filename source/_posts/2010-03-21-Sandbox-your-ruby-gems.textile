@@ -1,0 +1,12 @@
+---
+created_at: 2010/03/21
+excerpt: 
+layout: post
+comments: true
+categories: [ruby, virtualenv, python, sandbox]
+title: "Sandbox Your Ruby Gems"
+---
+
+I'm a huge fan of virtualenv for Python. It's a simple tool that lets you have an isolated python environment into which you can install libraries via setup tools. It makes experimenting with different versions of code easier and avoids lots of problems with hard to find bugs caused by unknown third party conflicts.
+
+"Sandbox":http://github.com/nkryptic/sandbox aims to do exactly the same for Ruby. It isolates your gem installation from the system libraries and providesa script to activate the named environment. The GitHub repo has been around since 2008, yet only has 37 followers. I'm not sure whether that is because another more popular and feature rich solution exists or because Ruby people haven't yet found this technique useful. For me finding tools that work the same way as those I already like in other languages makes me happy. 

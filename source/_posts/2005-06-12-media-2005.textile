@@ -1,0 +1,18 @@
+---
+created_at: 2005/06/12}
+layout: post
+comments: true
+categories: []
+title: "@media 2005"
+---
+
+<p>Wow. I&#8217;m still pretty wired after two days of conference and several late nights but boy was it worth the effort and more.</p>
+
+
+ <p>First I just want to say a big thanks to Patrick (<a href="http://www.htmldog.com">htmldog.com</a>) for organising the event and to all the speakers and attendees I spoke to.</p>
+
+
+ <p>I must mention Molly Holzschlag (<a href="http://www.molly.com">www.molly.com</a>) individually for being amazing thought. Thanks for the beer.</p>
+
+
+ <p>I&#8217;ll hopefully get something more useful up here with more salient points over the next couple of weeks but for the moment I just want to say it was an inspirational couple of days, and make sure to watch the blogs of the speakers for real indepth stuff (rather than just awe).</p>

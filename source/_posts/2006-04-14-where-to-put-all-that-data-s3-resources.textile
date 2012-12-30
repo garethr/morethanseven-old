@@ -1,0 +1,42 @@
+---
+created_at: 2006/04/14}
+layout: post
+comments: true
+categories: []
+title: "Where to put all that data? S3 resources"
+---
+
+<p>Lets face it, web apps are getting bigger. At least in terms of the amount of data they store. Take two big poster siblings, <a href="http://flickr.com">Flickr</a> and <a href="http://del.icio.us">del.icio.us</a>. All those user accounts, all that interlinking between then, all that meta data. <a href="http://technorati.com">Technorati</a> is another example &#8211; trying to keep up with all blogs everywhere in as near to real time as possible has got to be seriously data intensive. And at times this has shown through, all have had <a href="http://blog.del.icio.us/blog/2005/12/continued_hiccu.html">problems</a>  at <a href="http://www.businessweek.com/the_thread/blogspotting/archives/2005/07/why_technorati.html">some</a> <a href="http://ishavingamassage.com/">point</a> in their short histories.</p>
+
+
+ <p>If you are looking to get into the world of big, community focused, web apps then you need space. And I know I cant afford a huge outlay on storage and bandwidth, even most small web shops would probably have something of a problem with the large outlay, limited short term money making problem.</p>
+
+
+ <p>An interesting solution to this would appear to exist in the shape of <a href="http://aws.amazon.com/s3">S3</a> from <a href="http://amazon.com">Amazon</a>. It has been around a little time, and <a href="http://adactio.com/journal/1102/">others</a> have been intrigued enough to mention it, but I decided not to ramble on until I&#8217;d had a brief play. Well, it&#8217;s quite cool.</p>
+
+
+ <p>Amazon themselves provide a number of <a href="http://developer.amazonwebservices.com/connect/kbcategory.jspa?categoryID=47">useful code examples</a>
+in different languages, including Perl, Python, C#, Java, Ruby and PHP. They also provide examples of the raw HTTP requests for thos that way inclined.</p>
+
+
+ <p>This openness (OK, so they dont really have a choicee, the whole product consists of an open API, it being closed would seem to limit it&#8217;s usage!), as always, has allowed the community to run with the idea, building up sample apps and some easy to use wrappers:</p>
+
+
+ <ul>
+ <li><a href="http://townx.org/blog/elliot/s3_rails">Rails example</a></li>
+  <li><a href="http://caffo.backpackit.com/pub/502395">Another Rails example</a></li>
+  <li><a href="http://www.other10percent.com/?p=15">BitBucket for Python</a></li>
+  <li><a href="http://www.neurofuzzy.net/2006/03/17/amazon-s3-php-class/">PHP 4 class</a></li>
+  <li><a href="http://blog.apokalyptik.com/?p=12">PHP 5 example</a></li>
+  <li><a href="http://search.cpan.org/dist/Net-Amazon-S3/">Perl CPAN module</a></li>
+  <li><a href="http://www.carion.org/s3dav/index.html">Java based webDAV server</a></li>
+ </ul>
+
+
+ <p>Nothing here feels complete as yet. Most are early hacks by people getting on board early and giving the rest of us a starting point.</p>
+
+
+ <p>Overall I like things like S3. If it works reliably and scales well then it could become something that just sits behind all sorts of <a href="http://aws.typepad.com/aws/2006/03/firefox_s3_some.html">realy</a> <a href="http://www.holovaty.com/blog/archive/2006/04/07/0927">cool</a> <a href="http://jkeyes.com/2006/03/ten_ideas_for_amazon_s3_applic.php">ideas</a>, preventing data loss and removing another potential headache for the small developer.</p>
+
+
+ <p>Any other resources, or ideas, more than welcome.</p>

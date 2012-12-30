@@ -1,0 +1,15 @@
+---
+created_at: 2005/11/15}
+layout: post
+comments: true
+categories: []
+title: "&#39;Creatives&#39;"
+---
+
+<p>I&#8217;m not going to prattle on but something that&#8217;s bugged me for an age. The usage of the word &#8220;Creatives&#8221;. And lo and behold it bugs <a href="http://37signals.com/svn/archives2/creatives.php">other people</a> too.</p>
+
+
+ <p>I like knowing that it&#8217;s not just me!</p>
+
+
+ <p>Just to say as well that anyone reading this and going along to the <a href="http://www.accessify.com">Accessify</a> <a href="http://www.accessifyforum.com/viewtopic.php?t=3770&#38;postdays=0&#38;postorder=asc&#38;highlight=meetup&#38;start=120">Meetup</a> in Manchester this weekend let me know. Leave a comment. Be good to put names and faces to email addresses and web sites!</p>

@@ -1,0 +1,27 @@
+---
+created_at: 2006/04/20}
+layout: post
+comments: true
+categories: []
+title: "@media and Google Calendar"
+---
+
+<p>I&#8217;ve become something of a <a href="http://mail.google.com">Gmail</a> convert over the last good few months. Moving everything online has made my life oh so much easier. I&#8217;d done the same with my feed collection a good while back with <a href="http://newsgator.co.uk">Newsgator</a>. Storing all my calendar related info was something that was on my perenial todo list. Well, Google finally got round to releasing their own <a href="http://calendar.google.com">calendar</a> after months of &#8220;will they get on with it already&#8221;. First impressions are pretty good. It&#8217;s simple. It&#8217;s obvious (at least for a geek like me) and using Gmail already I quite like the styling.</p>
+
+
+ <p>One of the features I really like, but which will only mature with age, is the shared calendars. It makes publishing your itinerary to the entire world very easy. The more people use it the more useful it gets.</p>
+
+
+ <p>As a case in point I decided to enter the shedule for the upcoming <a href="http://vivabit.com/atmedia2006">@media</a> conference and share the calendar &#8211; to be honest to see how it all worked. Of course, about 24 hours after I did this the lovely folks at <a href="http://vivabit.com">Vivabit</a> completely revised the initial schedule. Ok, so I was only momentarily annoyed considering the conference just got a whole lot better &#8211; though they did drop the CSS3 discussion panel which I though would have been interesting.</p>
+
+
+ <p>A little rejigging and the shared calendar is up to date again:</p>
+
+
+ <ul>
+ <li><a href="http://www.google.com/calendar/ical/rp1ahkacn9nkhuqnjtihno34mg@group.calendar.google.com/public/basic">iCal</a></li>
+  <li><a href="http://www.google.com/calendar/feeds/rp1ahkacn9nkhuqnjtihno34mg@group.calendar.google.com/public/basic">XML</a></li>
+ </ul>
+
+
+ <p>Feel free to subscibe, either via your own Google calendar or any iCal compatible application.</p>

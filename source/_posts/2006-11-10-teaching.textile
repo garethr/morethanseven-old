@@ -1,0 +1,27 @@
+---
+created_at: 2006/11/10}
+layout: post
+comments: true
+categories: []
+title: "Teaching"
+---
+
+<p>Every now and again I go off on a tangent about the problems of learning, and teaching, web design. Recently I got an interesting email from a chap at <a href="http://www.ncl-coll.ac.uk/">Newcastle College</a> and just a few weeks later I&#8217;ve now taken a couple of sessions with students studying web design.</p>
+
+
+ <p>I&#8217;m doing 4 hours a week, alongside the day job. 2 hours of theory and 2 hours of practice. Teaching everything from research techniques, wireframing and sitemaps to the first steps on the road to CSS and HTML mastery.</p>
+
+
+ <p>So far I&#8217;d like to think it&#8217;s going well (any students reading, please let me know if you think otherwise!) I thought a couple of observations would be handy at this stage, for those involved in doing the same, and for me looking back:</p>
+
+
+ <ul>
+ <li>For someone not trained as a teacher, it&#8217;s too easy to take what you know for granted and go too quickly.</li>
+  <li>It&#8217;s often hard to get across to new professionals how important the groundwork and theory is. With students this is doubly so.</li>
+  <li> More structured techniques are a good idea for newcomers.</li>
+  <li>The new <a href="http://htmldog.com">htmldog.com</a> site is an excellent reference. Thanks Patrick.</li>
+  <li>Enthusiasm is priceless. Seeing enthusiasm I think &#8220;maybe I&#8217;ll end up working with them one day&#8221;, without it all the technical skills in the world wont get me excited.</li>
+ </ul>
+
+
+ <p>Anyone else with a decent amount of experience and a little free time I&#8217;d recommend trying to do something similar. Our industry experience is a massively important part of the next generations educational needs and these are the people you&#8217;ll end up working with or managing in the future.</p>

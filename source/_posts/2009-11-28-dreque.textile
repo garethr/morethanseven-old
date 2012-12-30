@@ -1,0 +1,23 @@
+---
+created_at: 2009/11/28}
+layout: post
+comments: true
+categories: [dreque]
+title: "Dreque"
+---
+
+I've just found "Dreque":http://github.com/samuel/dreque from "Samuel Stauffer":http://samuelks.com/ on GitHub. It's yet another take on the whole messaging things which is definitely seeing a lot of activity at the back end of this year. It's using "Redis":http://code.google.com/p/redis/ on the backend and looks really rather nice:
+
+Submitting jobs:
+
+<pre><code>from dreque import Dreque
+def some_job(argument):
+    pass
+dreque = Dreque("127.0.0.1")
+dreque.enqueue("queue", some_job, argument="foo")</code></pre>
+
+Worker:
+
+<pre><code>from dreque import DrequeWorker
+worker = DrequeWorker(["queue"], "127.0.0.1")
+worker.work()</code></pre>

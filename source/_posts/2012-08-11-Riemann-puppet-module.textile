@@ -1,0 +1,15 @@
+---
+created_at: 2012/08/11
+excerpt: 
+layout: post
+comments: true
+categories: [riemann, puppet]
+title: "Riemann Puppet Module"
+---
+
+Thanks to an "errant tweet":https://twitter.com/bitprophet/status/233626675307479040 I started playing with "Riemann":http://aphyr.github.com/riemann/ again. It ticks lots of boxes for me, from the clojure to configuration as code and the overloadable dashboard application. What started as using Puppet and Vagrant to investigate Riemann turned into a full blown tool and module writing exercise, resulting in two related projects on GitHub.
+
+* "garethr-riemann":https://github.com/garethr/garethr-riemann/ is a Puppet module for installing and configuring Riemann. It allows for easily specifying your own server configuration and dashboard views.
+* "riemann-vagrant":https://github.com/garethr/riemann-vagrant is a Vagrantfile and other code which uses above puppet module to setup a local testing environment.
+
+I like this combination, a separate Puppet module along with a vagrant powered test bed. I've written a reasonable rspec based test suite to check the module but it's always easier to be able to run _vagrant provision_ as well to check everything is working. This also turned out to be the perfect opportunity to use "Librarian-Puppet":https://github.com/rodjek/librarian-puppet to manage the dependencies and eventually to ship the module to the "Puppet Forge":https://forge.puppetlabs.com/garethr/riemann.

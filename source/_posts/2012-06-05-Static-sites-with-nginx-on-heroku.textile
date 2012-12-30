@@ -1,0 +1,21 @@
+---
+created_at: 2012/06/05
+excerpt: 
+layout: post
+comments: true
+categories: [heroku, nginx]
+title: "Static Sites With Nginx On Heroku"
+---
+
+I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration - mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.
+
+Heroku "buildpacks":https://devcenter.heroku.com/articles/buildpacks are great. The newer cedar stack is no longer tied to a particular language or framework, instead all of the discovery and knowledge about particular software is put into a buildpack. As well as the Heroku provided list it's possible to write you're own. Or in this case use one someone has "created earlier":https://github.com/essh/heroku-buildpack-nginx.
+
+
+I've just moved "Vagrantbox.es":http://www.vagrantbox.es/ over to Heroku due to the closure of a previous service. In doing that, instead of the simple database backed app, I've simply thrown all the content onto "GitHub":https://github.com/garethr/vagrantboxes-heroku. This means anyone can fork the content and send pull requests. Hopefully this should mean I pay a bit more attention to suggestions and new boxes.
+
+The repository is a nice simple example of using the mentioned Heroku Nginx buildpack too. You just run the following command to create a new Heroku application.
+
+<pre>heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git</pre>
+
+And then in typical Heroku fashion use a git remote to deploy changes and updates. The repository is split into a _www_ folder with the site content and a _conf_ folder with the nginx configuration. The only clever parts involve the use of an ERB template for the nginx configuration file so we can pickup the correct port. We also use 1 worker process and don't automatically daemonize the process - Heroku deals with this itself.

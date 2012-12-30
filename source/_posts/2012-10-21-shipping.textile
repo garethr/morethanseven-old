@@ -1,0 +1,9 @@
+---
+layout: post
+title: Shipping
+date: 2012-10-21 21:50
+comments: true
+categories: [govuk, gds]
+---
+
+Last week we shipped "GOV.UK":https://www.gov.uk. Over the last year we've built a team to build a website. Now we're busy building a culture too. I've got so much that needs writing up about everything we've been up to. Hopefully I'll make a start in the next week or so.

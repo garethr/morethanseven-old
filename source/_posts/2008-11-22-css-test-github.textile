@@ -1,0 +1,9 @@
+---
+created_at: 2008/11/22}
+layout: post
+comments: true
+categories: [css, unitesting, github]
+title: "CSS Test on GitHub"
+---
+
+I upload the "work I've done so far":http://github.com/garethr/css-test/tree/master on testing CSS. It's still work in progress obviously but if you're interested do let me know. I've stared with the image approach but will hopefully have something up demonstrating the selenium/rendered DOM position approach as well.

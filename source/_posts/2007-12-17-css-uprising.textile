@@ -1,0 +1,31 @@
+---
+created_at: 2007/12/17}
+layout: post
+comments: true
+categories: []
+title: "CSS Uprising"
+---
+
+For those not following along closely I thought it worth highlighting some interesting goings on around the web. "Andy Clarke":http://www.stuffandnonsense.co.uk/ put the CSS cat amongst the W3C pigeons with a couple of posts; "CSS Unworking Group":http://www.stuffandnonsense.co.uk/malarkey/more/css_unworking_group/ and a following up "CSSWG Proposals":http://www.stuffandnonsense.co.uk/malarkey/more/csswg_proposals/
+
+How I've had a "few ideas":http://morethanseven.net/posts/css-snapshots-css3-modules-and-an-agile-way-forward/ myself previously around what I'd like to see from the CSS3 working group. I'm now avidly following along with "the comments":http://www.stuffandnonsense.co.uk/malarkey/comments/csswg_proposals/ and I'd urge anyone working even on an occasional basis with CSS to do the same.
+
+"Maciej Stachowiak":http://webkit.org/blog/ said a few very interesting things in the comments I thought worth commenting on:
+
+bq. Being an expert user is not necessarily enough to know how to extend it. A key part of extending a technology is knowing how it works on the inside.
+
+I think their-in lies an opportunity. The weight of comments on this issue, and the heat of the argument, would suggest people are interested. But I think a-lot of those interested parties are those working day-in with CSS (rather than on it) and lack this critical information. As a web designer how do I find this information out? Who are the interesting bloggers in the area of standardisation? Is their are good reference site? Or a wiki? Or an active friendly mailing list of people willing to answer simple questions? The web (standards) design community is used to open discussion and debate - whether from blogs or projects like "microformats":http://microformats.org.
+
+You could of course also argue that _being an expert implementer is not necessarily enough to know what needs extending. A key part of extending a technology is knowing what is needed first in the real world_.
+
+bq. But the cost of a serious mistake in a standard is much higher than the cost of an implementation bug.
+
+I think this depends on the software in question - what about critical military systems, satellites or space shuttles, power stations, etc. - but I agree in principle. Most web designers do not have the experience of working on this sort of software project. But then Andy is not putting himself up as a project management guru.
+
+Their are obviously strong feelings on both sides of this debate. But something I would be interested to hear - from someone with a standards focus - is whether you think their is a fundamental problem at the moment with regards CSS? If not then why not? If so then what are your ideas for moving forward? 
+
+And feel free to say you don't know yet. I think what Andy has done is put down his ideas. If you don't like them then suggest better ones. If that's sticking to the status quo then say why you it feel will work out. 
+
+(I've posted the above in the comments to the original post, but wanted to repeat it here more in the hope of getting more interested people involved in that thread.)
+
+I don't really expect Andy to have the answers to this issue, but by him kicking the discussion off in such a public way the least we can _all_ do is have the debate we need and come up with the solutions for everyone. Especially on the  list of _getting started with standards_ links and reading materials alluded to above, if someone has this information but not the time to get it online in a coherent fashion, or to present it to the wider community then please get in touch.

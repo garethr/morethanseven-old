@@ -1,0 +1,9 @@
+---
+created_at: 2008/09/14}
+layout: post
+comments: true
+categories: [im]
+title: "Imified"
+---
+
+"Imified":http://new.imified.com/developers looks like an interesting way of getting started with using instant messaging bots in your applications. ("Via":http://digg.com/programming)

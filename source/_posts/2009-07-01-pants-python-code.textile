@@ -1,0 +1,17 @@
+---
+created_at: 2009/07/01}
+layout: post
+comments: true
+categories: [python, quality, pypants, djangodash]
+title: "Pants Python Code"
+---
+
+One of the projects that came out of the "Django Dash":http://alt.djangodash.com/ recently was "PyPants":http://pypants.org which I'm finding very cool.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRiRTgw" alt="Urltest on PyPants"/>
+
+It's basically a quality tracking service for Python modules. For instance my recent "UrlTest module has a page on PyPants":http://pypants.org/projects/urltest/0.2.3/evaluations/3142/, scoring a good B grade after some cleanup work earlier today.
+
+Under the hood I think it's probably "CheeseCake":http://pycheesecake.org/ which is available as a command line application, maybe with a hint of "PyLint":http://pypi.python.org/pypi/pylint and "pep8.py":http://svn.browsershots.org/trunk/devtools/pep8/pep8.py thrown in. But the nice interface, as well as tracking of scores over time, really add something. GitHub has been credited by some as making sharing code more fun, I'm hoping projects like PyPants can do the same for quality in Python code.
+
+Congrats to "Eric Holscher":http://ericholscher.com/, "Travis Cline":http://traviscline.com/, and "Nathan Borror":http://playgroundblues.com/ on a fantastic addition to the Python community.

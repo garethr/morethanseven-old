@@ -1,0 +1,25 @@
+---
+created_at: 2007/03/04}
+layout: post
+comments: true
+categories: []
+title: "Parsing ERDF"
+---
+
+Now we've got some "eRDF in our pages":http://morethanseven.net/posts/microformats-and-erdf-sitting-in-a-tree/ we need to extract it out in preparation for doing someting with it.
+
+h3. With XSL
+
+First up we want to try and extract the eRDF in our page into an RDF document. "Ian Davis":http://iandavis.com has already created a nice XSL document to do just that. and I've implemented a "nice service wrapper":http://morethanseven.net/presents/erdf/ to extract the RDF from a given URL. Try pointing it at "morethanseven.net":http://morethanseven.net or "iandavis.com":http://iandavis.com for an example of it in action. Next step here is to extend it to allow extracting a simple vcard from the RDF in a similar manner to "Brian Suda's":http://suda.co.uk/ "Microformats extractor":http://suda.co.uk/projects/X2V/.
+
+h3. With Javascript
+
+"Dan Webb":http://www.danwebb.net/ has recently written up his "Sumo! microformas parser":http://www.danwebb.net/2007/2/9/sumo-a-generic-microformats-parser-for-javascript and boy is it really rather fancy. At the moment he's only got profiles for hCard, hCalendar and hResume but writing profiles is relatively simple. Accoring to one of Dans comments he's working on adding support for rel and rev style microformats like rel-tag and XFN.
+
+Although billed as a Microformats parser, in reality what Dan's created is pretty generic. You can use it to parse out any information marked up with any semantic class names - just like our eRDF.
+
+I've set up a very basic Sumo! profile for FOAF and some "simple tests to extract eRDF data from a test page":http://morethanseven.net/presents/foaf/. This is very much a proof of concept of extracting eRDF using Javascript but would be relatively simple to extend for the full FOAF spec once Dan or someone else extends Sumo! to support rel and rev.
+
+On a related note the combination of Sumo! and the "Firebug":http://www.getfirebug.com/ javascript console is just perfect. Anyone who hasn't yet downloaded the latest version should get over there quick.
+
+!http://morethanseven.net/_assets/media/imgFirebug.png(Firebug)!

@@ -1,0 +1,20 @@
+---
+created_at: 2009/02/24}
+layout: post
+comments: true
+categories: [github]
+title: "GitHub Changelog"
+---
+
+It turns out the guys at GitHub publish the "commit messages from their work on GitHub":http://github.com/changelog itself. If you really have to keep up you can even subscribe to an "Atom feed":http://github.com/changelog.atom.
+
+OK, so this might not be hugely useful. But it _is_ funny, and a just a nice sign of a small company being open in an interesting way. A few of my favourites:
+
+bq. mmm pizza... guard against bad SHAs in Walker#commit
+
+bq. really need to get a handle on this insane testing setup
+
+bq. I guess ff3 linux is the worst browser ever made
+
+bq. dont care
+

@@ -1,0 +1,15 @@
+---
+created_at: 2007/05/18}
+layout: post
+comments: true
+categories: []
+title: "Some good news"
+---
+
+Yeah, I just got my confirmation email for "hackday":http://hackday.org in a months time.
+
+<a href="http://www.hackday.org" style="border: none; padding: 0px; margin: 0px"><img src="http://l.yimg.com/us.yimg.com/i/us/ydn/hackday/hack_day_pattern_four.gif" alt="Hack Day: London, June 16/17 2007" width="180" height="105" style="border: none; margin: 0; padding: 0;"/></a>
+
+So, who else is going along and does anyone have any ideas they want team mates for? I'm thinking something mobile or microformats related or alternatively something I know very little about. Any ideas?
+
+Oh, and I know I've been quite around the place lately, more on that when I can talk about it.

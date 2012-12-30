@@ -1,0 +1,19 @@
+---
+created_at: 2007/12/03}
+layout: post
+comments: true
+categories: []
+title: "Debug web pages with Jquery and Jash"
+---
+
+I have a new toy I'm quite enamoured with. After a double helping of "jQuery":http://jquery.com/ first from "Jon Resig":http://ejohn.org at @media Ajax and then from "Simon Willison":http://simonwillison.net at barcamp I just had to take a look. My favourite part was probably Simon showing off his "Insert jQuery":http://simonwillison.net/2007/Aug/15/jquery/ bookmarklet - hacking around with the Google home page design on the firebug command line. The idea of having a command line to play around with any web page I come across appeals to my geekier side.
+
+I spend more time in Safari than Firefox these days mainly as I find it _feels_ snappier and is generally more stable. The only real downside is the lag of Firebug. A quick look at "Firebug Lite":http://www.getfirebug.com/lite.html revealed it doesn't work in Safari but a little searching later I found "Jash":http://www.billyreisinger.com/jash/. The Insert jQuery and Insert Jash bookmarklets now have pride of place in my bookmark bar.
+
+!http://morethanseven.net/_assets/media/imgJqueryAndJash.jpg("Jquery and Jash bookmarklets running on Google")!
+
+So what to do with my new toy? Let's hide all the paragraphs! (for no other reasons than we can).
+
+<pre><code>$("p").hide("slow")</code></pre>
+
+So, redesign any web page you visit via a quick to access command line? What's not to like?

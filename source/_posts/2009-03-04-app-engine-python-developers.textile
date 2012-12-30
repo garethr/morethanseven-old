@@ -1,0 +1,15 @@
+---
+created_at: 2009/03/04}
+layout: post
+comments: true
+categories: [campug, cambridge]
+title: "App Engine for Python Developers"
+---
+
+I gave a short presentation about App Engine last night at the "Cambridge Python User Group":http://campug.org.uk/ and as always it's available on "Slideshare":http://slideshare.net.
+
+<object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slideshare.net/swf/ssplayer2.swf?doc=appengine-090304031400-phpapp02&stripped_title=app-engine-for-python-developers" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slideshare.net/swf/ssplayer2.swf?doc=appengine-090304031400-phpapp02&stripped_title=app-engine-for-python-developers" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object>
+
+I find App Engine a great way of just writing (Python) code and putting it online quickly, and the presentation was aimed at being something of a fanboy ode. During questions afterwards we talked about some of the limitations and cases where App Engine isn't as well suited, and at least a few people were heading off planning on having a play.
+
+The event was good fun and I picked up a few Python related tips and tricks from the other presentations and general conversation. Thanks for everyone who organised and attended the event and to "RealVNC":http://www.realvnc.com/ for hosting the talks.

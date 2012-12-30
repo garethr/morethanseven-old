@@ -1,0 +1,29 @@
+---
+created_at: 2009/09/06}
+layout: post
+comments: true
+categories: [bcb4, deployment]
+title: "Automating web site deployment at Barcamp Brighton"
+---
+
+On the first day at Barcamp Brighton this year I did a brief talk about getting started with automating deployment. I kept it nice and simple and didn't focus on any specific technology or tool - just the general principles and pitfalls of doing anything manually. You can see the "slides on Slideshare":
+
+<object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=automatingdeployment-090906054723-phpapp01&stripped_title=automating-web-site-deployment" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=automatingdeployment-090906054723-phpapp01&stripped_title=automating-web-site-deployment" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object>
+
+As part of the presentation I even did a live demo and promised I'd upload the code I used. The following is an incredibly simple fabric file that has most the basic set of tasks. "Fabric":http://pypi.python.org/pypi/Fabric/ is a python tool similar to capistrano in Ruby. I don't really care whether you're using make, ant, rake, capistrano or just plain shell scripts. Getting from not automating things to automating deployments is the important part - and it's easier that you think.
+
+<script src="http://gist.github.com/181755.js"></script>
+
+The other part of the code example was a very basic apache virtualhost so just in case anyone needed that as well here it is:
+
+<pre>&lt;VirtualHost *:80&gt;
+    ServerName sample.local
+    DocumentRoot /srv/sample/releases/current
+    &lt;Directory /srv/sample/releases/current&gt;
+        Order deny,allow
+        Allow from all
+    &lt;/Directory&gt;
+    ErrorLog /var/log/apache2/sample/error.log
+    LogLevel warn
+    CustomLog /var/log/apache2/sample/access.log combined
+&lt;/VirtualHost&gt;</pre>

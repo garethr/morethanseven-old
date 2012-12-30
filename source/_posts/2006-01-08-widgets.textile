@@ -1,0 +1,27 @@
+---
+created_at: 2006/01/08}
+layout: post
+comments: true
+categories: []
+title: "Widgets"
+---
+
+<p>Of late I&#8217;ve got round to installing a few widgets on my computers &#8211; <a href="http://www.apple.com/macosx/features/dashboard">Dashboard</a> on my Mac and <a href="http://widgets.yahoo.com">Yahoo Widgets</a> on Windows (no linux widgets as yet). I&#8217;m actually still running OS X 10.3.9 and using the very nice <a href="http://www.mesadynamics.com/amnesty.htm">Amnesty</a> to allow run to Mac Widgets.</p>
+
+
+ <p>I&#8217;ve been meaning to play with widgets for a while, mainly because I&#8217;ve been using HTML, CSS and Javascript for years and widgets simply reuse these technologies &#8211; making it easy to just jump in an make something handy. I&#8217;m also a fan of web services in general and  widgets provide another handy interface to many online services.</p>
+
+
+ <p>I&#8217;ve mainly been using the <a href="http://www.haveamint.com/">Junior Mint</a> widget (and <a href="http://www.widgetgallery.com/view.php?widget=37576">Minty</a>) for keeping an eye on my site stats, I think I mentioned before I&#8217;m hooked). I&#8217;ve also been using WiFi monitoring widgets, battery monitoring widgets and looking at the <a href="http://backpackit.com">backpack</a> <a href="http://www.chipt.com/">widget</a> which looks nice.</p>
+
+
+ <p>As for having a go at developing them &#8211; I just made available my first go, a widget to keep track of the <a href="http://morethanseven.net/atmedia2006">@media2006 feed agregator</a> I have built. It&#8217;s relatively simply &#8211; it polls the site for a couple of variables and displays them across a couple of panes. The numbers in question are the total number of posts, the number of new posts this week and today &#8211; as well as a countdown to the event. I had to do a little work to expose these properties in an XML format from the site but nothing major.</p>
+
+
+ <p>I learned by looking at a couple of <a href="http://developer.apple.com/documentation/AppleApplications/Conceptual/Dashboard_Tutorial/index.html">tutorials</a> as well as existing widgets. Disecting code prooved the most useful &#8211; the majority of tutorials seemed to provide good <em>Hello World</em> examples but you could probably guess most of that. If anyone has any good intermediary or advanced widget tutorials then let me know.</p>
+
+
+ <p>The main problem with the development process was definately the iterative testing. With web pages I tend to work in large steps (with very little testing) early on and then move to more small changes and quick testing later on when it&#8217;s down to the details rather than the brush strokes. I&#8217;d definately echo the sentiment of others by testing in safari (it uses the same rendering engine) first, and also add that getting all the markup and CSS in place before moving to Javascript is probably the best bet. You really need to test the Javascipt with a real running widget as it has it&#8217;s own functions available via the widget object. I&#8217;ve heard Apple may be working on a suitable IDE for widgets (my guess would be a tie in with Xcode) and I&#8217;ve come across <a href="http://www.widgetfactor.com/factor.php">Wcode</a> which appears to offer some useful tools.</p>
+
+
+ <p>I&#8217;ve not yet looked into the situation with Yahoo Widgets &#8211; I intend to port my @media widget to Yahoo as an experiment and we&#8217;ll see how that goes (and yes I know that&#8217;s the wrong way round &#8211; Dashboard was, to some, a copy of Konfabulator, now Yahoo widgets. It&#8217;s early days I think for widgets &#8211; the move to more of a distributed systems feel, with open APIs and web services, amongst modern web applications would seem to be a perfect match for small desktop applications that tie into them. Watch this space.</p>

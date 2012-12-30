@@ -1,0 +1,9 @@
+---
+created_at: 2008/09/27}
+layout: post
+comments: true
+categories: [vmware]
+title: "Headless VMWare Fusion"
+---
+
+The latest version of "VMWare Fusion":http://www.vmware.com/products/fusion/ lets you run virtual machines in headless mode. Which is pretty handy if you're using a Linux VM to mirror your live environment. The strange thing is that it's not enabled by default. To enable it you need to run the following on your console: <code>defaults write com.vmware.fusion fluxCapacitor -bool YES</code>

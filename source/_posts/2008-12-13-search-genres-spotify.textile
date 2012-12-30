@@ -1,0 +1,14 @@
+---
+created_at: 2008/12/13}
+layout: post
+comments: true
+categories: [spotify]
+title: "Search for Genres on Spotify"
+---
+
+"Spotify":http://www.spotify.com/ is great. It seems stable, the desktop interface is simple and straight forward, and it has an entire album of emo bands doing covers of other emo bands. One thing that's not quite clear just yet in the interface however is how to search for all the Rock tracks, or more specifically how to search for all the tracks in a given genre. 
+
+Turns out it's quite simple. Just do a search for _genre:Rock_. My guess is there are various other textual shortcuts hidden in that search box. If anyone knows of any others post a comment.
+
+
+

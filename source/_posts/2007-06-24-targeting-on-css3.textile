@@ -1,0 +1,33 @@
+---
+created_at: 2007/06/24}
+layout: post
+comments: true
+categories: []
+title: "Target(ing) on CSS3"
+---
+
+Apologies up front for the bad pun but I've been busy playing with another little feature found in CSS3, namely the :target pseudo-class.
+
+It's actually pretty well described in the "CSS3 Selectors module":http://www.w3.org/TR/2001/CR-css3-selectors-20011113/#target-pseudo, (although given that the specs make lots of use of partial URLs the spec style sheet is crying out for use of said selector to I digress).
+
+Put simply it allows you to style elements of a page that are the target of in page anchors, ie. <code>&lt;a href="#target"&gt;in page link&lt;/a&gt;</code>
+
+For example. The following CSS hides all div children of an element with an id of _example3_.
+
+<pre><code>#example3 >div {
+    display: none;
+}</code></pre>
+
+The we can say "if said element has been targetted then display them all"
+
+<pre><code>#example3:target >div {
+    display: block;
+}</code></pre>
+
+So if you visiting #example3 you would see the divs, otherwise they will be hidden away.
+
+I've set up a couple of examples over on "morethanseven.net/presents/target":http://morethanseven.net/presents/target. 
+
+These examples basically remove the need for Javascript implementations but I'm not sure whether I'd actually use either of these. But you get the general idea. One thing about the examples was their simplicity compared with similar approaches though.
+
+It's already pretty well implemented according to this handy "compatability table":http://www.css3.info/modules/selector-compat from "CSS3.info":http://www.css3.info/ and I would imagine an ideal candidate for "Andy Budd's":http://andybudd.com "CSS2.2":http://www.andybudd.com/archives/2007/05/css22/.

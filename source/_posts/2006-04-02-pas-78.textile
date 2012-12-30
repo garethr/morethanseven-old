@@ -1,0 +1,24 @@
+---
+created_at: 2006/04/02}
+layout: post
+comments: true
+categories: []
+title: "PAS 78"
+---
+
+<p>I dont often ramble about accessibility issues on here, something I&#8217;ve only just noticed. Quite suprising as it&#8217;s one of those things that I&#8217;m pretty interested in &#8211; and have been for a good long time.</p>
+
+
+ <p>Anyway, I&#8217;ve just finished reading through <a href="http://www.bsi-global.com/ICT/PAS78/index.xalter">PAS 78</a> or Publicly Available Specification 78, Guide to Good Practice in Commissioning Accessible Websites. It&#8217;s a document aimed at those buying websites, especially in the public sector, who probably know accessibility is <em>a good think</em> but could get easily hoodwinked by anyone with even a modicum of knowledge and evil intentions.</p>
+
+
+ <p>Rather than just provide information about the what and why, considering the doc was launched a month ago, I&#8217;ll just point you to <a href="http://www.isolani.co.uk/blog/access/Pas78Launch">a good synopsis</a> from <a href="http://www.isolani.co.uk">Isolani</a>. A few other notables have posted good reads. <a href="http://joeclark.org/">Joe Clark</a>, as always, has <a href="http://blog.fawny.org/2006/03/21/pas78/">an opinion</a> which is both anally detailed and all true. <a href="http://www.brucelawson.co.uk">Bruce</a> also has a <a href="http://www.brucelawson.co.uk/pas78">run down</a> from a (some what) insiders point of view.</p>
+
+
+ <p>My feeling was, overall, pretty positive. I&#8217;d love to see all the clients I deal with having read this. It&#8217;s a pretty good intro to the issues at hand, though it is maybe a little long and technical for some of its audience. One area in particular that got quite a bit of coverage, rightly so in my mind, was testing. Their still isn&#8217;t enough testing of any sorts for websites, even with all these <em>beta</em>  tags going around. The testing area covers all sorts of bits and pieces, again not in enough detail for the implementor but certainly enough for any good procurement office to be able to separate the wheat from the chaff.</p>
+
+
+ <p>A good series of mentions goes to <a href="http://www.usabilitynet.org/tools/13407stds.htm">ISO 13407</a> which covers Human centred design processes for interactive systems and as luck would have it the subject of a workshop I&#8217;m attending with <a href="http://osiris.sunderland.ac.uk/~cs0gco/">Gilbert</a> in Sunderland on monday. More on that after the fact.</p>
+
+
+ <p>Anyhow. I&#8217;d recommend getting your bosses to pay the Ã‚Â£30 (or for bosses, stump up your selves) for the PAS 78 PDF. It&#8217;s a pretty good read anyhow, and hopefully more and more proper clients will be reading it soon. Forewarned is forearmed as they say.</p>

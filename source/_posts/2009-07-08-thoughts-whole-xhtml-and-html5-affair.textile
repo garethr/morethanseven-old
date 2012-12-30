@@ -1,0 +1,28 @@
+---
+created_at: 2009/07/08}
+layout: post
+comments: true
+categories: [rant, xhtml, xhtml2, w3c, html5]
+title: "Thoughts on the whole XHTML/HTML5 affair"
+---
+
+I wasn't going to write anything about "the whole XHTML2 thing":http://www.w3.org/News/2009#item119. I noted its passing, got "a nice message on Twitter":https://twitter.com/jamierumbelow/status/2442111140 and thought that would be it. But no. The web standards world exploded. I honestly didn't see that coming.
+
+Let's get a few things straight:
+
+* I use XHTML 1.0 for this site. In fact I've been using it for the majority of things for most of my professional life.
+* I don't serve content with an XML mime type. Neither does _anyone_ else. It's a complete non issue. Ignore it.
+* At my last job we used HTML 4. It meant I had to remember not to close my image elements, which bugged me, but not too much. I still quoted everything. Closed everything I could. And only used lowercase element names.
+* My latest two pet projects are using HTML5. I'm still closing everything (including image elements, yay), quoting everything and lowercasing everything.
+
+Web Standards are interesting, in that they are standards for both implementors (browser makers) and for authors (us). I like coding standards in programming languages too, it's one of the things I love about Python and "PEP8":http://www.python.org/dev/peps/pep-0008/. But with these standards it's not about making your code _work_, it's about shared conventions and readability. So common spacing, UPPERCASE for constants and Leading caps for class names for instance. It's also about having a tool to check everyone is adhering to standards, like "pep8.py":http://svn.browsershots.org/trunk/devtools/pep8/pep8.py or FXCOP for .NET. If everyone writes code in the same way it's easier to read, write and to pick up someone else' code. You can do that with HTML, but you _have_ to do that with XHML.
+
+Now the whole HTML 4.0 vs XHTML 1.0 thing has come up lots of times, on mailing lists, at conferences as well as down the pub. I know on occasion me, "Drew":http://allinthehead.com, "Rachel":http://rachelandrew.co.uk and "Jeremy":http://adactio.com side against "Simon":http://simonwillison.net and "Nat":http://natbat.net on the issue. But what's interesting is that I think we all agree on all the typographical conventions stuff. My "former":http://intranation.com "colleagues":http://thecssdiv.com with a passion for front end standards and HTML 4 did the same thing. I even remember Simon looking for ways to validate against HTML 4 but also to check for all lower case elements, closed paragraphs and the like.
+
+Which brings me to the reason why I use XHTML: The validator enforces my preferred coding standards for HTML - lowercase elements, quoted attributes and closed elements. That's it. Not much really. I _know_ it's "marketing XHTML rather than technical XHTML":http://hsivonen.iki.fi/xhtml2-html5-q-and-a/. I don't care. Or rather I do care, I just make a conscious pragmatic decision based on a small personal advantage. I'm both pedantic and like having a tool chain which enforces that, XHTML suits my style.
+
+The markup language debate is being talked about in terms of pragmatists vs purists. But ignoring the people who both really understood and really wanted XHTML2, it's mainly the pragmatists arguing amongst themselves now. Some of them are big company people, others working for themselves. Some have standards or academic leanings, others are rooted in commercial web design. Some people probably work on huge long term projects, others relatively small sites and apps. And I think it's these cultural differences that are the root of arguments now. So blog posts coming out saying the same thing but arguing with other people give a strange impression of disagreement. Throw in that the web lends itself to popular blogs gathering a crowd of like-minded people around them and hey presto we have people feeling unfairly put upon and getting agitated.
+
+What a storm in a teacup. Who doesn't genuinely think the best approach is to use whatever you're using now for most projects, investigate HTML5 as time permits, and then expect to start using HTML5 in bits and pieces in the short to medium term, when being mainly dependent on your target audience?
+
+In my opinion the only genuine problem that this saga has highlighted is the fear, uncertainty and doubt around all flavours of HTML amongst a large number of web professionals. People don't get this stuff at all. With the added resources soon to be put into the HTML5 working group at the W3C this _outreach and education_ side of the project has to have just as much love and attention as the spec itself.

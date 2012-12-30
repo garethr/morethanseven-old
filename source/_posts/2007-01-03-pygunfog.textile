@@ -1,0 +1,18 @@
+---
+created_at: 2007/01/03}
+layout: post
+comments: true
+categories: []
+title: "PyGunFog"
+---
+
+<p>My first real foray into writing some simple Python scripts was a few scripts to establish the <a href="http://en.wikipedia.org/wiki/Gunning-Fog_Index">Gunning-Fog</a> index of some given text. I wont go into lots of details about the uses of such a script; if you&#8217;re interested read Gez Lemons <a href="http://juicystudio.com/services/readability.php">writeup</a> over on <a href="http://juicystudio.com">Juicy Studio</a>.</p>
+
+
+ <p>I took quite a bit of inspiration, and some code, from a similar script, <a href="http://freshmeat.net/projects/pyflesch/?branch_id=57281&#38;release_id=191977">PyFlesch</a>, for establising the Flesch reading score of text.</p>
+
+
+ <p>I expanded things a little, using the <a href="http://feedparser.org/">Feedparser</a> module to parse content from RSS and Atom feeds and give a Flesch or Gunning-Fog score of the summaries.</p>
+
+
+ <p><a href="/_assets/downloads/pygunfog/pygunfog.zip">Download all scripts</a></p>

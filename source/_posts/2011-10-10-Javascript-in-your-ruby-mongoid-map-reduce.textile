@@ -1,0 +1,68 @@
+---
+created_at: 2011/10/10
+excerpt: 
+layout: post
+comments: true
+categories: [mongodb, javascript, mongoid, ruby]
+title: "Javascript In Your Ruby: Mongoid Map Reduce"
+---
+
+We're pretty fond of "Mongodb":http://mongodb.org/ at work and I've been getting an opportunity to kick some of the more interesting tyres recently. I thought I'd document something I found myself doing here, half hoping it might be useful for anyone else with a similar problem and also to see if anyone else has a much neater approach. The examples are obviously pretty trivial, but hopefully you get the idea.
+
+So, we're making using of the rather nice "Mongoid":http://mongoid.org/ Ruby library for defining our models as Ruby classes. Here's a couple of very simple classes. Anyone familiar with DataMapper or Django's ORM should be right at home here.
+
+<pre>class Publication
+  include Mongoid::Document
+
+  field :name,            :type => String
+  field :section,         :type => String
+  field :body,            :type => String
+  field :is_published,    :type => Boolean
+end
+
+class LongerPublication < Publication
+  field :extra_body,      :type => String
+end
+</pre>
+
+So we now have a good few publications and longer publications in our system. And folks have been creating sections with wild amandon. What I'd like to do now is do some reporting, specifically I want to know the numbers of Publications by type and publication status. And lets allow a breakdown by section while we're at it.
+
+One approach to this is using Mongo's built in map-reduce capability. Mongoid exposes this pretty cleanly in my view, by allowing you to write the required javascript functions (a mapper and a reducer) inline in the Ruby code. This might feel evil, but seems the best of the available options. I can see for much larger functions that splitting this out into separate javascript files for ease of testing might be nice, but were you can just test the input/output of the whole job this works for me.
+
+<pre>KLASS = "this._type"
+SECTION = "this.section"
+
+def self.count_by(type)
+  map = <<EOF
+    function() {
+      function truthy(value) {
+        return (value == true) ? 1 : 0;
+      }
+      emit(#{type}, {type: #{type}, count: 1, published: truthy(this.is_published)})
+    }
+EOF
+
+  reduce = <<EOF
+    function(key, values) {
+      var count = 0; published = 0;
+      values.forEach(function(doc) {
+        count += parseInt(doc.count);
+        published += parseInt(doc.published);
+        type = doc.type
+      );
+      return {type: type, count: count, published: published}
+    }
+EOF
+
+  collection.mapreduce(map, reduce).find()
+
+end
+</pre>
+
+In our case that will return something like the following, or rather more specifically it will return a Mongo::Cursor that allows you to get at the following data.
+
+<pre>[{"_id"=>"Publication", "value"=>{"type"=>"Publication", "count"=>42.0, "published"=>29.0}},
+{"_id"=>"LongerPublication", "value"=>{"type"=>"LongerPublication", "count"=>12.0, "published"=>10.0}}]
+</pre>
+
+I've been pretty impressed with both Mongo and Mongoid here. I like the feel of mapreduce jobs for this sort of reporting task. In particular it's suprising how writing two languages mixed together like this doesn't really affect the readability of the code in my view. Given that with a relational database you'd probably be writing SQL anyway maybe that's not that suprising - the syntactic differences between Javascript and Ruby are much smaller than pretty much anything and SQL. Lots of folks have written about the increase of polyglot programming, but I wonder if we'll see an increase in the embedding of one language in another?

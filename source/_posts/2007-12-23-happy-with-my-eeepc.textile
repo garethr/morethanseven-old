@@ -1,0 +1,25 @@
+---
+created_at: 2007/12/23}
+layout: post
+comments: true
+categories: []
+title: "Happy with my eeepc"
+---
+
+I like small. I have a macbook rather than a macbook pro because it's smaller. Especially now I'm wandering about more often with work (and play) lugging a machine around is less and less appealing. So, armed with that excuse I felt justified in going out and buying a new "Asus Eee PC":http://eeepc.asus.com. I managed to just walk in to "Micro Anvika":www.microanvika.com/ in Newcastle and buy one from a bemused staff member who  was pretty shocked to find one in stock and not allocated (sorry "Rey":http://www.reyhan.org/).
+
+For anyone who hasn't seen one before, the Eee PC is a tiny linux laptop a little like the One Laptop Per Child machine but aimed more at traditional computer users (at the moment read _early adopting geeks_). The distro is setup to be pretty user friendly for those pesky Windows users but a little hacking turns it into a pretty darn nice machine.
+
+!http://morethanseven.net/_assets/media/imgEeepcApple.jpg(My new eeepc with an apple logo on the back)!
+
+And yes, I have stuck an apple sticker on back. I'm sure that should get some entertained looks next time I'm at a relevant event! I think the machine itself is actually pretty good looking, but the default desktop themes are all pretty uninspiring.
+
+I've stuck with the appliance like IceWM window manager and the launcher application as it makes starting things up from the keyboard with one hand pretty fast. I then jumped into various hidden away files to get the desktop setup how I like. The "wiki":http://wiki.eeeuser.com over on "eee user":http://eeeuser.com has a number of useful tutorials; "customising easy mode":http://wiki.eeeuser.com/howto:customizeeasymode and the debian repo from "a ruby tutorial":http://wiki.eeeuser.com/howto:installruby were particularly handy.
+
+!http://morethanseven.net/_assets/media/imgEeepcDesktop.jpg(Minimal IceWM desktop with Asus Launcher)!
+
+Still lots more I could install (this is Linux after all) but so far have installed Ruby, Rails, Python, Django, Erlang, MySQL, SQLite, Apache2, PHP5, PEAR and symfony all without a hitch. I do love apt when it just works. I'll try and get Mono and Java on their as well just for completeness when I get a moment.
+
+The only thing I can think of that I'll really miss at the moment is Keynote. It has a VGA out port (which not even the macbook has) which will support a decent resolution for presentations. But Keynote is so pretty and easy to use compared to the alternatives. We'll have to see next time I have to do a presentation.
+
+I can see lots of places (past the obsessive tech geeks like me) where a machine like this will be really interesting. Obviously the low cost of the machine means that schools might just get interested in Linux. For people who prefer a desktop machine as their main computer and only occasionally need a laptop it's a pretty cost effective option. As a machine to experiment with Linux it's pretty useful too - I'd recommend being familiar with basic commands on Linux to anyone doing web development work for instance. With so many possible audiences, and what is already a pretty nice machine, Asus might be onto something here.

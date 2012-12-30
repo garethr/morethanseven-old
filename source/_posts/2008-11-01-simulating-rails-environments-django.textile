@@ -1,0 +1,23 @@
+---
+created_at: 2008/11/01}
+layout: post
+comments: true
+categories: [django, python, rails, environments]
+title: "Simulating Rails like Environments in Django"
+---
+
+I was always a fan of "Rail environments":http://wiki.rubyonrails.org/rails/pages/Environments and as part of some work upgrading this site to the latest version of Django I decided to clean up my whole deployment process. Part of that involved replacing everything in settings.py with the following snippet of code:
+
+pre. ENV = "development"
+try:
+    exec "from environments." + ENV + " import *"
+except ImportError:
+    print "You must specify a valid environment"
+    exit()
+
+I now have two settings files stored in an environments module containing all the usual django settings; one for my development environment and one suitable for live. The settings.py above is for my local development environment, with only one small change for live (this file doesn't get deployed along with the source code for the site, so doesn't get overwritten).
+
+pre. ENV = 'live'
+
+This isn't quite the same as the Rails implementation obviously. I run completely different server setups so I'm not too bothered about a flag on the runserver command like the -e flag for mongel. I could also probably do something to autodetect the environment but this works fine for me.
+

@@ -1,0 +1,42 @@
+---
+created_at: 2007/01/16}
+layout: post
+comments: true
+categories: []
+title: "OPML Feeds using Radiant"
+---
+
+<p>As mentioned when I moved the site over to Radiant I promised a few tutorials and behind the scenes footage of goings on. So here goes with a quick look at how I added a nice <a href="http://morethanseven.net/friends.opml">OPML feed</a> to my site.</p>
+
+
+ <p>For those not familiar with <a href="http://www.opml.org/">OPML</a> it&#8217;s an XML format for outlines, often used for storing blog rolls and the like.</p>
+
+
+ <p>What I wanted was a friends parent and the ability to add friends to it and for them to appear in a dynamic OPML feed. The following screenshot shows what I ended up with:</p>
+
+
+ <p><img src="http://morethanseven.net/_assets/media/imgFriendsFeed.png" alt="Tree showing Friends feed in Radiant" /></p>
+
+
+ <p>To accomplish this within Radiant I needed a custom layout, one which would simply render the content but also had the relevant header and footer markup. Note the mime type setting as well.</p>
+
+
+ <p><img src="http://morethanseven.net/_assets/media/imgOpmlLayout.png" alt="Layout for OPML in Radiant" /></p>
+
+
+ <p>Next up is the page which actually uses the OPML layout to render the page.</p>
+
+
+ <p><img src="http://morethanseven.net/_assets/media/imgFriendsFeedCode.png" alt="friends feed from Radiant" /></p>
+
+
+ <p>Note that I set the status of all the friends records to hidden, and then set the status of the r:children:each loop to search for hidden children. This way the individual friends records dont show up as seperate pages.</p>
+
+
+ <p>All I need to do then is add children to the parent, friends-feed in my case. I added a few page parts to each friend page to make management a little easier; a <em>link</em>, a <em>feed</em> and for a little added spice <em>xfn</em>.</p>
+
+
+ <p><img src="http://morethanseven.net/_assets/media/imgEditFriend.png" alt="Edit friend view from Radiant" /></p>
+
+
+ <p>All in all it makes adding and updating friends easy, and the general approach will work with pretty much any content where you want to compose a single page based on it&#8217;s children.</p>

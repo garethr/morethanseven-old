@@ -1,0 +1,113 @@
+---
+created_at: 2012/04/06
+excerpt: 
+layout: post
+comments: true
+categories: [deployment, jruby, warbler, jetty]
+title: "Self Contained Jruby Web Applications"
+---
+
+Several things seemed to come together at once to make me want to hack on this particular project. In no particular order:
+
+The "Thoughtworks Technology Radar":http://www.thoughtworks.com/articles/technology-radar-march-2012 said the following:
+
+bq. Embedding a servlet container, such as Jetty, inside a Java application has many advantages over running the application inside a container. Testing is relatively painless because of the simple startup, and the development environment is closer to production. Nasty surprises like mismatched versions of libraries or drivers are eliminated by not sharing across multiple applications. While you will have to manage and monitor multiple Java Virtual Machines in production using this model, we feel the advantages offered by the simplicity and isolation are significant.
+
+I've been getting more interested in JRuby anyway, partly because we're finding ourselves using both Ruby and Scala at work, and maintaining a single target platform makes sense to me. Throw in the potential for interop between those languages and it's certainly worth investigating.
+
+"Play 2.0":http://www.playframework.org/ shipped and currently only provides the ability to create a self contained executable with bundled web server. Creating WAR files for more traditional application servers is on the roadmap but interestingly wasn't deemed essential for the big 2.0 release. I had a nice chat with "Martyn Inglis":https://twitter.com/minglis at work about some of the nice side effects of this setup.
+
+And throw in every time I have to configure straight Ruby applications for production environments I get cross. I know where all the bits and pieces are buried and can do it well, but with so many moving parts it's absolutely no fun whatsoever.
+
+Warbler, the JRuby tool for creating WAR files from Ruby source, has just added the ability to "embed Jetty to the master branch":https://github.com/jruby/warbler/commit/0558a285eb59a0801cf7c0f274777b06b63883b3.
+
+I decided to take all of this for a quick spin, and the "resulting code is up on GitHub":https://github.com/garethr/jruby-embedded-jetty.
+
+This is the simplest Rack application possible, it just prints _Hello Jetty_. And the README covers how to install and run it so I won't duplcate that information here.
+
+But I will print some nearly meaningless and unscientific benchmarks because, hey, who doesn't like those?
+
+<pre>⚡ ab -c 50 -n 5000 http://localhost:8090/
+
+Server Software:        Jetty(8.y.z-SNAPSHOT)
+Server Hostname:        localhost
+Server Port:            8090
+
+Document Path:          /
+Document Length:        16 bytes
+
+Concurrency Level:      50
+Time taken for tests:   1.827 seconds
+Complete requests:      5000
+Failed requests:        0
+Write errors:           0
+Total transferred:      555999 bytes
+HTML transferred:       80144 bytes
+Requests per second:    2736.47 [#/sec] (mean)
+Time per request:       18.272 [ms] (mean)
+Time per request:       0.365 [ms] (mean, across all concurrent requests)
+Transfer rate:          297.16 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.2      1      18
+Processing:     1   16   7.7     15      61
+Waiting:        0   14   7.2     13      57
+Total:          2   18   7.5     17      61
+
+Percentage of the requests served within a certain time (ms)
+  50%     17
+  66%     19
+  75%     21
+  80%     22
+  90%     27
+  95%     30
+  98%     42
+  99%     52
+ 100%     61 (longest request)
+</pre>
+
+Running the same test on the same machine but using Ruby 1.9.2-p290 and Thin gives.
+
+<pre>Server Software:        thin
+Server Hostname:        localhost
+Server Port:            9292
+
+Document Path:          /
+Document Length:        16 bytes
+
+Concurrency Level:      50
+Time taken for tests:   3.125 seconds
+Complete requests:      5000
+Failed requests:        0
+Write errors:           0
+Total transferred:      620620 bytes
+HTML transferred:       80080 bytes
+Requests per second:    1600.16 [#/sec] (mean)
+Time per request:       31.247 [ms] (mean)
+Time per request:       0.625 [ms] (mean, across all concurrent requests)
+Transfer rate:          193.96 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       9
+Processing:     3   31   6.4     33      52
+Waiting:        3   25   6.4     28      47
+Total:          4   31   6.4     33      52
+
+Percentage of the requests served within a certain time (ms)
+  50%     33
+  66%     34
+  75%     34
+  80%     35
+  90%     38
+  95%     41
+  98%     46
+  99%     50
+ 100%     52 (longest request)</pre>
+
+2736 requests per second on JRuby/Jetty vs 1600 on Ruby/Thin. As noted this isn't meaningfully useful, in that it's a hello world example and I've not tried to pick the fastest stacks on either side. I'm more bothered about it not being slower, because the main reason to pursue this approach is simplicity. Having a single self contained artefact that contains all it's dependencies including a production web server is very appealing.
+
+I'm hoping to give this a go with some less trivial applications, and probably more importantly look to compare a production stack based around these self-contained executables vs the dependency chain that is modern Ruby application stacks.
+
+Thanks to "Nick Sieger":http://blog.nicksieger.com/ for both writing Warbler and for helping with a few questions on the JRuby mailing list and on Twitter. Thanks also to "James Abley":https://twitter.com/jabley for a few pointers on Java system properties.

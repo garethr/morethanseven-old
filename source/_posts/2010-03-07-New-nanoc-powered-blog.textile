@@ -1,0 +1,15 @@
+---
+created_at: 2010/03/07
+layout: post
+comments: true
+categories: [nanoc, ruby]
+title: "New Nanoc Powered Blog"
+---
+
+It's taken longer than I would have liked but I've finally gotten around to relaunching this site on "nanoc":http://nanoc.stoneship.org/.
+
+After looking through lots of code from the "nanoc showcase":http://projects.stoneship.org/trac/nanoc/wiki/Showcase I had a pretty good feel for how I wanted things to work and I then used the excellent "nanoc3_blog":http://github.com/mgutz/nanoc3_blog template to get started. I've hacked around quite a bit with the code to get things how I wanted them. Using "Less":http://lesscss.org/ to make the CSS more manageable, "Coderay":http://coderay.rubychan.de/ for lovely syntax highlighting and making everything default to textile rather than markdown. I've also written import scripts for my old blog (in Python) and another one so I can use tumblr is I want to create items on here (in Ruby).
+
+Nanoc really is a joy to work with and I'm hoping that alone will get me back into writing more freqently than I have done for a while. The fact I can just write in Vim or WriteRoom or whatever editor I have to hand feels nice. And using Git, Rake and Rsync complete my little toolset. Everything is still served via Nginx.
+
+I've thrown the all the code, including all the content, up on "GitHub":http://github.com/garethr/morethanseven for anyone interested. Back to writing.

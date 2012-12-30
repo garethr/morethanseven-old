@@ -1,0 +1,98 @@
+---
+created_at: 2007/10/23}
+layout: post
+comments: true
+categories: []
+title: "My Trac Ticket setup"
+---
+
+I've been busy really getting to grips with "Trac":http://trac.edgewall.org/ recently and thought I'd post up a few details. Trac for those that haven't come across it is a wiki, issue tracking systems and source code browser all rolled into one. It's open source and written in Python.
+
+I'll start off describing my current ticket setup, along with the code I use for reports. In future posts I'll hopefully describe thinks like setting up users and permissions in a flexible way. I'll leave describing "installation":http://trac.edgewall.org/wiki/TracOnUbuntu to "others":https://svn.geophysik.uni-muenchen.de/trac/tracmods/wiki/InstallationGuide, mainly because it's a pain. I'll also assume you've installed the "WebAdmin":http://trac.edgewall.org/wiki/WebAdmin plugin, or are familiar with trac-admin.
+
+h2. Create a new Ticket
+
+By default Trac comes set up with severity, milestones, ticket types, priority and components and a few default options in each. The problem with all these options is that it takes more time and effort to add and manage issues - so they don't get logged. Unless you know you absolutely need them I find it easier to remove most of these options in the first instance. 
+
+!http://morethanseven.net/_assets/media/imgTracTicket.png(Trac new ticket)!
+
+I prefer using Trac soley for issue tracking. It suffers badly in my opinion if used for more project management related activity. "Other tools":http://basecamphq.com do that job better (and also do bug tracking poorly).
+
+I keep priority in, but by default it's blank and only has one other options - High. I only assign High priority to issues which are causing major problems, either preventing a successful build or stopping something happening that's meant to.
+
+h2. Available reports
+
+!http://morethanseven.net/_assets/media/imgTracReports.png(Trac reports list)!
+
+Trac reports are simple (or not so simple) SQL queries with a few bits of special syntax. I have four reports set up; Open, Closed, Important and My Issues:
+
+Open, not too suprisingly, displays all the open issues. As mixing different components here would be confusing we divide the list with headers for each components
+
+<code><pre>SELECT
+  component AS &#95;&#95;group&#95;&#95;,
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &#95;&#95;color&#95;&#95;,
+  id, summary, owner,
+  time AS created,
+  component AS &#95;component, 
+  priority AS &#95;priority,
+  changetime AS &#95;changetime,
+  description AS &#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status IN ('new', 'assigned', 'reopened') 
+ORDER BY priority DESC, p.value, t.type, time</pre></code>
+
+Closed is the reverse of Open (I'm starting to state the obvious here) but with a few differences in terms of the listing. I'm more bothered here about seeing a timeline of closed issues. Good for keeping a eye (or a feed) on to see progress.
+
+<code><pre>SELECT
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &#95;&#95;color&#95;&#95;,
+  id, summary, owner, component, resolution,
+  priority AS &#95;priority, 
+  changetime AS modified,
+  description AS &#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status NOT IN ('new', 'assigned', 'reopened') 
+ORDER BY changetime DESC</pre></code>
+
+My Issues lists only those issues which are assigned to me (or the currently logged in user) and open.
+
+<code><pre>SELECT
+  component AS &#95;&#95;group&#95;&#95;,
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &#95;&#95;color&#95;&#95;,
+  id, summary,
+  time AS created,
+  component AS &#95;component,
+  priority AS &#95;priority, 
+  changetime AS &#95;changetime,
+  description AS &#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status IN ('new', 'assigned', 'reopened') AND owner = '$USER'
+ORDER BY priority DESC, p.value, t.type, time</pre></code>
+
+Important is an overview of critical issues. Software can have small bugs and be perfectly usable in the vast majority of cases. But some issues either effect lots of users or prevent the system working at all. These High priority issues need addressing first, before anything else.
+
+<code><pre>SELECT
+  component AS &#95;group&#95;&#95;,
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &#95;&#95;color&#95;&#95;,
+  id, summary, owner,
+  time AS created,
+  component AS &#95;component,
+  priority AS &#95;priority, 
+  changetime AS &#95;changetime,
+  description AS &#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status IN ('new', 'assigned', 'reopened') AND priority = 'High'
+ORDER BY priority DESC, p.value, t.type, time</pre></code>
+
+Interesting bits here include the following line which makes all High priority tasks have a red border:
+
+<code><pre>(CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &#95;&#95;color&#95;&#95;,</pre></code>
+
+As a side note, I hadn't written proper SQL for a while (all that "hacking on APIs":www.digital-web.com/articles/hacking_open_apis/). Suprisingly good fun as it turns out.
+
+h2. Conclusions
+
+The main benefit of this setup is simplicity. Too many bug tracking systems are either way too complicated, or come with defaults which are on the complex side (I include Trac in this last category). "Garret Dimon":http://garrettdimon.com has been "writing":http://garrettdimon.com/archives/tags/tracker about the development of a new bug tracking system with a focus on simplicity. "Fixx":http://fixxbugs.com/ and "Lighthouse":http://lighthouseapp.com/ are other products looking to fill this niche. That's not to say larger teams don't need to store more information than this, just that by starting small you can actually find out what you're missing - rather than guessing and making the whole process of adding and fixing bugs a particularly painful one.

@@ -1,0 +1,54 @@
+---
+created_at: 2011/12/13
+excerpt: 
+layout: post
+comments: true
+categories: [puppet]
+title: "Setting Puppet Class Using Environment Variables"
+---
+
+I'm not sure how novel this approach is but a few folks at work hadn't seen it before so I thought it worth jotting down.
+
+If you have even a small but dynamic set of servers then a problem arises with how those nodes are defined in puppet. A node remember is defined in puppet like so:
+
+<pre>node web3.example.com {
+  include web_server
+}</pre>
+
+The problem is twofold. If you have a growing infrastructure, that list of nodes is going to get quickly out of hand. The other problem is around provisioning new hosts, the obvious approach to which is something like:
+
+1. Summon new EC2 instance
+2. Change the node definition to include the new hostname
+3. Install puppet on instance and so the ssl certificate signing dance
+4. Run puppet
+
+Step 2 stands out. The others are easily automated, but do you want to automate a change to your puppet manifests and a redeploy to the puppetmaster for a new instance? Probably not.
+Puppet has the concept of an external node classifier which can be used to solve this problem, but another simpler approach is to use an environment variable on the new machine.
+
+Lets say we define our nodes something like this instead:
+
+{% codeblock %}node default {
+  case $machine_role {
+    frontend:           { include web_server }
+    backend:            { include app_server }
+    data:               { include db_server }
+    monitoring:         { include monitoring_server }
+    development:        { include development }
+    default:            { include base }
+  }
+}{% endcodeblock %}
+
+If a machine runs and sets the $machine_role variable to frontend it includes the web_server class, if that variable equals 'data' it's going to include the db_server class instead. Much cleaner and more maintainable in my view. Now to set that variable.
+
+Facter is the tool used by Puppet to get system information like the operating system or processor count. You can use these facter provided variables anywhere in your manifests. And one way of adding a new fact is via an environment variable on the client. Any environment variable prefixed with FACTER_ will be available in Puppet manifests. So in this case we can:
+
+<pre>export FACTER_machine_role=frontend</pre>
+
+So our steps from above become something like:
+
+1. Summon new machine
+2. echo "export FACTER_machine_role=backend" >> /etc/environment
+3. Install puppet on instance and so the ssl certificate signing dance
+4. Run puppet
+
+Much easier to automate. And if you're looking at a box and want to know what it's role is you can check the relevant environment variable.

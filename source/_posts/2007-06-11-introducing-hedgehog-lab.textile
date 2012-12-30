@@ -1,0 +1,17 @@
+---
+created_at: 2007/06/11}
+layout: post
+comments: true
+categories: []
+title: "Introducing hedgehog lab"
+---
+
+For both of you who care what I get up to during my work hours this post is for you. I've finally gotten involved in a new startup with a couple of friends. Look out for "hedgehog lab":http://hedgehoglab.com related goings on in a Newcastle near you. We've got plans being drawn up as I type (multi-tasking) but a smattering of training and consultancy on web standards design and development and a very health dose of some of those new fangled online products (all with as many microformats as I can sneak in) sounds like fun to me.
+
+!http://morethanseven.net/_assets/media/imgHedgehogLab.jpg(hedgehog lab)!:http://hedgehoglab.com/
+
+Bye bye to all the people at TH_NK. It's been great for two years and I'll miss the cunning hit and run attacks on asp.net that have yielded some pretty good results. I'm sure you'll get more done without me being quite so obstinate!
+
+It's not just the impending job move that has been keeping me so busy. I finally, after much useful feedback and patience from "Matt":http://thewatchmakerproject.com got my first "Digital Web":http://www.digital-web.com article done: "APIs and Mashups For The Rest Of Us":http://www.digital-web.com/articles/apis_and_mashups/. As the title suggests it's a quick run through the various goings on, in particular on what I find so interesting about the concepts of Open APIs and this web of data thing. I even squeezed in some talk of "Microformats":http://microformats.org "Let me know what you think":http://www.digital-web.com/articles/apis_and_mashups/comments/. Thanks to "Sam":http://sam.aaron.name/ as well for a useful early proof read and to "Tiff":http://www.tiffehr.com/ at Digital Web (who also has some interesting things to say on this here industry on her new blog, "Lost Cog":http://www.lostcog.com/.)
+
+End of self reverential post. The list of _real_ things I have to blog about is frankly too long to wait around. And it's not helped by these "trips":http://vivabit.com/atmedia2007 to "london":http://hackday.org which frankly just give me even more to write about. Incase anyone is interested (and more to remind me), expect something on automated site testing, some musings and code (!) for doing useful things with microformats, some cool CSS3 (or is it CSS2.2 now?) tricks and something involving flickr which should actually be quite interesting if I get the time.

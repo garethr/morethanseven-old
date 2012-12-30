@@ -1,0 +1,33 @@
+---
+created_at: 2005/10/11}
+layout: post
+comments: true
+categories: []
+title: "Textpattern!"
+---
+
+<p>In something of a shock I&#8217;ve just ported the site (well some of it so far) to <a href="http://www.textpattern.com">Textpattern</a>. I&#8217;d alluded that I was looking to do something similar (I mentioned a crazy Ruby fueled idea, but strayed away after having a run in with fastcgi) a little time ago but have finally gotten around to it.</p>
+
+
+ <p>The reasons where many fold, but mainly came down to wanting to do other things that write content management applications. I know I can do it, and it&#8217;s certainly not a solved problem, but it&#8217;s not as much a part of my job any more &#8211; every few months I was wanting to go back and rewrite something fundamental (or everything) and it was getting in the way of me doing other, hopefully more interesting and useful things &#8211; like <a href="http://newcastlenewmedia.org">Newcastle New Media</a> , <a href="http://morethanseven.net/fluidflash">Fluid Flash</a> or playing with whatever buzz word is in this week (definately <a href="http://en.wikipedia.org/wiki/Web2.0">Web 2.0</a>).</p>
+
+
+ <p>So after what was quite a brief look around I settled on Textpattern mainly for it&#8217;s positioning. It is a blogging ap, but has lots of other features that allow content management of other elements &#8211; hopefully useful for side projects and the like. It&#8217;s PHP and MySQL so I can rip it to pieces if I want. It&#8217;s mature, stable, feature rich and does, with plugins, everything I probably need &#8211; the big question will be if it does them in a way I like, so far it&#8217;s thumbs up. Oh and <a href="http://www.hicksdesign.co.uk">John Hick&#8217;s</a> has written a number of really good articles on textpattern, including a <a href="http://www.hicksdesign.co.uk/journal/textpattern-migration">migration piece</a> which gave me some pointers.</p>
+
+
+ <p>I&#8217;ve ported recent posts and comments, I&#8217;ll move the rest on an as time permits basis but, after some mod_rewriting mad skills I&#8217;ve kept the <a href="http://morethanseven.net/weblog/">old site</a> fully functional (no link rot &#8211; yeah).</p>
+
+
+ <p>All in all it probably took me 4 hours, in a couple of sessions, to get all the styles into textpattern, set up a few plug-ins (del.icio.us links, live previews &#8211; whoo), port the latest content and move from my development box to here. A pretty good testament to the ease of use of textpattern. If I had not had the original design or content I would have been up and running in minutes &#8211; the installation process is smooth as a new cuddly toy.</p>
+
+
+ <p>Their are a couple of changes that hopefully only the anal will even see. I&#8217;ll try and resurect some of them, probably in a more satisfying manner that before.</p>
+
+
+ <p>For the moment I&#8217;ll keep the existing rss feed up to date but only for a little while, the new textpattern feeds can be accessed from the navigation menu, and now include an atom feed as well (basically because I can).</p>
+
+
+ <p>In conclusion, anyone looking to move, or start, a blog style site with other ambitions then textpattern could be what your looking for &#8211; although some PHP skills wouldn&#8217;t go a miss.</p>
+
+
+ <p>Anyway, here&#8217;s to a more organised life. Anything fundamentally wrong let me know!</p>

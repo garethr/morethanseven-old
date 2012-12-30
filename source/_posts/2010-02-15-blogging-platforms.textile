@@ -1,0 +1,20 @@
+---
+created_at: 2010/02/15
+layout: post
+comments: true
+categories: [blogging, tumblr]
+title: "On blogging platforms"
+---
+
+Every now and again I feel the need for a change and spent a little time tonight looking at different blogging software. I'm currently running a custom django app I wrote a good while ago, more as an excuse to play with Django than anything. Previously I've used Wordpress, Textpattern and even Radiant. But I'm coming to the conclusion that what I want doesn't exist. In theory that means an opportunity for someone to enter the market, in reality I think it might just be me. So, what do I want?
+
+* Customisable URL patterns and redirects. Tumblr did well until this point but I have years of content on nice URLs and I'd not going to throw that away.
+* Command line interface for posting snippets
+* Nice looking web based API (bonus points to Typepad here for some nifty features like pubsubhubhub)
+* iPod touch app
+* Real control over the design, not just pre-made templates unless you pay for a pro account
+* Hackable (this could mean anything, but I know it when I see it. So not WordPress then.)
+* Export plain text out
+* Use my own domain name
+
+I have a sneaking suspicion what I might be thinking about is a private tumblr blog used as a datasource for "Nanoc3":http://nanoc.stoneship.org/. But that relies on me having the time to build that as I can't find anyone who might have written such a think. Maybe one day.

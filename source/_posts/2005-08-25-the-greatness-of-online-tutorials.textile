@@ -1,0 +1,25 @@
+---
+created_at: 2005/08/25}
+layout: post
+comments: true
+categories: []
+title: "the greatness of online tutorials"
+---
+
+<p>A somewhat grandiouse title but hey, dont you just love it when things just work? A slow evening lead to following two tutorials at once, the outcome I now have <a href="http://andybudd.com">andy budd</a>&#8217;s fab <a href="http://www.andybudd.com/archives/2005/08/itunes_smart_playlists/index.php#more">iTunes playlists</a> set up and I have rails running on my host. Woo Hoo.</p>
+
+
+ <p>I love working things out and generally dont mind things ending up not working even but sometimes it&#8217;s nice when everything takes only a small amount of time and effort and then works. A sense of acomplishment, and admiration, if you will.</p>
+
+
+ <p>Oh, proof of the rails pudding: <a href="http://morethanseven.net:3000/">morethanseven.net:3000/</a>
+WEBrick at the moment, FastCGI is for another day, hopefully soon. And before you ask, I didn&#8217;t just copy the source from a local install. Really.</p>
+
+
+ <p>The tutorial I followed for that I grabbed from <a href="http://xmlareas.com/ruby-rails-howto.html">xmlareas.com/ruby-rails-howto.html</a> which might be of use on a range of reasonable shared hosting environments &#8211; though remember to remomve the temp directory as it will contain LOTS of files that may flag some hosting file limits.</p>
+
+
+ <p>Makes me want to write some sort of how to articles on some subject or other. Question on a post card is what?</p>
+
+
+ <p>So a big thanks for Andy&#8217;s rather geeky approach to cataloging music (my librarian housemate is going to love that) and to goldenratio (probably not a real name?) for the Rails article. Long live the Internet and all that.</p>

@@ -1,0 +1,16 @@
+---
+created_at: 2011/04/02
+excerpt: 
+layout: post
+comments: true
+categories: [ganglia, metrics, cambridgegeeknight]
+title: "Collecting Metrics With Ganglia And Friends"
+---
+
+I had the pleasure of speaking at "Cambridge Geek Night":http://cambridgegeeknights.net/ on Monday again, the topic of conversation being using Ganglia to collect more than just base systems metrics. 
+
+<object id="__sse7492405" width="595" height="497"> <param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=metricswithganglia-110402103441-phpapp01&rel=0&stripped_title=metrics-with-ganglia&userName=garethr" /> <param name="allowFullScreen" value="true"/> <param name="allowScriptAccess" value="always"/> <embed name="__sse7492405" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=metricswithganglia-110402103441-phpapp01&rel=0&stripped_title=metrics-with-ganglia&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"></embed> </object>
+
+The audience of web developers, the odd sysadmin and business folk seemed to enjoy it and we had lots of time for questions at the end. The main point I tried to get across was that Ganglia makes a great platform for ad-hoc metrics gathering due to the ability to just throw values at it and get time series graphs without any extra configuration.
+
+The slides include a few bits of code I've been using that I'll throw onto GitHub as a proper project when I get the time. These are very simple Python servers, one which allows for sending metrics information over HTTP, the other using TCP instead. Both really handy for getting more people to add hooks into applications.

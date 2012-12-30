@@ -1,0 +1,89 @@
+---
+created_at: 2005/08/13}
+layout: post
+comments: true
+categories: []
+title: "unobtrusive javascript"
+---
+
+<p>Lots of talk around at the moment about <a href="http://adactio.com/atmedia2005/">unobtrusive</a>  <a href="http://www.bobbyvandersluis.com/articles/goodpractices.php">javascript</a> on the usual websites and <a href="http://designersinhouse.com">discussion</a> <a href="http://www.quirksmode.org/dom/list.html ">lists</a>. However alot of people, maybe outside the inner circles, are still finding old school examples of inline code on out of date pages.</p>
+
+
+ <p>So here&#8217;s my tuppence. I guess the more websites that post new, up to date, examples and reasoning the better?</p>
+
+
+ <p>The premise is pretty simple. In the same way as controlling formating with tables and having everything being mixed up in one .htm file is frowned upon as simply being too much work &#8211; dealing with lots of inline snippets of javascript raises the same problems. Namely being time consuming to update and maintain.</p>
+
+
+ <p>The solution is to keep ALL your javascript in separate .js files, and that includes removing things like <code>href="javascript:"</code> or <code>onclick=</code>. The first question is therefor how &#8211; when I started looking down this route I found a simple answer hard to come by, having to look at more complex examples and reverse engineer them.</p>
+
+
+ <p>The following is the method I&#8217;m using at the moment. It may have issues I&#8217;m unaware &#8211; if your a javascript guru let me know. The examples are from the fluidflash page on this site, see it in action at <a href="http://www.morethanseven.net/fluidflash">www.morethanseven.net/fluidflash</a></p>
+
+
+ <p>We first I set up an initialisation function:</p>
+
+
+<pre><code>
+function init() {
+    if (!document.getElementById) return false;
+
+    liquid = document.getElementById("iNavLiquid");
+
+    liquid.onclick = liquidChangeClass;
+}
+</code></pre>
+
+ <p>This sets the onclick event on the element with the id <code>iNavLiquid</code> that will trigger the function <code>liquidChangeClass</code>. Next we define that function:</p>
+
+
+<pre><code>
+function changeClass( targetId, newClass ) {
+    if (document.getElementById){
+        target = document.getElementById( targetId );
+        target.className = newClass;
+    }
+}
+
+function liquidChangeClass() {
+    changeClass("iBody","liquid");
+}
+</code></pre>
+
+ <p>The specifics aren&#8217;t too important to this example but you can see the <code>liquidChangeClass</code> function which is triggered by the onclick event handler.</p>
+
+
+ <p>And finally we need to trigger the <code>init</code> function when the page loads. Their are lots of ways of doing this which is probably a conversation for another time &#8211; I used a <code>schedule</code> function from <a href="http://themaninblue.com">themaninblue.com</a> which you can find below:</p>
+
+
+<pre><code>
+function schedule(objectID, functionCall, iteration) {
+   if (iteration == null){
+   iteration = 0;
+   }
+
+   if (objectID == "window") {
+   var oldonload = window.onload;
+
+   if (typeof window.onload != "function") {
+   window.onload = functionCall;
+   } else {
+   window.onload = function() {
+   oldonload();
+   functionCall();
+   }
+   }
+   } else if (document.getElementById(objectID)) {
+   functionCall();
+   } else if (iteration &lt; 300) {
+   setTimeout(function(){schedule(objectID, 
+           functionCall, iteration + 1)}, 10);
+   }
+
+   return true;
+}  
+
+schedule("window", init);
+</code></pre>
+
+ <p>So their we have it, hopefully a simple enough example of how to move to unobtrusive javascript. As most of this is generic and used all the time it&#8217;s far simpler that it first appears.</p>

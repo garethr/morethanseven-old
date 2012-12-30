@@ -1,0 +1,24 @@
+---
+created_at: 2005/12/04}
+layout: post
+comments: true
+categories: []
+title: "Tips for fluid design II"
+---
+
+<p>A while back I decided to jot down a couple of practical, simple techniques that have served me well when actually building fluid designs.</p>
+
+
+ <p>One of the situations that often comes up is the need to make an elements width vary. This is no problem when that element is a block level element (say a div or a paragraph) as unless you tell them otherwise their width willl vary with the space available. However, when it comes to graphics this can be a problem. After all, these will (probably) have been designed with a fixed size in mind.</p>
+
+
+ <p>Their are a couple of possible solutions here, both useful in different circumstances. However, both rely on the image itself to some extent.</p>
+
+
+ <p>The sometimes obvious method is using the CSS <em>background</em> rules, the image wont actually be part of the page and so wont take up any space, the size of the image can then be controlled by the size of the element (say a div) on which the background image is placed. This works but has a couple of ugly side effects &#8211; if the image is content based (ie. it carries some sort of important message rather than being just for it&#8217;s asthetic attributes) then placing it in the CSS removes it from the page completely, not good for those without CSS support. Another consequence is in site management. Having content imagery in the CSS can make life a little tricky.</p>
+
+
+ <p>The second approach involves using the CSS overflow property. By wrapping the inline image with a container (again, maybe a div) and assigning this an <em>overflow: hidden</em> we can control the viewable area of the image by controlling the size of the surrounding div (with CSS, natch). An example of this can be seen on these pages, with the favourite sites and flickr images. Resize the window. These images should expand to fill the available space.</p>
+
+
+ <p>OK, so we have added some additional markup to the page, depending on your feelings on this that solution may be fine. Want to go a bit further? What about assigning a class to the image and using some nifty DOM scripting to add in the additional markup?</p>

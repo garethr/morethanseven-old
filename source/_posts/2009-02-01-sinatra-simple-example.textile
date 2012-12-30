@@ -1,0 +1,38 @@
+---
+created_at: 2009/02/01}
+layout: post
+comments: true
+categories: [sinatra, ruby]
+title: "Sinatra Simple Example"
+---
+
+I've been playing around with the "Sinarta":http://www.sinatrarb.com/ Ruby web development framework recently and building a "larger than usual Hello World Example":http://github.com/garethr/sinatra-hello-world. It's describes itself as _a DSL for quickly creating web-applications in Ruby with minimal effort_ (what is it about Ruby people and their obsession with calling everything a DSL?). In reality it's a great little web framework. It deals with a minimal set of the things you really need to do as part of any application - URL handling and routing, HTTP request and response handling, etc. It reminds me of "web.py":http://webpy.org/ in it's minimalist approach which is definitely a good thing.
+
+The following example is the hello world given on the site
+
+pre. require 'rubygems'
+require 'sinatra'
+get '/' do
+  'Hello world!'
+end
+
+Which isn't a million miles away from a web.py example:
+
+pre. import web
+urls = (
+    '/', 'hello'
+)
+app = web.application(urls, globals())
+class hello:        
+    def GET(self, name):
+        return 'Hello World'
+if __name__ == "__main__":
+    app.run()
+
+The only real difference is the separate mapping of URLs to views in web.py, which is closer to how Rails or Django do things.
+
+Their is quite a bit of "documentation":http://www.sinatrarb.com/documentation.html already for Sinatra, including the start of a "book":http://www.sinatrarb.com/book.html. The code (as with all good code these days) is on "github":http://github.com/sinatra/sinatra/tree/master for your forking pleasure.
+
+As for what I've been up to I have a more advanced "Hello World":http://github.com/garethr/sinatra-hello-world example up on GitHub. I'm wanting to get a running application that demonstrates all the basic features (except "HAML and SASS":http://morethanseven.net/2008/04/11/dsls-for-html-and-css-the-future-or-just-plain-wro/ support). So far I've got a simple bit of Rack middleware, several views demonstrating different url handling techniques, basic erb templates, before methods, configuration settings, error handling, decent unit test coverage, a rake file with a tasks for documentation, code coverage, etc. I've also got configuration files for running the application with "Thin":http://code.macournoyer.com/thin/ and using "God":http://god.rubyforge.org/. I'm going to add some simple database connectivity in at some point (either "DataMapper":http://datamapper.org or "Sequel":http://sequel.rubyforge.org/, I haven't decided yet) and play around with writing spec tests and a capistrano recipe file. All in it's a nice way of learning something new at the same time as producing something that might be useful. Once I have the rest of the bits and pieces I might even right a full tutorial.
+
+I think the sweet spot for these sorts of mini frameworks are small services or little applications that just sit their are run. Both "Integrity":http://integrityapp.com/ and "IRCLogger":http://irclogger.com both use Sinatra for instance and I think it's used for the "GitHub WebHooks":http://github.com/guides/post-receive-hooks as well. It's exactly the sort of thing Google AppEngine is useful for in fact and Sinatra would likely be a closer fit that Rails if Google ever feel like adding Ruby support. Although it does depress me a little that the "top four items in the public issue tracker":http://code.google.com/p/googleappengine/issues/list are _I want my own language_.

@@ -1,0 +1,9 @@
+---
+created_at: 2009/01/29}
+layout: post
+comments: true
+categories: [json, python]
+title: "Jsonpickle"
+---
+
+"Jsonpickle":http://code.google.com/p/jsonpickle is a Python library for serializing any arbitrary object graph into JSON. The advantage over something like simplejson is the _arbitrary_ part, simplejson throws errors when you try and serialize some types of objects. I also prefer the jsonpickle API (encode, decode) over simplejson (dump, dumps, load, loads).

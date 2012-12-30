@@ -1,0 +1,24 @@
+---
+created_at: 2007/02/04}
+layout: post
+comments: true
+categories: []
+title: "WebDD"
+---
+
+<p>Just back from <a href="//webdd.org.uk">WebDD</a> down in Reading at the Microsoft Campus and thought I&#8217;d post a few thoughts. I&#8217;ll get into a few of these topics in more detail down the line when time permits but for now&#8230;</p>
+
+
+ <p>I went to a few talks, one on Microformats by <a href="http://www.glennjones.net">Glenn Jones</a> and the other on web standards design by <a href="http://www.splintered.co.uk">Patrick Lauke</a> that I enjoyed but didn&#8217;t learn much. I wasn&#8217;t the intended audience really and I&#8217;d gone along because I didn&#8217;t fancy the alternatives. Both were entertaining and well attended anyhow, and I&#8217;m sure the more developer orientated folk got a lot out of both.</p>
+
+
+ <p>The main two things I came away thinking about however were the upcoming version of <a href="http://msdn2.microsoft.com/en-us/vstudio/aa700830.aspx">Visual Studio</a> (codename &#8220;Orcas&#8221;) and Microsofts new identity platform <a href="http://cardspace.netfx3.com/">CardSpace</a></p>
+
+
+ <p>Now I&#8217;m not generally a fan of IDEs, but someone has been thinking <em>alot</em> about how Visual Studio (and the new Expression Web) can be of use to web designers. Some of the CSS tools are very cool, I might do some screenshot from Expression (we all got free copies) if I get the chance. Their has also been a huge effort to integrate Javascript functionality, including full debugging and breakpoint support as well as intelissense. All of which looks really rather nice.</p>
+
+
+ <p>According to Microsoft <q><a href="http://cardspace.netfx3.com/">Windows CardSpace</a> enables users to provide their digital identities in a familiar, secure and easy way.</q> Which should have alarm bells going off and (bad) memories of Passport flooding back. I went in not knowing much and in quite a sceptical mood, assuming the worst. Turns out I was wrong. The presentation, by <a href="http://www.idunno.org/">Barry Dorrans</a>, covered quite a bit of ground from an introduction, through code and working examples and even a big discussion of the issue of identity and <a href="http://openid.net/">OpenID</a> in particularly. I&#8217;m suprised that I haven&#8217;t seen any mention of CardSpace along with the recent rise in discussion around identity and OpenID. More on this soon.</p>
+
+
+ <p>One last thing on the WebDD site caught my eye: <q>around 350 people with a 50/50 split of web developers and web designers</q>. In reality I think about 20 of us registered as designers which amused me. Microsoft doesn&#8217;t (yet) have a pull over designers as it does over developers. More on that too when I get my thoughts in order.</p>

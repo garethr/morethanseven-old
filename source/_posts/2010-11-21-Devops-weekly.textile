@@ -1,0 +1,24 @@
+---
+created_at: 2010/11/21
+excerpt: 
+layout: post
+comments: true
+categories: [devops, devopsweekly]
+title: "Devops Weekly"
+---
+
+I've really been enjoying "Ruby Weekly":http://rubyweekly.com recently, it's an email newsletter by "Peter Cooper":http://peterc.org/ which brings the latest Ruby related news and articles to your inbox.
+
+I have to admit to being sceptical at first about the format, I think I unsubscribed from most email newsletters many years ago, moving my reading to RSS and then Twitter. But I've actually found a regularly appearing email a great way to catch up with the goings on. A think the reasons for that change of heart are:
+
+* Their is simply more being written now that even a few years ago, and I'm interested in more topics.
+* For a short time Hacker News solved this problem for me, but now it's too high volume for me to subscribe and read everything.
+* I now manage my email inbox pretty well, I'm not always at inbox zero but I can't remember the last time it was over 20.
+* RSS is great, but it's always a limited view unless you follow 1000s of feeds.
+* Twitter is great but unless you read every tweet you'll miss some important bit of new.s
+
+I think Ruby Weekly works because it's collated by someone with taste. Peter spends a bit of time putting together a small number of high quality links so I don't have to. With "Devops Weekly":http://devopsweekly.com I'm hoping to do the same for a different niche.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjxqwEM"/>
+
+So head over to "devopsweekly.com":http://devopsweekly.com to sign up. I'm not 100% sure yet when the first issue will go out but expect it in the next few weeks, and after that I'll try and get one issue out each week. Any ideas are more than welcome, as are any news or articles that you think should go in. 

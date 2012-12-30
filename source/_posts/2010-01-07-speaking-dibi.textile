@@ -1,0 +1,15 @@
+---
+created_at: 2010/01/07}
+layout: post
+comments: true
+categories: [devops, dibi, newcastle]
+title: "Speaking at DIBI"
+---
+
+I'll be heading back up to Newcastle in April to give a talk at what's shaping up to be a good looking conference to kick off the year with. "DIBI":http://www.whatisdibi.com/ is trying to please everyone, with both front and backend focused streams.
+
+bq. Created for both sides of the web coin, DIBI brings together designers and developers for an unusual two-track web conference. World renowned speakers leading in their fields of work will talk about all things web. Taking place in Newcastle upon Tyne, (it's oop north) at The Sage Gateshead on the 28th April 2010, we're bringing both sides of the web world together with some awesome speakers.
+
+I'm not a big fan of making a point of dividing frontend and backend work. You nearly always end up with javascript dominated horribleness (because we only had a front end person available) or a so called content management system that means all sites have to look the same except for the colour palette. So I'm hoping lots of cross over stuff happens and interesting conversations abound.
+
+Oh, and if you're wondering what I'll be speaking about it's probably going to be something about all the cool tools you could and should be using when building or looking after web applications. I'll probably be doing my best to convince people to look outside the comfort of the LAMP or C#/MSSQL stacks and realise the future for lots of web developers might just be more devops.

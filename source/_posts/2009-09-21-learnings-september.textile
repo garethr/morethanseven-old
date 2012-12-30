@@ -1,0 +1,21 @@
+---
+created_at: 2009/09/21}
+layout: post
+comments: true
+categories: [operations]
+title: "Learnings from September"
+---
+
+I'm keep meaning to get around to writing about why I think the future of web developers is operations but in lieu of a proper post here's a list of things I've been spending my work life getting to know this month:
+
+* "Puppet":http://reductivelabs.com/products/puppet - It's brilliant. Define (with a Ruby DSL of course) what software and services you want running on all your machines, install a daemon on each of them, and hey presto central configuration management.
+* "VMWare vsphere":http://www.vmware.com/products/vsphere/ - puppet makes more sense the more boxes you have. With vsphere I can have as many boxes as I want (nearly). Command line scripts and an actually very nice windows gui for settings up virtual machines is all pretty nice, especially running on some meaty hardware.
+* "Nagios":http://nagios.org/ - With lots of boxes comes lots of responsibility (or something). Nagios might look a bit ugly, and bug me with it's needless frames based admin, but I can see what people see in it. Which frankly is the ability to monitor everything everywhere for any change what-so-ever.
+* "Solr":http://lucene.apache.org/solr/ - I'm now also pretty well versed in using Solr. I've used it in the past, but always behind a Ruby or Python library. Now I know my way around all the XML based configuration inards. Heck, I'm even running a nighly release from a couple of days ago in a production environment because I wanted a cool new feature. A special mention to the Solr community on the mailing list, twitter and irc for being great when I had questions.
+* Solaris - I nearly forgot, I spend more time than I care to remember working out how to use Open Solaris (conclusion: OK, but not Debian) and eventually Solaris 10 (conclusion: hope I don't have to do that again). My installation notes read like some hideous hack but everything works fine in production and it's scarily repeatable so I'll live with it for now.
+
+I do wonder if it's just me that's drawn to knowing how everything in the full web stack works. But personally I can't just write code if I don't understand how to deploy it or what it's running on. Front end types know this all too well. Being a master of CSS, HTML and Javascript simply isn't enough. You need to understand the browser to get anything done. I'm not sure it's the same for all backend inclined folk; how many PHP programmers really understand Apache and a few other useful bits of web tech?
+
+
+
+

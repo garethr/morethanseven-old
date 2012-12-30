@@ -1,0 +1,21 @@
+---
+created_at: 2007/07/31}
+layout: post
+comments: true
+categories: []
+title: "Some Thoughts on Good Conferences to Attend - UK"
+---
+
+"Ben Metcalfe":http://benmetcalfe.com/blog/index.php/2007/07/31/some-thoughts-on-good-conferences-to-attend/ just posted a run down of some thoughts on conferences to attend. With all my travels this year I thought I'd join in. 
+
+I've spend quite a bit of time this year travelling the UK for various get togethers, conferences, meetups and the like and had great fun doing so. I go mainly because nowhere else do I find quite such a critical mass of smart interesting people to have a pint with and discuss the intricacies of the web. For 2007, in roughly chronological order: "WebDD":http://www.webdd.org.uk/, "Barcamp London":http://barcamp.org/BarCampLondon2, "Future of Web Apps":http://www.futureofwebapps.com/, "Highland Fling":http://thehighlandfling.com, Refresh Edinburgh, "@media":http://vivabit.com/atmedia2007/, "Hackday":http://www.hackday.org/. I'll be at "dConstruct":http://2007.dconstruct.org/, Future of Web Apps (again) and possibly "Future of Mobile":http://www.future-of-mobile.com and a Rails meetup in London as well to finish off the year.
+
+I won't go on about how cool "Barcamp":http://barcamp.org/ was. I actually think the whole unconference thing sits alongside the more formal conference scene quite nicely rather than acting as a direct challenge. Safe to say if you have yet to make a Barcamp then be on the lookout (although if you could not pick brighton please. I really want to go and it's going to be hard enough to get tickets anyway!)
+
+Highland Fling was excellent. Alan did a bang up job of picking a pretty focused topic and getting a gang of safe hands in to do the talking. Everything seemed to follow on from the previous talk, or catch a thread only touched on earlier in the day. This turned out to be down to the specific topic rather than some pre-conference collusion which I thing bodes well for other such topic centric mini-conferences. It was all rounded off (as all conferences must be) with a rousing talk from "Andy Clarke":http://www.stuffandnonsense.co.uk/ and a panel chaired by "Jeremy -Paxman- +Keith+":http://adactio.com/.
+
+@media is still the daddy of the UK web standards scene. Personally I want more advanced materials and I'd love to see more audience interaction, but the scale of it makes that a little difficult I acknowledge. I'll keep going as long as I learn something new and come away feeling a little bit inspired. I'll be going next year. Maybe it's not going to hit the heights of the very first @media a couple of years back but that was my first trip out into the world. Oh, and "patrick":http://www.htmldog.com/ throws good parties in pubs with beer.
+
+I think dConstruct is basically a grown up Highland Fling. It was great fun last year so here's hoping it's as much fun this year. Again, the idea of a particular topic is in place. I'm still thinking about "@media Ajax":http://vivabit.com/atmediaAjax/ if I can get enough work together to pay for it (note to people trying to keep up - I now "work for myself as a freelancer":http://garethrushgrove.com) and I have a sneaking suspicion I'll want to get along to "Future of Mobile":http://www.future-of-mobile.com/ in a couple of months too.
+
+My plan for next year is to try and get out of the country and hopefully to some of the events in the US and Europe that offer something different. "SXSW":sxsw.com/ is an obvious choice, but I'd be interested in any other ideas on top of Ben's list. I'd also like to think in a year of so I might even end up talking at some nice event or other - but I need to pick a topic and stick to it I reckon instead of flitting between whatever I feel like that afternoon. Oh and probably practice.

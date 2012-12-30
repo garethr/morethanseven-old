@@ -1,0 +1,27 @@
+---
+created_at: 2010/01/30}
+layout: post
+comments: true
+categories: [cucumber, nagios, rabbitmq, amqp]
+title: "RabbitMQ support for Cucumber-nagios"
+---
+
+I've been doing more operations related work of late and am starting to use "Cucumber-nagios":http://auxesis.github.com/cucumber-nagios/ for various monitoring tasks. "Nagios":http://www.nagios.org/ might not be the most attractive of web interfaces but it's so simple to get clients up and running and extend to do what you need. Cucumber however has a lovely, text based, user interface. And although I'm mainly working with Python at the moment cucumber-nagios (written in Ruby) really is the easiest way I've found of writing simple functional tests.
+
+Cucumber-nagios is the creation of "Lindsay Holmwood":http://holmwood.id.au/~lindsay/ and after several brief conversations over Twitter I set about adding a feature I wanted for my own monitoring setup. Namely support for keeping an eye on RabbitMQ.
+
+At the moment the code is in a "fork on GitHub":http://github.com/garethr/cucumber-nagios but I'm hoping that once any rough edges have been ironed out and a few people have kicked the tyres then it will make it's way into trunk. If you want to use this with an existing project straight away you can always drop the contents of "amqp_steps.rb":http://github.com/garethr/cucumber-nagios/blob/master/lib/generators/project/features/steps/amqp_steps.rb into your feature steps file after installing the "amqp gem":http://gems.rubyforge.org/gems/amqp.
+
+I've included a little documentation in the fork as well with a quick example:
+
+<pre>Feature: github.com
+  To make sure the rest of the system is in order
+  All our message queues must not be backed up
+  Scenario: test queue
+    Given I have a AMQP server on rabbit.github.com
+    And I want to check on the fork queue
+    Then it should have less than 400 messages
+    Then it should have at least 5 consumers
+    Then it should have less than 50 messages per consumer</pre>
+
+My main usecase was to keep an eye on a known queue size and number of consumers. I'm sure I'm missing some features at the moment so any feedback much appreciated.

@@ -1,0 +1,19 @@
+---
+created_at: 2007/07/15}
+layout: post
+comments: true
+categories: []
+title: "Ruby on Rails on Nokia N800"
+---
+
+My latest job has allowed me to get back into playing with "Rails":http://rubyonrails.com, something I've been meaning to do for a year or so. Having got everything up to date and installed on my virtual server and on my laptop I couldn't resist seeing if I could get it going on my "N800":http://www.nseries.com/products/n800. 
+
+The reasons for this are mainly that the idea of a wireless web server in my pocket is pretty intriguing. Think about it. If you're at an event with Wi-Fi you can just point people to an IP address and hey presto they have access to your details, or a set of photos, or whatever you want to show them. I've also got nginx installed, but I'm not as yet that up on running python or PHP behind it on the N800. So, no need to carry around the laptop. OK, maybe it's just me and all this going to web conferences? We'll have to see if I actually knock up anything useful for the next conference and see. Saving that I've been travelling quite a bit recently and it's handy when reading a Rails book to be able to try out the examples.
+
+Anyway, it turns out that you can indeed "install Ruby and Rails on the N800":http://flickr.com/photos/kwe/484269853/, although their isn't much information around and non of it worked exactly as stated for me - hence this post.
+
+I followed along with a "pretty good tutorial":http://www.digitalknk.com/2007/05/27/howto-ruby-on-rails-on-your-nokia-n800/, although I already had Red Pill Mode, XTerm and SSH installed. Ruby is also now available in the "Garage":https://garage.maemo.org/projects/ruby185/.
+
+The crux of the post is that you can find the required packages, in particular for Gem, "here":http://pierre.droids-corp.org/maemo/. But unfortunately that is were the problems start. I ran into exactly the same problem as described in the comments in the above post, on "this blog post":http://railsgrunt.com/2007/5/14/installing-ruby-on-rails-on-the-n800 and on this "Internet Tablet Talk":http://www.internettablettalk.com/ "forum thread":http://www.internettablettalk.com/forums/showthread.php?t=5442&page=2. Specifically, Gem hanging, crashing or returning a segmentation fault in the yaml.rb file on line 133.
+
+The problem appears to be (this is me guessing here) with gem and the N800 being able download all the info for Gem to update it's package list. The solution, or rather a suitable workaround, is to download the individual gems yourself to the local file system or a memory card and then install them from there. You can get all the Rails gems "here":http://pierre.droids-corp.org/maemo/gems/. A quick script/server later and I had the familiar Rails welcome screen on port 3000. This should in theory work for oher gems as well. You can either download them directly or use Gem on a local machine and them move the files across via bluetooth or USB.

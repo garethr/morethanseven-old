@@ -1,0 +1,12 @@
+---
+created_at: 2005/06/05}
+layout: post
+comments: true
+categories: []
+title: "Bookmarks"
+---
+
+<p>I&#8217;ve of late been playing around with a number of different ways of storing bookmarks after realising I was just not bothering before. I added del.icio.us links to the site a bit ago and I&#8217;ve just come across Scuttle (<a href="http://scuttle.org">scuttle.org</a>) which is a GPL PHP del.icio.us clone which is really quite nice.</p>
+
+
+ <p>I&#8217;ve set it up at the moment on one of my machines and might look to add a styled and modified version to this site as time and inclination allow.</p>

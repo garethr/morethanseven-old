@@ -1,0 +1,21 @@
+---
+created_at: 2006/07/19}
+layout: post
+comments: true
+categories: []
+title: "More dConstruct craziness"
+---
+
+<p>Last year I missed out on <a href="http://2006.dconstruct.org/">dconstruct</a>, this year I sat and watched the timer tick down. Which didn&#8217;t help hugely as a fair few other people were doing the same thing and the site went into what appeared to be a javascript induced page request meltdown. Oh well. Everything worked out in the end, I paid my money for myself and a <a href="http://sarat.xcelens.co.uk/">colleague</a> to attend and so did 348 or so other people and it&#8217;s now sold out. Why do I get a feeling I could name half the people attending? and be about right?</p>
+
+
+ <p>Their will again I&#8217;m sure be more <em>web conference as trendy holiday for web geeks and nothing else</em> conversations, but again I dont care. I haven&#8217;t had the chance to do any holidays at all for ages unless you count <a href="http://carsonworkshops.com/summit">Carson</a> and <a href="http://vivabit.com/atmedia2006">@media</a>, and I learn lots again as well.</p>
+
+
+ <p>Well, I&#8217;ve fired up the <a href="http://morethanseven.net/dconstruct/">dConstruct feed thing</a> again, although I need to update the codebase with the latest version as it lacks the bits I added (like new post indicators and the stats) more recently. Give me a week or so.</p>
+
+
+ <p>Much more interestingly, and entertainingly, I have to recommend the <a href="http://2006.dconstruct.org/podcast/">dConstruct Podcast</a>. I listen to podcasts on occasion, always grab talks from conferences and the like and subscribed because it was their. I didn&#8217;t expect it to be a <strong>rock and roll fourteen minutes of comedy genius</strong>. Everyone who&#8217;s been to one of <a href="http://adactio.com">Jeremy&#8217;s</a> talks or sessions will know he&#8217;s an enthusiastic and engaging presenter, but little did we know about the comic inside. Ok, so you need to know everyone, so maybe it&#8217;s a bit incestuous, but it&#8217;s still funny. Through in some more info about the upcoming event and everyone will be laughing. More of the same please.</p>
+
+
+ <p>On the web design podcast front; anyone know of any good magazine style programmes on web design and development? or even better a weekly comic look at the industry?</p>

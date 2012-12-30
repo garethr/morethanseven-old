@@ -1,0 +1,24 @@
+---
+created_at: 2012/01/06
+layout: post
+comments: true
+comments: true
+categories: [jenkins, node, javascript, hubot, github]
+title: "Talking To Jenkins From Campfire With Hubot"
+---
+
+In what turned out to be a productive holiday hacking with languages I'd not used before, I got round to writing some coffeescript on node.js. This was more to do with scratching a personal itch that pure experimentation. I had a play with "Janky":https://github.com/github/janky (Github's Jenkins/Hubot mashup) but found it a little opinionated on the Jenkins side, but the campfire integration is excellent. Looking at the Jenkins commands in "hubot-scripts":https://github.com/github/hubot-scripts/ though I found those even more opinionated.
+
+The magic of open source though is you can just fix things, then ask nice people if they like what you've done. I set about writing a few more general commands and lo, the've been quickly "merged upstream":https://github.com/github/hubot-scripts/pull/23840h.
+
+These add:
+
+* A command to list all your Jenkins jobs and the current state
+* A command to trigger a normal build
+* A command to trigger a build with a list of parameters
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRipwAIM" alt="campfire window showing jenkins tasks"/>
+
+This was made much easier by first looking at the previous Jenkins commands, and then looking at other scripts in the hubot-scripts repository. The best way of learning a new language/framework is still on the shoulders of others.
+
+I've got a few other good ideas for Jenkins related commands. I want to add a filter command to the jobs list, both by name and by current state. For longer running jobs I also want to report whether a build is currently running. And then maybe get information about a specific job, like the last few runs or similar. Any other requests or ideas most welcome.

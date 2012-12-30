@@ -1,0 +1,28 @@
+---
+created_at: 2011/07/24
+excerpt: 
+layout: post
+comments: true
+categories: [jenkins]
+title: "Jenkins Build Pipeline Example"
+---
+
+The idea of a build pipeline for web application deployment appears to have picked up lots of interest from the excellent "Continuous Delivery":http://continuousdelivery.com/ book. Inspired by that, some nice folks have build an excellent plugin for Jenkins unsurprisingly called the "Build Pipeline Plugin":https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin. Here's a quick example of how I'm using it for one of my projects*.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRihmQIM" alt="Build pipeline example in Jenkins"/>
+
+The pipeline is really just a visualisation of up and downstream builds in Jenkins given a starting point, plus the ability to setup manual steps rather than just the default build after ones. That means the steps are completely up to you and your project. In this case I'm using:
+
+# Build - downloads the latest code and any dependencies. You could also create a system package here if you like. If successful triggers...
+# Staging deploy - In this case I'm using capistrano, but it could easily have been rsync, fabric or triggering a chef or puppet run. If successful triggers...
+# Staging test - This is a simple automated test suite that checks that the site on staging is correct. The tests are bundled with the code, so are pulled down as part of the build step. If the tests pass...
+# Staging approval - This is one of the clever parts of the plugin. This jenkins job actually does nothing except log it's successful activation. It's only run when I press the Trigger button on the pipeline view. This acts as a nice manual gate for a once over check on staging.
+# Production deploy - using the same artifact as deployed to staging this job triggers the deploy to the production site again via capistrano
+
+I'm triggering builds on each commit too via a webhook. But I can also kick off a build by clicking the button the pipeline view if I need to.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRi5kQIM" alt="Pipeline example showing build in progress"/>
+
+Note that I'm only allowing the last build to be deployed given only that one can be checked on staging. Again this is configuration specific to my usage, the plugins lets you operate a number of different ways. There are a number of tweaks I want to make to this, mainly around experimenting with parameterized builds to pass useful information downstream and even allow parrallel execution. For the moment I have the _Block build when upstream project is building_ flag checked on the deploy.
+
+ &nbsp;* Yes, this is a one page site. With a 5 step build process in Jenkins including a small suite of functional tests and a staging environment. This is what we call overengineering.

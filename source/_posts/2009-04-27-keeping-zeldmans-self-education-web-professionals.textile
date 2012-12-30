@@ -1,0 +1,15 @@
+---
+created_at: 2009/04/27}
+layout: post
+comments: true
+categories: [bamboojuice]
+title: "Keeping Up With The Zeldmans - (Self) Education for Web Professionals"
+---
+
+So, it was the "Bamboo Juice":http://www.bamboojuice.co.uk/ conference last Friday at the rather impressive Eden project in Cornwall. Along with "Jeremy":http://adactio.com, "Dom":http://www.thehodge.co.uk/, "Paul":http://boagworld.com/ and "Relly":http://www.scatteredpoppies.com/ I presented to the crowd of mainly local first time web conference goers.
+
+<object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=selfeducationforwebprofessionals-090427034436-phpapp02&stripped_title=self-education-for-web-professionals" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=selfeducationforwebprofessionals-090427034436-phpapp02&stripped_title=self-education-for-web-professionals" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object>
+
+It was a great event, and felt a lot like the first Highland Fling in that it was the first big event in an area that's actually quite a distance from the bright lights of London (it took 8 hours to get back to Cambridge). The party afterwards, held in one of the biomes at the Eden project itself, was also pretty impressive.
+
+I'll hopefully right up some of my notes from the presentation soon, but for the moment I've "uploaded the slides to Slideshare":http://www.slideshare.net/garethr/self-education-for-web-professionals. The whole thing was video'd as well so look out for those in the future.

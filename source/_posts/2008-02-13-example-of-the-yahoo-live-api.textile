@@ -1,0 +1,52 @@
+---
+created_at: 2008/02/13}
+layout: post
+comments: true
+categories: []
+title: "Example of the Yahoo Live Api"
+---
+
+"Yahoo! Live":http://live.yahoo.com/ launched recently along with a nice "RESTful API":http://developer.yahoo.com/ylive/rest_api/. I've spoken before about the beauty of REST being in lowering the barrier to hacking and when I wanted a quick feature for Live it was simplicity itself to put together.
+
+A few friends are using it far too much it seems, "Ben":http://ben-ward.co.uk/ has 7.6 hours and "Si":http://simonjobling.com has already clocked up 15 hours. But for the most part I keep missing their no-doubt highly entertaining antics. One thing that Live misses I feel is a favourite users or previously viewed channels list. Basically I want to see which of my friends who use the service are broadcasting right now. Something like:
+
+<a href="http://morethanseven.net/presents/yahoolive/"><img src="http://img.skitch.com/20080213-q7ntrbip3rhwbkdbykuwt4an5.render.png" alt="Yahoo! Live Online"/></a>
+
+The API request we're interested in is the "/channel/PERMALINK":http://developer.yahoo.com/ylive/rest_api/channel.html method. This lets us get information about whether the user is broadcasting at the moment.
+
+<pre><code><?php
+$api = 'http://api.live.yahoo.com/api/v1/channel';
+$friends = array(
+  'garethr',
+  'benward',
+  'sijobling'
+);
+$statuses = array();
+foreach ($friends as $friend) { 
+  $response = simplexml_load_file($api . '/' . $friend);
+  $name = $response->name; 
+  if ($response->broadcast) {
+    $status = 'live';
+  } else {
+    $status = 'offline';
+  }
+  $statuses["$name"] = $status;
+}
+function displaylist($array) {
+  $output = '';
+  if (count($array) >= 0) {
+    $output .= '<ul>';
+    foreach ($array as $key => $value) {
+      $output .= "<li class=\"$value\">";
+      $output .= "<a href=\"http://live.yahoo.com/$key\">";
+      $output .= "$key</a>";
+      $output .= "<span>$value</span></li>";
+    }
+    $output .= '</ul>';
+  }
+  return $output;
+}
+echo displaylist($statuses);
+?></code></pre>
+
+I'll add a few more people to "my list":http://morethanseven.net/presents/yahoolive/ when I discover other people using the service. If you have an account leave a comment. I've added a touch of javascript as well so as to avoid having to reload the page manually. This way I can loiter on my little aggregator until someone I know starts broadcasting and head over to Live for whatever Si has been spending 15 hours doing.

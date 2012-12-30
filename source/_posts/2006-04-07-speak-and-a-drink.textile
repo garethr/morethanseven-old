@@ -1,0 +1,21 @@
+---
+created_at: 2006/04/07}
+layout: post
+comments: true
+categories: []
+title: "Speak and a Drink"
+---
+
+<p>I&#8217;ve been going along to the local industry do <a href="http://thinkandadrink.com">Think and a Drink</a> for a good long while now and they have talked me into speaking at the next do. So I wont be thinking for the first hour, rather rambling on about the chosen topic of Web 2.0. My loose plan is to mock the term and big up the technology involved. Someone else has the job of looking at the business implications, which should also be pretty interesting.</p>
+
+
+ <p>Apparently this is me:</p>
+
+
+ <p>Gareth works at TH_NK Ã¢â‚¬â€œ a newcastle based brand technology company. He is involved in a number of areas of the web design and development process, from the design of modern web applications to building effective online interfaces. In his spare time, he blogs on web design, development and accessibility at <a href="http://morethanseven.net">morethanseven.net</a> and organises events for the local developer community on <a href="http://newcastlenewmedia.org">newcastlenewmedia.org</a>. Keeping up-to-speed with web trends and new technology is something Gareth is passionate about Ã¢â‚¬â€œ and it shows.</p>
+
+
+ <p>If anyone who has never been before, or isn&#8217;t a <a href="http://codeworks.net">codeworks</a> member, wants to go along then let me know. I&#8217;m sure Heather would love more people along, and be good to see some familiar faces (or at least familiar domain names) in the audience.</p>
+
+
+ <p>I&#8217;ll publish my brief presentation if it&#8217;s any good after the event. See you there?</p>

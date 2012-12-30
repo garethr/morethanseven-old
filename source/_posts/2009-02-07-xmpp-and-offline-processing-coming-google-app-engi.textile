@@ -1,0 +1,18 @@
+---
+created_at: 2009/02/07}
+layout: post
+comments: true
+categories: [appengine, xmpp]
+title: "XMPP and offline processing coming to Google App Engine"
+---
+
+Three weeks ago I pondered whether "XMPP and offline processing were coming to Google App Engine?":http://morethanseven.net/2009/01/15/are-xmpp-and-offline-processing-coming-google-app-/. It was a hunch based on the upcoming release of Jaiku on App Engine. I reasoned you couldn't really do it without XMPP and offline processing APIs. Looks like I was right.
+
+Today "Joe Gregorio":http://bitworking.org/news/ announced on the "App Engine Blog":http://googleappengine.blogspot.com/ an "update to the roadmap for the next 6 months":http://googleappengine.blogspot.com/2009/02/roadmap-update.html; including
+
+* Support for running scheduled tasks
+* Task queues for performing background processing
+* Ability to receive and process incoming email
+* Support for sending and receiving XMPP (Jabber) messages
+
+Colour me excited. This could be the point were we start seeing more and more interesting IM interfaces. And this ticks off several of my must haves for App Engine.

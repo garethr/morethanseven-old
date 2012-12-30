@@ -1,0 +1,21 @@
+---
+created_at: 2009/04/04}
+layout: post
+comments: true
+categories: [architecture, twitter]
+title: "Mixing it Up - Programming Language Choice"
+---
+
+So the "Register article about Twitter":http://www.theregister.co.uk/2009/04/01/twitter_on_scala/ seems to have kicked over yet another Ruby/Rails doesn't scale debate - mainly it seems from people who haven't read any of the back story or the real meat of the story. For anyone catching up I'd suggest reading "this recent interview":http://www.artima.com/scalazine/articles/twitter_on_scala.html with three of the Twitter developers. Ikai Lan made some particular good points about "people who don't RTFM":http://ikaisays.com/2009/04/02/twitter-ruby-on-rails-scala-and-people-who-dont-rtfa/ and the comments are well worth reading too. Tony Arcieri, of "Reia":http://wiki.reia-lang.org/ fame, took another approach and wondered why "non of the open source message queues every got a look in":http://unlimitednovelty.com/2009/04/twitter-blaming-ruby-for-their-mistakes.html
+
+What it really all comes down to is that Twitter are using more than one language to write their systems in. What I don't understand is why this is a shock to anyone, or why it's a bad think? Google appear to use Java and Python for most things. Yahoo! use Java and PHP (and C and Perl I think?). Microsoft use VB and C/C++/C# and probably F#. At work we use .NET and Python for different things.
+
+Big companies have been using multiple languages and platforms for good and bad reasons for ever. Sometimes it's about legacy systems, but often it's about using the right tool for the job. I think lots of people jumping in on the debate do so from a point of view that everyone uses one language for everything, mainly because most personal projects or small agency style jobs do just that. Why overcomplicate smaller projects with the need for people to know more than one language? In a small general purpose team it's also going to make recruiting and getting people up to speed much harder.
+
+But for startups doing interesting things it's potentially both more efficient and more interesting to use multiple platforms. I think Dopplr might be mainly Ruby with a smattering of Erlang, all built around an ApacheMQ message queue, and "Matt":http://www.hackdiary.com/ has talked about that architecture at various conferences without being called out on it.
+
+So for your next personal project why not pick a handy message queue (personally I like "RabbitMQ":http://www.rabbitmq.com/ and "StompServer":http://stompserver.rubyforge.org/), and at least two complimentary languages and see how it changes the architecture of what you build? Mix PHP with an Erlang backend or go for Twitters Ruby/Scala mix. It might very well be overkill for that blog or todo list application you had in mind, but it just might  teach you more about picking the right tools for the job when you come across non-trivial problems.
+
+
+
+

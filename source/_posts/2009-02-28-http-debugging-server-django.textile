@@ -1,0 +1,25 @@
+---
+created_at: 2009/02/28}
+layout: post
+comments: true
+categories: [django]
+title: "HTTP Debugging Server in Django"
+---
+
+I've been busy building and playing with various HTTP clients recently, mainly due to more playing with RESTful web services. I took a couple of hours out to build something to make my life easier - namely a very simple "logging HTTP server in Django":http://github.com/garethr/django-http-debug/tree/master.
+
+All the application does is accepts HTTP requests and log the results to a file. I've been using it to make sure the requests I'm sending from elsewhere are correct, before pointing the client at a web service that actually does something useful. It supports POST, GET, PUT, DELETE, etc. So far so simple. 
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRjSDww" alt="screenshot showing us tailing the logs"/>
+
+I ended up using Django mainly because I did most of the work on the train, and I know my way around it pretty well by now. I did originally thing it might have been better to use something simpler but I did end up learning a few new tricks that I'll use for future projects.
+
+* In theory "Django doesn't need a database":http://code.djangoproject.com/changeset/1807. While this is true for the most part, the in-built test runner does require a database. One thing I've talked about before is the usefulness of creating your own custom test runner. If anyone else runs into this specific problem have a look at the "nodatabase.py":http://github.com/garethr/django-http-debug/blob/0ef82784abfc70cc63444e39f61807675acd5c29/http_debug/lib/nodatabase.py file.
+* The logging is handled via Python's inbuilt logging module. It has some nifty features (like log rotation, maximum file sizes and different logging levels) but is a little fiddly to get working correctly. Tales abound of log messages appearing multiple times, or permission errors causing problems. At least for this project I think I have everything working. I'll try using this "module":http://github.com/garethr/django-http-debug/blob/0ef82784abfc70cc63444e39f61807675acd5c29/http_debug/lib/log.py on a couple of other projects and maybe spin it off into a small reusable app.
+
+For something that took only a few hours to write it was both good fun and a useful learning tool. And Django proved itself more useful that I though for smaller services like this.
+
+
+
+
+

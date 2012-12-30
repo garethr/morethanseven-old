@@ -1,0 +1,13 @@
+---
+created_at: 2008/11/11}
+layout: post
+comments: true
+categories: [css, cssdoc]
+title: "CSSDoc"
+---
+
+"CSSDOC":http://cssdoc.net/ looks like a good idea. I'm sure a few people mentioned this last year at @media after the talk by the people from The Guardian but nothing came from it. Hopefully tools will start to come about soon.
+
+bq. CSSDOC is a convention to comment Cascading Style Sheets (CSS) to help individuals and teams to improve writing/coding/styling/managing CSS files. It is an adoption of the well known JavaDoc / DocBlock based way of commenting source-code. That's putting style, docblocks and tags together.
+
+

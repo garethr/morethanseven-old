@@ -1,0 +1,34 @@
+---
+created_at: 2008/02/04}
+layout: post
+comments: true
+categories: []
+title: "Continuous Integration for Front End Developers"
+---
+
+Most software developers, especially those with a grounding in Agile development methodologies, will probably be familiar with "Continuous Integration":http://www.martinfowler.com/articles/continuousIntegration.html
+
+bq. Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. *Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible*.
+
+The emphasis above is mine, purely as it's at the heart of what I'm going to ramble on about. A little closer to home "Ryan King":http://theryanking.com just "posted about":http://theryanking.com/entries/2008/02/02/inursite/ a new site; "inursite":http://inursite.com/. The premise is simple; enter a few of your sites and _inursite_ will visit them once a day and run a markup validation service over the page. You then get a feed of the pass or failure status. It's simple but brilliant. For example, I have this very site added to the service. If I put some invalid markup in this post, tomorrow morning I'll get an item in my feedreader telling me of my mistake. I'll get that every day until I fix the problem.
+
+This green/red (pass/fail) type approach to simple tests is what I find most powerful about continuous integration systems like "Cruise Control":":http://cruisecontrol.sourceforge.net/. Ryan asked over on his site in one of the comments what I'd like to see, so lets see:
+
+* Has all the CSS been compressed using something like "CSSTidy":http://csstidy.sourceforge.net/.
+* Has all the javascript been compressed using something like "JSMin":http://javascript.crockford.com/jsmin.html.
+* Does any Javascript pass the harsh taskmaster that is "JSLint":http://www.jslint.com/.
+* If my markup a little bloated? Maybe I could set a maximum size for the markup and get a fail is I go over that.
+* Ditto CSS file size.
+* Ditt Javascript.
+* Ditto images.
+* If pages have associated feeds, then validate them as well according to the relevant specification (probably RSS or Atom).
+* How many HTTP Requests does it take to load the whole page, including all the relevant assets. +I'd like to be able to set a maximum number.+
+* How many hosts are required to load the whole page? I'd like to be able to set a maximum number and get a fail if I go over that.
+* Is the page gzipped on the server.
+* And just to keep this topical, does the page have either the IE8 meta element or the associated HTTP header set to a particular value.
+
+Lots of this is front-end best practice, some coming from the YAHOO! "exceptional performance":http://developer.yahoo.com/performance/ work. It's something "I've touched on before":http://24ways.org/2007/minification-a-christmas-diet too. Can anyone else think of other things you'd like to see when you're working away crafting markup and CSS? Once you have all these tests running you could display them in widgets, gadgets, twitter, firefox extensions, large displays, mobile devices, the works.
+
+Now that sounds like an awful lot of stuff for one person (or even for one application) but I have something else in mind. If _inursite_ allowed you to hook up external webservices which accept a URL as an argument, along with any service specific parameters, and return true or false then, in theory, anyone could add their own custom checks to it. This becomes particularly useful for larger teams than are likely to have internal quality tools already. On top of all that I'd probably pay for a service like this that let me run it on demand (rather than once per day) - or maybe even better, pay for a downloadable version (a.l.a. "Mint":http://haveamint.com) I can install locally.
+
+As you can probably tell, I think the general idea of continuous integration for front end web developer is one for which time has come. It's simply part of our discipline growing up and becoming more professional. Whether Ryan looks to extend his fantastic simple service in this direction or not I hope something will come along that does all this and more. I might even work on it myself - but then I always say that!

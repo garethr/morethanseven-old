@@ -1,0 +1,47 @@
+---
+created_at: 2012/08/19
+excerpt: 
+layout: post
+comments: true
+categories: [logstash, grok, rspec]
+title: "Tale Of A Grok Pattern"
+---
+
+I'm all of a sudden adding lots more code to GitHub. Here's the latest project, "grok patterns for logstash":https://github.com/garethr/logstash-patterns. At the moment this repo only contains one new pattern but I'm hoping to add more, and maybe even for others to add more too.
+
+First, a bit of background. "Logstash":http://logstash.net/ is the excellent, open source, log agregation and processing framework. It takes inputs from various configurable places, processes them with filters and then outputs the results. So maybe you'll take inputs from various application log files and output then into an elastic search index for easy searching, or output the same inputs to graphite and statsd to get graphs of rates. One of the host powerful filters in logstash is the "grok filter":http://logstash.net/docs/1.0.17/filters/grok. It takes a grok pattern and parses out information contained in the text into fields that can be more easily used by outputs. This post serves hopefully as both an explanation of why and an example of how you might do that.
+
+h2. The problem
+
+Rails logs are horrible, that is until you install the excellent "lograge":https://github.com/roidrage/lograge output formatter. That gives you lines like:
+
+<pre>GET /jobs/833552.json format=json action=jobs#show status=200 duration=58.33 view=40.43 db=15.26</pre>
+
+This contains loads of useful information that's easily parsable by a developer. We have the HTTP status code, the rails controller and information about response time too. A grok filter lets us teach logstash about that information too. The working grok filter for filtering this line looks like this:
+
+h2. The solution
+
+<pre>LOGRAGE %{WORD:method}%{SPACE}%{DATA}%{SPACE}action=%{WORD:controller}#%{WORD:action}%{SPACE}status=%{INT:status}%{SPACE}duration=%{NUMBER:duration}%{SPACE}view=%{NUMBER:view}(%{SPACE}db=%{NUMBER:db})?%{GREEDYDATA}</pre>
+
+That was worked out pretty much with a bit of trial and error and use of the logstash java binary, using stdin and stdout inputs and outputs. It works but getting their wasn't that much funand proving it works outside a running logstash setup was tricky. Enter rspec and the grok implementation in pure Ruby. The project above contains an Rspec matcher for use when testing grok filters for logstash. I'll probably extract that into a gem at some point but you'll get the idea. Now we can write tests like these:
+
+<pre>the lograge grok pattern
+  with a standard lograge log line
+    should have the correct http method value
+    should have the correct value for the request duration
+    should have the correct value for the request view time
+    should have the correct controller and action
+    should have the correct value for db time
+  without the db time
+    should have the correct value for the request view time
+  with a post request
+    should have the correct http method value
+
+Finished in 0.01472 seconds
+7 examples, 0 failures
+</pre>
+
+The "tests themselves":https://github.com/garethr/logstash-patterns/blob/master/spec/lograge_spec.rb are just basic Rspec with most of the work done in the "custom matcher":https://github.com/garethr/logstash-patterns/blob/master/spec/spec_helper.rb. This not only means I can be a bit more confident that my grok pattern works, it also provides a much nicer framework for writing more patterns for other log formats. Parsing rules like this are one area where test driven development is a huge boon in my experience. And with tests comes continuous integration, in this case via "Travis":http://travis-ci.org/#!/garethr/logstash-patterns.
+
+I'll hopefully find myself writing more patterns and tests for them, and if anyone wants to send pull requests and to start collecting working grok patterns together so much the better.
+

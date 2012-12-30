@@ -1,0 +1,42 @@
+---
+created_at: 2010/03/19
+excerpt: 
+layout: post
+comments: true
+categories: [nanoc, webservices]
+title: "Static Generator For Web Services"
+---
+
+My latest _on a train_ project is "Dumper":http://github.com/garethr/Dumper, a static generator for web services. I'm a huge fan of "Nanoc":http://nanoc.stoneship.org/ and tools like "Jekyl":http://github.com/mojombo/jekyl for building websites. But I spend at least as much time building small webservicds. I wanted something super simple that would let me expose data I had access to as a read only web service.
+
+At the moment that means using a mysql database, specifying a SQL query and running a python script. Hey presto you have lots and lots of XML and JSON files representing your data. Dumper provides hooks for you to customise the ourput or even overide the database layer. It should be possible if you were so inclined to replace the mysql backend with another database, or other type of data store. Hopefully some of these might end up in my branch at a later date.
+
+At a basic level all you need is a config file which looks a little like:
+
+<notextile>
+<% syntax_colorize :ini, type=:coderay do %>
+[Dumper]
+path: people
+index: id
+backend: mysql
+
+[Database]
+sql: SELECT id, name FROM people
+host: localhost
+username: root
+password:
+database: dumper
+<% end %>
+</notextile>
+
+And then run a command line application against that file:
+
+<notextile>
+<% syntax_colorize :bash, type=:coderay do %>
+dumper -c people.ini dump
+<% end %>
+</notextile>
+
+The application supports a number of flags for specifying where you want the files to be generated, what your config file is called and to clean up any generated files if you want to try again. The output will let you know which files have been updated, which deleted and which added too. If you'd rather have a single file but with all your records in then that's easy too - just add something to the config file.
+
+It's somewhat early days for Dumper, and I've not seen anything similar so their are definately some rough edges that could do with some work. All of that will really come down to how much use it gets. I'd appreciate any feedback from anyone with a similar itch to scratch too.

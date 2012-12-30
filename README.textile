@@ -1,3 +1,0 @@
-Source code and content for the latest version of "morethanseven.net":http://morethanseven.net
-
-Based upon "nanoc3_blog":http://github.com/mgutz/nanoc3_blog/ and using the excellent "nanoc3":http://nanoc.stoneship.org/ site generator written in Ruby.

@@ -1,0 +1,11 @@
+---
+created_at: 2008/12/06}
+layout: post
+comments: true
+categories: [appengine, memcache]
+title: "Gmemsess"
+---
+
+I've been looking at different ways of using simple sessions on App Engine, in particular for one shot flash messaging after redirects and the like. Their are some issues with Cookie support at the moment but  "Gmemsess":http://code.google.com/p/gmemsess/ solved my problem perfectly.
+
+bq. gmemsess is a secure lightweight memcache-backed session class for Google appengine.

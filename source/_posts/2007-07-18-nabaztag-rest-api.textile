@@ -1,0 +1,31 @@
+---
+created_at: 2007/07/18}
+layout: post
+comments: true
+categories: []
+title: "Nabaztag REST API"
+---
+
+I'm having quite a bit of fun with my rabbit, _cambridge_, at the moment. Their were a number of projects at "Hackday":http://hackday.org involving the ever so cute "Nabaztag":http://nabaztag.com and I had a feeling I'd probably go home and adopt one. The idea of a rabbit with APIs was simple too much fun.
+
+!http://morethanseven.net/_assets/media/imgNabaztag.jpg(Nabaztag)!
+
+The Nabaztag API docs can be found in two places (the rest of the site unfortunately has a number of issues when it comes to finding information easily); in the "help section":http://help.nabaztag.com/fiche.php?langue=3&fiche=29#none and on the "API site":http://api.nabaztag.com/docs/home.html. The latter are much better than the former by the way.
+
+Lots of people have already been hacking on the wireless rabbit. Their are some good tools over on the "Nabaztag Sourceforge project":http://nabaztools.sourceforge.net/, a handy "Ruby module":http://rubyforge.org/projects/nabaztag/ and a "prospective":http://pear.php.net/pepr/pepr-proposal-show.php?id=463 "PEAR module":http://tmp.lfms.nl/nabaztag/ for PHP.
+
+I've been getting more and more into the ideas behind "REST":http://en.wikipedia.org/wiki/Representational_State_Transfer recently and one thing that disappointed me a litte was the HTTP RPC style Nabaztag API (note to anyone thinking REST simply means using a GET request rather than something like SOAP or XML-RPC, it doesn't). I couldn't help seeing PUTs to ears and POSTs to the mouth. 
+
+Inspired a little by "Arals":http://www.aralbalkan.com/ "Bunny Talk":http://aralbalkan.com/994 I've started implementing parts of the API in a RESTful manner, and used my API abstraction layer to build a similar application. 
+
+Head over to "morethanseven.net/presents/nabaztag/":http://morethanseven.net/presents/nabaztag/ and send me a message (via my rabbit obviously) or, er, play with _cambridges_ ears (he likes that). At the moment the API is configured only for my rabbit, although you can download the source code and run it yourself if you like. It requires PHP5 at the moment as one of the required modules is PHP5 only. But you are using "PHP5 now":http://gophp5.org/ aren't you?
+
+If you don't want to use the form you can access the API directly. Here are a couple of examples using curl:
+
+<pre><code>curl http://morethanseven.net/presents/nabaztag/ears/left</code></pre>
+
+<pre><code>curl -X 'PUT' http://morethanseven.net/presents/nabaztag/ears/left/13</code></pre>
+
+<pre><code>curl -X 'POST' -d "message" http://morethanseven.net/presents/nabaztag/mouth</code></pre>
+
+Their's a litte documentation in the source. I'll add more methods, more documentation and maybe make an API anyone with a Nabaztag can use by authenticating either as I need it or if people actually want it. Let me know what you think (via the rabbit obviously!)

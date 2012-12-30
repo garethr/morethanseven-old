@@ -1,0 +1,15 @@
+---
+created_at: 2009/05/14}
+layout: post
+comments: true
+categories: [thinkingdigital, tdc]
+title: "Back in Toon - Thinking Digital "
+---
+
+After what seems like longer than a year I've finally managed to make it back up to Newcastle. It's the "Thinking Digital":http://www/thinkingdigital.com conference again this year and so far it's been a hoot. A mix of practical, inspirational and just odd speakers (and acts) suits me pretty well. Lots of "twitter activity":http://search.twitter.com/search?q=%23tdc too.
+
+The highlights for me so far I think has been Dan Lyons talking about the future of media and print businesses. Basically a somewhat rambling attempt to describe where newspapers and print publications find themselves in this day and age (in trouble) and where they might head for salvation (either dumbing down or becoming more exclusive/expensive). Throw in interesting stories and anecdotes, the odd joke and some personal thoughts on the future for journalists and everyone's happy.
+
+An honorable mention goes to Johnny Lee Chung as well for showing off drag and drop between a laptop and a table. Oh, and everything else has been pretty interesting as well and it's not even the end of day one yet.
+
+I'm around until next week too, which means I should be able to get along to barcamp - assuming my mind hasn't melted with all the stuff to take in. 

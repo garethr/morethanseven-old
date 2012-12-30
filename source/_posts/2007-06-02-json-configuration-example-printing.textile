@@ -1,0 +1,59 @@
+---
+created_at: 2007/06/02}
+layout: post
+comments: true
+categories: []
+title: "JSON configuration example - Printing"
+---
+
+As a quick follow up to my "previous post on unobtrusive javascript":http://morethanseven.net/posts/unobtrusive-javascript-example-printing/ I thought I'd expand it even more, but this time in an attempt to make it easier to use.
+
+As we've already mentioned javascript should be treated like any other programming language - not necessarily left to the experts but their should ideally be an expert involved somewhere along the line. One way of doing this is to abstract out configuration from programmatic logic. This massively helps with code resuse as well, leaving everyone to play to their strengths. It's interesting to note that even programmers who would always store configuration settings seperately when writing PHP or Rails applications don't always get around to doing the same in Javascript. Hell, I used to be one of them until "Chris Heilmann":http://wait-till-i.com/ pointed out how patently obvious the solution was while at "The Highland Fling":http://thehighlandfling.com/2007/.
+
+The answer is "JSON":http://www.json.org/. I think it's nearly always easier with a quick example so here's the Print snippet from the previous post but this time with a few configurable options:
+
+<pre><code>var Print = {
+   config: {
+      "id": "iNav",
+      "classname": "has-print",
+      "text": "Print"
+   },
+   init: new domFunction(function() {
+      if (list = document.getElementById(Print.config.id)) {
+         if (list.nodeName.toLowerCase() === 'ul') {
+            if (Print.hasClass(list,Print.config.classname)) {
+               var item = document.createElement("li");
+               item.className = "print";
+               var link = document.createElement("a");
+               link.href = "#";
+               link.onclick = Print.printpage;
+               var txt = document.createTextNode(Print.config.text);
+               link.appendChild(txt);
+               item.appendChild(link);
+               list.appendChild(item);
+            }
+         }
+      }
+   }),
+   hasClass: function(element,cName) { 
+      return new RegExp('\\b''&#43;cName'&#43;'\\b').test(element.className);
+   },
+   printpage: function() {
+      window.print();
+      return false;
+   }
+}</code></pre>
+
+The main thing we have done is to add a new block:
+
+<pre><code>config: {
+   "id": "iNav",
+   "classname": "has-print",
+   "text": "brand new text"
+},</code></pre>
+
+This is simply a JSON object of name/value pairs. You can easily alter the right hand values and change the workings of the app. You then reference the settings in  the rest of you're code using dot notation:
+
+<pre><code>Print.config.text</code></pre>
+
+In the above example our configuration directives are stored in our Print object. Depending on the circumstances of use you might find it easier to have a seperate Config object which stores all the configuration settings for the entire site.

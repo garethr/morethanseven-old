@@ -1,0 +1,9 @@
+---
+created_at: 2006/01/22}
+layout: post
+comments: true
+categories: []
+title: "books"
+---
+
+<p>I&#8217;m something of an avid reader and, making use of the nice <a href="http://www.amazon.co.uk">Amazon</a> API I&#8217;ll try to keep my reading list up to date on here. I&#8217;m just including books that are maybe a little relevant to the web &#8211; otherwise this will get out of hand. I&#8217;d like to include some brief reviews if the time ever comes along, though dont hold your breath.</p>

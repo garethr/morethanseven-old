@@ -1,0 +1,34 @@
+---
+created_at: 2009/04/10}
+layout: post
+comments: true
+categories: [rev=canonical, django]
+title: "Support for Rev=Canonical"
+---
+
+There has been "lots of talk":http://adactio.com/journal/1566/ recently about URL shortening. Services like "TinyURL":http://tinyurl.com/ have been around for a good while, offering shortened versions of URLs like "tinyurl.com/dd7w2m":http://tinyurl.com/dd7w2m which are easier to put in a tweet or an email. The problem with this is that not only does the shorter version mask any information about the destination, but if TinyURL or one of the other shortening services goes away, or loses control of it's domain name, a large number of links are going to stop working the way they should.
+
+"Kellan":http://laughingmeme.org/ in particular has been proposing some simple steps that might get us out of this hole. You can read more about the ideas behind using "Rev=Canonical":http://revcanonical.wordpress.com/ and try out the future (maybe) of these services at "revcanonical.appspot.com":http://revcanonical.appspot.com.
+
+The nicest thing from my point of view about this idea is how simple it is to implement. This blog is running a custom Django based blogging engine called "Train":http://github.com/garethr/django-train/tree/master.
+
+The posts on this site exist at urls like the following: "morethanseven.net/2009/04/04/mixing-it-programming-language-choice/":http://morethanseven.net/2009/04/04/mixing-it-programming-language-choice/. With only a small view function, a change to a template and the addition of a url this blog should now work with Kellans new url shortener.
+
+I decided to use the ids for the articles on the blog as the key for the short versions. So if you were to visit "morethanseven.net/284":http://morethanseven.net/284 you would get the article above. I decided to issue a redirect from the short version to the long version in the end rather than serve duplicate content with the canonical link, not sure which way is probably best though.
+
+The markup for each article contains the required link in the head of the document:
+
+pre. <link rel="alternate shorter" href="http://morethanseven.net/284"></pre>
+
+And the django view looks something like this:
+
+<pre>def tiny(request, id):
+    "Provide tiny urls based on ids for articles"
+    # get the article or throw a 404
+    article = get_object_or_404(Article, id=id, status='live')
+    url = article.get_absolute_url()
+    # redirect to the relevant
+    return HttpResponsePermanentRedirect(url)</pre>
+
+All in all, incredible simply to implement, especially in something like Rails or Django which make this sort of wire up urls to view stuff easy. So what's stopping you adding this to you site or current project? If enough people just do it we can make the web a slightly better place in reasonably short order.
+

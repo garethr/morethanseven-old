@@ -1,0 +1,31 @@
+---
+created_at: 2007/12/08}
+layout: post
+comments: true
+categories: []
+title: "Insert Dojo and YUI bookmarklets"
+---
+
+I've talked about "having fun with jQuery":http://morethanseven.net/posts/debug-web-pages-with-jquery-and-jash/ using "Jash":http://www.billyreisinger.com/jash/ and Firebug before after seeing "Simon":http://simonwillison.net throw the Google homepage around at barcamp. I'm no more a one javascript framework person than a one programming language person and recently I've seen cool things I want to play with in lots of the main contenders.
+
+I've put together a couple of bookmarklets which load "YUI":http://developer.yahoo.com/yui/ or "Dojo":http://dojotoolkit.org/ from their respective content delivery networks and insert them into your current browser context. You can then play around with them in Jash or Firebug or any other Javascript console.
+
+Dojo is particularly interesting here due to it's cunning loading mechanism for additional parts of the framework. Basically you can gain access to the entire (huge) framework simply by using the bookmarklet and then dynamically loading the rest via the command line.
+
+<a href="javascript:void(function(){var%20s=document.createElement('script');s.src='http://o.aolcdn.com/dojo/1.0.0/dojo/dojo.xd.js';document.getElementsByTagName('head')[0].appendChild(s);}())">Insert Dojo</a>
+
+<pre><code>javascript:void(function(){
+ var%20s=document.createElement('script');
+ s.src='http://o.aolcdn.com/dojo/1.0.0/dojo/dojo.xd.js';
+ document.getElementsByTagName('head')[0].appendChild(s);
+}())</code></pre>
+
+<a href="javascript:void(function(){var%20s=document.createElement('script');s.src='http://yui.yahooapis.com/2.4.0/build/yahoo-dom-event/yahoo-dom-event.js';document.getElementsByTagName('head')[0].appendChild(s);}())">Insert YUI</a>
+
+<pre><code>javascript:void(function(){
+ var%20s=document.createElement('script');
+ s.src='http://yui.yahooapis.com/2.4.0/build/yahoo-dom-event/yahoo-dom-event.js';
+ document.getElementsByTagName('head')[0].appendChild(s);
+}())</code></pre>
+
+The code simply inserts a script element into the page which loads the relevant framework. I've shown the code on multiple lines for the sake of the example, but your bookmarklet should be on one line. Alternatively you can drag the <a href="javascript:void(function(){var%20s=document.createElement('script');s.src='http://yui.yahooapis.com/2.4.0/build/yahoo-dom-event/yahoo-dom-event.js';document.getElementsByTagName('head')[0].appendChild(s);}())">Insert YUI</a> or <a href="javascript:void(function(){var%20s=document.createElement('script');s.src='http://o.aolcdn.com/dojo/1.0.0/dojo/dojo.xd.js';document.getElementsByTagName('head')[0].appendChild(s);}())">Insert Dojo</a> links to your bookmark bar.

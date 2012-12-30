@@ -1,0 +1,25 @@
+---
+created_at: 2007/02/26}
+layout: post
+comments: true
+categories: []
+title: "What eRDF can learn from Microformats "
+---
+
+Quite a bit of time at "BarCamp":http://barcamp.org/BarCampLondon2 was spent thinking, talking and in running skirmishes about the Semantic Web. Or the semantic web depending which _side_ you're on. 
+
+Now I'm a big fan and perpetual user of "Microformats":http://microformats.org. They make sense, are simple to add everywhere (by stealth if needs be) and the potential is pretty interesting to boot. They are designed in the open, allowing everyone to participate and have a strong emphasis on solving every day problems in the real world.
+
+Contrast that with "RDF":http://www.w3.org/RDF/ and the Semantic Web. Most of the work here has been going on for years in academic institutions and W3C working groups. It's all rather grandiose. Everything I'd seen previously horribly broke HTML. But someone seems to have seen the light. "Tom Morris":http://blogs.opml.org/tommorris/ mentioned in one of his talks "eRDF":http://research.talis.com/2005/erdf/wiki/Main/RdfInHtml, which is a method for embedding RDF in _valid_ HTML.
+
+After one of the talks I got chatting with Tom Morris and "Tom Croucher":http://www.kid666.com/blog/, both card carrying RDF folk, and "Niqui Merret":http://niquimerret.com/ another interested bystander. Toms argument basically comes down to Microformats solve the 80% problem, RDF trys to solve the other 20%. I sort of think the Microformats group would probably agree with that. I also like the idea of creating your own formats off the cuff. I've seen enough to at least have a further look see and hopefully try out a few experiements myself.
+
+"Ben Ward":http://ben-ward.co.uk/ had a "few things to say on the subject":http://ben-ward.co.uk/journal/fao-rdf/ which are worth a good read. I agree with the majority of his arguments but coudn't resist commenting on at least one:
+
+bq. If youâ€™re working with RDF, show me something new. Donâ€™t just rehash vcard and icalendar into your own format; Iâ€™m not interested
+
+I disagree. One of the best thinks about Microformats, that draw people (including me) in from the get go, is the unquestionable ease with which you can add "hcard":http://microformats.org/wiki/hcard or "xfn":http://gmpg.org/xfn/ and get on with your day. Weeks or months later, after a few feel good projects you'll be keeping an eye on the wiki when you come across something in need of structure. And even then you find it's a "composite":http://microformats.org/wiki/hresume of something you've seen before.
+
+Right now I'd love to find that. A simple example of how to mark up a few very simple examples of eRDF. Hey, if that means contact details and a calendar event then so be it. If all that's wrapped up in a lovely shiny green coat of pain with an icon logo so much the better. Until I can experiment with simple I cant do anything else, never mind anything new. So that's two posts for the future sorted then.
+
+Tom has set up a wiki over at "GetSemantic":http://www.getsemantic.com/wiki/Main_Page to start to collate information together in one place which from my initial research seems like a good idea. If and when I get enough together (and the "OpenId":http://openid.net authentication is up and running) I'll make sure to add everything there. If I get carried away and find interesting voices on the blogosphere I might event get a planet up and running. Or I might find way too much XML and leave it at that.

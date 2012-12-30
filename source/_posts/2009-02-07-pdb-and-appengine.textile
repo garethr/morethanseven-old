@@ -1,0 +1,18 @@
+---
+created_at: 2009/02/07}
+layout: post
+comments: true
+categories: [python, pdb, appengine]
+title: "PDB and AppEngine"
+---
+
+It turns out App Engine breaks the default behaviour of the Python debugger PDB by sending STDOUT to the browser. But with a "little bit of python":http://jjinux.blogspot.com/2008/05/python-debugging-google-app-engine-apps.html you can put it back in.
+
+pre. import sys
+import pdb
+for attr in ('stdin', 'stdout', 'stderr'):
+    setattr(sys, attr, getattr(sys, '__%s__' % attr))
+pdb.set_trace()
+
+
+

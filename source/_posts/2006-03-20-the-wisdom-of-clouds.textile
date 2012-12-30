@@ -1,0 +1,21 @@
+---
+created_at: 2006/03/20}
+layout: post
+comments: true
+categories: []
+title: "The Wisdom of Clouds"
+---
+
+<p>I&#8217;m playing with a few thinks at the moment and one of those had me thinking of <a href="http://en.wikipedia.org/wiki/Tag_cloud">tag clouds</a>. For those who dont spend time on <a href="http://flickr.com">flickr</a> or similar you may not have seen then, or at least heard of the terminology. All we are really taking about here is a visually weighted list.</p>
+
+
+ <p>I dont agree with <a href="http://www.zeldman.com/daily/0505a.shtml">Jeffrey here</a> unfortunately, who has issues. I can see the point, that sometimes information is better organised by one person than many (think your weekly food shopping list) but in some cases it can be nice &#8211; especially where it provides an alternative navigation method. Maybe I just missed the part where everyone had a tag cloud? I&#8217;d love to see, for instance, a tag cloud on <a href="http://last.fm">last.fm</a> of bands that I might like based on my listening habits, and those of a similar musical persuasion.</p>
+
+
+ <p>An <a href="http://www.joelamantia.com/blog/archives/ideas/second_generation_tag_clouds.html">interesting article</a> on where next for tags clouds throws up a few interesting points but one thing I have not seen discussed at all is the accessibility angle. Visual prominence is one thing, but without some sort of semantic prominence those not viewing the content visually lose out. A very unscientific survery involving the <a href="http://del.icio.us/tag/">del.icio.us tag cloud</a> confirmed what I though would probably be the case &#8211; the visual effects (ie. bigger or highlighted text) are implemented purely via classes on the links.</p>
+
+
+ <p>What would be the effect of using plain links, moving to <em>emphasis</em> for the next level, up to <strong>strong</strong> for the really important tags? We can style the content exactly the same as before, but we have added some sematic prominence to the content.</p>
+
+
+ <p>Anyone had any experience implementing tag clouds in live projects? Even better, anyone had experience of user testing such interface devices? Real bonus points for accessibility related testing.</p>

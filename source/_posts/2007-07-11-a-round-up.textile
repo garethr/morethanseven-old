@@ -1,0 +1,20 @@
+---
+created_at: 2007/07/11}
+layout: post
+comments: true
+categories: []
+title: "A round-up"
+---
+
+Being busy is to be expected with this new start-up malarkey but whoa. The problem is I have even more ideas for real posts or articles (the type you research, play around with, then write properly) and, for the next few weeks, not the time to do them justice. I'll be back with gusto when I find the time. In the interim here are a few things from the last month or so I consider _cool_.
+
+* I has "Nabaztag":http://www.nabaztag.com/en/index.html! Sorry, but I couldn't resist after "Hackday":http://hackday.org. Expect API hacking and silly photos on flickr aplenty.
+* Oh, "Hackday":http://hackday.org was an absolute blast. Thanks to Matt, Ian, Tom and the cast of hundreds.
+* I'm working on a cool Ruby on Rails app in the real world, up here in Newcastle no less.
+* "@media":http://vivabit.com/atmedia2007 was, yet again, fab. A (very) late shout to Patrick and the umper lumpers. Can I make it to @media Ajax?
+* "Refresh Newcastle":http://refreshnewcastle.org/ got a minor update with more flickr and upcoming goodness. Tag things _refreshnewcastle_ for some lovin.
+* "hedgehoglab.com":http://hedgehoglab.com has a few more pages, a "survey on web training needs":http://hedgehoglab.com/training/survey and more microformats than you can shake a stick at.
+* I'll be at "dconstruct":http://dconstruct.org (just). Another jigsaw piece of my increasingly bloody minded attempt to get to as many UK web get-togethers as possible.
+* I'll be along to "ncl.rb":http://rubyandrails.org/usergroups/newcastle/ tomorrow night (thursday) and in the pub afterwards if anyone is around. Their have been a few good events in Newcastle recently, only some of which I've managed to get along to. I'm considering getting an "Open Coffee":http://www.opencoffeeclub.org/ do up and running in Newcastle as well. If anyone is interested let me know.
+
+More (interesting) work beckons...

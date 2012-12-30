@@ -1,0 +1,14 @@
+---
+created_at: 2011/07/07
+excerpt: 
+layout: post
+comments: true
+categories: [varnish, caching, http, cambridge]
+title: "Varnish At Refresh Cambridge"
+---
+
+I did a quick lightning talk at the Refresh Cambridge meetup last night, a very quick introduction to "Varnish":https://www.varnish-cache.org/. Given 10 minutes all I really wanted to do was get people to go away and take a look at it. Lots of folks in the room hadn't come across it before so I think the talk was hopefully well pitched.
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/8531073?rel=0" width="510" height="426" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+Several people asked about slighly dynamic pages and I only got chance to mention support for "ESI":https://www.varnish-cache.org/trac/wiki/ESIfeatures (Edge Side Includes) at the end. Conversation afterwards turned to various parts of the modern web stack and I had a pretty good time being opinionated. Hopefully more of the same next month.

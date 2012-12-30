@@ -1,0 +1,26 @@
+---
+created_at: 2007/10/19}
+layout: post
+comments: true
+categories: []
+title: "Mashup Demo"
+---
+
+_Long time no post. Lots of excuses, time away (including a holiday) and work catching up with me. Hopefully expect a few quick fire posts to catch up and then back to normal._
+
+I was in London a couple of weeks back, mainly to help out at "FOWA":http://futureofwebapps.com (which can get it's own post) but also to generally catch up with lots of people about interesting stuff. After using my Monopoly knowledge of London to find the apple store (something some "Londers":http://www.thecssdiv.co.uk/ "took issue with":http://twitter.com/rossbruniges/statuses/307080542) I heard about an event round the corner thanks to the magic of the internets (in this case "Twitter":http://twitter.com, "Upcoming":http://upcoming.org and "Dave Stone":http://www.builtbydave.co.uk/).
+
+"Mashup Demo":http://www.mashupevent.com/event/mashup-demo was billed as "a simple and effective way for startups, growing businesses, enterprises and corporates to present themselves to an audience of professionals who would include:- investors, media journalists and bloggers, potential partners and industry influencers". When first chatting with one of the exhibiting companies they looked me up and down and said "so, are you a blogger?". Apparently I didn't look much like a VC. Who knew?
+
+Fifteen lightning presentations made up the bulk of the event, with me taking notes using my handy N800 (another blog post probably), and then followed a good amount of time to wander about and chat with everyone, probably about 100 people all in all. The companies presenting represented lots of the _hot topics_ at the moment shall we say. Anyone not mentioning mobile, or social networking (or both!) had come to the wrong party.
+
+Local Search had a strong showing from "welovelocal.com":http://welovelocal.com, "Rumble":http://www.rummble.com, and "tipped.co.uk":http://www.tipped.co.uk. The thorny problem of local was one of the really interesting discussion topics at the "BBC innovation labs":http://open.bbc.co.uk/labs/ earlier in the year and it's good to see interesting ideas of how to solve it. Although personally I don't need _another_ social network and also want to be able to define what I mean by local (not just be given a location, or have it based on a pool of friends, or whatever the latest looking glass is).
+
+Identity was suprisingly popular with both "Bondai":http://www.bondaii.com and "meecards":http://www.meecard.com/ talking up their applications. Obviously with all the cool kids playing with "OpenId":http://openid.net/ and the alpha geeks tinkering with "OAuth":http://oauth.net/ identity is technologically interesting, but both these companies have spotted commercial opportunities as well. Be interesting to see how this all plays out. I've rambled on before about what I called Banks for Data (as apposed to money, which is just data anyhow when you think about it) but not really considered early movers and entrepreneurs in this sector.
+
+A couple of interesting takes on agregators dropped in as well.
+"fav.or.it":http://fav.or.it/ was pitched as trying to popularise feeds for everyone else, but looked to me to actually be more of a useful tool for the information hungry crowd. It's innovative features (inline commenting looked nice) would likely not be that interesting to people with only a few feeds and a few minutes but for people with hundreds of feeds look interesting. "Brandwatch":http://www.magpie.net/brandwatch.html was similar to an idea a friend and me kicked around a while back, but never put together. Simply put it finds stories relating to your brand (company, product, whatever) and ascertains the importance and whether it's positive or negative. You can then track all that over time with useful graphs and charts and the like. At the moment they are indexing about 500,000 sites and it still uses some manual filtering I think. Even so I know of clients past who would definately find the service offered interesting.
+
+A few others caught my eye; an ad network for bloggers based on their blog rolls called "rollSense":http://www.rollsense.com/, a service simliar to "slideshare":htp://slideshare.com but for business documents called "Edocr":"http://www.edocr.com/ and "testcard.tv":http://testcard.tv. Testcard.tv does some really pretty impressive agregation, stitching and searching of online video. Sort of a glimpse of the future, but probably not as pretty. Optimising that for the Wii or PS3 (or keyboard/remote control) would be awesome.
+
+After chatting with a few of the companies, and other people in the crowd, I popped for sushi with the aforementioned Dave for discussions of the freelance life I've got myself in to. The event was pretty darn interesting. That the companies presenting were, for the majority, proper startups was interesting. And the fact the whole event was geared around product centric companies and the surrounding eco-system interested me. I get to similar business events up and around newcastle, but these tend to be more service company orientated it seems. All in all Mashup Demo kicked my stay down in London off nicely.

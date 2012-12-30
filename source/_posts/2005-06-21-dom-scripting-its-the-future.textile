@@ -1,0 +1,18 @@
+---
+created_at: 2005/06/21}
+layout: post
+comments: true
+categories: []
+title: "DOM Scripting. Its the future?"
+---
+
+<p>It&#8217;s official. It&#8217;s DOM Scripting.</p>
+
+
+ <p>I&#8217;m reading the DHTML Utopia book at the moment (excellent so far) and following on from @Media it does seem to be where it&#8217;s at, at least for a little while.</p>
+
+
+ <p>The discussion of naming raised it&#8217;s head and I kind of agree &#8211; AJAX has buzz word written all over it. Read the full article at <a href="http://www.quirksmode.org/blog/archives/2005/06/you_shouldve_be_1.html">quirksmode.org</a> following on from the Javascript get together after @media (darn train tickets).</p>
+
+
+ <p>If CSS is too much for designery types just wait&#8230; CSS, without its programmatic concepts (variables? arrays? etc.) is one thing but Javascript is, lets remember, an Object Orientated scripting language. Interesting to see who ends up doing this sort of work in small companies with limited people.</p>

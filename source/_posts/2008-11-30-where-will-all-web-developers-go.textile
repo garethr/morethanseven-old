@@ -1,0 +1,31 @@
+---
+created_at: 2008/11/30}
+layout: post
+comments: true
+categories: [rambling, musing]
+title: "Where will all the web developers go?"
+---
+
+I've been thinking recently about what happens when we all get older. Now, I'm not actually referring to everyone here but more specifically what I'm going to call second generation web developers. I don't mean Tim and friends here, or the early entrepreneurs of Yahoo! and Netscape. I mean the people who came along when the commercial web design and development industry had settled down a little bit, lets say 10 years ago. People like me.
+
+Work seems to exist in lots of places; big in-house teams, small in-house teams, agencies, startups and freelancers. Where the jobs are at any given point seems to be tied to economic conditions and location. Most people I seem to speak to have tended to work in one of these areas, but I've not really got anything but vague memories to back that accusation up. I'm a little odd here in having previously worked mainly for agencies followed by a stint of freelancing, and now work for a decent sized in-house team at Global Radio.
+
+As I see it the industry rules are predominantly made up by people involved as they go along. Their is no real impetus behind any trade body that I'm aware of, no real understanding within education and no consensus on organisational structure and jobs within it. That means, unlike accountants or people in many other professions, we've very little idea about what will happen in the long term.
+
+So. What happens in 10-20 years time to the now quite large number of professional web developers.
+
+Do we all just do the same thing we're doing now. Just with higher version numbers? The problem with this is maintaining the challenge. If the core problems remain the same will it be much fun? I fear their are only so many times you can learn a new programming language and then solve the same problem you worked on at your last job before the world catches on.
+
+Do we all become managers? The problem then is who do we manage? If the industry just gets bigger and bigger this works. But that sounds unreasonable. So if their are a limited number of managerial positions who gets them? The people their first?
+
+Is their another industry that will have us? Computer games are starting to look to the web for ideas about community and collaboration, pretty much at the same time as the web is looking at games for thoughts on experience and engagement. But long term I can't see a mass exodus or a huge cross over of people, just a huge overlap of ideas.
+
+Do some of the areas like agencies, in-house teams, etc. disappear, or at least employ less skilled people? Experience costs money, and not always because it's worth the extra expense.
+
+Or is it simply that the world in twnety years time will be so different to now that we don't really have a clue. And that a large group of computer savvy problem solvers will find something to do?
+
+The real question I guess is what does the demand for skilled professional web developers look like in ten to twenty years? In reality most of the people currently doing the job won't be getting to retirement age any time soon. That means every newly trained graduate or kid with a computer getting their first job adds to the size of the workforce. And how big do we think that workforce can get before it reaches a nice equilibrium? Certainly in London at the moment their are jobs aplenty. Many good friends have just left Yahoo! rather promptly and I'd be worried for them if I didn't know how many people will be knocking down their doors.
+
+I'd love it if their were numbers somewhere on this that you could graph. Maybe spot a plateau coming. It's the sort of thing the Institute of Physics or the Chartered Institute of Marketing do. But as I said, we don't have anything similar.
+
+So maybe their is another option when the workforce has expanded as much as it's going to do. We could get all work for The Institute of Web Development.

@@ -1,0 +1,58 @@
+---
+created_at: 2010/12/29
+excerpt: 
+layout: post
+comments: true
+categories: [heroku, pass]
+title: "Heroku For..."
+---
+
+With the success of "Heroku":http://heroku.com, both in terms of the recent sale and the fact it's awesome, it was always just a matter of time before other languages and frameworks got into the platform as a service game. Here's all the one's I know about so far, many of them in or entering beta testing at the moment. Any others I'm missing?
+
+*Update* Thanks for all the comments on here and on "Hacker News":http://news.ycombinator.com/item?id=2050203, I've updated this list with all the suggestions.
+
+h2. Ruby
+
+* "Duostack":http://www.duostack.com/
+
+h2. Python
+
+* "ep.io":http://www.ep.io/
+* "Django Zoom":http://DjangoZoom.com/
+* "Djangy":https://www.djangy.com/
+* "Google Appengine":http://appengine.google.com/
+* "Stable":http://stable.io/
+
+h2. PHP
+
+* "PHPFog":http://phpfog.com/
+* "CloudControl":http://cloudcontrol.com
+
+h2. .NET
+
+* "AppHarbor":http://appharbor.com/
+* "biasLogic":http://biaslogic.com/
+* "Moncai":http://moncai.com/
+* "Microsoft Azure":http://microsoft.com/azure
+
+h2. Java (JVM)
+
+* "CloudBees":http://www.cloudbees.com via the purchase of "Stax":http://stax.net/
+* "Google Appengine":http://appengine.google.com/
+* "Playapps":http://www.playapps.net/ (Play framework only)
+
+h2. Node.js
+
+* "NodeJSCloud":http://www.nodejscloud.com/
+* "Joyent SmartMachine":https://no.de/
+* "Duostack":http://www.duostack.com/
+* "Nodejitsu":http://nodejitsu.com/
+
+h2. RingoJS
+
+* "Erbix":http://www.erbix.com/
+
+h2. Multi Platform
+
+* "Kodingen":http://kodingen.com/
+* "DotCloud":http://dotcloud.com

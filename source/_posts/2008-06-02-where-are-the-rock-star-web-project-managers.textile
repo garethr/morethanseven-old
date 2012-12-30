@@ -1,0 +1,13 @@
+---
+created_at: 2008/06/02}
+layout: post
+comments: true
+categories: []
+title: "Where are the Rock Star Web Project Managers?"
+---
+
+In maybe a more constructive manner than "yesterday":http://morethanseven.net/posts/media-designers-vs-developers/ I started wondering where the rock star web project managers hang out? I think we're all aware of something of a celebrity culture within web circles. Their are a hardcore of people who's blogs, books and conference appearances we've all seen several times over. And in the main I think this has had a positive effect on everyone involved. People like "Jeremy":http://adaction.com, "Molly":http://molly.com and "Simon":http://simonwillison.net have at different times acted as pretty useful barometers and yard sticks for lots of people. But these people are invariably designers and developers - not product managers or project managers.
+
+The only person I can think of who has talked a little about the topic of project management is "Meri":http://blog.geekmanager.co.uk/ with her new book "Principles of Project Management":http://www.sitepoint.com/books/project1/. The topic occasionally comes up in conversation, or is mentioned by the designers and developers noted above. And their are lots of blogs (more often by developers it seems) about Agile, XP and Scrumm. But what about the practice of web product management? You can point to countless blogs written by designers and developers at the likes of last.fm, flickr and Yahoo. But where are the managers?
+
+So, my question to you is: do you know of any great web product or project managers that blog about the discipline?

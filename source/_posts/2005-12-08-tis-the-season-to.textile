@@ -1,0 +1,18 @@
+---
+created_at: 2005/12/08}
+layout: post
+comments: true
+categories: []
+title: "Tis the season to..."
+---
+
+<p>It&#8217;s nearly that time of year again where all of us working types get more than a week off work (the students amongst you are probably already on holiday, or at least acting like you are).</p>
+
+
+ <p>As well as all the obvious things everyone will be up to I always try and have some sort of computer project on the go. Something I can have a proper run at over the festive period. New language. Application. New site. You get the idea.</p>
+
+
+ <p>I&#8217;m intrigued to see if that&#8217;s just me? Is everyone else thinking &#8220;No computer for a week!&#8221; or similar? Or has anyone got any exciting projects on the go, and fancy letting us in on a little secret.</p>
+
+
+ <p>Needless to say I&#8217;ll have more on what I&#8217;m up to nearer the time but obviously it will start in <a href="http://momb.socio-kybernetics.net/">beta</a> and if I&#8217;m really pushing the boat out I&#8217;ll set up an AJAXified sign up page and maybe an <a href="http://measuremap.com/">invitation only</a> period. I might just be mocking others here but maybe not, time will tell.</p>

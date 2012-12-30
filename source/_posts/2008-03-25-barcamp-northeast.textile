@@ -1,0 +1,15 @@
+---
+created_at: 2008/03/25}
+layout: post
+comments: true
+categories: []
+title: "BarCamp NorthEast"
+---
+
+BarCampNorthEast is go. "A":http://www.codeworks.net "few":http://blog.meriwilliams.com/ "people":"http://www.agm.me.uk/blog/ have finally got together and sorted out the long promised barcamp in Newcastle upon Tyne.
+
+We're going to be holding the event in the middle of Newcastle, at "The Art Works":http://theartworksgalleries.com/ on the weekend of the 24th/25th of May. That's a whole two months away, ample time for everyone to make arrangements hopefully. From the early discussions we were always set upon going the whole hog and having a two day event. The venue is big enough for people to sleep over as well if they want which is great. It keeps the cost down for anyone visiting as well as meaning we can play Werewolf all night. We're piggy backing on the "Thinking Digital conference":http://www.thinkingdigital.co.uk as well so hopefully some of the people from that will stick around for the barcamp.
+
+We have the requisite "Barcamp wiki":http://barcamp.org/BarCampNorthEast page as well as a listing on "Upcoming":http://upcoming.yahoo.com/event/462291/. Feel free to indicate your interest on either of these. Registration isn't open just yet, but we should be opening that up next week on *Tuesday 1st April at 11:00am*. Look for the link on here, on "twitter":http://twitter.com/garethr, on the upcoming and barcamp wiki pages and anywhere else I can think of to shout about it.
+
+Feel free to contact me with any questions. If you're not sure what all the fuss is about then have a look at the "barcamp":http://barcamp.org/ site. And if you've never been outside London before then maybe this is your chance. Newcastle is only two and a half hours away by a train with free wifi. We're also on the lookout for a few sponsors; if your interested drop me a line.

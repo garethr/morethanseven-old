@@ -1,0 +1,21 @@
+---
+created_at: 2006/09/12}
+layout: post
+comments: true
+categories: []
+title: "dConstruct(or)"
+---
+
+<p>Well <a href="http://dconstruct.org">dConstruct</a> has come and gone and people are probably just recovering in some parts. Travelling down wasn&#8217;t fun but that was quickly forgotten when we finally got to the pub. An evening of geekery ensued (usual fare, getting told to move inside before the police turn in, bit like @media 2005 really) and then onto the conference.</p>
+
+
+ <p>Thanks to the <a href="http://dconstruct06.madgex.com">backnetwork</a> its easy enough to catch up on all the goings on so I thought I&#8217;d mention only a couple of thinks that are still rattling around my head:</p>
+
+
+ <p><a href="http://simon.incutio.com">Simon</a> and <a href="http://www.paulhammond.org/journal/">Paul</a> talked about <a href="http://hackday.org/">Hack Day</a>. This is a really cool idea and once I want to get going at work. We shall see.</p>
+
+
+ <p><a href="http://boxofchocolates.ca/">Derek</a> was excellent again, talking about all sorts of ways Javascript could be used to improve user experience and accessibility. A interesting near aside about using sound as part of alerts to feedbacks got me thinking&#8230; We shall see about that too.</p>
+
+
+ <p>As usual the crowd was full of people both strage and familiar. The backnetwork is again more useful that I could be here. Ah, microformats, how we all want to play with thee. As it happens I&#8217;m playing with something similar for work albeit in a light weight sort of way. It&#8217;s really a good job I have some holiday coming up, I think I have so many things I want to <em>see</em> about I could be here for ages!</p>

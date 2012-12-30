@@ -1,0 +1,19 @@
+---
+created_at: 2008/02/24}
+layout: post
+comments: true
+categories: []
+title: "Thinking Digital"
+---
+
+I'm starting to get excited about "Thinking Digital":http://thinkingdigital.co.uk. But first a bit of back-story. 
+
+I started out making the trip to "@media 2005":http://atmedia2005.co.uk/ and since then have been a regular attendee of more conferences than I can shake a stick at. Lets say I caught the conference bug. But most of those have been within the web standards community niche and more recently I've been looking further afield for conference kicks, party due to the eclectic nature of "BarCamp":http://barcamp.org style events. Anyone in that positions inevitably takes a fancy to going along to "TED":http://www.ted.com/. The _only_ problem is the fact it's already booked up until 2010, costs $6,000 just to for a standard membership and is invite only. 
+
+This year the folks over at "Codeworks":http://codeworks.net, which is a regional body set up to help us North East digital folk develop an industry, are organising their very own full size conference. The "Think and a Drink":http://thinkandadrink.com events have been running for a number of years and I've spoken a few times on web related bits and pieces. But these are purposely local events mainly for members and tend to crop up at the rate of once a month. "Thinking Digital":http://thinkingdigital.co.uk is a full size, 400 person, conference being held in Newcastle between the 21st and 23rd of May this year covering a similar set of wide ranging themes to TED; technology, design, mobile plus a bit of philosophy and futurism thrown in for good measure.
+
+Now this is good for a few reasons. Only one of which is I can see the venue out of my apartment window. Costing only Â£475 and being in the UK would be a couple of other reasons to get excited. As an aside; I'm helping out as a board member along with the likes of "Ian Forrester":http://www.cubicgarden.com/ but I'd gladly pay my way if I wasn't.
+
+The real reason for the excitement though is the calibre of some of the speakers. Ray Kurzweil, Greg Dyke, Dan Lyons (a.k.a. Fake Steve Jobs), Matt Locke, Aubrey De Grey and Tara Hunt to name a few I'm particularly interested in. And remember folks, this is in Newcastle. Which for the few Londoners reading is a couple of hours North of you. On a train with free wifi even.
+
+Now this might not be a web conference but I'm pretty interested in the take of the likes of Ray Kurzweil on the web and what will happen in the near future. I'm also interested in the types of people who will make the trip - which is really the reason for this post. As everyone knows, one of the best parts of any conference is the chance to chat with like-minded (and not so like-minded) folks. So, who fancies coming along?

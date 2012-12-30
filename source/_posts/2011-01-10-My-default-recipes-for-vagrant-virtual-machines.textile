@@ -1,0 +1,39 @@
+---
+created_at: 2011/01/10
+excerpt: 
+layout: post
+comments: true
+categories: [vagrant, chef]
+title: "My Default Recipes For Vagrant Virtual Machines"
+---
+
+I've written about "Vagrant previously":http://morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation.html and the more I use it the more it impresses me and the more it changes how I work. For those that haven't yet used "vagrant":http://vagrantup.com the brief summary is, it's a way of managing, creating and destroying headless virtualbox virtual machines. So when I'm sat at my computer and I want a new 32 bit virtual machine based on Maverick I just type.
+
+<pre>vagrant init maverick32
+vagrant up</pre>
+
+It has some other magic tricks as well, like automatically setting up NFS shares between the host and guest and allowing you to specify ports to forward in the configuration file. You access the machine via ssh, either using the handy _vagrant ssh_ command or by using _vagrant ssh-config_ to dump the relevant configuration to place in ~/.ssh/config.
+
+I've been using virtualisation for a few years, initially purely for testing and experimentation, and then eventually for all my development. I'd have a few VMware images, I'd use snapshots and occasionally rollback, but I very rarely created new virtual machines. It was quite a manual process. With vagrant that's changing. Everytime I start investigating a new tool or new technology or work on a pet project I create a new virtual machine. That way I know exactly what I'm dealing with, and with vagrant the cost of doing that is the 30s waiting for the new machine to boot.
+
+Or rather it would be if I didn't then have to install and configure the same few things on every machine. Pretty much whatever I might be doing I found myself installing the same things, namely zsh, vim, git and utils like ack, wget, curl and lynx. This is exactly what the provisioning support in vagrant is for, so I set out to use chef to do this for me.
+
+I decided to use a remote tar file for the recipes. I'm not really bothered about managing a chef server just for my personal virtual machines, but I did want to have a canonical source of the cookbooks that wasn't local to just one of my machines. Plus this means anyone else who shares my opinions about what you want on a new virtual machine can use them too.
+
+My Vagrantfile now looks like this:
+
+<pre>Vagrant::Config.run do |config|
+  config.vm.box = "maverick32"
+  config.vm.provisioner = :chef_solo
+  config.chef.recipe_url = "http://cloud.github.com/downloads/garethr/chef-repo/cookbooks.tar.gz"
+  config.chef.add_recipe "garethr"
+  config.chef.cookbooks_path = [:vm, "cookbooks"]
+  config.chef.json.merge!({ :garethr => {
+      :ohmyzsh => "https://github.com/garethr/oh-my-zsh.git",
+      :dotvim => "https://github.com/garethr/dotvim.git"
+    }})
+end</pre>
+
+You can see the cookbook on GitHub at "github.com/garethr/chef-repo":https://github.com/garethr/chef-repo/. By default it uses the "official oh-my-zsh repo":https://github.com/robbyrussell/oh-my-zsh.git and the "vim configuration from jtimberman":https://github.com/jtimberman/dotvim.git. My own versions are very minor personal preference modifications of those. The Vagrantfile example above shows how you can override the defaults and use your own configs instead if you choose.
+
+One question I was asked about this approach was why I didn't just create a basebox with all these things installed by default, this would reduce the time taken on first boot as software wouldn't have to be installed each time. However it would also mean maintaining the basebox's myself, and as I use different Linux distributions or versions this would be a headache. While doing this and working with vagrant I've been thinking about the ecosystem around the tool and I'm planning on writing my thoughts on that subject over the next week or so.

@@ -1,0 +1,25 @@
+---
+created_at: 2005/06/26}
+layout: post
+comments: true
+categories: []
+title: "more from @media"
+---
+
+<p>With all the goings on off the back of @media its pretty hard to keep up. Many of the ideas that where discussed seem to be taking hold and coming into the world and lots of sites have had some recdent TLC. Anyway, here goes with a few observations.</p>
+
+
+ <p><strong>Simplified Standards</strong>
+Simplifiedstandards (<a href="http://www.simplifiedstandards.com/">simplifiedstandards.com</a>) looks like a great idea. A few people where discussing a central repository for concensus on issues of web standards application in the real world and this aims to be just that. Simon Collison of <a href="http://www.collylogic.com">www.collylogic.com</a> is bringing everything together as far as I can see.</p>
+
+
+ <p><strong>Everyones thoughts</strong>
+Faruk AteÃ…Å¸ appears to have spent every day since getting back compiling a list of what anyone anywhere said about the event. Its a great idea and makes finding peoples thoughts easier but I wonder if their would be an easy way of doing this (like pinging a web service with any new articles?) without one guy doing all the work?
+Look for everyones comments at <a href="http://www.kurafire.net/log/archive/2005/06/11/atmedia-2005-report">kurafire.net</a></p>
+
+
+ <p><strong>Designersinhouse</strong>
+One guy I did meet at the conference was Matt Patterson who has set up a small (but radidly growing) mainling list over at <a href="http://www.designersinhouse.com">www.designersinhouse.com</a> aimed at designers working within larger organisations. One thing I took away from the conference was the large number of people working outside service or agency environments.</p>
+
+
+ <p>And that is just some of the goings on. A good amount of discussion going on around the level of legislation needed to govern accessibility doing the rounds, the ATF (Accessibility TaskForce) from WaSP just starting up with several of the speakers on board and god knows what else. Oh, and I still haven&#8217;t done a zoom layout but I did add some word completion to the search box!</p>

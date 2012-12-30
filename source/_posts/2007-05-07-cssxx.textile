@@ -1,0 +1,27 @@
+---
+created_at: 2007/05/07}
+layout: post
+comments: true
+categories: []
+title: "CSSx.x"
+---
+
+"Andy":http://andybudd.com gave a great thought provoking presentation (exactly what conference presentations should be) at the recent "Highland Fling":http://thehighlandfling.com/2007/ shindig on the future of CSS which he's written up into a good thought provoking blog post on "CSS2.2":http://www.andybudd.com/archives/2007/05/css22/index.php
+
+h3. The Problem
+
+As web standards developers we want new toys! I took to CSS because _it made sense_ set against the madness of table based layouts, not necessarily because it appeared easy or flexible. CSS has turned out to be hugely flexible, but some of that flexibility has come at the expense of some weird and wonderful and successful techniques. I love this ingenuity, I'd like to think that the original CSS specification allowed for this cleverness in real world use.
+
+CSS3 has stalled. CSS3 is trying to solve a whole host of massive problems that others are better placed to comment on, but I'd love to hear some comment from members of the working group. If I've missed a regular blog by a working group member please leave a comment and let me know.
+
+I'm a real believer in open standards and I think that it's this issue that worries me more about the pace of CSS development. Yes, I want new toys, or more specifically I want to be more efficient (yes rounded corners, I'm looking at you) but actually, I'd rather have a good CSS3 spec than a fast and loose one. But the immenent fight between Flash/Adobe and Silverlight/Microsoft is showing how productive huge commercial companies can be when it wants to get something done. Both are introducing interesting new tools and allowing for what could be improvements to usability (or horribly confusing interfaces but hey). CSS and HTML should be the glue that binds all this together in a web where everything plays nicely together. But if CSS provides too little or too late then this is put in doubt. And if CSS falls I dont see microformats, rdf, html5 or whatever making a real dent - and I really want a semantic web (upper *and* lower case).
+
+h3. The Solution?
+
+Well, I'd like to say the solution isn't _Browser Wars II - A good idea this time?_ 
+
+Andy's suggestion of an interim step (or steps) between now and CSS3 modules raises a problem. If the working group do the work then it takes their eye further off getting CSS3 modules out. If they don't, will they accept suggestions from outside? Will outsiders be able to grok the whole standardisation process?
+
+What we need is a commercial company with lots of smart people and lots of cash - with a track record of working with standards. A member of the W3C would be a plus. Ideally they should have something invested in the web as a platform, maybe even in a smarter, cleverer, semantic web.
+
+Google to the rescue maybe? If you're really cynical you could see Silverlight as an end run around Google's apparent dominance of the web as a platform. Lock content away in proprietary silos and traditional search becomes less appealing? And surely Google has lots to gain from the long term adoption of anything that increases the semantic nature of the web. If CSS is a battleground then maybe they need to come out and make a stand(ard)?

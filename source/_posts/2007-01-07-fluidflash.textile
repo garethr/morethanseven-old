@@ -1,0 +1,36 @@
+---
+created_at: 2007/01/07}
+layout: post
+comments: true
+categories: []
+title: "Fluidflash"
+---
+
+<p>Their is nothing wrong with a nice header graphic. Clients, designers and customers alike love them. But I often see them used as an excuse for fixed width designs. Well no more I say (unless, of course you have a perfectly good reason for a fixed width design in which case you dont really need this technique.)</p>
+
+<p>The plan was simple. Find a way of incorporating flash headers into sites using liquid or elastic designs in much the same way you might use lots of sliding doors background-image goodness.</p>
+
+<p>And all it takes is a snippet of actionscript goodness:</p>
+
+
+<pre><code>Stage.scaleMode = "noScale" 
+Stage.align = "TL" 
+var width
+var height
+function resizeEvent ( ) {
+    width = Stage.width
+    height = Stage.height
+    dimensions.text    = 
+       'width : ' + width+ '
+        height : ' + height
+    topRight._x = width
+    bottomLeft._y = height
+    bottomRight._y = height
+    bottomRight._x = width
+}
+resizeEvent ( )
+var stageListener = new Object ( );
+stageListener.onResize = resizeEvent
+Stage.addListener ( stageListener );</code></pre>
+
+<p><a href="/_assets/downloads/fluidflash/fluidflash.zip">Download example</a></p>

@@ -1,0 +1,13 @@
+---
+created_at: 2008/08/31}
+layout: post
+comments: true
+categories: [django]
+title: "Django Powered"
+---
+
+A short break from blogging ends with a new site design. As with all these things their will no doubt be a few kinks still to work out and I'll be adding to the design a little over the coming months. The main reason for all this change? A move to a custom CMS build using Django. This was something of an excuse to play around with Django outside "work":http://www.gcapmedia.com/ and I'm pretty happy with the results. I have all the bits of wordpress I actually used, plus a few bits I didn't have before. More importantly I have something I want to hack on. Wordpress is a kick ass blogging tool, but keeping it updated or adding new features never seemed much like fun.
+
+It seems like it's the week for Django related site launches in the UK. We released the "new Capital Radio site":http://www.capitalradio.co.uk/ on the world last week and Nat beat me by a day or so with "her new Django powered site":http://natbat.net/. Look for more in the future too I would wager.
+
+I have a whole range of posts brewing about what I found out along the way, both building a personal blog and building a large site with a big team. Keeping up with the bleeding edge of Django ahead of the 1.0 release took some doing (I'm running the latest Trunk release here at the moment). Deciding to use a combination of "Spawning":http://pypi.python.org/pypi/Spawning/0.7 and "Nginx":http://nginx.net/ for serving is a nice break from Apache as well. But that is all for later when I have a little more time. 

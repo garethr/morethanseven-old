@@ -1,0 +1,40 @@
+---
+created_at: 2011/03/26
+excerpt: 
+layout: post
+comments: true
+categories: [devops]
+title: "Devops Isn't A Methodology"
+---
+
+I was reading "Devops is a poorly executed scam":http://teddziuba.com/2011/03/devops-scam.html and just couldn't resist a reply. Not because of the entertaining title, but because I both agree and disagree quite strongly with parts of the post. Read it first if you haven't already. And yes I know I'm feeding the internet.
+
+I'm going to pick parts of the post out and then comment. Hopefully I'm not quoting these in any way out of context.
+
+h2. "It's got the potential to make a handful of people a lot of money in the same way that Agile did, but nobody is really executing on."
+
+People are pretty aware of this fact I think, but watch what happens when people post on the mailing lists or turn up at community events with a purely marketing hat on. They just get no traction and even damage their product brand amongst the early adopters. The fact the term is starting to get used in job adverts and marketing materials isn't really being driven by the people talking about what devops might or might not be. I think the main reason for this is that most of the people I talk to in person or online are actually pretty happy with their jobs and generally work inside companies rather than as independent consultants. They have often reached an age where they want to improve within a given field but would like a wider network than their current colleagues to discuss things with. 
+
+h2. "How do you implement Devops?"
+
+I don't think you do. The comparisons with Agile are interesting from a community point of view but Scrum is a methodology. To me at least devops isn't, it's just a banner or tag under which interesting conversations are happening. The argument that "You should be doing this anyway. Not earth shattering." is a good thing. You'd be suprised by how many people don't do all the things they should be doing, especially in small and young companies. And one of the reasons for that is no one bothered writing a list of these things down anywhere and then discussing them. I'm not saying this huge list exists or even whether it should, but the discussion is happening.
+
+h2. "The underlying problem, however, is that dev and ops have different goals"
+
+This is spot on. I think this maybe does get missed in talk that focuses more on tools but not in the wider discussion happening about business improvements. Devops quite litterally brings those two things together. You'll always have individual goals but where you have separate operations and development teams they should have the same fundamental goals.
+
+h2. "Developers develop in the same environment production runs in If you deploy to Linux, you develop on Linux. No more of this coding on your Macbook Pro and deploying to Ubuntu: that is why you can't have nice things."
+
+Yes, yes and yes again. I'm definitely from the developer side of the tracks and I'm constantly telling people this and it's definitely something I don't see enough people doing. What I'd love is for all the operations people to state this to their development team and most importantly to help them set that up. Just saying _work like me or I won't let you near the production machines_ is just being obstructive. Educating and helping with tooling helps build those bridges and trust. And with trust comes the access the developers want. And less stupid bugs and less deployment issues with differing package dependencies.
+
+h2. "None of this amounts to a methodology, as the Devops people would have you believe."
+
+Still unsure which Devops people are saying it's a bonefide methodology. I see the word used sometimes but generally in passing and not I don't think meant how you mean here. And I don't think I've heard people speak about it in person. "Scrum methodology" returns more than 113,000 results in Google. "Devops methodology" returns about 150, some of which 404 and half of which are agregators pointing at the other half. 
+
+h2. "The Devops movement smells of a scam in the making"
+
+Some company or other is definitely going to be scammed into paying over the odds for a consultant because they used the word Devops in the sales pitch. That will have next to nothing to do with what I'd see as the Devops movement and everything to do with human nature (and sales people).
+
+
+
+

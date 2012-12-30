@@ -1,0 +1,19 @@
+---
+created_at: 2007/09/10}
+layout: post
+comments: true
+categories: []
+title: "Brighton Rock(s)"
+---
+
+Back from a madcap weekend in Brighton for the "dconstruct":http://2007.dconstruct.org/ BarCamp Brighton double header. If I was to write down everything I can remember we'd be here for a week. If I was to write down simply everything then we'd be here longer still. Information packed just doesn't cover it.
+
+I'll likely sort some more detailed posts on some particular topics that piquet my interest in the coming weeks or months, for instance user centred design vs agile methodologies (thanks to "Leisa Reichelt":http://www.disambiguity.com/), some more rambling posts on web application frameworks, microformats for write APIs, OAuth and countless other things I've no doubt forgotten.
+
+One thing you can get now is my BarCamp presention which I've uploaded to "SlideShare":http://slideshare.net. I've not used this much previously but I'm smitten and will be uploading a few other past presentions in the next few weeks as soon as I can find them. If you're interested in RESTful architectures or Rabbits then this might float your boat:
+
+<object type="application/x-shockwave-flash" data="http://s3.amazonaws.com/slideshare/ssplayer.swf?id=106632&doc=restful-rabbits310" width="425" height="348"><param name="movie" value="http://s3.amazonaws.com/slideshare/ssplayer.swf?id=106632&doc=restful-rabbits310" /></object>
+
+I also took lots of photos (some with "Norm's":http://cackhanded.net very nice 1.4f 50mm lens, thanks Norm) whick I'll get on "Flickr":http://flickr.com when I get a moment. Expect lots of portraits of people (maybe including you?) for once instead of odd abstract architecture and textures.
+
+Final thing I'll say for now is a big thankyou to anyone or everyone who sorted all this out. The 600-700 geeks descending on brighton all got fed, watered/beered and educated without anything appearing to go wrong (except when the hotel bar ran out of beer - I blame "Steve Marshall":http://nascentguruism.com/). I'm looking at you "clearlefties":http://clearleft.com and "Glenn":http://www.glennjones.net/Home/ and everyone from Madgex. Good job everyone involved.

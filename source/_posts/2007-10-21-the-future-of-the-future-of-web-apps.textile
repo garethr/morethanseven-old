@@ -1,0 +1,25 @@
+---
+created_at: 2007/10/21}
+layout: post
+comments: true
+categories: []
+title: "The Future of The Future of Web Apps"
+---
+
+_Continuing the catch up, as "mentioned":http://morethanseven.net/posts/mashup-demo/, here's some thoughts on the recent "Future of Web Apps Expo":http://futureofwebapps.com conference._
+
+It's fair to say the last Future of Web Apps (FOWA) event got a little stick due to what was seen as too many paid sponsors on stage lacking interesting things to say. Some designers and developers on the coal face also felt all the talk about startups just wasn't relevant to their day jobs. So you have to hand it to the gang at -Carson Systems- +"Carsonified":http://carsonified.com+ for coming back with an even bigger and better event which addressed most of these concerns.
+
+"Simon":http://simonwillison.net and "Brian":http://www.brianoberkirch.com/ came in to help with the speakers and at some point the event went for two tracks - the developer stage and the entreprenuers stage. At the same time the sponsors (supplemented by lots of smaller uk startups) moved into a large expo area outside the two stages. All this meant a move to "ExCel":http://www.excel-london.co.uk/en/ which is a bit big, soulless and out of town for my liking but hey, how many places can deal with that many people with space to spare?
+
+_In the interests of fairness I have to say I "ended up helping out":http://futureofwebapps.wordpress.com/category/requires-action/, getting there early on the first day and standing behind the desk (with "Cristiano":http://ibbydibby.com/cbetta/blog and a few other nice people) for the mad rush at registration. I hadn't worked on a large event for quite a while, I'd forgotten how much fun it can be! I don't think that makes me biased though._
+
+Highlights for me included "Matt Mullenweg":http://photomatt.net/ on all sorts of interesting architecture bits and pieces learned from "wordpress.org":http://wordpress.org, Heidi Pollock with practical tips for mobile web development, "Paul Graham":http://www.paulgraham.com/ on startups in general (and why we all need to be in Silicon Valley apparently), the endlessly entertaining "Simon Wardley":http://swardley.blogspot.com/ on ducks (and commodisation of online services) and "Matt Biddulph":http://www.hackdiary.com/ of "Dopplr":http://dopplr.com on practical tips for playing nice with social networks. Chatting with "Steve Sounders":http://stevesouders.com/ and hearing about how he got the title of _Chief Performace YAHOO!_ was also good fun. The "book":http://www.amazon.co.uk/High-Performance-Web-Sites-Souders is on it's way as I write. 
+
+"Dave Morin":http://davemorin.com/blog/ from Facebook was a disappointment. He basically showed everyone facebook (which I would imagine 99% of the audience are already on), talked up some huge numbers and then dodged questions about walled gardens and open data.
+
+I didn't make it into the entreprenuers stage as much as I should have done. "Mike Stenhouse":http://donotremove.co.uk/ spent most of his time in there I think and had nice things to say about most of the talks. I caught "Leisa Reichelt":http://www.disambiguity.com/ and Dick Costolo, both of whom gave particularly interesting talks to round off the second day of the conference. Although at least some people I spoke to don't like having more than one track (the same topic of conversation cropped up at "@media":http://vivabit.com/atmedia2007) I much prefer the choice of sessions. Missing the odd clash is a small price to pay for the larger number of interesting talks.
+
+Overall; lots of "interesting content from lots of interesting speakers":http://www.slideshare.net/group/future-of-web-applications/slideshows - many of whom I hadn't seen speak previously (always a good sign). As for constructive criticism I'd have to say that the half hour slots of the developer track were probably a little too short in some cases and the conference was lacking in real, hands on, practical tech sessions. 
+
+One final thing that can't go without mention; "Diggnation":http://diggnation.com. I had no idea what this was all about and quite frankly I'm not sure I do now. I'm still carrying the mental scars. I don't think anyone can explain that in words so, here's the "video":http://revision3.com/diggnation/2007-10-04London.

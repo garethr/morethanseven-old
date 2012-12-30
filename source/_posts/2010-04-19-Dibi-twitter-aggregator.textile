@@ -1,0 +1,17 @@
+---
+created_at: 2010/04/19
+excerpt: 
+layout: post
+comments: true
+categories: [misc]
+title: "DIBI Twitter Aggregator"
+---
+
+So, "DIBI":http://dibiconference.com/ is just over a week away and lots of people seem to be getting excited. Personally I'm really looking forward to it. I get a nice trip back up to my old home of Newcastle and get to talk geek to an audience of likeminded (and not so likeminded) web professionals. I'm also going to catch up with quite a few people I haven't seen in quite a while.
+
+Anyway, Twitter is at it's best at conferences like this. It's perfect for the _where to go now_ situation. But I also like going back in time after the fact and looking at what people said, especially to get feedback about my talk. With that in mind I've build a "little aggregator":http://dibiconf.appspot.com/ for all things #dibi. So far that appears to be a mixture of excitement and travel chaos.
+
+I specifically wanted something that ran on the server, which discounted an awful lot of pure javascript versions. I think Twitter clients generally do a good job of the _right now_ anyway. I also like to collect data for mining later, assuming I have the time. After a number of discussions on Twitter, then just some wandering around GitHub I found "TwitterEngine":http://github.com/steffentchr/twitterengine which is fantastic. I've hacked it around quite a bit into something more general purpose. I've added some caching, some other App Engine performance tweaks and some monitoring. I'll commit those to GitHub when I get the chance. I'd forgotten quite how much fun App Engine development was. 
+
+I still want to add a few more features before the conference. The styles work quite well on my Android but less well (text too small) on my iPod Touch. So I'll fix that first. Any other requests?
+ 

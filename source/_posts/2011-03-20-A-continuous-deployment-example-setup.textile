@@ -1,0 +1,78 @@
+---
+created_at: 2011/03/20
+excerpt: 
+layout: post
+comments: true
+categories: [jenkins, deployment, python, django]
+title: "A Continuous Deployment Example Setup"
+---
+
+One of the reasons behind getting around to building "Vagrantbox.es":http://www.vagrantbox.es recently was I was giving a talk to a group of startups on "The Difference Engine":http://thedifferenceengine.eu/ programme and I wanted to have an example project to demonstrate various things. I wanted to demonstrate everything from sensible version control habbits, configuration management, basic orcestration and most importantly a solid deployment process. I've decided to write up what I'm doing for deployment because I think it's pretty nice, and for all the talk about Continuous Deployment I haven't seen many examples of code and configuration to make it happen.
+
+Most of what I'll cover is pretty easy to map to whatever technologies your using. For this project I'd gone for Git, Django, Gunicorn, Nginx, Fabric, Mysql and Jenkins and I'm deploying to Ubuntu running on "Brightbox Cloud":http://www.brightbox.co.uk/. Apart from the Jenkins instance in the middle you could follow the instructions and swap things out easily.
+
+h2. Jenkins
+
+First up lets install "Jenkins":http://jenkins-ci.org/. I setup a separate cloud instance just to run the Continuous Integration server. I find this approach easier to manage but you could always run this locally if you prefer. The Jenkins folk provide very up to date "packages for Debian":http://pkg.jenkins-ci.org/debian/ so I chose to use those.
+
+h3. Plugins
+
+Jenkins provides a huge number of optional plugins which enable various additional features. Plugins are installed via the web interface at /pluginManager. I've installed:
+
+* "Jenkins Cobertura Plugin":http://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin
+* "Jenkins GIT plugin":http://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin
+* "GitHub plugin":http://wiki.jenkins-ci.org/display/JENKINS/Github+Plugin
+* "Green Balls":http://wiki.hudson-ci.org/display/HUDSON/Green+Balls
+* "Hudson Violations plugin":http://wiki.hudson-ci.org/display/HUDSON/Violations
+
+Only the Git plugin is really required for what I'm doing with deployment. Cobertura and Violations are code quality metrics tools that I use to record output from pylint and code coverage for my test suite.
+
+h2. The Source
+
+My finished project was already on GitHub in a private repository. I'm using a requirements.txt file to record python dependencies so I can use pip to install them automatically and I'm using Virtualenv to sandbox this installation. I'm also using South to manage my database schema changes. I won't go into that here as it's pretty Python specific, Rails for instance has Active Record migrations, RVM and Bundler which do pretty much the same job. PHP has PEAR and some of the frameworks offer a migration tool. 
+
+I then created two projects in Jenkins:
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiRywEM" alt="Jenkins dashboard"/>
+
+h3. Project 1: Vagrantboxes
+
+This is the main build of my master branch in Git. As well as setting up the Git repo as shown below I've set a polling schedule to */5 * * * * (that's every 5 minutes) and also set Trigger builds remotely so I can have a task in my fabfile which triggers a build immediately.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjh2gEM" alt="Git config for Jenkins"/>
+
+I then have two build steps, both of which execute shell commands. The first installs any new requirements via pip:
+
+<pre>bash -l -c "source bin/activate; pip install -r requirements.txt"</pre>
+
+The second runs my test suite and generates the XML output required to show the test results in Jenkins:
+
+<pre>bash -l -c "source bin/activate; cd vagrantboxes/configs/common; python manage.py jenkins boxes"</pre>
+
+I'm using the rather handy "Django Jenkins":https://github.com/kmmbvnr/django-jenkins application for this.
+
+So far so good. This gives us a project that, when we push some changes to GitHub, will pull those changes down to the CI server and run our test suite, giving us feedback as to whether the tests pass or fail.
+
+Now for the trick, in Post-build Actions tick Build other projects and specify the name of another project that we'll setup next. Mine is called Vagrantboxes-deploy.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRirwwEM" alt="Post build action in Jenkins"/>
+
+h3. Project 2: Vagrantboxes-deploy
+
+This project is triggered only when the previous project runs successfully. And all it's going to do is run the deployment script on the project we just built. The setup for this project is very simply, it has one build step which just executes the following: 
+
+<pre>bash -l -c "cd /var/lib/jenkins/jobs/Vagrantboxes/workspace; source bin/activate; fab appserver deploy"</pre>
+
+The specifics of the Fabric script here aren't that important but I'm doing something not too disimilar to "what I described here":http://morethanseven.net/2009/07/27/fabric-django-git-apache-mod_wsgi-virtualenv-and-p.html. 
+
+The reason I've setup a separate project for these is so I can, if I choose, trigger a deployment separately to the full build, and also so I can very easily disable deployments even if the main build is still running.
+
+h2. Conclusions
+
+With this setup whenever I push code to master it triggers a build. If the test suite passes it runs the deployment script and pushes out the code to the live web servers. This suites me and this project but you might find it easier to start by pushing all successfull builds out to a staging environment. And maybe then moving on to having a new project which is only triggered manually for deploying to production.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiqwwEM" alt="project view in Jenkins"/>
+
+This setup has other advantages too. The Jenkins dashboard becomes a handy tool for recording deployment events. You can easily setup emails or IM messages or Campfire posts to alert other team members whenever a deployment happens. And it really really makes sure your delployment scripts work without hand holding.
+
+This is a simple project that I'm working on on my own, but in a team environment you'd likely have a more complex branching strategy and more Jenkins projects. You might also introduce some gateways for manual testing but the starting point is the same. Jenkins makes archiving successful build artifacts relatively easy as well, this setup has a few race condition possibilities that you can fix by building artifacts from successful builds. Jenkins also supports building from different branches and having different branches trigger different projects, all handy if you want to grow this kind of setup.

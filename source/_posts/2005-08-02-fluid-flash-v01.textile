@@ -1,0 +1,21 @@
+---
+created_at: 2005/08/02}
+layout: post
+comments: true
+categories: []
+title: "fluid flash v0.1"
+---
+
+<p>Their is nothing wrong with a nice header graphic. Clients, designers and customers alike love them. But I often see them used as an excuse for fixed width designs. Well no more I say (unless, of course you have a perfectly good reason for a fixed width design in which case you dont really need this technique.)</p>
+
+
+ <p>The plan was simple. Find a way of incorporating flash headers into sites using liquid or elastic designs in much the same way you might use lots of sliding doors background-image goodness.</p>
+
+
+ <p>A quick actionscript solution, courtesy of <a href="http://mikomedia.com">Mike Ord</a> combined with some CSS and Javascript is presented for perusal on <a href="http://www.morethanseven.net/fluidflash">www.morethanseven.net/fluidflash</a> .</p>
+
+
+ <p>This is a simple example, the header at the top is flash and writes to screen it&#8217;s current dimensions. Try resizing the screen (liquid layout) or text (elastic layout) and see for yourself.</p>
+
+
+ <p>I need a nice attractive flash movie to really show this off so anyone who wants to send something let me know &#8211; I&#8217;ll make sure to provide credit.</p>

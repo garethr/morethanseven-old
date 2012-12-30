@@ -1,0 +1,13 @@
+---
+created_at: 2008/01/05}
+layout: post
+comments: true
+categories: []
+title: "Refresh Map"
+---
+
+It turns out that their are now nearly 40 "Refresh":http://www.refreshingcities.org/ groups scattered around and about. Here's a "quick map of them all":http://maps.google.co.uk/maps/ms?ie=UTF8&hl=en&msa=0&ll=43.580391,-56.25&spn=98.199649,202.5&z=2&om=1&msid=103845568847240179832.000442fedc66a55c4744b. It's pretty interesting how all these groups have picked up on a simple word.
+
+<iframe width="560" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.co.uk/maps/ms?ie=UTF8&amp;hl=en&amp;om=1&amp;s=AARTsJpLByU1_UoXjtzM2l03IoKFmn1HHw&amp;msa=0&amp;msid=103845568847240179832.000442fedc66a55c4744b&amp;ll=38.891033,-76.992187&amp;spn=90.392203,196.875&amp;z=2&amp;output=embed"></iframe>
+
+For anyone in the Newcastle are we're having a meetup next week, on Thursday evening, as it happens, the "details are on Upcoming":http://upcoming.yahoo.com/event/396927/ if you fancy coming along.

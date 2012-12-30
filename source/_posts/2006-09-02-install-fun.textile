@@ -1,0 +1,84 @@
+---
+created_at: 2006/09/02}
+layout: post
+comments: true
+categories: []
+title: "Install Fun"
+---
+
+<p><strong>Update</strong> A few additions I thought I&#8217;d add here rather than keep for another post. <a href="http://sarat.pediredla.name/">Sarat</a> just messaged me with a link to <a href="http://www.codeweavers.com/beta/cxmac/">CrossOver Mac</a>. I now have IE 6 running natively on my mac. Which is nice. I also installed <a href="http://twistedmatrix.com/projects/core/">Twisted</a> but that&#8217;s probably for later too.</p>
+
+ <p>I finally got round to getting myself a new MacBook (only a week or so after <a href="http://xlab.co.uk">Phil</a>) and a nice piece of kit it is too. I decided not to simply plug it into my previous machine via firewire and port everything across. I sort of figured something would break moving from a G4 to the new Intel machines but I think the real reason was that I quite like setting up a fresh machine. It might just be me but I quite like installing and tweaking things.</p>
+
+
+ <p>I thought, for posterity, I&#8217;d post a list of the things I installed and some of the tweaks I got up to.</p>
+
+
+ <p>First things first. I installed most of these apps into a Personal folder in the Applications folder, just to keep them separate from the preinstalled Apple applications.</p>
+
+
+ <ul>
+ <li><a href="http://www.adiumx.com/">Adium</a></li>
+  <li><a href="http://rogueamoeba.com/airfoil/">Airfoil</a></li>
+  <li><a href="http://www.caminobrowser.org/">Camino</a></li>
+  <li><a href="http://cyberduck.ch/">Cyberduck</a></li>
+  <li><a href="http://www.mozilla.com/firefox/">Firefox</a></li>
+  <li><a href="http://flickr.com">Flickr Uploader</a></li>
+  <li><a href="http://www.newsgator.com/NGOLProduct.aspx?ProdId=NetNewsWire&#38;ProdView=lite">NetNewsWire Lite</a></li>
+  <li><a href="http://opera.com">Opera</a></li>
+  <li><a href="http://www.pomola.com/products_passwordrepository/passwordrepository.html">Password Repository</a></li>
+  <li><a href="http://www.nullriver.com/index/products/pspware">PSPWare</a></li>
+  <li><a href="http://www.codingmonkeys.de/subethaedit/">SubEthaEdit</a></li>
+  <li><a href="http://macromates.com/">TextMate</a></li>
+ </ul>
+
+
+ <p>As nice as the OS X interface is a couple of small additions can&#8217;t hurt. With all the talk about <a href="http://www.apple.com/macosx/leopard/spaces.html">Spaces</a> of late I&#8217;m not sure if people had come across <a href="http://desktopmanager.berlios.de/">Desktop Manager</a> before. It&#8217;s basically spaces, or virtual desktops, now.</p>
+
+
+ <ul>
+ <li><a href="http://desktopmanager.berlios.de/">Desktop Manager</a></li>
+  <li><a href="http://quicksilver.blacktree.com/">QuickSilver</a></li>
+ </ul>
+
+
+ <p>I also include a few Apple apps in my dock that I use on a regular basis:</p>
+
+
+ <ul>
+ <li>Preview</li>
+  <li>DigitalColorMeter</li>
+  <li><a href="http://www.apple.com/macosx/features/unix/">Terminal</a></li>
+  <li><a href="http://www.apple.com/safari">Safari</a></li>
+  <li><a href="http://www.apple.com/itunes/">iTunes</a></li>
+ </ul>
+
+
+ <p>I&#8217;m a UNIX geek at heart, from even before OS X moved in that direction, and both <a href="http://fink.sourceforge.net/">Fink</a> and <a href="http://darwinports.opendarwin.org/">Darwin Ports</a> make grabbing most packages easy enough.</p>
+
+
+ <ul>
+ <li><a href="http://darwinports.opendarwin.org/">Darwin Ports</a></li>
+  <li><a href="http://fink.sourceforge.net/">Fink</a></li>
+ </ul>
+
+
+ <p>Web development is what I do, and I couldn&#8217;t be doing that without a handfull of frameworks could I?</p>
+
+
+ <ul>
+ <li><a href="http://www.rubyonrails.org/">Rails</a> </li>
+  <li><a href="http://www.djangoproject.com/">Django</a></li>
+  <li><a href="http://www.mono-project.com/Main_Page">Mono</a></li>
+ </ul>
+
+
+ <p>Their are lots of ways of setting up the <a href="http://www.apache.org/">Apache</a> <a href="http://www.mysql.com/">MySQL</a> <a href="http://www.php.net/">PHP</a> stack on OS X, the OS already includes versions of Apache and PHP in fact. I instead went for using the <a href="http://www.mamp.info/">MAMP</a> installer to avoid the likely problems of upgrading from source the preinstalled versions. I then got to work tweaking and twisting the default MAMP install into shape, adding th ability to quickly setup virtual hosts, a central code library repository, sorting paths out and setting up Python support. I hope to post about this later on in more detail.</p>
+
+
+ <ul>
+ <li><a href="http://www.mamp.info/">MAMP</a></li>
+ </ul>
+
+
+ <p>All in all, everything is up and running nicely.</p>

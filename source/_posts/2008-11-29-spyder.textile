@@ -1,0 +1,15 @@
+---
+created_at: 2008/11/29}
+layout: post
+comments: true
+categories: [python, muffinresearch]
+title: "Spyder"
+---
+
+"Stuart":http://muffinresearch.co.uk/ at work has been playing with a nice "Python web crawler":https://edge.launchpad.net/spyder recently. I've used "Harvestman":http://www.harvestmanontheweb.com/ before but it's not the most straightforward thing to work with. Spyder has a really nifty callback based approach and a couple of hooks which allows you to write code like:
+
+pre. crawler = Spyder()
+crawler.register(my_custom_method, 'post_fetch_html')
+crawler.run(URL)
+
+On a side note I wish "Launchpad":http://launchpad.net was as clean and tidy as "GitHub":http://github.com though. I can see GitHub adding some of the features that Launchpad has eventually, but I hope they fit them in around the existing features.

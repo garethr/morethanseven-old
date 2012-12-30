@@ -1,0 +1,34 @@
+---
+created_at: 2009/02/15}
+layout: post
+comments: true
+categories: [django, settings]
+title: "Let you Sys Admin Override your Django Settings"
+---
+
+The previous "Django settings tip":http://morethanseven.net/2009/02/11/django-settings-tip-setting-relative-paths/ seemed to go down well so I thought I'd jot down a few more over the next few weeks. Most of these have come out of working with a decent sized Django team at "Global":http://thisisglobal.com so I can't take credit for anything but writing them down for the most part. For this example I think "Alex Knowles":http://alixandalex.com/obfuscated-signatures/ did the original version.
+
+I was talking with out friendly "sys":http://search.cpan.org/~rclamp/ "admins":http://www.unixdaemon.net/ on Friday about a new application and whether they were happy with some application specific logging (using the Python logging module) I'd build in. Nothing fancy, just application logging to a rotated log file for system events. Their answer was yes, as long as they could control where the log files ended up and the maximum file size, ideally without having to play around in the code or to redeploy the application if they wanted to move the files elsewhere. 
+
+These things were already specified in the settings file rather than hardcode into the application but that only gets us half way. The standard Linux way of setting this sort of thing is with a configuration file stored in the /etc directory. So we ended up with the following snippet of code in our settings.py file.
+
+pre. # we're going to allow overriding of settings via a yml file.
+# This makes live nicer for anyone managing the box
+# and means settings can be overloaded without redeploying the site
+SETTINGS_OVERIDE = "/etc/application_name.yml"
+try:
+    file = open(SETTINGS_OVERIDE)
+    for key, value in yaml.load(file).items():
+        globals()[key]=value
+except:
+    # we don't always have the file around or need the setting 
+    # defined so best to be quite if things go wrong
+    pass
+
+Then in the yaml file you can simply clobber any of the settings using a simple name value pair approach.
+
+pre. LOG_FILE: "/var/log/application_name.log"
+
+It lets us keep production paths that might change out of the developers code, at the same time as giving the sys admins a familiar way of managing the production environment.
+
+It does have one downside, if you're not aware of it's presence then it can make debugging settings related issues a pain. With that in mind you could wrap it so as to only work this way when DEBUG is False, or take the approach here which is to leave extensive comments.

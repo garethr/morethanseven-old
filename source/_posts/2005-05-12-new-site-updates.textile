@@ -1,0 +1,12 @@
+---
+created_at: 2005/05/12}
+layout: post
+comments: true
+categories: []
+title: "new site updates"
+---
+
+<p>Right. I&#8217;ve nearly finished adding all the bits to this site that I liked about previous things I had up and rebuilding around all the things I disliked. So here&#8217;s to some new projects on the horizon.</p>
+
+
+ <p>The plan is to document and upload thoughts and anything of interest on my programming things I&#8217;m up to. I&#8217;m at the moment pondering C# and ASP.NET (Mono), Ruby on Rails and maybe something (Python?) to do with my Palm device. Like I have that much time!</p>

@@ -1,0 +1,28 @@
+---
+created_at: 2006/08/14}
+layout: post
+comments: true
+categories: []
+title: "Geekout"
+---
+
+<p>On occasion I even surprise myself. Sometimes you just need to geek. Rob at work was discussing his ideal device, basically something that would read text based RSS feeds to him while in the bath in the morning. Lazy I know.</p>
+
+
+ <p>I thought to myself <em>That cant be too difficult</em> and I&#8217;ve never played with any text to speach stuff before and off I went. A few hours later and I just got my Windows machine to read out the top story from this site.</p>
+
+
+ <p>Python is so cool to just hack in. Did I mention that before? I&#8217;ve yet to do anything <em>real</em> in it, but playing around with code is nice. Anyway, on with a solution;</p>
+
+
+ <p>Lots of things to install first. As mentioned I used Windows, in this case so I could access the Win32 Speech API. I looked at using <a href="http://www.cstr.ed.ac.uk/projects/festival/">Festival</a> on Unix but left that for now. Tools of choice were <a href="http://python.org">Python</a> 2.4 with the <a href="http://sourceforge.net/projects/pywin32/">Win32 extensions</a>. A couple of Python modules do most of the work. First up <a href="http://sourceforge.net/projects/uncassist">pyTTS</a> which deals with the text to speach and SAPI integration. Next comes the <a href="http://feedparser.org/">Feedparser</a> module. I&#8217;d heard this mentioned by <a href="http://simon.incutio.com/archive/2006/08/08/ydn">Simon</a> over on the <a href="http://developer.yahoo.com/python/python-rss.html">Yahoo Python developer network</a> and it really is nice.</p>
+
+
+ <p>The rest was easy.<code><pre>import pyTTS
+import feedparser
+d = feedparser.parse("http://morethanseven.net/rss")
+tts = pyTTS.Create()
+tts.Speak(d['items'][0].description)</pre></code></p>
+
+
+ <p>Ok, so this isn&#8217;t an application. Just a proof of concept but you get the idea and I dont really want or need this app anyway. Why then? because I thought I could. Oh, and Python&#8217;s interactive prompt is so cool. I want one for everything.</p>

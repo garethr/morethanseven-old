@@ -1,0 +1,23 @@
+---
+created_at: 2011/05/15
+excerpt: 
+layout: post
+comments: true
+categories: [cloudfoundry, python, vmware]
+title: "Python On Cloudfoundry"
+---
+
+For those that haven't yet had a look "Cloudfoundry":http://cloudfoundry.com/ from VMware is two things, one of which is nice, one of which is very cool indeed:
+
+* On one hand it's a platform as a service, allowing you to easily deploy Ruby, Java and Node.js applications to "cloudfoundry.com":http://cloudfoundry.com/.
+* On the other hand it's an "open source project":http://cloudfoundry.org/ with all the code on "Github":http://github.com/cloudfoundry allowing you to run the entire stack wherever you like.
+
+I'm pretty interested in the latter. Its API could in theory become a defacto standard for application and service buildouts, in the same way as we're seeing the EC2 API expand outside AWS for managing infrastructure (and arguably how we're using Chef and Puppet for managing the things installed on that infrastructure). The really interesting bit is the fact it's all open source. Not only does that mean you can run it on your own infrastructure (including as I'm doing on a virtual machine on my laptop), but it's also designed so new services (like Redis, MySQL, RabbitMQ), new runtimes (like Ruby 1.8, RUby 1.9, Java) and new frameworks (like Rails, Sinatra, Spring) can be added easily.
+
+I'm running vcap on a "vagrant":http://vagrantup.com managed VirtualBox instance, but you could install it anywhere you like. I used "these chef recipes":https://github.com/auser/cloudfoundry-quickstart to get everything installed. I ran into an issue with the mysql service not starting correctly that "I fixed":https://github.com/auser/cloudfoundry-quickstart/pull/2 and I needed to manually install chef into the rvm gemset part way through the install, but the recipes pretty much just worked.
+
+Looking for an excuse to have a route through the vcap code I decided to see if I could add rudimentary support for Python applications. After a day of noodling around I've forked the code and sent a few pull requests back with it basically working. This required changes to the "vmc client":https://github.com/cloudfoundry/vmc/pull/18, to the "vcap service":https://github.com/cloudfoundry/vcap/pull/57 and like all good open source contributions to the "test suite":https://github.com/cloudfoundry/vcap-tests/pull/4.
+
+Thanks hugely to existing pull requests (mainly the one's for "adding PHP support":https://github.com/cloudfoundry/vcap/pull/25) it's not taken long at all. The Sinatra and Rails support which shipped with the first release from VMWare supports using Bundler to define gem dependencies that can be pulled in at deploy time. It shouldn't be too much effort I'm hoping to do the same for using pip and virtualenv for each deployed python application. I think I can also see how to support python3 and how to add django as a supported framework.
+
+I had huge fun, but you might not at this early stage in the project. I'm relatively happy with reading and writing Ruby, futzing with rvm, debugging installation woes and hunting down service configuration problems. The best tool for working out what was happening was generally tailing the logs in /tmp/vcap-run/ and finding the code that wrote a given message. If you just want something to work I'd wait a little while, if you like the sound of the above it's a pretty nice codebase to play around in. I'd love to eventually see some official contributor documentation and some hints and tips on things like running the tests. At the moment flicking through reported issues and pull requests on GitHub is the best place to start.

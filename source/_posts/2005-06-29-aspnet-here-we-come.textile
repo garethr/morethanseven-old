@@ -1,0 +1,12 @@
+---
+created_at: 2005/06/29}
+layout: post
+comments: true
+categories: []
+title: "asp.net here we come"
+---
+
+<p>I now have an ASP.NET environment setup and ready to go and the will to use it. Depending on how it goes I&#8217;ll try and post any thoughts as I go. In particularly related to how I get on with good standards markup.</p>
+
+
+ <p>I can knock together whatever I want in PHP reasonably well and with my new job focusing on CSS and XHTML amongst other related bits, and working at .NET shop I thought I now have a reason to play.</p>
