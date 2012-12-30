@@ -1,0 +1,22 @@
+---
+layout: post
+title: "my personal package repository"
+date: 2012-12-30 16:52
+comments: true
+categories: packaging
+---
+
+I'm a "big fan of system packages for lots of reasons":http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/ and have often ended up rolling my own debian package repository at work, or working with others that have done so. Recently I finally got round to setting up a personal package repo, at "packages.garethrushgrove.com":http://packages.garethrushgrove.com. More interesting than the repo is probably the tool chain I used, oh and the rather nice bootstrap based styling.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjh1wIM" alt="nice looking package repository"/>
+
+The source code for everything is "on GitHub":https://github.com/garethr/packages although not much documentation exists yet. In the middle are a few shell scripts that generate the repo. Around them is a Vagrant box (which makes it easier to build packages for different achitectures or distros) and some Rake commands 
+
+<pre><code>bundle exec rake -T
+rake recipes:build[recipe]  # Build a package from one of the available recipes
+rake recipes:list           # List available recipes
+rake repo:build             # Build the repository</code></pre>
+
+The recipes commands allow for building new packages based on scripts. A few examples are included which use fpm, but you could use anything. The repo:build command triggers the debian repository to be rebuilt.
+
+The vagrant configuration shares various folders between and guest and host which also opens up a few useful features. One is I can just drop any old debian package into the debs folder and run the repo:build command and it will be in my repository. The other useful capability is that the resulting repo is shared back to the host, which means I can then check it into Git and in my case push it up to Heroku.
