@@ -3,7 +3,7 @@ layout: post
 title: "Django and Rails presentation from QCon"
 date: 2013-01-13 16:31
 comments: true
-categories: qcon, presentations, django, rails
+categories: qcon presentations django rails
 ---
 
 I had great fun back in November at the "QCon":http://qconsf.com/ conference in San Francisco. As well as currating one of the tracks and catching up with people in the area I managed to give the following talk.
