@@ -1,0 +1,15 @@
+---
+layout: post
+title: "March madness"
+date: 2013-02-17 17:17
+comments: true
+categories: personal devops qcon
+---
+
+With only a week or so to go before the end of February, it's looking like March might be a little busy.
+
+* I'm speaking at QCon, in London on Wednesday 6th on "Clouds in Government - Perils of Portability":http://qconlondon.com/london-2013/presentation/Clouds%20in%20Government%20-%20Perils%20of%20Portability (which in hindsight is probably the silliest title for a talk I've ever used)
+* On the 15th and 16th of March I'll be at "Devopsdays":http://devopsdays.org/events/2013-london/, again in London. I've been helping out with organising the event and I'm very much looking forward to going along after seeing all the work being put in.
+* And last but not least I'm heading to Boston for the rather exciting "Monitorama":http://monitorama.com/ from the 26th until the 30th. Looking forward to meeting up in person with quite a few folks I've spoken to over the last year or two.
+
+If you're going to be at any of these events (QCon and Devopsdays still have tickets available I think) then let me know.
