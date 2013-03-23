@@ -1,0 +1,27 @@
+---
+layout: post
+title: "Government Service Design Manual"
+date: 2013-03-23 17:04
+comments: true
+categories: govuk devops opensource
+---
+
+I've not been writing many blog posts lately, but I have been doing quite a bit of writing elsewhere. One of the things I've had a hand in at work is the new "Government Service Design Manual":https://www.gov.uk/service-manual. This is the work of many people I work with as well as further afield. It's intended to be a good starting place to find information about building high quality digital services.
+
+The manual is in beta and we're looking for as much feedback as possible on the whole thing. It's already proving useful and a good way of framing the scope of discussions, but it has lots of room for improvement.
+
+If you're reading this post I'm going to wager you're interest lies in or around devops flavoured content. The following are guides I've written in this area that I'd love any and all feedback on.
+
+* "Web Operations":https://www.gov.uk/service-manual/the-team/web-operations.html
+* "Configuration Management":https://www.gov.uk/service-manual/making-software/configuration-management.html
+* "Hosting":https://www.gov.uk/service-manual/operations/hosting.html
+* "Information Security":https://www.gov.uk/service-manual/making-software/information-security.html
+* "Monitoring":https://www.gov.uk/service-manual/operations/monitoring.html
+* "Load and Performance Testing":https://www.gov.uk/service-manual/operations/load-and-performance-testing.html
+* "Releasing Software":https://www.gov.uk/service-manual/making-software/release-strategies.html
+* "Vulnerability and Penetration Testing":https://www.gov.uk/service-manual/operations/penetration-testing.html
+* "Choosing Technology":https://www.gov.uk/service-manual/making-software/choosing-technology.html
+
+If you're interested in the background to this endeavour then a couple of blog posts from some of my colleagues might be of interest too. First Richard Pope talks about "how the manual came about":http://digital.cabinetoffice.gov.uk/2013/03/21/building-the-standard/ and here's a post from Andrew Greenway about this "beta testing of the service standard":http://digital.cabinetoffice.gov.uk/2013/03/21/building-the-standard/.
+
+The source for all this is on "GitHub":https://github.com/alphagov/government-service-design-manual so if you prefer you can just sent a pull request. Or I'm happy to get emails or comments on this post. In particular if people have good references or next steps for these guides then let me know as several of them in particular are lacking in that area.
