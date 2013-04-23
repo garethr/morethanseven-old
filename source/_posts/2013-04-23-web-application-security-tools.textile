@@ -1,0 +1,42 @@
+---
+layout: post
+title: "Web application security tools"
+date: 2013-04-23 07:57
+comments: true
+categories: security vagrant puppet
+---
+
+I've become increasingly interested in web application security issues over the last year or so. Working in Government will do that to you. And I've come to the conclusion that a) there are lots of good open source security tools, b) many of them are terribly packaged and c) most developers don't use any of them.
+
+I've been having related conversations at recent events I've made it along to, including Devopsdays London which featured some good open spaces discussions on the subject. Security is one of those areas that, for many organisations, is basically outsourced to third party penetration testing firms or consultants. Specialists definitely have a role to play, but with a move towards increasingly rapid releases I think in-house security testing and monitoring is going to get more and more important.
+
+h2. A collection of security tools
+
+I've started to build a "collection of tools on GitHub":https://github.com/garethr/pentesting-playground, along with a vagrant setup to test them out. Full instructions are available on that repository but the short version is you can run one command and have one virtual machine filled with security testing tools and, if useful, another machine running a vulnerable web application with which to test. The current list of tools runs to:
+
+* "skipfish":http://code.google.com/p/skipfish/
+* "nmap":http://nmap.org/
+* "nikto":http://www.cirt.net/nikto2
+* "w3af":http://w3af.org/
+* "garmr":https://github.com/mozilla/Garmr
+* "sslyze":https://github.com/iSECPartners/sslyze
+* "wpscanner":https://github.com/metachris/wpscanner
+* "owasp zap":https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project
+* "arachni":http://arachni-scanner.com/
+* "gauntlt":https://github.com/gauntlt/gauntlt
+* "sqlmap":http://sqlmap.org/
+* "wpscan":http://wpscan.org/
+* "sslscan":http://sourceforge.net/projects/sslscan/
+* "TLSSLed":http://blog.taddong.com/2013/02/tlssled-v13.html
+
+But I'll add more tools as I discover them or as people file issues or pull requests.
+
+h2. What about Backtrack?
+
+When I started investigating tools for security and penetration testing most roads led to "Backtrack":http://www.backtrack-linux.org/. This is a complete Linux distribution packed with a huge number of security tools, including many if not all of the above. Why then did I write puppet code rather than create a Vagrant box from Backtrack? Firstly, Backtrack is probably great if you're a professional penetration tester, but the barrier to entry to installing a new distibution for most developers is too high in my view. And with a view to using some of these tools as part of monitoring systems I don't always want a separate virtual machine. I want to be able to install the tools wherever I want. A good configuration management tool gives you that portability, and Vagrant gives you all the benefits of a local virtual machine.
+
+h2. Future plans
+
+As mentioned I'd like to expand how some of these tools are used to include automated monitoring of applications, maybe look at ways of extracting data for metrics or possibily writing a Sensu plugin or two. The first step to that is probably breaking down the monolithic puppet manifest into separate modules for each tool. Along the way I can add support for more operating systems as required. I've already done that for the "wackopicko module which is up on the Forge":http://forge.puppetlabs.com/garethr/wackopicko.
+
+I'm also soliciting any and all feedback, especially from developers who don't do any security related testing but feel like they should.
