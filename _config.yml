@@ -80,31 +80,3 @@ google_analytics_tracking_id: UA-435455-1
 
 # Facebook Like
 facebook_like: false
-
-# Prose.io
-prose:
-  rooturl: "source"
-  metadata:
-    "source/_posts":
-      - name: "layout"
-        field:
-          element: "hidden"
-          value: "post"
-      - name: "title"
-        field:
-          element: "text"
-          value: "Title"
-      - name: "comments"
-        field:
-          label: "Allow comments"
-          element: "checkbox"
-          value: true
-      - name: "categories"
-        field:
-          element: "text"
-          value: "misc"
-      - name: "published"
-        field:
-          label: "Published"
-          element: "checkbox"
-          value: true
