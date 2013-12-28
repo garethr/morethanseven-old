@@ -1,0 +1,13 @@
+language: ruby
+script: ''
+branches:
+  only:
+    - master
+deploy:
+  provider: heroku
+  buildpack: https://github.com/essh/heroku-buildpack-nginx.git
+  app: morethanseven
+  on:
+    repo: garethr/morethanseven
+  api_key:
+    secure: ebu2zHS4hlF2lhplegmYxa5+iRmGx/SMHWayteZQcUEQ5W+1Sn5s7F6Fir5C4pD3RfkwL08gdhiYKa5rFFAZYfaXrLnmcFQFg2rWyRbvnsXgyR0aQmWyAspCCqiygzT7QujpckHVpfDdEZp33NEAi1GXV47fzNz1d66nAXlStmI=

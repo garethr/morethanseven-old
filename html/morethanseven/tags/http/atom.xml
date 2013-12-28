@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: http | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/http/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Varnish At Refresh Cambridge]]></title>
+    <link href="http://www.morethanseven.net/2011/07/07/Varnish-at-refresh-cambridge/"/>
+    <updated>2011-07-07T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/07/07/Varnish-at-refresh-cambridge</id>
+    <content type="html"><![CDATA[<p>I did a quick lightning talk at the Refresh Cambridge meetup last night, a very quick introduction to "Varnish":https://www.varnish-cache.org/. Given 10 minutes all I really wanted to do was get people to go away and take a look at it. Lots of folks in the room hadn't come across it before so I think the talk was hopefully well pitched.</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/8531073?rel=0" width="510" height="426" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+
+<p>Several people asked about slighly dynamic pages and I only got chance to mention support for "ESI":https://www.varnish-cache.org/trac/wiki/ESIfeatures (Edge Side Includes) at the end. Conversation afterwards turned to various parts of the modern web stack and I had a pretty good time being opinionated. Hopefully more of the same next month.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debugging HTTP Headers with RedBot]]></title>
+    <link href="http://www.morethanseven.net/2011/06/04/Getting-http-headers-right/"/>
+    <updated>2011-06-04T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/06/04/Getting-http-headers-right</id>
+    <content type="html"><![CDATA[<p>I've been using the "Vagrantbox.es":http://www.vagrantbox.es site as a bit of a playground recently and I've been meaning to blog about some of the overengineering I've been doing. Here's a smaller starter.</p>
+
+<p>Getting the headers returned by your web server correct is both easy to do and easy to forget about. Unless you go actively looking for headers with curl or similar you'll probably miss them, and even then will you spot an incorrect header by eye? "RedBot":http://redbot.org is an excellent online tool that not only shows you the headers but makes recommendations about what might be missing, invalid or things you haven't considered.</p>
+
+<p>For instance the "RedBot results for vagrantbox.es":http://redbot.org/?uri=http%3A%2F%2Fwww.vagrantbox.es look like this:</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjJ4gEM" alt="Debugging information from Redbot"/></p>
+
+<p>Or at least they do now after a few tweaks to my nginx configuration. In particular I've added</p>
+
+<pre>add_header Vary Accept-Encoding;</pre>
+
+
+<p>I'd assumed that enabling gzip compression with gzip_vary would have set this automatically and never checked. The way RedBot provides a checklist of recommendations is very handy.</p>
+
+<p>As well as checking the page itself you can also check all the assets associated with a page by adding a query string argument. For instance here is the "assets view for Vagrantbox.es":http://redbot.org/?descend=True&amp;uri=http://www.vagrantbox.es. RedBot also provides a "JSON encoded version of the result":http://redbot.org/?id=o5GXZe&amp;descend=True&amp;format=har which might be useful in a CI system. If you'd rather run your own instance of the software you can, the code can be found on github at "mnot.github.com/redbot/":http://mnot.github.com/redbot/. It currently doesn't work with HTTPS resources but that's about the only thing I'd like to see added.</p>
+]]></content>
+  </entry>
+  
+</feed>

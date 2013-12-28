@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>HTML. An alternative to Word? - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="When I&#8217;m writing code, be it CSS, Javascript, Ruby, whatever, I don&#8217;t like big bulky IDE&#8217;s. Give me TextMate or Vim any day. Going &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2007/08/19/html-an-alternative-to-word">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">HTML. An Alternative to Word?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-19T00:00:00+01:00" pubdate data-updated="true">Aug 19<span>th</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>When I&#8217;m writing code, be it <span class="caps">CSS</span>, Javascript, Ruby, whatever, I don&#8217;t like big bulky IDE&#8217;s. Give me <a href="http://macromates.com/">TextMate</a> or Vim any day. Going all freelance I now have the occasional need to produce nice documents and being in charge means I get to decide what I use to produce them. I never really liked working in Microsoft Word so decided against it. But rather than sensibly going for an obviously alternative I decided to just use <span class="caps">HTML</span>, or rather more specifically, <a href="http://textism.com/tools/textile/">Textile</a>.</p>
+<p><img src="http://morethanseven.net/_assets/media/imgOnlineDocs.png" title="An example of a current document" alt="An example of a current document" /></p>
+<p>As an old time <a href="http://textpattern.com">textpattern</a> I learned to love the simple text transformation language and it&#8217;s inclusion in the <a href="http://37signals.com">37signals</a> apps made me smile and more likely to use them. Why use it over <span class="caps">HTML</span> you may ask? For me I think about <span class="caps">HTML</span> like a browser, as a tree of nodes. I end up spending quite a bit of time writing content then going backwards and wrapping what I just wrote in markup. This is fine for your typical site, but for writing documents it&#8217;s hard to get into a flow. With textile I can flow in one direction.</p>
+<p>So far I&#8217;m liking it alot. I can seperate content from presentation (Word styles are a myth), easily repurpose my content (text, html, pdf) and write documents in anything I like, including Word if I chose to.</p>
+<p>It&#8217;s been a pretty good excuse to play with various bits of CSS3, including multi-columns, advanced layout, generated content and the various print offerings. Given I can control the rendering engine then produce a <span class="caps">PDF</span> to distribute I can use anything that the latest browser builds can deal with.</p>
+<p>I&#8217;ve not got all the workflow steps automated yet, I&#8217;m using Firefox to print documents to <span class="caps">PDF</span> (via Preview) at the moment which works fine but is still a manual process I can get rid of using something like <a href="http://www.re.be/css2xslfo/">css2xslfo</a> and <a href="http://xmlgraphics.apache.org/fop/">fop</a>. I&#8217;m also pretty sure the PDFs won&#8217;t be accessible, although the original markup certainly should be.</p>
+<p>As I produce more complex documents I&#8217;ll likely miss things like automated table of contents generation, footnotes and page numbering but, then again, I can write that in Javascript (or on the server) if I so choose. I was impressed listening to HÃ¥kon Wium Lie at <a href="http://vivabit.com/atmedia2007/">@media</a> about the process they used to format his last book using <span class="caps">CSS</span> and <a href="http://www.princexml.com/">PrinceXML</a>. I&#8217;m half tempted to spend time rolling all this together into a web app. It would be pretty good fun really; APIs, <span class="caps">XSLT</span>, <span class="caps">CSS</span>, <span class="caps">PDF</span>, some nice UI problems, etc. Only problem I see would be entering a market contested by Microsoft, Google, Sun and er, lots of others.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-19T00:00:00+01:00" pubdate data-updated="true">Aug 19<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2007/08/19/html-an-alternative-to-word/" data-via="garethr" data-counturl="http://www.morethanseven.net/2007/08/19/html-an-alternative-to-word/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/07/31/some-thoughts-on-good-conferences-to-attend-uk/" title="Previous Post: Some Thoughts on Good Conferences to Attend - UK">&laquo; Some Thoughts on Good Conferences to Attend - UK</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/08/28/opencoffee-newcastle/" title="Next Post: OpenCoffee Newcastle">OpenCoffee Newcastle &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2007/08/19/html-an-alternative-to-word/';
+        var disqus_url = 'http://www.morethanseven.net/2007/08/19/html-an-alternative-to-word/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

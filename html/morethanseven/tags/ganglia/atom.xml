@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ganglia | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/ganglia/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New Ganglia Web Interface Improvements]]></title>
+    <link href="http://www.morethanseven.net/2011/06/26/New-ganglia-web-interface-improvements/"/>
+    <updated>2011-06-26T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/06/26/New-ganglia-web-interface-improvements</id>
+    <content type="html"><![CDATA[<p>So I'm a huge "Ganglia":http://ganglia.sourceforge.net/ fan. It's my go-to tool for standard low level metrics and for more ad-hoc higher level stuff as well. So I'm very happy to see the "newly released":http://ganglia.info/?p=393 version of the Ganglia Web interface.</p>
+
+<p>Here's the old look and feel:</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiZ8gEM" alt="Old Ganglia UI"/></p>
+
+<p>And here's the new version:</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRix6gEM" alt="New Ganglia UI"/></p>
+
+<p>The first thing that stands out to me is the wide range of new options. We have a navigation bar with items like search, views, agregate graphs, events and mobile. And we have dynamic date ranges, and filtering and sorting options for metrics.</p>
+
+<ul>
+<li>Search is what you'd expect. A search as you type facility for hosts and metrics, great if you have a large cluster and want to find something quickly.</li>
+<li>Views are interesting. Basically a way of putting together a specific set of metrics on one screen and linking to them, rather than always having to go via the node or grid overview.</li>
+<li>You could always create agregate graphs in Ganglia, but you had to delve into writing some PHP to get what you wanted. Not you can do certain types of graph on the fly, simply by specifying what you want.</li>
+<li>I'm cheating slightly here and using the very latest code rather than the 2.0.0 release. But it's worth it for the Events feature. Events gives you the ability to record events like a deploy or a daily backup onto your graphs, immediately making some types of diagnosis easier. More about how I'm using this when I finish automating it.</li>
+<li>Gnaglia always worked OK on a mobile device mainly because all you really wanted was the graphs. The new mobile UI however just makes navigating much easier. It's not yet doing device detection and automatically redirecting my iphone to that view which would be nice but it's definately a good addition.</li>
+<li>Combined with views, automatic rotation shows a series of graphs, one every 30 seconds. Particularly useful for big screen dashboards, in fact I've built this exact feature before more than once before.</li>
+</ul>
+
+
+<p>I've concentrated here on the new visual features, but the new UI also contains CSV and JSON output for all metrics as well as a much easier JSON based approach to defining custom metrics. The amount of stuff in this release is huge. Massive thanks to the folks behind all the new features, in particular "Vladimir Vuksan":http://vuksan.com/.</p>
+
+<p>Ganglia is such a staple that I'm used to just using whatever is in the latest distro provided packages. When it comes to the web UI however I'm going to make an exception from now on. Not only can you run the new UI in parallel with the old, deployment is simply copying a directory into place (It's easy to forget just how simple PHP deployment is sometimes). If you're already using Ganglia spend a few minutes installing the new UI. If you've rejected Ganglia previously because it didn't have one feature or another then now is the time to look again.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Collecting Metrics With Ganglia And Friends]]></title>
+    <link href="http://www.morethanseven.net/2011/04/02/Collecting-metrics-with-ganglia-and-friends/"/>
+    <updated>2011-04-02T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/04/02/Collecting-metrics-with-ganglia-and-friends</id>
+    <content type="html"><![CDATA[<p>I had the pleasure of speaking at "Cambridge Geek Night":http://cambridgegeeknights.net/ on Monday again, the topic of conversation being using Ganglia to collect more than just base systems metrics.</p>
+
+<object id="__sse7492405" width="595" height="497"> <param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=metricswithganglia-110402103441-phpapp01&rel=0&stripped_title=metrics-with-ganglia&userName=garethr" /> <param name="allowFullScreen" value="true"/> <param name="allowScriptAccess" value="always"/> <embed name="__sse7492405" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=metricswithganglia-110402103441-phpapp01&rel=0&stripped_title=metrics-with-ganglia&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"></embed> </object>
+
+
+<p>The audience of web developers, the odd sysadmin and business folk seemed to enjoy it and we had lots of time for questions at the end. The main point I tried to get across was that Ganglia makes a great platform for ad-hoc metrics gathering due to the ability to just throw values at it and get time series graphs without any extra configuration.</p>
+
+<p>The slides include a few bits of code I've been using that I'll throw onto GitHub as a proper project when I get the time. These are very simple Python servers, one which allows for sending metrics information over HTTP, the other using TCP instead. Both really handy for getting more people to add hooks into applications.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Very Simple Custom Ganglia Metrics]]></title>
+    <link href="http://www.morethanseven.net/2010/06/01/Very-simple-custom-ganglia-metrics/"/>
+    <updated>2010-06-01T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2010/06/01/Very-simple-custom-ganglia-metrics</id>
+    <content type="html"><![CDATA[<p>Logging useful information from running systems for monitoring purposes is pretty important if you want to see how your software is behaving in the real world. It's one thing to test something locally, another to test something under load on a testing environment and quite something else to watch production code while running.</p>
+
+<p>The numbers can be useful for checking newly released code isn't having a detrimental effect on performance, observing what changes in load are doing to systems over time and planning for future capacity growth.</p>
+
+<p>Creating log files, agregating files from multiple machines and then analysing the results is one approach. Another is using something like "Ganglia":http://ganglia.sourceforge.net/. Ganglia is great for trending data over time, and ties in nicely to Nagios for reporting. Installing the monitoring daemon on machines and generally getting the default checks (memory, disk, network, etc.) up and running is nice and easy. From there using the gmetric command line to create custom metrics (say checking some mysql statistics) is again straight forward.</p>
+
+<p>So far, so good. The only issue I've run into was creating custom metrics on the fly from a machine outside the network. For bonus points these metrics were nothing to do with the machine on which they were collected, but to do with the system overall. More specifically the metrics were web site performance data gathered via some cucumber and "celerity":http://celerity.rubyforge.org/ scripts.</p>
+
+<p>For this I knocked up a tiny web service wrapper around the gmetric command line. It's very feature light at the moment (I only needed it to collect time based stats at regular intervals) but it could be made more featureful and expose the rest of the gmetric API if needs be. It does it using a very simple URL scheme:</p>
+
+<p><notextile>
+&lt;% syntax_colorize :bash, type=:coderay do %>
+/{metric-name}/{metric-value}/
+&lt;% end %>
+</notextile></p>
+
+<p>So for example I can create metrics on the fly simply using an HTTP client or a web browser.</p>
+
+<p><notextile>
+&lt;% syntax_colorize :bash, type=:coderay do %>
+/GarethsCommuteTime/3600/
+/ExternalPageLoad/2.005/
+&lt;% end %>
+</notextile></p>
+
+<p>The "code is up on GitHub":http://github.com/garethr/gmetric-web and is completely self contained. I've been running it mainly using spawning but any small WSGI server could surfice. I looked very briefly at the API for Ganglia but found the gmetric approach to be much simpler.</p>
+
+<p>And if you're a Ganglia expert and know a much better way of doing this then let me know. Ganglia is awesome, and collecting metrics is both useful and fun (for me at least) but it's not always obvious how to get into creating simple custom metrics which tell you something about your own appliction code.</p>
+]]></content>
+  </entry>
+  
+</feed>

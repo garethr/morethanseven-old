@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Where to put all that data? S3 resources - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Lets face it, web apps are getting bigger. At least in terms of the amount of data they store. Take two big poster siblings, Flickr and del.icio.us. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2006/04/14/where-to-put-all-that-data-s3-resources">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Where to Put All That Data? S3 Resources</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-04-14T00:00:00+01:00" pubdate data-updated="true">Apr 14<span>th</span>, 2006</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Lets face it, web apps are getting bigger. At least in terms of the amount of data they store. Take two big poster siblings, <a href="http://flickr.com">Flickr</a> and <a href="http://del.icio.us">del.icio.us</a>. All those user accounts, all that interlinking between then, all that meta data. <a href="http://technorati.com">Technorati</a> is another example &#8211; trying to keep up with all blogs everywhere in as near to real time as possible has got to be seriously data intensive. And at times this has shown through, all have had <a href="http://blog.del.icio.us/blog/2005/12/continued_hiccu.html">problems</a>  at <a href="http://www.businessweek.com/the_thread/blogspotting/archives/2005/07/why_technorati.html">some</a> <a href="http://ishavingamassage.com/">point</a> in their short histories.</p>
+ <p>If you are looking to get into the world of big, community focused, web apps then you need space. And I know I cant afford a huge outlay on storage and bandwidth, even most small web shops would probably have something of a problem with the large outlay, limited short term money making problem.</p>
+ <p>An interesting solution to this would appear to exist in the shape of <a href="http://aws.amazon.com/s3">S3</a> from <a href="http://amazon.com">Amazon</a>. It has been around a little time, and <a href="http://adactio.com/journal/1102/">others</a> have been intrigued enough to mention it, but I decided not to ramble on until I&#8217;d had a brief play. Well, it&#8217;s quite cool.</p>
+ <p>Amazon themselves provide a number of <a href="http://developer.amazonwebservices.com/connect/kbcategory.jspa?categoryID=47">useful code examples</a><br />
+in different languages, including Perl, Python, C#, Java, Ruby and <span class="caps">PHP</span>. They also provide examples of the raw <span class="caps">HTTP</span> requests for thos that way inclined.</p>
+ <p>This openness (OK, so they dont really have a choicee, the whole product consists of an open <span class="caps">API</span>, it being closed would seem to limit it&#8217;s usage!), as always, has allowed the community to run with the idea, building up sample apps and some easy to use wrappers:</p>
+<ul>
+ <li><a href="http://townx.org/blog/elliot/s3_rails">Rails example</a></li>
+  <li><a href="http://caffo.backpackit.com/pub/502395">Another Rails example</a></li>
+  <li><a href="http://www.other10percent.com/?p=15">BitBucket for Python</a></li>
+  <li><a href="http://www.neurofuzzy.net/2006/03/17/amazon-s3-php-class/"><span class="caps">PHP</span> 4 class</a></li>
+  <li><a href="http://blog.apokalyptik.com/?p=12"><span class="caps">PHP</span> 5 example</a></li>
+  <li><a href="http://search.cpan.org/dist/Net-Amazon-S3/">Perl <span class="caps">CPAN</span> module</a></li>
+  <li><a href="http://www.carion.org/s3dav/index.html">Java based webDAV server</a></li>
+</ul>
+ <p>Nothing here feels complete as yet. Most are early hacks by people getting on board early and giving the rest of us a starting point.</p>
+ <p>Overall I like things like S3. If it works reliably and scales well then it could become something that just sits behind all sorts of <a href="http://aws.typepad.com/aws/2006/03/firefox_s3_some.html">realy</a> <a href="http://www.holovaty.com/blog/archive/2006/04/07/0927">cool</a> <a href="http://jkeyes.com/2006/03/ten_ideas_for_amazon_s3_applic.php">ideas</a>, preventing data loss and removing another potential headache for the small developer.</p>
+ <p>Any other resources, or ideas, more than welcome.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-04-14T00:00:00+01:00" pubdate data-updated="true">Apr 14<span>th</span>, 2006</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2006/04/14/where-to-put-all-that-data-s3-resources/" data-via="garethr" data-counturl="http://www.morethanseven.net/2006/04/14/where-to-put-all-that-data-s3-resources/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2006/04/07/speak-and-a-drink/" title="Previous Post: Speak and a Drink">&laquo; Speak and a Drink</a>
+      
+      
+        <a class="basic-alignment right" href="/2006/04/16/along-comes-a-reboot/" title="Next Post: Along comes a reboot">Along comes a reboot &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2006/04/14/where-to-put-all-that-data-s3-resources/';
+        var disqus_url = 'http://www.morethanseven.net/2006/04/14/where-to-put-all-that-data-s3-resources/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

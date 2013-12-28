@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: urltest | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/urltest/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Urltest on PyPi]]></title>
+    <link href="http://www.morethanseven.net/2009/06/24/urltest-pypi/"/>
+    <updated>2009-06-24T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/06/24/urltest-pypi</id>
+    <content type="html"><![CDATA[<p>I've been meaning to add some of my code to the "Python Package Index":http://pypi.python.org for a while and  have finally gotten around to it with "Urltest":http://github.com/garethr/urltest/tree/master, my simple DSL for testing WSGI apps.</p>
+
+<p>You can now find it at "pypi.python.org/pypi/urltest":http://pypi.python.org/pypi/urltest and install it using setuptools with:</p>
+
+<p>pre. easy_install urltest</p>
+
+<p>At the moment I've not added any categorisation or detailed description to the setup.py file, I'll be doing that soon. I wanted to get it working with the absolute minimum setup.py file, which turned out to look like:</p>
+
+<p>pre. #!/usr/bin/env python
+from setuptools import setup, find_packages
+setup(</p>
+
+<pre><code>name = "urltest",
+version = "0.1",
+author = "Gareth Rushgrove",
+author_email = "gareth@morethanseven.net",    
+url = "http://github.com/garethr/urltest",
+packages = find_packages('src'),
+package_dir = {'':'src'},
+</code></pre>
+
+<p>)</p>
+
+<p>Uploading it to PYPI itself was incredibly simple, partly as I was already using setup tools for local installation.</p>
+
+<p>pre. python setup.py register
+python setup.py bdist_egg upload</p>
+
+<p>Let me know if anyone uses this and gets it working. I'll be adding more details and maybe even some more features when I get the chance. Once I do that I'll probably work on a few more packages as well.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Self Contained Jruby Web Applications - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Several things seemed to come together at once to make me want to hack on this particular project. In no particular order:
+The Thoughtworks &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Self Contained Jruby Web Applications</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-06T00:00:00+01:00" pubdate data-updated="true">Apr 6<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Several things seemed to come together at once to make me want to hack on this particular project. In no particular order:</p>
+<p>The <a href="http://www.thoughtworks.com/articles/technology-radar-march-2012">Thoughtworks Technology Radar</a> said the following:</p>
+<blockquote>
+<p>Embedding a servlet container, such as Jetty, inside a Java application has many advantages over running the application inside a container. Testing is relatively painless because of the simple startup, and the development environment is closer to production. Nasty surprises like mismatched versions of libraries or drivers are eliminated by not sharing across multiple applications. While you will have to manage and monitor multiple Java Virtual Machines in production using this model, we feel the advantages offered by the simplicity and isolation are significant.</p>
+</blockquote>
+<p>I&#8217;ve been getting more interested in JRuby anyway, partly because we&#8217;re finding ourselves using both Ruby and Scala at work, and maintaining a single target platform makes sense to me. Throw in the potential for interop between those languages and it&#8217;s certainly worth investigating.</p>
+<p><a href="http://www.playframework.org/">Play 2.0</a> shipped and currently only provides the ability to create a self contained executable with bundled web server. Creating <span class="caps">WAR</span> files for more traditional application servers is on the roadmap but interestingly wasn&#8217;t deemed essential for the big 2.0 release. I had a nice chat with <a href="https://twitter.com/minglis">Martyn Inglis</a> at work about some of the nice side effects of this setup.</p>
+<p>And throw in every time I have to configure straight Ruby applications for production environments I get cross. I know where all the bits and pieces are buried and can do it well, but with so many moving parts it&#8217;s absolutely no fun whatsoever.</p>
+<p>Warbler, the JRuby tool for creating <span class="caps">WAR</span> files from Ruby source, has just added the ability to <a href="https://github.com/jruby/warbler/commit/0558a285eb59a0801cf7c0f274777b06b63883b3">embed Jetty to the master branch</a>.</p>
+<p>I decided to take all of this for a quick spin, and the <a href="https://github.com/garethr/jruby-embedded-jetty">resulting code is up on GitHub</a>.</p>
+<p>This is the simplest Rack application possible, it just prints <em>Hello Jetty</em>. And the <span class="caps">README</span> covers how to install and run it so I won&#8217;t duplcate that information here.</p>
+<p>But I will print some nearly meaningless and unscientific benchmarks because, hey, who doesn&#8217;t like those?</p>
+<pre>⚡ ab -c 50 -n 5000 http://localhost:8090/
+
+Server Software:        Jetty(8.y.z-SNAPSHOT)
+Server Hostname:        localhost
+Server Port:            8090
+
+Document Path:          /
+Document Length:        16 bytes
+
+Concurrency Level:      50
+Time taken for tests:   1.827 seconds
+Complete requests:      5000
+Failed requests:        0
+Write errors:           0
+Total transferred:      555999 bytes
+HTML transferred:       80144 bytes
+Requests per second:    2736.47 [#/sec] (mean)
+Time per request:       18.272 [ms] (mean)
+Time per request:       0.365 [ms] (mean, across all concurrent requests)
+Transfer rate:          297.16 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.2      1      18
+Processing:     1   16   7.7     15      61
+Waiting:        0   14   7.2     13      57
+Total:          2   18   7.5     17      61
+
+Percentage of the requests served within a certain time (ms)
+  50%     17
+  66%     19
+  75%     21
+  80%     22
+  90%     27
+  95%     30
+  98%     42
+  99%     52
+ 100%     61 (longest request)
+</pre>
+<p>Running the same test on the same machine but using Ruby 1.9.2-p290 and Thin gives.</p>
+<pre>Server Software:        thin
+Server Hostname:        localhost
+Server Port:            9292
+
+Document Path:          /
+Document Length:        16 bytes
+
+Concurrency Level:      50
+Time taken for tests:   3.125 seconds
+Complete requests:      5000
+Failed requests:        0
+Write errors:           0
+Total transferred:      620620 bytes
+HTML transferred:       80080 bytes
+Requests per second:    1600.16 [#/sec] (mean)
+Time per request:       31.247 [ms] (mean)
+Time per request:       0.625 [ms] (mean, across all concurrent requests)
+Transfer rate:          193.96 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       9
+Processing:     3   31   6.4     33      52
+Waiting:        3   25   6.4     28      47
+Total:          4   31   6.4     33      52
+
+Percentage of the requests served within a certain time (ms)
+  50%     33
+  66%     34
+  75%     34
+  80%     35
+  90%     38
+  95%     41
+  98%     46
+  99%     50
+ 100%     52 (longest request)</pre>
+<p>2736 requests per second on JRuby/Jetty vs 1600 on Ruby/Thin. As noted this isn&#8217;t meaningfully useful, in that it&#8217;s a hello world example and I&#8217;ve not tried to pick the fastest stacks on either side. I&#8217;m more bothered about it not being slower, because the main reason to pursue this approach is simplicity. Having a single self contained artefact that contains all it&#8217;s dependencies including a production web server is very appealing.</p>
+<p>I&#8217;m hoping to give this a go with some less trivial applications, and probably more importantly look to compare a production stack based around these self-contained executables vs the dependency chain that is modern Ruby application stacks.</p>
+<p>Thanks to <a href="http://blog.nicksieger.com/">Nick Sieger</a> for both writing Warbler and for helping with a few questions on the JRuby mailing list and on Twitter. Thanks also to <a href="https://twitter.com/jabley">James Abley</a> for a few pointers on Java system properties.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-06T00:00:00+01:00" pubdate data-updated="true">Apr 6<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/deployment/'>deployment</a>, <a class='category' href='/tags/jetty/'>jetty</a>, <a class='category' href='/tags/jruby/'>jruby</a>, <a class='category' href='/tags/warbler/'>warbler</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications/" data-via="garethr" data-counturl="http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/03/31/Recent-projects-and-talks/" title="Previous Post: Recent Projects And Talks">&laquo; Recent Projects And Talks</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/06/05/Static-sites-with-nginx-on-heroku/" title="Next Post: Static Sites With Nginx On Heroku">Static Sites With Nginx On Heroku &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications/';
+        var disqus_url = 'http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

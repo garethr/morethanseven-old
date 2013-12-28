@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ec2 | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/ec2/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[EC2 Tasks For Fabric]]></title>
+    <link href="http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric/"/>
+    <updated>2011-12-31T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric</id>
+    <content type="html"><![CDATA[<p>For running ad-hoc commands across a small number of servers you really can't beat "Fabric":http://fabfile.org. It requires nothing other than ssh installed on the servers, is generally just a one-line install and requires next to no syntaxtic fluff between you and the commands you want running. It's much more of a swiss army knife to Capistranos bread knife.</p>
+
+<p>I've found myself doing more and more EC2 work of late and have finally gotten around to making my life easier when using Fabric with Amazon instances. The result of a bit of hacking is "Cloth":https://github.com/garethr/cloth (also "available on PyPi":http://pypi.python.org/pypi/cloth). It contains some utility functions and a few handy tasks for loading host details from the EC2 API and using them in your Fabric tasks. No more static lists of host names that constantly need updating in your fabfile.</p>
+
+<p>Specifically, with a fabfile that looks like:</p>
+
+<pre>#! /usr/bin/env python
+from cloth.tasks import *</pre>
+
+
+<p>You can run:</p>
+
+<pre>fab all list</pre>
+
+
+<p>And get something like:</p>
+
+<pre>instance-name-1 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-2 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-3 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-4 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-5 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-6 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-7 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-8 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+...</pre>
+
+
+<p>And then you could run:</p>
+
+<pre>fab -P all uptime</pre>
+
+
+<p>And you'd happily get the load averages and uptime for all your EC2 instances.</p>
+
+<p>A few more tricks are documented in the "GitHub README":https://github.com/garethr/cloth, including filtering the list by a regex and some convention based mapping to Fabric roles. I'll hopefully add a few more features as I need them and generally tidy up a few things but I'm pretty happy with it so far.</p>
+]]></content>
+  </entry>
+  
+</feed>

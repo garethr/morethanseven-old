@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ruby | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/ruby/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript In Your Ruby: Mongoid Map Reduce]]></title>
+    <link href="http://www.morethanseven.net/2011/10/10/Javascript-in-your-ruby-mongoid-map-reduce/"/>
+    <updated>2011-10-10T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/10/10/Javascript-in-your-ruby-mongoid-map-reduce</id>
+    <content type="html"><![CDATA[<p>We're pretty fond of "Mongodb":http://mongodb.org/ at work and I've been getting an opportunity to kick some of the more interesting tyres recently. I thought I'd document something I found myself doing here, half hoping it might be useful for anyone else with a similar problem and also to see if anyone else has a much neater approach. The examples are obviously pretty trivial, but hopefully you get the idea.</p>
+
+<p>So, we're making using of the rather nice "Mongoid":http://mongoid.org/ Ruby library for defining our models as Ruby classes. Here's a couple of very simple classes. Anyone familiar with DataMapper or Django's ORM should be right at home here.</p>
+
+<pre>class Publication
+  include Mongoid::Document
+
+  field :name,            :type => String
+  field :section,         :type => String
+  field :body,            :type => String
+  field :is_published,    :type => Boolean
+end
+
+class LongerPublication < Publication
+  field :extra_body,      :type => String
+end
+</pre>
+
+
+<p>So we now have a good few publications and longer publications in our system. And folks have been creating sections with wild amandon. What I'd like to do now is do some reporting, specifically I want to know the numbers of Publications by type and publication status. And lets allow a breakdown by section while we're at it.</p>
+
+<p>One approach to this is using Mongo's built in map-reduce capability. Mongoid exposes this pretty cleanly in my view, by allowing you to write the required javascript functions (a mapper and a reducer) inline in the Ruby code. This might feel evil, but seems the best of the available options. I can see for much larger functions that splitting this out into separate javascript files for ease of testing might be nice, but were you can just test the input/output of the whole job this works for me.</p>
+
+<pre>KLASS = "this._type"
+SECTION = "this.section"
+
+def self.count_by(type)
+  map = <<EOF
+    function() {
+      function truthy(value) {
+        return (value == true) ? 1 : 0;
+      }
+      emit(#{type}, {type: #{type}, count: 1, published: truthy(this.is_published)})
+    }
+EOF
+
+  reduce = <<EOF
+    function(key, values) {
+      var count = 0; published = 0;
+      values.forEach(function(doc) {
+        count += parseInt(doc.count);
+        published += parseInt(doc.published);
+        type = doc.type
+      );
+      return {type: type, count: count, published: published}
+    }
+EOF
+
+  collection.mapreduce(map, reduce).find()
+
+end
+</pre>
+
+
+<p>In our case that will return something like the following, or rather more specifically it will return a Mongo::Cursor that allows you to get at the following data.</p>
+
+<pre>[{"_id"=>"Publication", "value"=>{"type"=>"Publication", "count"=>42.0, "published"=>29.0}},
+{"_id"=>"LongerPublication", "value"=>{"type"=>"LongerPublication", "count"=>12.0, "published"=>10.0}}]
+</pre>
+
+
+<p>I've been pretty impressed with both Mongo and Mongoid here. I like the feel of mapreduce jobs for this sort of reporting task. In particular it's suprising how writing two languages mixed together like this doesn't really affect the readability of the code in my view. Given that with a relational database you'd probably be writing SQL anyway maybe that's not that suprising - the syntactic differences between Javascript and Ruby are much smaller than pretty much anything and SQL. Lots of folks have written about the increase of polyglot programming, but I wonder if we'll see an increase in the embedding of one language in another?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Solr Libraries and Good API Design]]></title>
+    <link href="http://www.morethanseven.net/2011/01/01/Solr-libraries-and-good-api-design/"/>
+    <updated>2011-01-01T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/01/01/Solr-libraries-and-good-api-design</id>
+    <content type="html"><![CDATA[<p>I'm a huge "Solr":http://wiki.apache.org/solr/ fan. Once you understand what it does (it's a search engine, which means more than you think) and how it works you spot lots of thorny problems that map to it's features really well. In my experience it's also very fast and very stable once installed and setup. Oh, and the community support is great as well.</p>
+
+<p>When I talk to some folks about Solr all they can think about is full text search. The main reason for this I think is a number of poor libraries. I've come across lots of Python or Ruby libraries that simply say you don't have to know anything about Solr, just install this code and you get full text search! This works in the same way as using the default Mysql or Apache configs works, nowhere near as well as if you get your hands dirty even a little. Some of the ruby gems even ship the Solr jar file in the gem. Now you don't even need to know Solr exists. You take a generic configuration and run it using a rake task behind which is some unknown Java application server. Good luck debugging that when it goes wrong, that's one hell of a leeky abstraction.</p>
+
+<p>In better news I've now found two excellent Solr libraries, one's that start with the assumption that you know what you're doing or happy to learn about the tools you're using. All you really want from a library is a good API that maps to how you write in that language.</p>
+
+<p>h2. Delsolr (Ruby)</p>
+
+<p>The "delsolr":http://delsolr.rubyforge.org/ API is beautiful. It seemlessly merges the worlds of Ruby and Solr in a way that's easy to write and easy to guess. It's also clever, the design accepts that new features might be added to Solr before the library is updated or that the library might not support every usecase or option. In these cases you can still pass information through to Solr directly.</p>
+
+<p>Solr's interface is based around URLs, so any library is really just giving you an interface to creating those URLs.Writing the following in Ruby:</p>
+
+<pre>rsp = solr.query('standard',
+               :query => '*:*',
+               :filters => {:status => 'Active'},
+               :facets => [{:field => 'project'}]
+    ])</pre>
+
+
+<p>Results in the following URL:</p>
+
+<pre>/select?q=*:*&wt=ruby&facet=true&facet.field=status&facet.field=name&fq=status:Active</pre>
+
+
+<p>If you already know Solr and how to construct URLs for searches by hand you'll immediately get the Ruby code. You can probably even guess how to pass other params like sort or order.</p>
+
+<p>Another nice touch is that you can use either hashes or Lucene search syntax for each attribute. So:</p>
+
+<pre>:filters => {:status => 'Active'}</pre>
+
+
+<p>Is the same as:</p>
+
+<pre>:filters => 'status:Active'</pre>
+
+
+<p>h2. Sunburnt (Python)</p>
+
+<p>"Sunburnt":http://blog.timetric.com/2010/02/08/sunburnt-a-python-solr-interface is a python Solr interface from the nice folks at "Timetric":http://timetric.com. I've not had chance to use this library in anger as it was released after I'd dont quite a bit of python-solr work in an old job but I'd definately use it now. The API looks like:</p>
+
+<pre>rsp = solr.query('*:*').filter(status='Active').facet_by('project').execute()</pre>
+
+
+<p>It's based around chaining so again you can probably guess how to make further queries from even this simple example.</p>
+
+<p>Both Sunburnt and Delsolr also support adding documents to the index.</p>
+
+<p>h2. Uses</p>
+
+<p>Once you understand facets and the usefulness of filter queries you see lots of places where Solr is useful apart from text search. Lots of ecommerce operations use facetted search interfaces, I'm sure everyone has spent time clicking through nested heirachies and watching the numbers (showing the number of products) next to the links decrease? You can built these interfaces using SQL but it's incredibly expensive and gets out of hand quickly. Caching only helps a bit due to the number of permutations in all but the smallest stores or simplest products. It's a similar problem with tagging, it's pretty easy to kill your database</p>
+
+<p>But it's not just things that have the word search in that you can map Solr to. Two good examples are Timetric (from whom the Sunburnt library comes from) and the "Guardian Content API":http://www.guardian.co.uk/open-platform/blog/what-is-powering-the-content-api. Both of these present lots of read data straight from Solr with great success and less database killing performance issues. Solr can really be seen as a simple place to denormalise your data, one advantage being that it keeps your database schema clean.</p>
+
+<p>h2. Learning More</p>
+
+<p>Solr could do with better documentation for beginners. The wiki is an excellent reference once you know how to write schema and configuration files but I think the getting started section sacrifices introducing configuration in favour of getting people searching quicker. The example schema and solrconfig files that ship with Solr are also amazingly useful references (officially the best commented XML I've ever seen) but also intimidating to beginners. The Drupal community appear to be writing some good docs that fill this gap though, here's a few links that I'd recommend:</p>
+
+<ul>
+<li>"Step by step guide including Tomcat":http://www.drupalconnect.com/blog/steve/configuring-apache-solr-multi-core-drupal-and-tomcat-ubuntu-910</li>
+<li>"Fantastic multi-part tutorial":http://synapticloop.com/tomes/solr/solr-tutorial/</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Script Running Web Interface With Websockets]]></title>
+    <link href="http://www.morethanseven.net/2010/09/09/Script-running-web-interface-with-websockets/"/>
+    <updated>2010-09-09T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2010/09/09/Script-running-web-interface-with-websockets</id>
+    <content type="html"><![CDATA[<p>After something of a break I found a bit of time for some hacking at the weekend and decided to scratch a personal itch. I like writing shell scripts for everything from checking on things to deploying code. For anything that is more than just executing one command, or anything with detailed output or that takes a while I like to be able to see what's going on. I also like to (OK, only sometimes) let other people run those commands and not all those people want to check something out and run a console. The web maks a pretty good interface for this sort of situation.</p>
+
+<p>Enter "Bolt":http://github.com/garethr/bolt/. It's my first proper go at using websockets for the communication between client and server, and my first stab at EventMachine. The code at the moment needs some improvement (tests, configurability, deployment options) but it works as a proof of concept.</p>
+
+<p>It's pretty simple, designed for running a single command at the push of a button and showing the results scroll past as they happen.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRi5lAEM" alt="Bolt script running interface"/></p>
+
+<p>Hopefully it's useful to a few more people, or at least it will be when I clean it up a bit. For more information head over to the "GitHub page":http://github.com/garethr/bolt/.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git Pre Recieve Hook For Integrity]]></title>
+    <link href="http://www.morethanseven.net/2010/07/11/Git-pre-recieve-hook-for-integrity/"/>
+    <updated>2010-07-11T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2010/07/11/Git-pre-recieve-hook-for-integrity</id>
+    <content type="html"><![CDATA[<p>I'm getting married rather soon so time has been somewhat short (in a good way) for just hacking on stuff, but I've finally found a little bit of time to play with something I've been mulling over for a while. Namely a continuous deployment workflow using the integrity continous integration server.</p>
+
+<p>I'm hoping to have an incredibly simple but fully operation example available at some point - mainly to act as a good discussion point. For now here's my current pre-receive hook.</p>
+
+<script src="http://gist.github.com/471711.js?file=pre-receive"></script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sandbox Your Ruby Gems]]></title>
+    <link href="http://www.morethanseven.net/2010/03/21/Sandbox-your-ruby-gems/"/>
+    <updated>2010-03-21T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2010/03/21/Sandbox-your-ruby-gems</id>
+    <content type="html"><![CDATA[<p>I'm a huge fan of virtualenv for Python. It's a simple tool that lets you have an isolated python environment into which you can install libraries via setup tools. It makes experimenting with different versions of code easier and avoids lots of problems with hard to find bugs caused by unknown third party conflicts.</p>
+
+<p>"Sandbox":http://github.com/nkryptic/sandbox aims to do exactly the same for Ruby. It isolates your gem installation from the system libraries and providesa script to activate the named environment. The GitHub repo has been around since 2008, yet only has 37 followers. I'm not sure whether that is because another more popular and feature rich solution exists or because Ruby people haven't yet found this technique useful. For me finding tools that work the same way as those I already like in other languages makes me happy.</p>
+]]></content>
+  </entry>
+  
+</feed>

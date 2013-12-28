@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: gae | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/gae/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Google App Engine PyUnit Test Runner]]></title>
+    <link href="http://www.morethanseven.net/2008/10/11/google-app-engine-pyunit-test-runner/"/>
+    <updated>2008-10-11T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2008/10/11/google-app-engine-pyunit-test-runner</id>
+    <content type="html"><![CDATA[<p>I'm starting to play around with using "App Engine":http://code.google.com/appengine/ again for small projects. It's great for simple, somewhat throwaway apps as long as you don't need anything too fancy. Actually all I want really is long running processes but I digress.</p>
+
+<p>I'm increasingly writing test suites as well for even small projects and was missing the convenience of the Django test runner for running them against App Engine code. So I've spent a little time writing a simple test running script to use for non-Django Python projects. I've posted it over on the "App Engine Cookbook":http://appengine-cookbook.appspot.com/recipe/app-engine-test-runner/ for anyone else who might want to do the same.</p>
+
+<p>I ended up writing something myself as I couldn't find anything else which quite met my needs, so it's the typical programmers itch code and as such is provided as <em>works for me</em> software. The other approaches out their didn't quite meet my needs but might be useful to know about if you want to start testing your apps.</p>
+
+<ul>
+<li>"Nose GAE":http://code.google.com/p/nose-gae/ uses the nose testing framework which I'm less familiar with.</li>
+<li>"GAE Unit":http://code.google.com/p/gaeunit/ uses PyUnit but presents it's results in a browser rather than on the command line.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

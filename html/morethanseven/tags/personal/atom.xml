@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: personal | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/personal/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[March madness]]></title>
+    <link href="http://www.morethanseven.net/2013/02/17/march-madness/"/>
+    <updated>2013-02-17T17:17:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/02/17/march-madness</id>
+    <content type="html"><![CDATA[<p>With only a week or so to go before the end of February, it's looking like March might be a little busy.</p>
+
+<ul>
+<li>I'm speaking at QCon, in London on Wednesday 6th on "Clouds in Government - Perils of Portability":http://qconlondon.com/london-2013/presentation/Clouds%20in%20Government%20-%20Perils%20of%20Portability (which in hindsight is probably the silliest title for a talk I've ever used)</li>
+<li>On the 15th and 16th of March I'll be at "Devopsdays":http://devopsdays.org/events/2013-london/, again in London. I've been helping out with organising the event and I'm very much looking forward to going along after seeing all the work being put in.</li>
+<li>And last but not least I'm heading to Boston for the rather exciting "Monitorama":http://monitorama.com/ from the 26th until the 30th. Looking forward to meeting up in person with quite a few folks I've spoken to over the last year or two.</li>
+</ul>
+
+
+<p>If you're going to be at any of these events (QCon and Devopsdays still have tickets available I think) then let me know.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[On Her Majesty's Digital Service]]></title>
+    <link href="http://www.morethanseven.net/2011/08/19/On-her-majestys-digital-service/"/>
+    <updated>2011-08-19T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/08/19/On-her-majestys-digital-service</id>
+    <content type="html"><![CDATA[<p>This blog post is mainly an excuse to use the pun in the title. It's also an opportunity to tell folks that don't already know I'll be starting a new job on Monday working for the UK Government. I'm going to be work for the "Government Digital Service":http://digital.cabinetoffice.gov.uk/, a new department tasked with a pretty wide range of sorting the Government out online.</p>
+
+<p>The opportunity is huge. And when it came around I couldn't turn it down. I'm going to be working with a bunch of people I've "known":http://memespring.co.uk/ "and":http://nicepaul.com/ "respected":http://fberriman.com/ for a while, as well as other equally smart people. That means I'm going to be back in London again as well.</p>
+
+<p>Hopefully I'll be able to talk lots about what we're up to. The groundwork for that has already been laid by the "alpha.gov":http://alpha.gov.uk team who have been blogging furiously about topics of interest.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Working For Freeagent]]></title>
+    <link href="http://www.morethanseven.net/2010/09/13/Working-for-freeagent/"/>
+    <updated>2010-09-13T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2010/09/13/Working-for-freeagent</id>
+    <content type="html"><![CDATA[<p>So, I've just accepted a new job at "FreeAgent":http://freeagentcentral.com, the rather snappy online small business accounting startup. I'll be starting in about a month, when I get back from devopsdays in Hamburg.</p>
+
+<p>I'm joining a pretty well knit group of designers and developers working on a pretty well loved piece of software. I've known Roan (one of the directors) for years, ever since the first Highland Fling conference I think. And the rest of the team seem a good mix of technical smarts and professionalism. Hopefully I can live up to their already high standards.</p>
+
+<p>I'm looking forward to jumping into a decent sized Ruby project and getting properly reacquainted with Rails as well. I've spent most of the previous few years in the Python world so that should be a nice challenge. I'm constantly impressed with the number of high quality tools written in Ruby andRails 3 looks a genuinely nice piece of software. Hopefully with a bit more idiomatic ruby under my belt, more time on my hands and some new real world problems to solve I'll increase my open source contributions and get back to writing again as well. I'll likely be spending most of my time on those good developer staples new feature development, supporting existing code and scaling systems. I'll also be involved in some operations stuff if I get chance, introducing software I'm a huge fan of and automating everything I can get my hands on.</p>
+
+<p>The rest of the team are based up in Edinburgh but I'll be working from home most of the time. I'm quite looking forward to working from Cambridge after having lived here for a few years. I'll also get to see various friends in Edinburgh that I don't get chance to meet up with very often and still have time to make it to London for the odd event or get together. I'll likely be looking into coworking spaces or desk shares in and around Cambridge so if anyone has any recommendations.</p>
+
+<p>Given this weeks pubstandards is apparently all about weddings, birthdays and new jobs (and I have all 3 within a month) it would be rude not to go along for at least one drink. If you're around London I might see you there.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[garethrushgrove.com update]]></title>
+    <link href="http://www.morethanseven.net/2009/06/08/garethrushgrovecom-update/"/>
+    <updated>2009-06-08T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/06/08/garethrushgrovecom-update</id>
+    <content type="html"><![CDATA[<p>I've updated my vanity domain at "garethrushgrove.com":http://garethrushgrove.com with a bit of information in case anyone might be interested in my services.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRjDPgw" alt="my personal site"/></p>
+
+<p>The short version is I'm on the lookout for future projects, probably of a freelance or contract basis but if it's particularly interesting then maybe a full time position. Basically I'm in quite a nice position and able to wander about a bit looking for something cool to do.</p>
+
+<p>If you reading this site then you know what floats my boat. Python, testing, automation, system design, maybe get into Ruby or another language properly, etc. I'd particularly like to help people get started with testing, continuous integration or automated deployment and the like.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Looking for a New Job in June]]></title>
+    <link href="http://www.morethanseven.net/2009/02/15/looking-new-job-june/"/>
+    <updated>2009-02-15T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/02/15/looking-new-job-june</id>
+    <content type="html"><![CDATA[<p>As I think a few people are aware I'll be leaving "Global":http://thisisglobal.com at the end of May.</p>
+
+<p>It's going to have been a pretty good year all told. I got to work with some great people and we built some pretty good stuff from the group up. The "Capital Radio":http://www.capitalradio.co.uk/ website was part of it but it's the systems behind the scenes where all the interestingness lies. But as the team as a whole was just getting started the economy got bored of growing each year and went south. Global is first and foremost a radio company that makes money from advertising and, in need of cash, it decided to "cut lots of the interactive department":http://radiotoday.co.uk/news.php?extend.4270. All of that meant lots of redundancies and less interesting work and I decided I'd rather go now than wait around.</p>
+
+<p>It's an odd situation to be in but I'm not going to dwell on that and I'm not bitter about any of the goings on. I got to play with Django full time in what, I think, was the biggest Django development team in the UK. I got to work, and argue, with smart people every day. We had two internal hackdays where I got to play with XMPP and messaging apps. And I'm definitely a far better programmer than a year ago.</p>
+
+<p>I'll be sticking around at Global for the next three months to finish off a number of projects that I've been involved in and tidy up a few loose ends, as well as to work out what to do next. Which is where you (might) come in. Think of it like a job vacancy in reverse.</p>
+
+<ul>
+<li>I'm looking for a job to start in June or thereabouts.</li>
+<li>I live in Cambridge and have been working in London for the last 9 months, so I don't mind a commute. I'd also consider something that had me working remotely and traveling further afield as needed.</li>
+<li>My main focus is on finding something where I get to <em>build interesting things</em>. By that I mean a web development role that also involves bit of system design and other bits thrown in.</li>
+<li>I'd like something that tallies with my current interests. This blog, "Slideshare":http://slideshare.net/garethr and "my GitHub profile":http://github.com/garethr should give you an idea about what they are but to name but a few: testing, REST, APIs, messaging, content distribution, aggregation and development team tools.</li>
+<li>Technology wise I'd be more than happy with something using Python or Ruby. I'd love to do more than just play around at home with Erlang as well, or the opportunity to pick up Scala. Having said all that if it's interesting enough I don't mind too much, I learn new tricks for fun and have 3 months of free time to kill.</li>
+<li>Big company or small? It depends on the company, and probably depends more on the people. I'd choose smart people over a fancy company name any day of the week. I also don't mind the idea of getting involved with a startup where some salary is offset against equity - but only if the idea is good enough.</li>
+<li>I've got around 8 years of wide ranging professional experience, I write articles, speak at conferences and get things done. I know roughly what the going rate for good professional web developers is as well.</li>
+<li>"Ask the internet about me":http://www.google.com/search?q=gareth+rushgrove if you want to know more.</li>
+</ul>
+
+
+<p>So if anyone knows of something that would be up my street I'd be grateful. Even better, if you or your company are looking for someone at the moment and don't mind waiting a few months then I might be what you're looking for. For those that don't already have an email address you can find me on "gareth@morethanseven.net":mailto:gareth@morethanseven.net</p>
+
+<p>(There is obviously a chance that you might be a recruiter, rather than someone who wants me to work with or for them. I won't ignore you out of hand but please don't try and ring me unless I ask you to. Email is both quicker and easier for me to deal with. Also if you just want my CV for your files, have only a vague job description, or you want to tell me about a job in a company you can't tell me the name of please don't be offended if I don't get back to you.)</p>
+]]></content>
+  </entry>
+  
+</feed>

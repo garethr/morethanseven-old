@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: packaging | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/packaging/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[my personal package repository]]></title>
+    <link href="http://www.morethanseven.net/2012/12/30/my-personal-package-repository/"/>
+    <updated>2012-12-30T16:52:00+00:00</updated>
+    <id>http://www.morethanseven.net/2012/12/30/my-personal-package-repository</id>
+    <content type="html"><![CDATA[<p>I'm a "big fan of system packages for lots of reasons":http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/ and have often ended up rolling my own debian package repository at work, or working with others that have done so. Recently I finally got round to setting up a personal package repo, at "packages.garethrushgrove.com":http://packages.garethrushgrove.com. More interesting than the repo is probably the tool chain I used, oh and the rather nice bootstrap based styling.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjh1wIM" alt="nice looking package repository"/></p>
+
+<p>The source code for everything is "on GitHub":https://github.com/garethr/packages although not much documentation exists yet. In the middle are a few shell scripts that generate the repo. Around them is a Vagrant box (which makes it easier to build packages for different achitectures or distros) and some Rake commands</p>
+
+<pre><code>bundle exec rake -T
+rake recipes:build[recipe]  # Build a package from one of the available recipes
+rake recipes:list           # List available recipes
+rake repo:build             # Build the repository</code></pre>
+
+
+<p>The recipes commands allow for building new packages based on scripts. A few examples are included which use fpm, but you could use anything. The repo:build command triggers the debian repository to be rebuilt.</p>
+
+<p>The vagrant configuration shares various folders between and guest and host which also opens up a few useful features. One is I can just drop any old debian package into the debs folder and run the repo:build command and it will be in my repository. The other useful capability is that the resulting repo is shared back to the host, which means I can then check it into Git and in my case push it up to Heroku.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Creating A Cucumber Nagios Package With Fpm]]></title>
+    <link href="http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm/"/>
+    <updated>2011-04-29T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm</id>
+    <content type="html"><![CDATA[<p>I've written "before":http://morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages.html about why I like System Packages, but even I'll admit that the barriers to creating them mean I don't use them for everything. "FPM":https://github.com/jordansissel/fpm however is making it much easier, to the point where I'm starting to create a few packages I can reuse on projects. I thought a write up of how I'm doing that for "Cucumber-Nagios":http://cucumber-nagios.org/ might be useful.</p>
+
+<p>For those that haven't seen it yet, FPM (or Effing Package Management) is a tool that helps you build packages, like RPMs and DEBs, quickly. It can take in gems, python packages, node.js npm files or just plain directories and make files and from that create you one or more system packages. Lets have a look at a full example with a Ruby gem.I really like using cucumber-nagios, whatever platform or language I happen to be using at the time. I have a number of Django projects for instance with cucumber-nagios checks, so being able to not worry about most of the Ruby install is useful.</p>
+
+<p>In order to use FPM you'll need to install it. It's available as a Ruby gem so lets start there. I'm not going to delve into setting up a Ruby Gems environment as it's annoying and covered for most platforms elsehere on the internet.</p>
+
+<pre><code>gem install fpm</code></pre>
+
+
+<p>First off lets install the cucumber-nagios gem, along with all it's dependencies, into a local folder on my build machine. This might be a virtual machine or a separate machine in your cluster. It should be running the same OS as the intended production machines however. The following examples are from Ubuntu, but it's much the same for RPM based distros.</p>
+
+<pre><code>gem install --no-ri --no-rdoc --install-dir ~/tmp/gems cucumber-nagios</code></pre>
+
+
+<p>Cucumber-nagios has a large number of dependencies, so we're going to need to create packages for all of those too. FPM will cleverly deal with maintaining the specified dependencies thought. We'll use find to do this quickly, and then instruct FPM to convert from a gem to a deb. You could obviously do this line by line if you prefer.</p>
+
+<pre><code>find ~/tmp/gems/cache -name '*.gem' | xargs -rn1 fpm -s gem -t deb -a all</code></pre>
+
+
+<p>That should leave us with lots of new .deb files that we can have a closer look at:</p>
+
+<pre><code>dpkg --info rubygem-cucumber-nagios_0.9.0_i686.deb
+dpkg -c rubygem-cucumber-nagios_0.9.0_i686.deb</code></pre>
+
+
+<p>If you already have a private apt repository set up then just upload these packages and away you go. I'd like to use apt for installing them so I can leave it to manage all the dependencies easily. If not then I'll show you briefly how to create a local file system repo, it's not much more work to create a shared repo available over HTTP.</p>
+
+<p>First create a directory to store our packages and move our newly created .deb files into it. You'll need to be able to execute some of these commands as root but given the topic I'm assuming you'll be able to deal with that.</p>
+
+<pre><code>mkdir /usr/local/repo
+cp *.all.deb /usr/local/repo</code></pre>
+
+
+<p>For the next part you'll need to install the dpkg development tools, and then create a file that can be read by apt when it's looking for packages it can install.</p>
+
+<pre><code>apt-get install dpkg-dev
+dpkg-scanpackages /usr/local/repo /dev/null | gzip -9c > /usr/local/repo/Packages.gz</code></pre>
+
+
+<p>Now add your new package repo to your apt sources and update your package cache.</p>
+
+<pre><code>/etc/apt/sources.list
+deb file:/usr/local/repo ./
+apt-get update</code></pre>
+
+
+<p>At this point everything should be up and running. Let's do a search in our repo:</p>
+
+<pre><code>apt-cache search rubygem-
+rubygem-amqp - AMQP client implementation in Ruby/EventMachine
+rubygem-builder - Builders for MarkUp.
+rubygem-bundler - The best way to manage your application's dependencies
+rubygem-cucumber - cucumber-0.10.2
+rubygem-cucumber-nagios - Systems testing plugin for Nagios using Cucumber.
+rubygem-diff-lcs - Provides a list of changes that represent the difference between two sequenced collections.
+rubygem-eventmachine - Ruby/EventMachine library
+rubygem-extlib - Support library for DataMapper and Merb
+rubygem-gherkin - gherkin-2.3.6
+rubygem-highline - HighLine is a high-level command-line IO library.
+rubygem-json - JSON Implementation for Ruby
+rubygem-mechanize - The Mechanize library is used for automating interaction with websites
+rubygem-net-ssh - Net::SSH: a pure-Ruby implementation of the SSH2 client protocol.
+rubygem-nokogiri - Nokogiri (鋸) is an HTML, XML, SAX, and Reader parser
+rubygem-rack - a modular Ruby webserver interface
+rubygem-rack-test - Simple testing API built on Rack
+rubygem-rspec - rspec-2.5.0
+rubygem-rspec-core - rspec-core-2.5.1
+rubygem-rspec-expectations - rspec-expectations-2.5.0
+rubygem-rspec-mocks - rspec-mocks-2.5.0
+rubygem-templater - Templater has the ability to both copy files from A to B and also to render templates using ERB
+rubygem-term-ansicolor - Ruby library that colors strings using ANSI escape sequences
+rubygem-webrat - Ruby Acceptance Testing for Web applications</code></pre>
+
+
+<p>And finally lets install cucumber-nagios from our shiny new package.</p>
+
+<pre><code>apt-get install rubygem-cucumber-nagios</code></pre>
+
+
+<p>If everything has worked out you should be able to run the cucumber-nagios-gen command to create a new project. Note that the path may be different, and in the case of debian based distros the gem bin path is not on the Path.</p>
+
+<pre><code>/usr/lib/ruby/gems/1.8/bin/cucumber-nagios-gen project test
+Generating with project generator:
+     [ADDED]  .gitignore
+     [ADDED]  .bzrignore
+     [ADDED]  Gemfile
+     [ADDED]  README
+     [ADDED]  features/steps
+     [ADDED]  features/support</code></pre>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using Checkinstall With Virtualenv For Python Deployments]]></title>
+    <link href="http://www.morethanseven.net/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments/"/>
+    <updated>2011-01-29T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments</id>
+    <content type="html"><![CDATA[<p>Michael Brunton-Spall wrote last week about some "frustrations with packagings and deploying Python web applications":http://www.brunton-spall.co.uk/post/2011/01/26/packaging-and-deploying-python-web-apps/. Although his experience was with Python, the problems he describes are the same for Ruby and PHP and a whole host of languages. The following example uses Python, but works equally as well for anything else.</p>
+
+<p>Michael has three simple rules for his servers:</p>
+
+<h1>they cannot access the internet</h1>
+
+<h1>they cannot access internal services that are for development</h1>
+
+<h1>they cannot have compilers / utilities on them</h1>
+
+<p>I won't go into all the reasons for doing this (you can read the blog post linked to above) but these are pretty sensible security precautions.</p>
+
+<p>My approach to this problem would be to use your friendly system packages and using a handy tool called "Checkinstall":http://www.asic-linux.com.mx/~izto/checkinstall/ to create a deb or rpm. I'm going to use as an example the "Eventlet":http://wiki.secondlife.com/wiki/Eventlet library. This is available in PyPi and one of it's dependencies (Greenlets) provides a C extension. The same approach would work for an entire Python web application too. I'm as ever using the apt package management tool but this should work with yum as well.</p>
+
+<p>The first step is to build the package on a build machine. This should be a machine or virtual machine running the same operating system as your production web servers. You might build these packages manually or as part of a continuous integration system. On this machine we'll need the compilers and development tools:</p>
+
+<pre>sudo apt-get install build-essential python-dev python-setuptools checkinstall
+sudo easy_install virtualenv</pre>
+
+
+<p>We'll also create a virtualenv into which we'll be installing our packages:</p>
+
+<pre>sudo virtualenv --no-site-packages /usr/local/environment
+source /usr/local/environment/bin/activate</pre>
+
+
+<p>Now, instead of just calling easy_install to install the package, we prefix it with checkinstall.</p>
+
+<pre>sudo checkinstall /usr/local/environment/bin/easy_install eventlet</pre>
+
+
+<p>This will prompt for various meta data about the package you want to create, including the name and version of the package. If you're using this method in the real world you'll want to decide on a versioning and naming scheme for your packages to avoid clashes with system provided packages. You can also set many of these options from the command line rather than having to manually fill them in each time.</p>
+
+<p>Once everything has been filled in successfully this should run through, installing eventlet and greenlets and eventually creating a deb or rpm package depending on what platform you're running on. You should see something like:</p>
+
+<pre>Done. The new package has been installed and saved to
+
+ /home/vagrant/eventlet-gareth_20110129-1_i386.deb
+
+ You can remove it from your system anytime using: 
+
+      dpkg -r eventlet-gareth</pre>
+
+
+<p>Now lets grab that package and take it to one of our front end web servers via a controlled deployment process. That front end web server needs the virtualenv creating but nothing else. So:</p>
+
+<pre>sudo apt-get install python-virtualenv
+sudo virtualenv --no-site-packages /usr/local/environment</pre>
+
+
+<p>(Now you might be thinking that installing the python-virtualenv package in this way breaks rule 1 above. And you'd be right in most cases, but I'm guessing Michael's systems team have a local package repo for authorised packages, or alternatively you could download the package to the build machine and push it to the production environment.)</p>
+
+<p>Now install the package we created earlier.</p>
+
+<pre>sudo dpkg -i eventlet-gareth_20110129-1_i386.deb</pre>
+
+
+<p>That should throw all the required files into the virtualenv environment we created. No compilers. No calls to internal or external systems. Just move some precompiled binaries and text files to predefined places on disk.</p>
+
+<p>I used a PyPi package as an example. Checkinstall could have been pointed at a custom build file written especially for your own application, one that moves files and folders to where they are needed. Say something that looks like this:</p>
+
+<pre>#!/bin/sh
+cp /home/stage/myapplication /var/www/apps/</pre>
+
+
+<p>The running checkinstall against that (or a more complex build file using capistrano or ant or fabric) you can create a package containing your application code and install it into the specified place.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Why Developers Should Care About System Packages]]></title>
+    <link href="http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/"/>
+    <updated>2011-01-16T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages</id>
+    <content type="html"><![CDATA[<p>First a bit of background. I'm a software developer (lately in Ruby and a tiny bit of Java, previously in Python, C# and PHP; yes I got around a bit), but have spent enough time looking after production hardware (mainly debian, solaris and recently a bit of RHEL) to have a feel for sysadmin work. I even have friends who are systems administrators. I mainly use a shiny apple laptop for my development work, but I actually execute all the code on Linux virtual machines. The aim of this post is to bridge a divide, not start a flame war about specific tools.</p>
+
+<p>I'm writing this partly to address "a tweet I made":http://twitter.com/CoffeeScript/status/18867889742282752 that in hindsight needed more than 140 characters. Actually a number of my recent tweets have been on the same theme so I should be more helpful. What I'm seeing recently is an increase in the ways I'm being asked to install software and for me at least that's annoying.</p>
+
+<h1>Several projects will ask you to do something like <em>curl http://bit.ly/installsh | sh</em> which downloads a shell script and executes it.</h1>
+
+<h1>Some will insist I have git installed</h1>
+
+<h1>A new framework might come with it's own package manager</h1>
+
+<p>I'm a polyglot programmer (so I shouldn't care about #3) that uses git for everything (scratch #2) and who writes little bash scripts to make my life easier (exactly like #1). So I understand exactly how and why these solutions appear fine. And for certain circumstances they are, in particular for local development on a machine owned and maintained by one person. But on a production machine and even on my clean and tidy virtual machines none of these cut it for me in most cases.</p>
+
+<p>Most developers I know have only a passing awareness of packaging so I'm going to have an aside to introduce some cool tricks. I think this is one place where sysadmins go wrong, they assume developers understand their job and that they know the various tools intimately.</p>
+
+<p>h2. System Package Tips</p>
+
+<p>I'm going to show examples using the debian tools so these apply to debian and ubuntu distros. RPM and the Yum tool have similar commands too, I just happen to know debs better.</p>
+
+<p>h3. List all installed packages</p>
+
+<p>This one is a bit obvious, it's probably going to be available in anyones home grown package management system. But if you're installing software via hand using git or a shell script then you can't even ask the machine what is installed.</p>
+
+<pre>dpkg -l</pre>
+
+
+<p>h3. List files from package</p>
+
+<p>I love this one. Have you ever installed a package and wondered where the config files are? You can soft of guess based on your understanding of the OS file system layout but this command is handy.</p>
+
+<pre>dpkg -L lynx
+/.
+/usr
+/usr/share
+/usr/share/doc
+/usr/share/doc/lynx
+/usr/share/doc/lynx/copyright
+/usr/share/doc/lynx/changelog.gz
+/usr/share/doc/lynx/changelog.Debian.gz</pre>
+
+
+<p>h3. Where did that file come from?</p>
+
+<p>Have a file on disk that you're not sure where it came from? Ask the system package manager. The more everything is installed from packages the more useful this becomes.</p>
+
+<pre>dpkg -S /bin/netstat</pre>
+
+
+<p>h3. Unmet dependencies</p>
+
+<p>At the heart of a good package system is the ability to map dependencies and to have unmet dependencies installed as needed. Having tools to query that tree is useful in various places.</p>
+
+<pre>apt-cache unmet</pre>
+
+
+<p>Will give you output a little like the followning:</p>
+
+<pre>Package libdataobjects-sqlite3-ruby1.9.1 version 0.10.1.1-1 has an unmet dep:
+ Depends: libdataobjects-ruby1.9</pre>
+
+
+<p>h3. What needs upgrading?</p>
+
+<p>The apticron tool can alert you to packages that are now out of date. It's easy to set it up to email you each day for each host and tell you about packages that need upgrading. Remember that the reason one of these might have an update could be a documented security bug and it becomes even more important to know about it quickly.</p>
+
+<pre>apticron report [Fri, 19 Jan 2007 18:42:01 -0800]
+========================================================================
+
+apticron has detected that some packages need upgrading on: 
+
+    faustus.example.com
+    [ 1.2.3.4 ]
+
+The following packages are currently pending an upgrade:
+
+    xfree86-common 4.3.0.dfsg.1-14sarge3
+    libice6 4.3.0.dfsg.1-14sarge3
+    libsm6 4.3.0.dfsg.1-14sarge3
+    xlibs-data 4.3.0.dfsg.1-14sarge3
+    libx11-6 4.3.0.dfsg.1-14sarge3
+    libxext6 4.3.0.dfsg.1-14sarge3
+    libxpm4 4.3.0.dfsg.1-14sarge3</pre>
+
+
+<p>I'm really not an expert on using debs but even I find these tools useful, and you don't get the same capabilities when you use anything else.</p>
+
+<p>h2. Good and bad examples</p>
+
+<p>Still here? Good. I'm going to pick on a few pieces of software to give examples of what I mean. All of this software I actively use and think is brilliant earth shattering stuff, I'm not dissing the software so if any fanboys reading can kindly not attack me please, I'm one of you.</p>
+
+<p>h3. RabbitMQ (Erlang)</p>
+
+<p>The nice folk building the "RabbitMQ":http://www.rabbitmq.com/ message queue provide downloads of the "source code as well as various system packages":http://www.rabbitmq.com/server.html. Knowing that some people will want to use the latest and greatest version of the application they also host the latest deboan packages in their "own package repo with details on their site":http://www.rabbitmq.com/debian.html.</p>
+
+<p>h3. Chef (Ruby)</p>
+
+<p>The "Chef configuration management system":http://wiki.opscode.com/display/chef/Home also provides multiple methods to install their software. For people already using, happy and familiar with it they provide everything as a ruby gem. If you prefer "system packages they have those too":http://wiki.opscode.com/display/chef/Installation. They also provide their "own deb repo":http://wiki.opscode.com/display/chef/Package+Installation+on+Debian+and+Ubuntu for people to grab the latest software.</p>
+
+<p>h3. Cloudera Hadoop (Java)</p>
+
+<p>Before I found the Cloudera Hadoop packages I remember having great fun "manually applying patches":http://morethanseven.net/2009/10/18/problems-installing-hadoop-and-dumbo-ubuntu.html to get everything working. Cloudera do exactly the same as the above two developers, namely "host their owns debs":https://docs.cloudera.com/display/DOC/Hadoop+Installation+%28CDH3%29.</p>
+
+<p>h3. RVM</p>
+
+<p>"RVM":http://rvm.beginrescueend.com/ is a fantastic way of managing multiple ruby versions and multiple isolated sets of gems. But it's also probably the first place I saw the install from remote shell script approach.</p>
+
+<pre>bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )</pre>
+
+
+<p>I like to do the same things on my development machine as I do in production, and the main problem I have with RVM is that it's so useful I want it everywhere. I'd prefer if the system wide install had some sort of option to install the rubies from packages rather than compile everything on the machine (meaning you need a full set of compile tools installed everywhere), or that we can automate the creation of the packages using rvm.</p>
+
+<p>h3. Solr</p>
+
+<p>You'll probably find packages for the "Solr search server":http://lucene.apache.org/solr/ in recent distros. It's hugely popular predominantly because it's a fantasic piece of software. But everytime I have a look at the system packages I can't quite get them to work, or they are out of date. I now know my way around Solr setup relatively well and just end up creating my own packages and I've spoken to other folk who have done the same. The "Solr documentation":http://lucene.apache.org/solr/tutorial.html recommends downloading a zip file to get started and I can't see any mention of the packages. My guess is the packages aren't maintained as part of the core development which is a quick way to get them out of sync with current progress.</p>
+
+<p>h2. Enough beating up on my fellow developers</p>
+
+<p>System packages aren't blameless, I think the culture often seen in debian of splitting the developer from the package maintainer is part of the problem. This manifests in various ways, all negative:</p>
+
+<ul>
+<li>Out of date packages. The biggest complaint from developers about system packages is nearly always that they are out of date. Maintainers should more readily release packaging scripts (ideally back to the project) so people can easily roll their own.</li>
+<li>The documentation around packaging is either fantastic or terrible, depending on what you want to do and who you are. It turns out making your own packages (using something like "checkinstall":http://checkinstall.izto.org/) is actually quite easy.</li>
+<li>The official debian docs I think focus on the role of package maintainer, rather than trying to push that downstream to the developers. That doesn't make them bad, it just means we need documentation aimed at a developer just getting started with packaging their software.</li>
+<li>Developers hosting their own package repository and asking people to point at that is also quite easy. The projects I praised above all do it nicely. But simple attractive documentation is hard to come by.</li>
+</ul>
+
+
+<p>h2. What to do</p>
+
+<p>First up lets talk more about the distribution and installation of software. And lets do that in the spirit of making things better for everyone involved. The ongoing spat between Ruby and Debian people is just counterproductive. "This":http://ryanbigg.com/2010/12/ubuntu-ruby-rvm-rails-and-you/ would be a good article if it didn't lead with:</p>
+
+<p>bq. This system (apt-get) is out-dated and leads to major headaches. Avoid it for Ruby-related packages. We do Ruby, we know what’s best. Trust us.</p>
+
+<p>We need better documentation aimed at developers. I'm going to try and write some brief tutorials soon (otherwise I'd feel like this rant was just me complaining) but I'm not an expert. I'll hapily help "promote":http://devopsweekly.com or collate good material as well. Maybe it already exists and I just can't find it?</p>
+
+<p>I'm a git user and a big "GitHub":http://github.com fan, but one of the features of Launchpad I really like is the "Personal Package Archive":https://help.launchpad.net/Packaging/PPA. This lets you upload source code and have it automatically built into a package. This is specific to Ubuntu but that's understandable given Launchpad is also operated by Canonical. What I'd like is the same feature in GitHub but that allowed building debs and RPMs for different architectures. Alternatively a webhook based third party that could do the same would be awesome (anyone fancy building one? I might pitch in). The only real advantage of it being GitHub would be it would make packages immediately cool, which hopefully you all now realise that they are.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to deploy PHP sites with the Pake build tool - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="So in case you hadn&#8217;t guessed project automation is the new black. I&#8217;ve been getting back into some development work recently with Is it &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2008/01/07/how-to-deploy-php-sites-with-the-pake-build-tool">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Deploy PHP Sites With the Pake Build Tool</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-07T00:00:00+00:00" pubdate data-updated="true">Jan 7<span>th</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>So in case you hadn&#8217;t guessed project automation is the new black. I&#8217;ve been getting back into some development work recently with <a href="http://isitbirthday.com">Is it Birthday?</a> and <a href="http://getjobsin.com">getjobsin</a> and trying to automate as much of the repetitive and boring work as possible.</p>
+<p>I&#8217;m not absolutely sure that that many people outside large or particularly organised teams realise that large web sites are not generally <em>deployed</em> by someone with an <span class="caps">FTP</span> client and crossed fingers. This sort of effort, along with other repetitive tasks like running tests or generating documentation, can be automated. This is a win-win for everyone. It&#8217;s more reliable (scripts don&#8217;t forget to restart a service before they go home), quicker and removes the need for having one person in charge of deployments.</p>
+<p>Even where people know about this build process idea they might not use it for their projects, probably for similar reasons why not everyone uses source control. I think the reason is probably that most web designers and developers (even particularly geeky ones) thing this software engineering stuff is maybe a step too far. Their is also something of a barrier to entry, knowing where to look and how to get started without reading lots of documentation (often filled with <span class="caps">XML</span> examples) and trial and error. Also project automation is apparently not sexy?</p>
+<p>Anyway, if you&#8217;ve been working with Rails you will have come across <a href="http://rake.rubyforge.org/">Rake</a>, which is a build tool used to automate various tasks. Well the nice <a href="http://www.symfony-project.org/">symfony</a> people have written a <span class="caps">PHP</span> version called <a href="http://www.pake-project.com/">Pake</a> for use as part of the framework. It&#8217;s used for all the command line action, from running tests to clearing the cache and <a href="http://www.symfony-project.org/book/1_0/16-Application-Management-Tools#Using%20rsync%20for%20Incremental%20File%20Transfer">automating deployments</a>. Pake is however a separate tool that you can use in your own projects, whatever framework or hand rolled codebase you are using.</p>
+<p>Pake can be downloaded using <a href="http://pear.php.net"><span class="caps">PEAR</span></a> on the command line:</p>
+<pre><code>pear upgrade PEAR
+pear channel-discover pear.symfony-project.com
+pear install symfony/pake</code></pre>
+<p>The documentation for Pake is pretty much non-existent as far as I can tell, but it is a really handy tool so worth a little effort. The best source of knowledge is to look through the default Pake tasks that are provided as part of symfony. One of my favourites, which we&#8217;ll look at now, allows for incremental deployments via Rsync over <span class="caps">SSH</span>. I&#8217;ve been using this with non-symfony projects too.</p>
+<p>Rsync is a command line tool for syncronising two file structures. The Rsync command that does most of the heavy lifting for the deployment looks like the following. Note I&#8217;ve used {} to denote placeholders in the following examples.</p>
+<pre><code>rsync --progress --azC --force \
+--delete -e ssh ./ {user}@{host}:{dir}</code></pre>
+<p>The sync task I&#8217;m using is straight from symfony, but the licence allows for distribution so here is an <a href="http://morethanseven.net/_assets/downloads/pake/pake.zip">example zip of all the files needed to follow along</a>. You&#8217;ll need these to follow along as I haven&#8217;t printed the full sourcecode for the pakefile here.</p>
+<p>First a little configuration. Using <a href="http://www.yaml.org/"><span class="caps">YAML</span></a> we define an environment, <em>staging</em> in this case_ and specify a host, port, user and the full path on the remote server. You can of course specify multiple environments in this file, we&#8217;ll see how to use them shortly.</p>
+<pre><code>[staging]
+  host={host}
+  port=22
+  user={user}
+  dir={dir}</code></pre>
+<p>You can also include an <em>rsync_exclude.txt</em> or an <em>rsync_include.txt</em> file. This gives you control over the files being synced when you run the Pake task. The following example is a good starting point, it stops you pushing those pesky .DS_Store files that <span class="caps">OSX</span> creates to you web server, as well as avoiding subversion metadata and the configuration files for the Pake task.</p>
+<pre><code>.svn
+.DS_Store
+/config/properties.ini
+/config/rsync_exclude.txt
+/config/rsync_include.txt
+/config/rsync.txt</code></pre>
+<p>We can now run the following command, from the directory containing the pakefile.php script, using Pake. The first example will do a dry run, showing you what will happen. You&#8217;ll be prompted for your <span class="caps">SSH</span> password as part of the command unless you&#8217;re using keys for authentication.</p>
+<pre><code>pake sync staging</code></pre>
+<p>When you&#8217;re happy you can run the sync command with the go option which will instruct Rsync to do it&#8217;s thing.</p>
+<pre><code>pake sync staging go</code></pre>
+<p>Pake has a handy flag to find out what tasks are available.</p>
+<pre><code>pake -T</code></pre>
+<p>This should give you a list of tasks and a brief description, useful to find out what you can do if you&#8217;ve been away from a project for a while.</p>
+<p>This is a pretty simple example but one I&#8217;m already finding useful. Rsync is but one way of deploying apps but with Pake has the advantage of being simple and in lots of situations good enough. It&#8217;s certainly better than a manual deployment process. It would be simple enough to build into the task a simple logging system so you have a log of all deployments; when they happened and who did them for instance.</p>
+<p>If that has whet your appetite then their are other deployment tools you might want to look into; <a href="http://www.capify.org/">Capistrano</a> (Ruby), <a href="http://ant.apache.org/">Ant</a> (Java), <a href="http://maven.apache.org/">Maven</a> (Java) and <a href="http://phing.info">Phing</a> (<span class="caps">PHP</span>) spring to mind. If anyone knows of a Python equivalent that would be useful too? I&#8217;m also using Phing for a few tasks on projects at the moment, mainly for some nifty Subversion tasks (and you can use Phing with Pake as symfony does), but that will have to wait until another post.</p>
+<p>So, what are peoples experiences of build tools? Any good pointers? Or maybe reasons why you don&#8217;t use them in your projects?</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-07T00:00:00+00:00" pubdate data-updated="true">Jan 7<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2008/01/07/how-to-deploy-php-sites-with-the-pake-build-tool/" data-via="garethr" data-counturl="http://www.morethanseven.net/2008/01/07/how-to-deploy-php-sites-with-the-pake-build-tool/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/01/05/refresh-map/" title="Previous Post: Refresh Map">&laquo; Refresh Map</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/01/13/on-process-and-design/" title="Next Post: On Process and Design">On Process and Design &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2008/01/07/how-to-deploy-php-sites-with-the-pake-build-tool/';
+        var disqus_url = 'http://www.morethanseven.net/2008/01/07/how-to-deploy-php-sites-with-the-pake-build-tool/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

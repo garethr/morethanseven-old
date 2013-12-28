@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vim | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/vim/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vim With Ruby Support Using Homebrew]]></title>
+    <link href="http://www.morethanseven.net/2011/07/31/Vim-with-ruby-support-using-homebrew/"/>
+    <updated>2011-07-31T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/07/31/Vim-with-ruby-support-using-homebrew</id>
+    <content type="html"><![CDATA[<p>I've spend a bit of time this weekend cleaning, tidying and upgrading software on my mac. While doing that I got round to compiling my own Vim. I'd been meaning to do this for a while, I prefer using Vim in a terminal to using MacVim, and I like having access to things like "Command-T":http://www.vim.org/scripts/script.php?script_id=3025 which requires Ruby support which the inbuild version lacks.</p>
+
+<p>Vim isn't in Homebrew, because Homebrew's policy is to not provide duplicates of already installed software. Enter "Homebrew Alt":https://github.com/adamv/homebrew-alt which provides formulas for anything not allowed by the homebrew policy. As luck would have it a "Vim Formula":https://github.com/adamv/homebrew-alt/blob/master/duplicates/vim.rb already exists. And installing from it couldn't be easier.</p>
+
+<pre>brew install https://raw.github.com/adamv/homebrew-alt/master/duplicates/vim.rb</pre>
+
+
+<p>As it turns out this failed the first time I ran it because I had an rvm installed Ruby on my path. I reset this to the system version and everything compiled fine.</p>
+
+<pre>rvm use system</pre>
+
+
+<p>Note also that it's really quite simple to use a different revision or different flags when compiling. Just download that file, modify it, serve it locally (say with a python one line web server) and point brew install at it. Next step, running off head for all the latest and greatest Vim features.</p>
+]]></content>
+  </entry>
+  
+</feed>

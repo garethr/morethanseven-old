@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Vagrant Ecosystem - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="As mentioned loudly and repeatedly on here and on Twitter I love vagrant. While writing a chef cookbook to bootstrap my virtual machines I started &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2010/12/24/A-vagrant-ecosystem">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Vagrant Ecosystem</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-24T00:00:00+00:00" pubdate data-updated="true">Dec 24<span>th</span>, 2010</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>As mentioned loudly and repeatedly on here and on Twitter I love <a href="http://vagrantup.com">vagrant</a>. While writing a chef cookbook to bootstrap my virtual machines I started thinking about how things around vagrant could help it be more useful. These might be things I&#8217;m going to do, or ideally get involved with others to do. If anyone has any other ideas, or suggestions please leave comments, I definately think this is the time for discussion.</p>
+<h2>Baseboxes</h2>
+<p>I don&#8217;t really want to have to maintain baseboxes but I want access to lots of them. I&#8217;m sure some people will want a <em>Ruby on Rails in a box</em> but all I really care about is having access to recent 32 and 63 bit vanilla linux distributions. I want a good source for trusted baseboxes. At the moment the approach is to look on the wiki, then look on the mailing list and then search the web, then create your own (even using <a href="https://github.com/jedi4ever/veewee">VeeWee</a> it&#8217;s still a little fiddly). I&#8217;ve managed to find good lucid, maverick and debian boxes, but have had problems with centos and a few others. Part of this is the rate of change recenty of both vagrant and now VirtualBox (both good things), part of it is the lack of reviews and shared experiences around baseboxes.</p>
+<p>What I&#8217;d love to see is a single place where anyone can post a link to a basebox and vagrant users can come along and assign metadata about whether it worked and on what hardware, vagrant version, virtual box version, etc. It could even act as a tracker, counting downloads of boxes to gauge popularity.</p>
+<h2>Templated Vagrantfiles</h2>
+<p>As mentioned previously I have a chef cookbook I use to bootstrap all my new virtual machines. My process is therefore: <em>vagrant init</em>, make some manual changes to the Vagrantfile (or copy it from elsewhere), <em>vagrant up</em>. I&#8217;m lazy and want a nicer way to reuse Vagrantfiles or to script their creation.</p>
+<p>I started out thinking that the ability to point the init command at a template and to provide context on the command line might be a good idea. Now I&#8217;m wondering whether we just need a command line application which allows for writing or modifying the Vagrantfile? Something like:</p>
+<pre>vagrant config vm.provisioner=:chef_solo
+vagrant config chef.recipe_url=http://cloud.github.com/downloads/garethr/chef-repo/cookbooks.tar.gz</pre>
+<h2>Hosted cookbooks</h2>
+<p>I dissed the idea of a <em>Ruby on Rails in a box</em> basebox above but I still want to be able to let people more easily share custom configuration for specialist applications. But what I&#8217;d prefer would be people sharing packaged cookbooks, a bit like I&#8217;ve done for my default virtual machine setup. Again the beauty of this is it&#8217;s pretty much just sharing a <span class="caps">URL</span> to a tar.gz file. This makes more sense to me at least than random people connecting to my chef server (I shouldn&#8217;t know about their machines) and lowers the barrier to entry for those not interested in hosting their own chef server or using the opscode platform for local virtual machines.</p>
+<p>I&#8217;m also not talking here about just sharing individual cookbooks like <a href="http://cookbooks.opscode.com/">cookbooks.opscode.com</a>, but rather a packaged collection of individual recipes designed for a specific purpose. A fully working solr instance, a django application server using apache/mod_wsgi, etc.</p>
+<p>Many of the points about baseboxes above would work here too I think. Having a good community resource which points to lots of cookbook tar files. Allowing people to feed back about what works for them. I&#8217;ve mainly taked about Chef here as that&#8217;s what vagrant initially shipped with, with the puppet provisioner now ready to go with would stand for puppet manifests too.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-24T00:00:00+00:00" pubdate data-updated="true">Dec 24<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/vagrant/'>vagrant</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2010/12/24/A-vagrant-ecosystem/" data-via="garethr" data-counturl="http://www.morethanseven.net/2010/12/24/A-vagrant-ecosystem/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2010/12/20/Smoke-testing-with-cucumber-on-sysadvent/" title="Previous Post: Smoke Testing With Cucumber On Sysadvent">&laquo; Smoke Testing With Cucumber On Sysadvent</a>
+      
+      
+        <a class="basic-alignment right" href="/2010/12/29/Heroku-for.../" title="Next Post: Heroku For...">Heroku For... &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

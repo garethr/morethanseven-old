@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: hackernews | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/hackernews/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hacker Posts]]></title>
+    <link href="http://www.morethanseven.net/2009/03/21/hacker-posts/"/>
+    <updated>2009-03-21T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/03/21/hacker-posts</id>
+    <content type="html"><![CDATA[<p>I've been playing again with App Engine, and going back to an on/off pet project that I've build variations of for a while.</p>
+
+<p><a href="http://hackerposts.appspot.com"><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRihHww" alt="Hacker Posts"/></a></p>
+
+<p>It's basically a pretty straightforward aggregation platform, taking content from a number of feeds and creating relationships between the items. It's mainly an experiment in creating a decent size site on App Engine - it can be surprising how many urls you can get out of a good corpus of data:</p>
+
+<ul>
+<li>400 items, each with a unique url</li>
+<li>each item has a variable number of tags generated, at the moment that amounts to about 1000 unique urls</li>
+<li>each month and year of content gets a url so that's another 4 or so</li>
+<li>each day for which we have items we also get a url, so that's another 90 or so</li>
+</ul>
+
+
+<p>So starting off with 1500 or so pages isn't bad. The site also grows over time as new items are posted or I add more feeds. Everything else I've done with App Engine has been more "application":http://imified-demo.appspot.com/ "focused":http://image-host.appspot.com/ so seeing how a content site performs is interesting in and of itself.</p>
+
+<p>The data in question I used for this first experiment was the feeds I could find from the "top posters on Hacker News":http://news.ycombinator.com/leaders. Hence the name "Hacker Posts":http://hackerposts.appspot.com. That left me with 35 feeds:</p>
+
+<ul>
+<li>http://www.matasano.com/log/feed/</li>
+<li>http://feeds2.feedburner.com/ThinkGene</li>
+<li>http://www.mechanicalrobotfish.com/rss.xml</li>
+<li>http://feeds.feedburner.com/Cloudknow</li>
+<li>http://mark.nirv.net/rss</li>
+<li>http://feeds.feedburner.com/seldomlogical</li>
+<li>http://feeds.feedburner.com/mattmaroon/AAcm</li>
+<li>http://www.swombat.com/rss.xml</li>
+<li>http://feeds.feedburner.com/woobius</li>
+<li>http://feeds2.feedburner.com/danieltenner</li>
+<li>http://www.nilkanth.com/feed/</li>
+<li>http://feeds.feedburner.com/NewCartographer</li>
+<li>http://inthebox.webmin.com/feed</li>
+<li>http://www.maximise.dk/blog/xml/rss.xml</li>
+<li>http://www.pchristensen.com/blog/feed/</li>
+<li>http://280north.com/blog/feed/</li>
+<li>http://tlrobinson.net/blog/feed/</li>
+<li>http://www.WhatToFix.com/atom.xml</li>
+<li>http://alexkrupp.typepad.com/sensemaking/atom.xml</li>
+<li>http://feeds.feedburner.com/yegg</li>
+<li>http://scotchi.net/feed/atom/</li>
+<li>http://paulbuchheit.blogspot.com/feeds/posts/default</li>
+<li>http://www.owenbyrne.com/feed/</li>
+<li>http://blog.jrock.us/feeds/articles/atom</li>
+<li>http://www.kalzumeus.com/feed/</li>
+<li>http://feeds.feedburner.com/gojomo</li>
+<li>http://davidpiccione.com/blog/feed/</li>
+<li>http://blog.blinker.net/feed/</li>
+<li>http://dambalah.com/feed/</li>
+<li>http://dustincurtis.com/rss.xml</li>
+<li>http://blog.jodoro.com/feeds/posts/default</li>
+<li>http://arantaday.com/blog/feed/</li>
+<li>http://www.allanjosephbatac.com/blog/feed</li>
+<li>http://feeds.feedburner.com/offbytwo</li>
+<li>http://feeds.feedburner.com/FoundersBlog-Cluttermecom</li>
+</ul>
+
+
+<p>I have a couple of other communities or events that I'd like to do the same thing around, as well as a few features I want to add to the underlying software. The nice thing with App Engine is rolling new instances out is as simple as running a command.</p>
+]]></content>
+  </entry>
+  
+</feed>

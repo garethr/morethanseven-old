@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: govuk | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/govuk/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Government Service Design Manual]]></title>
+    <link href="http://www.morethanseven.net/2013/03/23/government-service-design-manual/"/>
+    <updated>2013-03-23T17:04:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/03/23/government-service-design-manual</id>
+    <content type="html"><![CDATA[<p>I've not been writing many blog posts lately, but I have been doing quite a bit of writing elsewhere. One of the things I've had a hand in at work is the new "Government Service Design Manual":https://www.gov.uk/service-manual. This is the work of many people I work with as well as further afield. It's intended to be a good starting place to find information about building high quality digital services.</p>
+
+<p>The manual is in beta and we're looking for as much feedback as possible on the whole thing. It's already proving useful and a good way of framing the scope of discussions, but it has lots of room for improvement.</p>
+
+<p>If you're reading this post I'm going to wager you're interest lies in or around devops flavoured content. The following are guides I've written in this area that I'd love any and all feedback on.</p>
+
+<ul>
+<li>"Web Operations":https://www.gov.uk/service-manual/the-team/web-operations.html</li>
+<li>"Configuration Management":https://www.gov.uk/service-manual/making-software/configuration-management.html</li>
+<li>"Hosting":https://www.gov.uk/service-manual/operations/hosting.html</li>
+<li>"Information Security":https://www.gov.uk/service-manual/making-software/information-security.html</li>
+<li>"Monitoring":https://www.gov.uk/service-manual/operations/monitoring.html</li>
+<li>"Load and Performance Testing":https://www.gov.uk/service-manual/operations/load-and-performance-testing.html</li>
+<li>"Releasing Software":https://www.gov.uk/service-manual/making-software/release-strategies.html</li>
+<li>"Vulnerability and Penetration Testing":https://www.gov.uk/service-manual/operations/penetration-testing.html</li>
+<li>"Choosing Technology":https://www.gov.uk/service-manual/making-software/choosing-technology.html</li>
+</ul>
+
+
+<p>If you're interested in the background to this endeavour then a couple of blog posts from some of my colleagues might be of interest too. First Richard Pope talks about "how the manual came about":http://digital.cabinetoffice.gov.uk/2013/03/21/building-the-standard/ and here's a post from Andrew Greenway about this "beta testing of the service standard":http://digital.cabinetoffice.gov.uk/2013/03/21/building-the-standard/.</p>
+
+<p>The source for all this is on "GitHub":https://github.com/alphagov/government-service-design-manual so if you prefer you can just sent a pull request. Or I'm happy to get emails or comments on this post. In particular if people have good references or next steps for these guides then let me know as several of them in particular are lacking in that area.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Going fast in government]]></title>
+    <link href="http://www.morethanseven.net/2013/02/17/going-fast-in-government/"/>
+    <updated>2013-02-17T17:08:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/02/17/going-fast-in-government</id>
+    <content type="html"><![CDATA[<p>About a month ago I had the good fortune of speaking at the "London Web Performance":http://www.meetup.com/London-Web-Performance-Group/ meetup. This was one of the first talks I've done about our work at The Government Digital Service since the luanch of GOV.UK back in October. The topic was all about moving quickly in a large organisation (The UK Civil Service is about 450,000 people so I think it counts) and featured just a hand full of technical and organisational tricks we used.</p>
+
+<script async class="speakerdeck-embed" data-id="bc48ed2042c20130b322123138156909" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Shipping]]></title>
+    <link href="http://www.morethanseven.net/2012/10/21/shipping/"/>
+    <updated>2012-10-21T21:50:00+01:00</updated>
+    <id>http://www.morethanseven.net/2012/10/21/shipping</id>
+    <content type="html"><![CDATA[<p>Last week we shipped "GOV.UK":https://www.gov.uk. Over the last year we've built a team to build a website. Now we're busy building a culture too. I've got so much that needs writing up about everything we've been up to. Hopefully I'll make a start in the next week or so.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dashboards At Gov.Uk]]></title>
+    <link href="http://www.morethanseven.net/2012/02/19/Dashboards-at-govuk/"/>
+    <updated>2012-02-19T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2012/02/19/Dashboards-at-govuk</id>
+    <content type="html"><![CDATA[<p>This is a bit of a cheat blog post really. I've been crazy busy all month with little time for anything except work (specifically shipping the first release of "www.gov.uk":https://www.gov.uk/). I have had a little time to blog over on the Cabinet Office blog though, about work we've done with dashboards.</p>
+
+<p>"http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/":http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/</p>
+
+<p>If you're ever looking for good little hack projects dashboards are perfect, and often hugely useful once up and running. Convincing people of this before you have a few in the office might be hard - so just build something simple in a lunch break and find a screen to put it on. We've had great feedback from ours, both from people wandering through the office and from our colleagues who have a better idea of what's going on.</p>
+]]></content>
+  </entry>
+  
+</feed>

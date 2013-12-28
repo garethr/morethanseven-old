@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rewiredstate | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/rewiredstate/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[It's the Data we Want]]></title>
+    <link href="http://www.morethanseven.net/2009/07/13/its-data-we-want/"/>
+    <updated>2009-07-13T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/07/13/its-data-we-want</id>
+    <content type="html"><![CDATA[<p>bq. A spreadsheet. A CSV file. Whatever is in use internally. Made available to people like us under a suitable license.</p>
+
+<p>I feel a little self adsorbed quoting myself (from a recent "Refresh Cambridge":http://refreshcambridge.org/ discussion) but I did like the turn of phrase. What I was rambling on about was Cambridge County mapping data, after a question from a nice chap from the council about what <em>"new, exciting map technology"</em> we'd like to see. But it applies to any data that you're trying to make public what-so-ever, be it government or otherwise.</p>
+
+<p>What myself and a few other people were talking about, and one of the things that has been discussed as part of the "Rewired State":http://rewiredstate.org/ group, is that it's all about the data, not necessarily about a nice web based API.</p>
+
+<p>Now I've written and spoken about the need for well designed API's being treated as part of the user interface. But remember interface design, and by association API design, isn't easy. API design is often about building manageable flexibility. A public API is often about managing the flow of data you control out to third parties, as well as the information itself it might include limitations on usage, or request rate, or storage. A public API codifies how that information can be accessed. APIs also have to tread a fine line between making it easy for you to solve your problem, and making it easy for everyone else to solve their completely different problems. These compromises are design.</p>
+
+<p>But not everything needs an API. Sometimes it's just about the data, and the best way of getting at that data is as raw as possible. Government data is an easy sell here, as it is (or rather should be) <em>our</em> data. It's also for the most part interesting to read rather than write (historical council tax data, or population data for instance). Raw data can generally be provided quicker than via an API. It doesn't need fragile computer systems or extensive manual labour. It doesn't need particularly clever computing resources. Just upload a spreadsheet or a CSV file to a sensible URL on a known, regular basis and away we go.</p>
+
+<p>And giving data like this away to the development community is likely to have a few additional benefits if that data is useful (it probably is to someone). We'll happily write software libraries, or create APIs over the top of it for you. We'll also write all sorts of useful tools using the data in ways no one else thought of. So if you're sat on a load of data that's not core to your business, or is meant to be public anyway, then lets start talking publicly about how to just get this out on the web quickly and cheaply, rather than spending lots of your time and money on something fancy.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RewiredState]]></title>
+    <link href="http://www.morethanseven.net/2009/03/09/rewiredstate/"/>
+    <updated>2009-03-09T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/03/09/rewiredstate</id>
+    <content type="html"><![CDATA[<p>"RewiredState":http://rewiredstate.org/ was awesome. 100 or so geeks plus a smattering of government types gathered in the shiny new Guardian offices in Kings Cross on Saturday to hack (the Government).</p>
+
+<p>Some events like this are more productive than others, and the end of day demos included some realy impressive stuff. See for your self on the "projects page":http://projects.rewiredstate.org/</p>
+
+<p>My own little project even won a prize (an invisible bottle of Champagne no less). My complain was that if you want to report an issue about the over 7000 government websites you have to do it per site. All of the sites do their own thing, which might be a nice contact form, maybe an email address or in some cases a postal address hidden on a page that's not linked to from anywhere.</p>
+
+<p>My solution was pretty simple - a centralised issue reporting and navigating tool. So you go along to the site you have an issue with and hit a bookmarklet (or a badge on the site if the site in question have been nice enough to add one). You fill in a very simple form which appears before your eyes and everything is tracked on a nice shiny website.</p>
+
+<p>The advantage of all that is transparency. You can see which sites people have issue with, and also ideally which issues get addresses or at least acknowledged by the support staff for the site in question. The hack had comments so others could follow up on individual issues. It would be simple enough to have league tables and the like as well, or add tagging for a little bit of categorisation - I did only have a few hours though.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRi7Fww" alt="screenshot of FeedbackGov website"/></p>
+
+<p>After a few nice comments I'm going to have to finish it off and get it up somewhere I think. All I really need to do is clean up the bookmarklet code (which was a hack in more ways than one) and add a bit of sanity checking to data entered into the system.</p>
+
+<p>A massive well done to everyone involved is in order as well, especially "James":http://coupde.com/ who I remember talking to the idea about ages ago. Congratulations all - and hopefully be back next year.</p>
+]]></content>
+  </entry>
+  
+</feed>

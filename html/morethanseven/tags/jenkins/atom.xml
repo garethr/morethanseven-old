@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: jenkins | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/jenkins/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Talking To Jenkins From Campfire With Hubot]]></title>
+    <link href="http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/"/>
+    <updated>2012-01-06T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot</id>
+    <content type="html"><![CDATA[<p>In what turned out to be a productive holiday hacking with languages I'd not used before, I got round to writing some coffeescript on node.js. This was more to do with scratching a personal itch that pure experimentation. I had a play with "Janky":https://github.com/github/janky (Github's Jenkins/Hubot mashup) but found it a little opinionated on the Jenkins side, but the campfire integration is excellent. Looking at the Jenkins commands in "hubot-scripts":https://github.com/github/hubot-scripts/ though I found those even more opinionated.</p>
+
+<p>The magic of open source though is you can just fix things, then ask nice people if they like what you've done. I set about writing a few more general commands and lo, the've been quickly "merged upstream":https://github.com/github/hubot-scripts/pull/23840h.</p>
+
+<p>These add:</p>
+
+<ul>
+<li>A command to list all your Jenkins jobs and the current state</li>
+<li>A command to trigger a normal build</li>
+<li>A command to trigger a build with a list of parameters</li>
+</ul>
+
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRipwAIM" alt="campfire window showing jenkins tasks"/></p>
+
+<p>This was made much easier by first looking at the previous Jenkins commands, and then looking at other scripts in the hubot-scripts repository. The best way of learning a new language/framework is still on the shoulders of others.</p>
+
+<p>I've got a few other good ideas for Jenkins related commands. I want to add a filter command to the jobs list, both by name and by current state. For longer running jobs I also want to report whether a build is currently running. And then maybe get information about a specific job, like the last few runs or similar. Any other requests or ideas most welcome.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[First Experience Building Something With Clojure]]></title>
+    <link href="http://www.morethanseven.net/2011/12/26/First-experience-building-something-with-clojure/"/>
+    <updated>2011-12-26T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/12/26/First-experience-building-something-with-clojure</id>
+    <content type="html"><![CDATA[<p>I nearly always try and grab some time over Christmas to try something new and this year I'd been planning on spending some time with Clojure. I have several friends who are big fans, but dipping in and out of a book hadn't really worked. What I needed was an itch to scratch.</p>
+
+<p>I stuck with a domain I'm pretty familiar with for this first project, namely building a little web application. It renders a web page, makes HTTP requests, parses JSON into native data structures and does a bit of data juggling. Nothing fancy or overly ambitious, I was mainly interested in picking up the syntax, understanding common libraries and getting something built. Here's what I've got:</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjBuAIM" alt="Dasboard for Jenkins builds"/></p>
+
+<p>Jenkins has various API endpoints, but most dashboards I've seen concentrate on showing you the current status of all the builds. This is hugely useful when it comes to the simple case of continuous integration, but I've also been using Jenkins for other automation tasks, and making extensive use of parameterized builds. What the dashboard above concentrates on is showing recent builds for a specific job, along with the parameters used to run them.</p>
+
+<p>Overall it was a fun project. Clojure made much more sense to me building this application than it had from simple examples. The "Noir":http://webnoir.org/ web framework is excellent and proved easy enough to jump into and simple enough that I could read the source code if I was interested in how something worked. The "Leiningen":https://github.com/technomancy/leiningen build tool made getting started, downloading and managing dependencies and running tests and the application itself easy.</p>
+
+<p>What I didn't find particularly appealing was the lack of a strong standard library coupled with the difficulty of tracking down suitable libraries. JSON parsing, dealing with HTTP requests and date handing are very common activities in web programming and all needed me to jump around looking at the best way of dealing with the common case. I settled on "clj-http":https://github.com/dakrone/clj-http, "chesire":https://github.com/dakrone/cheshire and using Java interop for date formatting. clj-http suffered from having lots of forks on GitHub to navigate through. I started with clojure-json before discovering it had been deprecated. And neither clj-time or date-clj appeared to support unix timestamps as far as I could tell from the source. Throw in some uncertainty over the status of clojure-contrib that isn't well documented on the official site and it needs some effort to get started.</p>
+
+<p>The working code for this is already up on "GitHub":https://github.com/garethr/jenkins-build-list and I'd be interested in any Clojure experts showing me the error of my ways.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Jenkins Parameterized Builds]]></title>
+    <link href="http://www.morethanseven.net/2011/11/16/Jenkins-parameterized-builds/"/>
+    <updated>2011-11-16T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/11/16/Jenkins-parameterized-builds</id>
+    <content type="html"><![CDATA[<p>I'm a huge Jenkins fan now, but that wasn't always the case. I started (and still have a soft spot for) Cruise Control, mainly building .NET and PHP applications. I then jumped to much simpler projects like "Integrity":http://integrityapp.com/ mainly for Python and Ruby projects. I reasoned I didn't need the complexity of Cruise or Hudson, I just wanted to be able to run my tests on a remote machine and have something go green or red. I then worked out that wasn't quite the case, and ended up committing webhook like functionality to Integrity so I could chain builds together. And then I eventually tried Jenkins and found it's power mixed with flexibility won me over. That's really all just context, but hopefully explains a little about why I like a few Jenkins features in particular, one of which is "Parameterized builds":https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Build.</p>
+
+<p>The Jenkins wiki describes this by saying:</p>
+
+<p>bq. Sometimes, it is useful/necessary to have your builds take several "parameters."</p>
+
+<p>But then goes onto a usecase that probably won't mean much to dynamic language folk. This is one failing of much of the documentation around Jenkins, it often feels geared towards developers of certain languages when in reality the tool is useful everywhere. The important take away here is that builds can take arguments, which can have default values. Here's an example:</p>
+
+<p>Imagine we have a build which runs a set of simple tests against a live system . And further imagine that said system is composed of a number of different web services. Oh, and we're running a few different parrallel versions of the entire system for testing and staging purposes. We could have one Jenkins job per application/environment combination. Or we could have one parameterized build.</p>
+
+<p>Lets first specify our parameters from the Configure build screen of our Job.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjZsAIM"/></p>
+
+<p>Here we're specifying a TARGET_APPLICATION and TARGET_PLATFORM parameter. These are going to turn into environment variables we can use in our build steps. We can specify default values for these if we like too. I'm just using strings here, but I could also use a select box or file dialog, or other options provided by various plugins.</p>
+
+<p>Now when we hit the build button, instead of the build just starting, we're propted for these values.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjxqAIM"/></p>
+
+<p>So with our new build if we want it to run against the staging environment and just for the foobar application we enter those values and hit build. That on it's own can be used to drastically cut down on the number of individual builds you have to manage in Jenkins. And we're not just restricted to text inputs, we can use boolean values or even prompt for file uploads at build time. But throw in a few plugins and things get even more interesting.</p>
+
+<p>Jenkins has an overwhelming number of plugin available. If you haven't spent the good half hour it takes to go down the list I'd highly recommend it. One of Jenkins best features is the ability to trigger a build after the successful run of another job. It allows you to chain things like test runs to integration deployments to smoke tests to production deploys. Basically your modern continuous deployment/delivery pipeline. The "Build Pipeline":https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin plugin is excellent for visuallising this and introducing human gates if needed. Another useful plugin in this context is the "Parameterized Trigger":https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin plugin. A limitation of Jenkins is that downstream builds can't pass parameters, but this plugin works around that. Instead of ticking the <em>Build other projects</em> option you go for the <em>Trigger parameterized build on other projects</em> box. This allows you to select the project and to specify parameters to pass. This could be hard coded values, paramaters already passed into the pipeline, or things from other plugins like the git sha1 hash or subversion version number.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjyqAIM"/></p>
+
+<p>Combine all this together and it's simple to have a per project continuous integration build running a test suite, kicking off a standard set of downsteam jobs for deploying to a test environment (by passing th relevant parameters), running some basic smoke tests and allowing someone to click a button to deploy to production. Or going the whole continuous deployment, I trust my test suite route, and deploying automatically. All within Jenkins. Getting this working requires a bit of planning. You want all of your projects to be deployed the same way but you probably want this to be the case anyway.</p>
+
+<p>Providing flexible push button builds/deploys and reducing the number of nearly identical jobs in Jenkins are just two advantages to using parameterized builds. Most of the tricks come from thinking about Jenkins as much more than a continuous integration tool and more of an automation framework - I know at least one large organisation who have pretty much replaced cron for many tasks with Jenkins for instance. Running tests automatically, and in a central environment as close to production as possible, is important. But it's just a sanity check if you're doing everything right already. Centralising activity on a build pipeline requires you to be doing all that anyway, but in my opinion gives way more useful and rapid feedback about the state of the code your team is writing.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Jenkins Build Pipeline Example]]></title>
+    <link href="http://www.morethanseven.net/2011/07/24/Jenkins-build-pipeline-example/"/>
+    <updated>2011-07-24T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/07/24/Jenkins-build-pipeline-example</id>
+    <content type="html"><![CDATA[<p>The idea of a build pipeline for web application deployment appears to have picked up lots of interest from the excellent "Continuous Delivery":http://continuousdelivery.com/ book. Inspired by that, some nice folks have build an excellent plugin for Jenkins unsurprisingly called the "Build Pipeline Plugin":https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin. Here's a quick example of how I'm using it for one of my projects*.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRihmQIM" alt="Build pipeline example in Jenkins"/></p>
+
+<p>The pipeline is really just a visualisation of up and downstream builds in Jenkins given a starting point, plus the ability to setup manual steps rather than just the default build after ones. That means the steps are completely up to you and your project. In this case I'm using:</p>
+
+<h1>Build - downloads the latest code and any dependencies. You could also create a system package here if you like. If successful triggers...</h1>
+
+<h1>Staging deploy - In this case I'm using capistrano, but it could easily have been rsync, fabric or triggering a chef or puppet run. If successful triggers...</h1>
+
+<h1>Staging test - This is a simple automated test suite that checks that the site on staging is correct. The tests are bundled with the code, so are pulled down as part of the build step. If the tests pass...</h1>
+
+<h1>Staging approval - This is one of the clever parts of the plugin. This jenkins job actually does nothing except log it's successful activation. It's only run when I press the Trigger button on the pipeline view. This acts as a nice manual gate for a once over check on staging.</h1>
+
+<h1>Production deploy - using the same artifact as deployed to staging this job triggers the deploy to the production site again via capistrano</h1>
+
+<p>I'm triggering builds on each commit too via a webhook. But I can also kick off a build by clicking the button the pipeline view if I need to.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRi5kQIM" alt="Pipeline example showing build in progress"/></p>
+
+<p>Note that I'm only allowing the last build to be deployed given only that one can be checked on staging. Again this is configuration specific to my usage, the plugins lets you operate a number of different ways. There are a number of tweaks I want to make to this, mainly around experimenting with parameterized builds to pass useful information downstream and even allow parrallel execution. For the moment I have the <em>Block build when upstream project is building</em> flag checked on the deploy.</p>
+
+<p> &nbsp;* Yes, this is a one page site. With a 5 step build process in Jenkins including a small suite of functional tests and a staging environment. This is what we call overengineering.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Continuous Deployment Example Setup]]></title>
+    <link href="http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup/"/>
+    <updated>2011-03-20T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup</id>
+    <content type="html"><![CDATA[<p>One of the reasons behind getting around to building "Vagrantbox.es":http://www.vagrantbox.es recently was I was giving a talk to a group of startups on "The Difference Engine":http://thedifferenceengine.eu/ programme and I wanted to have an example project to demonstrate various things. I wanted to demonstrate everything from sensible version control habbits, configuration management, basic orcestration and most importantly a solid deployment process. I've decided to write up what I'm doing for deployment because I think it's pretty nice, and for all the talk about Continuous Deployment I haven't seen many examples of code and configuration to make it happen.</p>
+
+<p>Most of what I'll cover is pretty easy to map to whatever technologies your using. For this project I'd gone for Git, Django, Gunicorn, Nginx, Fabric, Mysql and Jenkins and I'm deploying to Ubuntu running on "Brightbox Cloud":http://www.brightbox.co.uk/. Apart from the Jenkins instance in the middle you could follow the instructions and swap things out easily.</p>
+
+<p>h2. Jenkins</p>
+
+<p>First up lets install "Jenkins":http://jenkins-ci.org/. I setup a separate cloud instance just to run the Continuous Integration server. I find this approach easier to manage but you could always run this locally if you prefer. The Jenkins folk provide very up to date "packages for Debian":http://pkg.jenkins-ci.org/debian/ so I chose to use those.</p>
+
+<p>h3. Plugins</p>
+
+<p>Jenkins provides a huge number of optional plugins which enable various additional features. Plugins are installed via the web interface at /pluginManager. I've installed:</p>
+
+<ul>
+<li>"Jenkins Cobertura Plugin":http://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin</li>
+<li>"Jenkins GIT plugin":http://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin</li>
+<li>"GitHub plugin":http://wiki.jenkins-ci.org/display/JENKINS/Github+Plugin</li>
+<li>"Green Balls":http://wiki.hudson-ci.org/display/HUDSON/Green+Balls</li>
+<li>"Hudson Violations plugin":http://wiki.hudson-ci.org/display/HUDSON/Violations</li>
+</ul>
+
+
+<p>Only the Git plugin is really required for what I'm doing with deployment. Cobertura and Violations are code quality metrics tools that I use to record output from pylint and code coverage for my test suite.</p>
+
+<p>h2. The Source</p>
+
+<p>My finished project was already on GitHub in a private repository. I'm using a requirements.txt file to record python dependencies so I can use pip to install them automatically and I'm using Virtualenv to sandbox this installation. I'm also using South to manage my database schema changes. I won't go into that here as it's pretty Python specific, Rails for instance has Active Record migrations, RVM and Bundler which do pretty much the same job. PHP has PEAR and some of the frameworks offer a migration tool.</p>
+
+<p>I then created two projects in Jenkins:</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiRywEM" alt="Jenkins dashboard"/></p>
+
+<p>h3. Project 1: Vagrantboxes</p>
+
+<p>This is the main build of my master branch in Git. As well as setting up the Git repo as shown below I've set a polling schedule to */5 * * * * (that's every 5 minutes) and also set Trigger builds remotely so I can have a task in my fabfile which triggers a build immediately.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjh2gEM" alt="Git config for Jenkins"/></p>
+
+<p>I then have two build steps, both of which execute shell commands. The first installs any new requirements via pip:</p>
+
+<pre>bash -l -c "source bin/activate; pip install -r requirements.txt"</pre>
+
+
+<p>The second runs my test suite and generates the XML output required to show the test results in Jenkins:</p>
+
+<pre>bash -l -c "source bin/activate; cd vagrantboxes/configs/common; python manage.py jenkins boxes"</pre>
+
+
+<p>I'm using the rather handy "Django Jenkins":https://github.com/kmmbvnr/django-jenkins application for this.</p>
+
+<p>So far so good. This gives us a project that, when we push some changes to GitHub, will pull those changes down to the CI server and run our test suite, giving us feedback as to whether the tests pass or fail.</p>
+
+<p>Now for the trick, in Post-build Actions tick Build other projects and specify the name of another project that we'll setup next. Mine is called Vagrantboxes-deploy.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRirwwEM" alt="Post build action in Jenkins"/></p>
+
+<p>h3. Project 2: Vagrantboxes-deploy</p>
+
+<p>This project is triggered only when the previous project runs successfully. And all it's going to do is run the deployment script on the project we just built. The setup for this project is very simply, it has one build step which just executes the following:</p>
+
+<pre>bash -l -c "cd /var/lib/jenkins/jobs/Vagrantboxes/workspace; source bin/activate; fab appserver deploy"</pre>
+
+
+<p>The specifics of the Fabric script here aren't that important but I'm doing something not too disimilar to "what I described here":http://morethanseven.net/2009/07/27/fabric-django-git-apache-mod_wsgi-virtualenv-and-p.html.</p>
+
+<p>The reason I've setup a separate project for these is so I can, if I choose, trigger a deployment separately to the full build, and also so I can very easily disable deployments even if the main build is still running.</p>
+
+<p>h2. Conclusions</p>
+
+<p>With this setup whenever I push code to master it triggers a build. If the test suite passes it runs the deployment script and pushes out the code to the live web servers. This suites me and this project but you might find it easier to start by pushing all successfull builds out to a staging environment. And maybe then moving on to having a new project which is only triggered manually for deploying to production.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiqwwEM" alt="project view in Jenkins"/></p>
+
+<p>This setup has other advantages too. The Jenkins dashboard becomes a handy tool for recording deployment events. You can easily setup emails or IM messages or Campfire posts to alert other team members whenever a deployment happens. And it really really makes sure your delployment scripts work without hand holding.</p>
+
+<p>This is a simple project that I'm working on on my own, but in a team environment you'd likely have a more complex branching strategy and more Jenkins projects. You might also introduce some gateways for manual testing but the starting point is the same. Jenkins makes archiving successful build artifacts relatively easy as well, this setup has a few race condition possibilities that you can fix by building artifacts from successful builds. Jenkins also supports building from different branches and having different branches trigger different projects, all handy if you want to grow this kind of setup.</p>
+]]></content>
+  </entry>
+  
+</feed>

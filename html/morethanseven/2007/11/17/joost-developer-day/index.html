@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Joost Developer Day - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I spent yesterday afternoon over with Joost in London as part of their UK developer day. The event was mainly for them to show off their new widget &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2007/11/17/joost-developer-day">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Joost Developer Day</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-11-17T00:00:00+00:00" pubdate data-updated="true">Nov 17<span>th</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I spent yesterday afternoon over with <a href="http://joost.com">Joost</a> in London as part of their UK developer day. The event was mainly for them to show off their new widget platform and to get some input from prospective developers about what they would like to see next. About 20 people or so came along from the <span class="caps">BBC</span>, Ebay and a couple of london agencies, with me and <a href="http://tommorris.org/">Tom</a> loitering around the edges. The afternoon was split into a series of short talks from people on the team. What follows is some of the interesting bits.</p>
+<p>Joost describe themselves as <em>The Best of the Internet and best of TV</em>, if you haven&#8217;t seen it yet it&#8217;s basically TV running on the Mozilla platform. All in all pretty impressive. <a href="http://danbri.org">Dan Brickley</a> had a different slant, seeing Joost as Web 2.0 +/- 1 <em>Built and extended with modern web technology, modern web attitude</em>. The idea of taking an unashamedly desktop piece of software and learning lessons from the web is pretty interesting.</p>
+<p>The <a href="http://dev.joost.com">Joost development site</a> is now public, although not linked to from the main site as yet. Their is some documentation of the various APIs but we can expect more in the future, including some videos from the developer days in a development channel.</p>
+<p>The main emphasis for developers at this moment was on overlays and widgets (<em>little bundles of web technology</em>) which integrate with the Joost client. We got a sneak peak (and a chat with some of the developers) of the first commercial Joost widget for Coca Cola &#8211; <a href="http://cokebubbles.com">Coke Bubbles</a> and <a href="http://www.ilrt.bris.ac.uk/~ecemm/">Libby Miller</a> and <a href="http://jibbering.com">Jim Ley</a> showed off a few of the default widgets.</p>
+<p>The most interesting bits from my point of view were to do with the technology. Joost has an interesting advantage as a platform being a single, dedicated client. No more cross browser testing here. They also keep  pretty close to trunk for Mozilla, which gives them quite a bit of CSS3 support too. You can also try out other new technologies not available in too many browsers yet: <span class="caps">SVG</span>, <span class="caps">RDF</span>, Canvas and E4X for example. This was the second time in a few days I&#8217;d seen <span class="caps">SVG</span> pushed as cool, the first being at Future of Mobile which I&#8217;ll jot down some thoughts on later.</p>
+<p>What was interesting was that the people along from the development team came from a W3C background rather than say an product development or design companies. Joost makes extensive use of Semantic Web technologies under the hood and exposes quite a bit of RDFa if you go looking for it. It also follows along with various other web-like ideas, unique URLs for channels and programmes, including the ability to pass these parameters for instance to deep link into a video at a current time. The widget platform as well is starting to align with standards work going on at the W3C &#8211; we saw a quick demo of a widget build for the Opera browser which worked seamlessly with Joost too. The development team are now working on dealing with signed widgets, local storage APIs, interwidget communication, as well as usable, clear privacy models. All pretty interesting.</p>
+<p>Some of the event was hampered by a shoddy internet connection but the general mood was relaxed and friendly and no one seemed to mind too much. The beer probably helped. I did chuckle when a senior alternative marketing guy from Coke described as <em>Insane</em> the typical agency setup though (rich guy in Notting Hill &#8594; account manager &#8594; project manager &#8594; developers).</p>
+<p>Their will be a Coke sponsored widget competition announced after the rest of the developer days (in Amsterdam and New York) with the title of <em>International widgets champion of Joost</em> up for grabs along with some cash and <em>a t-shirt</em>.</p>
+<p>My only real complaint was probably the low level mutterings about Javascript! Audience members and Joost developers alike made a couple of digs during the course of the day. Javascript rocks, people. Oh well, I&#8217;m back in London for <a href="http://vivabit.com/atmediaAjax">@media Ajax</a> where I don&#8217;t think I&#8217;ll have that problem.</p>
+<p>If any of this sounds interesting (or you just want to watch more TV) I&#8217;d recommend having a look through the <a href="http://dev.joost.com">development site</a>, jumping on the joost-dev freenode <span class="caps">IRC</span> channel, signing up to the <a href="http://groups.google.com/group/joost-dev">mailing list</a> or reading the <a href="http://blogs.joost.com/dev">development teams blog</a>.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-11-17T00:00:00+00:00" pubdate data-updated="true">Nov 17<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2007/11/17/joost-developer-day/" data-via="garethr" data-counturl="http://www.morethanseven.net/2007/11/17/joost-developer-day/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/11/12/activity/" title="Previous Post: Activity">&laquo; Activity</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/11/21/should-we-just-learn-java/" title="Next Post: Should we just learn Java?">Should we just learn Java? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2007/11/17/joost-developer-day/';
+        var disqus_url = 'http://www.morethanseven.net/2007/11/17/joost-developer-day/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

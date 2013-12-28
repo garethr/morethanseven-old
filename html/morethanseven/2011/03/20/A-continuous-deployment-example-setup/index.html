@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Continuous Deployment Example Setup - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="One of the reasons behind getting around to building Vagrantbox.es recently was I was giving a talk to a group of startups on The Difference Engine &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Continuous Deployment Example Setup</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-20T00:00:00+00:00" pubdate data-updated="true">Mar 20<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>One of the reasons behind getting around to building <a href="http://www.vagrantbox.es">Vagrantbox.es</a> recently was I was giving a talk to a group of startups on <a href="http://thedifferenceengine.eu/">The Difference Engine</a> programme and I wanted to have an example project to demonstrate various things. I wanted to demonstrate everything from sensible version control habbits, configuration management, basic orcestration and most importantly a solid deployment process. I&#8217;ve decided to write up what I&#8217;m doing for deployment because I think it&#8217;s pretty nice, and for all the talk about Continuous Deployment I haven&#8217;t seen many examples of code and configuration to make it happen.</p>
+<p>Most of what I&#8217;ll cover is pretty easy to map to whatever technologies your using. For this project I&#8217;d gone for Git, Django, Gunicorn, Nginx, Fabric, Mysql and Jenkins and I&#8217;m deploying to Ubuntu running on <a href="http://www.brightbox.co.uk/">Brightbox Cloud</a>. Apart from the Jenkins instance in the middle you could follow the instructions and swap things out easily.</p>
+<h2>Jenkins</h2>
+<p>First up lets install <a href="http://jenkins-ci.org/">Jenkins</a>. I setup a separate cloud instance just to run the Continuous Integration server. I find this approach easier to manage but you could always run this locally if you prefer. The Jenkins folk provide very up to date <a href="http://pkg.jenkins-ci.org/debian/">packages for Debian</a> so I chose to use those.</p>
+<h3>Plugins</h3>
+<p>Jenkins provides a huge number of optional plugins which enable various additional features. Plugins are installed via the web interface at /pluginManager. I&#8217;ve installed:</p>
+<ul>
+	<li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin">Jenkins Cobertura Plugin</a></li>
+	<li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin">Jenkins <span class="caps">GIT</span> plugin</a></li>
+	<li><a href="http://wiki.jenkins-ci.org/display/JENKINS/Github+Plugin">GitHub plugin</a></li>
+	<li><a href="http://wiki.hudson-ci.org/display/HUDSON/Green+Balls">Green Balls</a></li>
+	<li><a href="http://wiki.hudson-ci.org/display/HUDSON/Violations">Hudson Violations plugin</a></li>
+</ul>
+<p>Only the Git plugin is really required for what I&#8217;m doing with deployment. Cobertura and Violations are code quality metrics tools that I use to record output from pylint and code coverage for my test suite.</p>
+<h2>The Source</h2>
+<p>My finished project was already on GitHub in a private repository. I&#8217;m using a requirements.txt file to record python dependencies so I can use pip to install them automatically and I&#8217;m using Virtualenv to sandbox this installation. I&#8217;m also using South to manage my database schema changes. I won&#8217;t go into that here as it&#8217;s pretty Python specific, Rails for instance has Active Record migrations, <span class="caps">RVM</span> and Bundler which do pretty much the same job. <span class="caps">PHP</span> has <span class="caps">PEAR</span> and some of the frameworks offer a migration tool.</p>
+<p>I then created two projects in Jenkins:</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiRywEM" alt="Jenkins dashboard"/></p>
+<h3>Project 1: Vagrantboxes</h3>
+<p>This is the main build of my master branch in Git. As well as setting up the Git repo as shown below I&#8217;ve set a polling schedule to */5 * * * * (that&#8217;s every 5 minutes) and also set Trigger builds remotely so I can have a task in my fabfile which triggers a build immediately.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjh2gEM" alt="Git config for Jenkins"/></p>
+<p>I then have two build steps, both of which execute shell commands. The first installs any new requirements via pip:</p>
+<pre>bash -l -c "source bin/activate; pip install -r requirements.txt"</pre>
+<p>The second runs my test suite and generates the <span class="caps">XML</span> output required to show the test results in Jenkins:</p>
+<pre>bash -l -c "source bin/activate; cd vagrantboxes/configs/common; python manage.py jenkins boxes"</pre>
+<p>I&#8217;m using the rather handy <a href="https://github.com/kmmbvnr/django-jenkins">Django Jenkins</a> application for this.</p>
+<p>So far so good. This gives us a project that, when we push some changes to GitHub, will pull those changes down to the CI server and run our test suite, giving us feedback as to whether the tests pass or fail.</p>
+<p>Now for the trick, in Post-build Actions tick Build other projects and specify the name of another project that we&#8217;ll setup next. Mine is called Vagrantboxes-deploy.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRirwwEM" alt="Post build action in Jenkins"/></p>
+<h3>Project 2: Vagrantboxes-deploy</h3>
+<p>This project is triggered only when the previous project runs successfully. And all it&#8217;s going to do is run the deployment script on the project we just built. The setup for this project is very simply, it has one build step which just executes the following:</p>
+<pre>bash -l -c "cd /var/lib/jenkins/jobs/Vagrantboxes/workspace; source bin/activate; fab appserver deploy"</pre>
+<p>The specifics of the Fabric script here aren&#8217;t that important but I&#8217;m doing something not too disimilar to <a href="http://morethanseven.net/2009/07/27/fabric-django-git-apache-mod_wsgi-virtualenv-and-p.html">what I described here</a>.</p>
+<p>The reason I&#8217;ve setup a separate project for these is so I can, if I choose, trigger a deployment separately to the full build, and also so I can very easily disable deployments even if the main build is still running.</p>
+<h2>Conclusions</h2>
+<p>With this setup whenever I push code to master it triggers a build. If the test suite passes it runs the deployment script and pushes out the code to the live web servers. This suites me and this project but you might find it easier to start by pushing all successfull builds out to a staging environment. And maybe then moving on to having a new project which is only triggered manually for deploying to production.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiqwwEM" alt="project view in Jenkins"/></p>
+<p>This setup has other advantages too. The Jenkins dashboard becomes a handy tool for recording deployment events. You can easily setup emails or IM messages or Campfire posts to alert other team members whenever a deployment happens. And it really really makes sure your delployment scripts work without hand holding.</p>
+<p>This is a simple project that I&#8217;m working on on my own, but in a team environment you&#8217;d likely have a more complex branching strategy and more Jenkins projects. You might also introduce some gateways for manual testing but the starting point is the same. Jenkins makes archiving successful build artifacts relatively easy as well, this setup has a few race condition possibilities that you can fix by building artifacts from successful builds. Jenkins also supports building from different branches and having different branches trigger different projects, all handy if you want to grow this kind of setup.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-20T00:00:00+00:00" pubdate data-updated="true">Mar 20<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/deployment/'>deployment</a>, <a class='category' href='/tags/django/'>django</a>, <a class='category' href='/tags/jenkins/'>jenkins</a>, <a class='category' href='/tags/python/'>python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup/" data-via="garethr" data-counturl="http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/03/12/Site-for-vagrant-base-boxes/" title="Previous Post: Site For Vagrant Base Boxes">&laquo; Site For Vagrant Base Boxes</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/03/26/Devops-isnt-a-methodology/" title="Next Post: Devops Isn't A Methodology">Devops Isn't A Methodology &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup/';
+        var disqus_url = 'http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

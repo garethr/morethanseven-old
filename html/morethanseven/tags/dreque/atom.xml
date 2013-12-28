@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dreque | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/dreque/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Dreque]]></title>
+    <link href="http://www.morethanseven.net/2009/11/28/dreque/"/>
+    <updated>2009-11-28T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/11/28/dreque</id>
+    <content type="html"><![CDATA[<p>I've just found "Dreque":http://github.com/samuel/dreque from "Samuel Stauffer":http://samuelks.com/ on GitHub. It's yet another take on the whole messaging things which is definitely seeing a lot of activity at the back end of this year. It's using "Redis":http://code.google.com/p/redis/ on the backend and looks really rather nice:</p>
+
+<p>Submitting jobs:</p>
+
+<pre><code>from dreque import Dreque
+def some_job(argument):
+    pass
+dreque = Dreque("127.0.0.1")
+dreque.enqueue("queue", some_job, argument="foo")</code></pre>
+
+
+<p>Worker:</p>
+
+<pre><code>from dreque import DrequeWorker
+worker = DrequeWorker(["queue"], "127.0.0.1")
+worker.work()</code></pre>
+
+]]></content>
+  </entry>
+  
+</feed>

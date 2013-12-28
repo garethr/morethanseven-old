@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: hive | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/hive/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hadoop Hive Web Interface]]></title>
+    <link href="http://www.morethanseven.net/2010/04/05/Hadoop-hive-web-interface/"/>
+    <updated>2010-04-05T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2010/04/05/Hadoop-hive-web-interface</id>
+    <content type="html"><![CDATA[<p>I've been playing with Hive recently and liking what I've found. In theory at least it provides a very nice, simple way of getting into analysing large data sets. To make it even easier to show other people what you're up to Hive has a nascent web interface with a little documentation "on the wiki":http://wiki.apache.org/hadoop/Hive/HiveWebInterface</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRiBfQw" alt="image of hive web ui"/></p>
+
+<p>On the one hand it's rather simple at this point, but that should be easily enought to prettify given a bit of time. The bigger problem was getting it working in the first place. What follows worked for me using the latest cloudera packages on debian testing. I'm assuming you already have Hive and Hadoop installed, the basic packages worked fine for me here.</p>
+
+<p>Next up you'll need the JDK (not just the JRE) as their is some compilation that will go on the first time you run the web interface.</p>
+
+<p><notextile>
+&lt;% syntax_colorize :bash, type=:coderay do %>
+apt-get install ant sun-java6-jdk
+&lt;% end %>
+</notextile></p>
+
+<p>Next up I had to modify the installed <em>/etc/hive/conf/hive-site.xml</em> file as follows:</p>
+
+<p>I changed this:</p>
+
+<p><notextile>
+&lt;% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>hive.metastore.uris</name>
+  <value>file:///var/lib/hivevar/metastore/metadb/</value>
+  <description>Comma separated list of URIs of metastore servers. The first server that can be connected to will be used.</description>
+</property>
+&lt;% end %>
+</notextile></p>
+
+<p>To this. Note the hivevar path doesn't exist so I'm not sure if this was a typo in the source.</p>
+
+<p><notextile>
+&lt;% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>hive.metastore.uris</name>
+  <value>file:///var/lib/hive/var/metastore/metadb/</value>
+  <description>Comma separated list of URIs of metastore servers. The first server that can be connected to will be used.</description>
+</property>
+&lt;% end %>
+</notextile></p>
+
+<p>I also change the following section regarding the metastore name:</p>
+
+<p><notextile>
+&lt;% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>javax.jdo.option.ConnectionURL</name>
+  <value>jdbc:derby:;databaseName=/var/lib/hive/metastore/${user.name}_db;create=true</value>
+  <description>JDBC connect string for a JDBC metastore</description>
+</property>
+&lt;% end %>
+</notextile></p>
+
+<p>To this, with a fixed name. When using the above confirguration the file was actually called ${user.name} rather than my username being subsituted in. Elsewhere this seems to work fine.</p>
+
+<p><notextile>
+&lt;% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>javax.jdo.option.ConnectionURL</name>
+  <value>jdbc:derby:;databaseName=/var/lib/hive/metastore/metastore_db;create=true</value>
+  <description>JDBC connect string for a JDBC metastore</description>
+</property>
+&lt;% end %>
+</notextile></p>
+
+<p>I'm not convinced the above two changes are needed but have left them here just in case. The main tricky part is making sure a load of environment variables are correctly set. The following worked for me:</p>
+
+<p><notextile>
+&lt;% syntax_colorize :bash, type=:coderay do %>
+export ANT_LIB=/usr/share/ant/lib
+export HIVE_HOME=/usr/lib/hive
+export HADOOP_HOME=/usr/lib/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
+&lt;% end %>
+</notextile></p>
+
+<p>All being well that should allow you to run the hive command with the web interface like so:</p>
+
+<p><notextile>
+&lt;% syntax_colorize :bash, type=:coderay do %>
+hive --service hwi
+&lt;% end %>
+</notextile></p>
+
+<p>That should bring up a webserver on port 9999 where you should see something similar to the screenshot above.</p>
+]]></content>
+  </entry>
+  
+</feed>

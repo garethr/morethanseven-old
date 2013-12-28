@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: github | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/github/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The Vagrantbox.es Story]]></title>
+    <link href="http://www.morethanseven.net/2012/07/01/The-vagrantbox.es-story/"/>
+    <updated>2012-07-01T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2012/07/01/The-vagrantbox.es-story</id>
+    <content type="html"><![CDATA[<p>A few weeks ago now "Vagrantbox.es":http://www.vagrantbox.es/ (a website I maintain for third party hosted "Vagrant":http://vagrantup.com/ base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people "ep.io":https://www.ep.io/ had unfortunately closed down the service they had in beta and I'd been so busy that I hadn't had chance to move it elsewhere.</p>
+
+<p>The original version of the site (I had the code and good backups of the data) was a pretty simple Django application, but I'd used it to experiment (read over-engineer) with various bits of tech including Varnish, Solr, some ORM caching and lots more. This had been great, but it made it less portable. I had everything described in Puppet, but with virtually no spare time I decided to go a different route.</p>
+
+<p>I threw a flat version of the site up on "GitHub":https://github.com/garethr/vagrantboxes-heroku, served it using Nginx on "Heroku":http://www.heroku.com/ and added a quick <em>Fork me on GitHub</em> badge to the top. Suggest a box moved from being a web form to a pull request. It's fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I've had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.</p>
+
+<p>What I'm going to take from this is, if you're building a community project that's aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that's secondary. Pull requests are much better than any content management system or workflow you're likely to build, and even more importantly the time to implement something drops hugely.</p>
+
+<p>With all the spare time I don't have I'll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Talking To Jenkins From Campfire With Hubot]]></title>
+    <link href="http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/"/>
+    <updated>2012-01-06T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot</id>
+    <content type="html"><![CDATA[<p>In what turned out to be a productive holiday hacking with languages I'd not used before, I got round to writing some coffeescript on node.js. This was more to do with scratching a personal itch that pure experimentation. I had a play with "Janky":https://github.com/github/janky (Github's Jenkins/Hubot mashup) but found it a little opinionated on the Jenkins side, but the campfire integration is excellent. Looking at the Jenkins commands in "hubot-scripts":https://github.com/github/hubot-scripts/ though I found those even more opinionated.</p>
+
+<p>The magic of open source though is you can just fix things, then ask nice people if they like what you've done. I set about writing a few more general commands and lo, the've been quickly "merged upstream":https://github.com/github/hubot-scripts/pull/23840h.</p>
+
+<p>These add:</p>
+
+<ul>
+<li>A command to list all your Jenkins jobs and the current state</li>
+<li>A command to trigger a normal build</li>
+<li>A command to trigger a build with a list of parameters</li>
+</ul>
+
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRipwAIM" alt="campfire window showing jenkins tasks"/></p>
+
+<p>This was made much easier by first looking at the previous Jenkins commands, and then looking at other scripts in the hubot-scripts repository. The best way of learning a new language/framework is still on the shoulders of others.</p>
+
+<p>I've got a few other good ideas for Jenkins related commands. I want to add a filter command to the jobs list, both by name and by current state. For longer running jobs I also want to report whether a build is currently running. And then maybe get information about a specific job, like the last few runs or similar. Any other requests or ideas most welcome.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Why Developers Should Care About System Packages]]></title>
+    <link href="http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/"/>
+    <updated>2011-01-16T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages</id>
+    <content type="html"><![CDATA[<p>First a bit of background. I'm a software developer (lately in Ruby and a tiny bit of Java, previously in Python, C# and PHP; yes I got around a bit), but have spent enough time looking after production hardware (mainly debian, solaris and recently a bit of RHEL) to have a feel for sysadmin work. I even have friends who are systems administrators. I mainly use a shiny apple laptop for my development work, but I actually execute all the code on Linux virtual machines. The aim of this post is to bridge a divide, not start a flame war about specific tools.</p>
+
+<p>I'm writing this partly to address "a tweet I made":http://twitter.com/CoffeeScript/status/18867889742282752 that in hindsight needed more than 140 characters. Actually a number of my recent tweets have been on the same theme so I should be more helpful. What I'm seeing recently is an increase in the ways I'm being asked to install software and for me at least that's annoying.</p>
+
+<h1>Several projects will ask you to do something like <em>curl http://bit.ly/installsh | sh</em> which downloads a shell script and executes it.</h1>
+
+<h1>Some will insist I have git installed</h1>
+
+<h1>A new framework might come with it's own package manager</h1>
+
+<p>I'm a polyglot programmer (so I shouldn't care about #3) that uses git for everything (scratch #2) and who writes little bash scripts to make my life easier (exactly like #1). So I understand exactly how and why these solutions appear fine. And for certain circumstances they are, in particular for local development on a machine owned and maintained by one person. But on a production machine and even on my clean and tidy virtual machines none of these cut it for me in most cases.</p>
+
+<p>Most developers I know have only a passing awareness of packaging so I'm going to have an aside to introduce some cool tricks. I think this is one place where sysadmins go wrong, they assume developers understand their job and that they know the various tools intimately.</p>
+
+<p>h2. System Package Tips</p>
+
+<p>I'm going to show examples using the debian tools so these apply to debian and ubuntu distros. RPM and the Yum tool have similar commands too, I just happen to know debs better.</p>
+
+<p>h3. List all installed packages</p>
+
+<p>This one is a bit obvious, it's probably going to be available in anyones home grown package management system. But if you're installing software via hand using git or a shell script then you can't even ask the machine what is installed.</p>
+
+<pre>dpkg -l</pre>
+
+
+<p>h3. List files from package</p>
+
+<p>I love this one. Have you ever installed a package and wondered where the config files are? You can soft of guess based on your understanding of the OS file system layout but this command is handy.</p>
+
+<pre>dpkg -L lynx
+/.
+/usr
+/usr/share
+/usr/share/doc
+/usr/share/doc/lynx
+/usr/share/doc/lynx/copyright
+/usr/share/doc/lynx/changelog.gz
+/usr/share/doc/lynx/changelog.Debian.gz</pre>
+
+
+<p>h3. Where did that file come from?</p>
+
+<p>Have a file on disk that you're not sure where it came from? Ask the system package manager. The more everything is installed from packages the more useful this becomes.</p>
+
+<pre>dpkg -S /bin/netstat</pre>
+
+
+<p>h3. Unmet dependencies</p>
+
+<p>At the heart of a good package system is the ability to map dependencies and to have unmet dependencies installed as needed. Having tools to query that tree is useful in various places.</p>
+
+<pre>apt-cache unmet</pre>
+
+
+<p>Will give you output a little like the followning:</p>
+
+<pre>Package libdataobjects-sqlite3-ruby1.9.1 version 0.10.1.1-1 has an unmet dep:
+ Depends: libdataobjects-ruby1.9</pre>
+
+
+<p>h3. What needs upgrading?</p>
+
+<p>The apticron tool can alert you to packages that are now out of date. It's easy to set it up to email you each day for each host and tell you about packages that need upgrading. Remember that the reason one of these might have an update could be a documented security bug and it becomes even more important to know about it quickly.</p>
+
+<pre>apticron report [Fri, 19 Jan 2007 18:42:01 -0800]
+========================================================================
+
+apticron has detected that some packages need upgrading on: 
+
+    faustus.example.com
+    [ 1.2.3.4 ]
+
+The following packages are currently pending an upgrade:
+
+    xfree86-common 4.3.0.dfsg.1-14sarge3
+    libice6 4.3.0.dfsg.1-14sarge3
+    libsm6 4.3.0.dfsg.1-14sarge3
+    xlibs-data 4.3.0.dfsg.1-14sarge3
+    libx11-6 4.3.0.dfsg.1-14sarge3
+    libxext6 4.3.0.dfsg.1-14sarge3
+    libxpm4 4.3.0.dfsg.1-14sarge3</pre>
+
+
+<p>I'm really not an expert on using debs but even I find these tools useful, and you don't get the same capabilities when you use anything else.</p>
+
+<p>h2. Good and bad examples</p>
+
+<p>Still here? Good. I'm going to pick on a few pieces of software to give examples of what I mean. All of this software I actively use and think is brilliant earth shattering stuff, I'm not dissing the software so if any fanboys reading can kindly not attack me please, I'm one of you.</p>
+
+<p>h3. RabbitMQ (Erlang)</p>
+
+<p>The nice folk building the "RabbitMQ":http://www.rabbitmq.com/ message queue provide downloads of the "source code as well as various system packages":http://www.rabbitmq.com/server.html. Knowing that some people will want to use the latest and greatest version of the application they also host the latest deboan packages in their "own package repo with details on their site":http://www.rabbitmq.com/debian.html.</p>
+
+<p>h3. Chef (Ruby)</p>
+
+<p>The "Chef configuration management system":http://wiki.opscode.com/display/chef/Home also provides multiple methods to install their software. For people already using, happy and familiar with it they provide everything as a ruby gem. If you prefer "system packages they have those too":http://wiki.opscode.com/display/chef/Installation. They also provide their "own deb repo":http://wiki.opscode.com/display/chef/Package+Installation+on+Debian+and+Ubuntu for people to grab the latest software.</p>
+
+<p>h3. Cloudera Hadoop (Java)</p>
+
+<p>Before I found the Cloudera Hadoop packages I remember having great fun "manually applying patches":http://morethanseven.net/2009/10/18/problems-installing-hadoop-and-dumbo-ubuntu.html to get everything working. Cloudera do exactly the same as the above two developers, namely "host their owns debs":https://docs.cloudera.com/display/DOC/Hadoop+Installation+%28CDH3%29.</p>
+
+<p>h3. RVM</p>
+
+<p>"RVM":http://rvm.beginrescueend.com/ is a fantastic way of managing multiple ruby versions and multiple isolated sets of gems. But it's also probably the first place I saw the install from remote shell script approach.</p>
+
+<pre>bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )</pre>
+
+
+<p>I like to do the same things on my development machine as I do in production, and the main problem I have with RVM is that it's so useful I want it everywhere. I'd prefer if the system wide install had some sort of option to install the rubies from packages rather than compile everything on the machine (meaning you need a full set of compile tools installed everywhere), or that we can automate the creation of the packages using rvm.</p>
+
+<p>h3. Solr</p>
+
+<p>You'll probably find packages for the "Solr search server":http://lucene.apache.org/solr/ in recent distros. It's hugely popular predominantly because it's a fantasic piece of software. But everytime I have a look at the system packages I can't quite get them to work, or they are out of date. I now know my way around Solr setup relatively well and just end up creating my own packages and I've spoken to other folk who have done the same. The "Solr documentation":http://lucene.apache.org/solr/tutorial.html recommends downloading a zip file to get started and I can't see any mention of the packages. My guess is the packages aren't maintained as part of the core development which is a quick way to get them out of sync with current progress.</p>
+
+<p>h2. Enough beating up on my fellow developers</p>
+
+<p>System packages aren't blameless, I think the culture often seen in debian of splitting the developer from the package maintainer is part of the problem. This manifests in various ways, all negative:</p>
+
+<ul>
+<li>Out of date packages. The biggest complaint from developers about system packages is nearly always that they are out of date. Maintainers should more readily release packaging scripts (ideally back to the project) so people can easily roll their own.</li>
+<li>The documentation around packaging is either fantastic or terrible, depending on what you want to do and who you are. It turns out making your own packages (using something like "checkinstall":http://checkinstall.izto.org/) is actually quite easy.</li>
+<li>The official debian docs I think focus on the role of package maintainer, rather than trying to push that downstream to the developers. That doesn't make them bad, it just means we need documentation aimed at a developer just getting started with packaging their software.</li>
+<li>Developers hosting their own package repository and asking people to point at that is also quite easy. The projects I praised above all do it nicely. But simple attractive documentation is hard to come by.</li>
+</ul>
+
+
+<p>h2. What to do</p>
+
+<p>First up lets talk more about the distribution and installation of software. And lets do that in the spirit of making things better for everyone involved. The ongoing spat between Ruby and Debian people is just counterproductive. "This":http://ryanbigg.com/2010/12/ubuntu-ruby-rvm-rails-and-you/ would be a good article if it didn't lead with:</p>
+
+<p>bq. This system (apt-get) is out-dated and leads to major headaches. Avoid it for Ruby-related packages. We do Ruby, we know what’s best. Trust us.</p>
+
+<p>We need better documentation aimed at developers. I'm going to try and write some brief tutorials soon (otherwise I'd feel like this rant was just me complaining) but I'm not an expert. I'll hapily help "promote":http://devopsweekly.com or collate good material as well. Maybe it already exists and I just can't find it?</p>
+
+<p>I'm a git user and a big "GitHub":http://github.com fan, but one of the features of Launchpad I really like is the "Personal Package Archive":https://help.launchpad.net/Packaging/PPA. This lets you upload source code and have it automatically built into a package. This is specific to Ubuntu but that's understandable given Launchpad is also operated by Canonical. What I'd like is the same feature in GitHub but that allowed building debs and RPMs for different architectures. Alternatively a webhook based third party that could do the same would be awesome (anyone fancy building one? I might pitch in). The only real advantage of it being GitHub would be it would make packages immediately cool, which hopefully you all now realise that they are.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Testing WSGI Application with Urltest]]></title>
+    <link href="http://www.morethanseven.net/2009/06/04/testing-wsgi-application-urltest/"/>
+    <updated>2009-06-04T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/06/04/testing-wsgi-application-urltest</id>
+    <content type="html"><![CDATA[<p>I found myself wanted something to make writing high level, functional tests for WSGI application easier and quicker. If I liked the term I'd call it a domain specific language for testing URLs. Basically I found myself writing a lot of tests like:</p>
+
+<p>pre. def test_404_handler(self):</p>
+
+<pre><code>response = self.app.get('/does-not-exist', expect_errors=True)        
+self.assertEquals("404 Not Found", response.status)
+</code></pre>
+
+<p>Testing more than a view URLs like this got boring quickly. What I wanted was a short hand syntax for defining this sort of simple test and then running them all individually. So was born "Urltest":http://github.com/garethr/urltest/tree/master. It uses the rather nifty "Webtest":http://pypi.python.org/pypi/WebTest/0.9 module and hooks into unittest from the standard library. You're test script then looks a little like:</p>
+
+<p>pre. #!/usr/bin/env python
+from example_app import application
+from urltest import verify_urls
+if <strong>name</strong> == "<strong>main</strong>":</p>
+
+<pre><code>urls = (
+    {'url':"/", 'code':200},
+    {'url':"/bob", 'code':200},
+    {'url':"/jim", 'code':404},
+    {'url':"/jim", 'method': "POST", 'code':405},
+)    
+verify_urls(urls, application)
+</code></pre>
+
+<p>Let me know if you use it as at the moment this is <em>works for me</em> ware, although it's reasonably well tested and commented.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Github Links to Lines of Code]]></title>
+    <link href="http://www.morethanseven.net/2009/03/22/github-links-lines-code/"/>
+    <updated>2009-03-22T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/03/22/github-links-lines-code</id>
+    <content type="html"><![CDATA[<p>Just saw this and thought it was cool. You can "link to a specific line, or set of lines":http://github.com/garethr/booky/blob/08615163198a2b51353aeba07f25ec9ed477d60c/src/booky/lib/builder.py#L17-24 on GitHub. All you need to do is append something like #L17-24 to specify highlighting lines 17 to 24.</p>
+]]></content>
+  </entry>
+  
+</feed>

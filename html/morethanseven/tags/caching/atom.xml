@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: caching | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/caching/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Varnish At Refresh Cambridge]]></title>
+    <link href="http://www.morethanseven.net/2011/07/07/Varnish-at-refresh-cambridge/"/>
+    <updated>2011-07-07T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/07/07/Varnish-at-refresh-cambridge</id>
+    <content type="html"><![CDATA[<p>I did a quick lightning talk at the Refresh Cambridge meetup last night, a very quick introduction to "Varnish":https://www.varnish-cache.org/. Given 10 minutes all I really wanted to do was get people to go away and take a look at it. Lots of folks in the room hadn't come across it before so I think the talk was hopefully well pitched.</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/8531073?rel=0" width="510" height="426" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+
+<p>Several people asked about slighly dynamic pages and I only got chance to mention support for "ESI":https://www.varnish-cache.org/trac/wiki/ESIfeatures (Edge Side Includes) at the end. Conversation afterwards turned to various parts of the modern web stack and I had a pretty good time being opinionated. Hopefully more of the same next month.</p>
+]]></content>
+  </entry>
+  
+</feed>

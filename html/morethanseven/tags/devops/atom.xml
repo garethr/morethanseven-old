@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: devops | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/devops/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Government Service Design Manual]]></title>
+    <link href="http://www.morethanseven.net/2013/03/23/government-service-design-manual/"/>
+    <updated>2013-03-23T17:04:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/03/23/government-service-design-manual</id>
+    <content type="html"><![CDATA[<p>I've not been writing many blog posts lately, but I have been doing quite a bit of writing elsewhere. One of the things I've had a hand in at work is the new "Government Service Design Manual":https://www.gov.uk/service-manual. This is the work of many people I work with as well as further afield. It's intended to be a good starting place to find information about building high quality digital services.</p>
+
+<p>The manual is in beta and we're looking for as much feedback as possible on the whole thing. It's already proving useful and a good way of framing the scope of discussions, but it has lots of room for improvement.</p>
+
+<p>If you're reading this post I'm going to wager you're interest lies in or around devops flavoured content. The following are guides I've written in this area that I'd love any and all feedback on.</p>
+
+<ul>
+<li>"Web Operations":https://www.gov.uk/service-manual/the-team/web-operations.html</li>
+<li>"Configuration Management":https://www.gov.uk/service-manual/making-software/configuration-management.html</li>
+<li>"Hosting":https://www.gov.uk/service-manual/operations/hosting.html</li>
+<li>"Information Security":https://www.gov.uk/service-manual/making-software/information-security.html</li>
+<li>"Monitoring":https://www.gov.uk/service-manual/operations/monitoring.html</li>
+<li>"Load and Performance Testing":https://www.gov.uk/service-manual/operations/load-and-performance-testing.html</li>
+<li>"Releasing Software":https://www.gov.uk/service-manual/making-software/release-strategies.html</li>
+<li>"Vulnerability and Penetration Testing":https://www.gov.uk/service-manual/operations/penetration-testing.html</li>
+<li>"Choosing Technology":https://www.gov.uk/service-manual/making-software/choosing-technology.html</li>
+</ul>
+
+
+<p>If you're interested in the background to this endeavour then a couple of blog posts from some of my colleagues might be of interest too. First Richard Pope talks about "how the manual came about":http://digital.cabinetoffice.gov.uk/2013/03/21/building-the-standard/ and here's a post from Andrew Greenway about this "beta testing of the service standard":http://digital.cabinetoffice.gov.uk/2013/03/21/building-the-standard/.</p>
+
+<p>The source for all this is on "GitHub":https://github.com/alphagov/government-service-design-manual so if you prefer you can just sent a pull request. Or I'm happy to get emails or comments on this post. In particular if people have good references or next steps for these guides then let me know as several of them in particular are lacking in that area.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[March madness]]></title>
+    <link href="http://www.morethanseven.net/2013/02/17/march-madness/"/>
+    <updated>2013-02-17T17:17:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/02/17/march-madness</id>
+    <content type="html"><![CDATA[<p>With only a week or so to go before the end of February, it's looking like March might be a little busy.</p>
+
+<ul>
+<li>I'm speaking at QCon, in London on Wednesday 6th on "Clouds in Government - Perils of Portability":http://qconlondon.com/london-2013/presentation/Clouds%20in%20Government%20-%20Perils%20of%20Portability (which in hindsight is probably the silliest title for a talk I've ever used)</li>
+<li>On the 15th and 16th of March I'll be at "Devopsdays":http://devopsdays.org/events/2013-london/, again in London. I've been helping out with organising the event and I'm very much looking forward to going along after seeing all the work being put in.</li>
+<li>And last but not least I'm heading to Boston for the rather exciting "Monitorama":http://monitorama.com/ from the 26th until the 30th. Looking forward to meeting up in person with quite a few folks I've spoken to over the last year or two.</li>
+</ul>
+
+
+<p>If you're going to be at any of these events (QCon and Devopsdays still have tickets available I think) then let me know.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Devops Isn't A Methodology]]></title>
+    <link href="http://www.morethanseven.net/2011/03/26/Devops-isnt-a-methodology/"/>
+    <updated>2011-03-26T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/03/26/Devops-isnt-a-methodology</id>
+    <content type="html"><![CDATA[<p>I was reading "Devops is a poorly executed scam":http://teddziuba.com/2011/03/devops-scam.html and just couldn't resist a reply. Not because of the entertaining title, but because I both agree and disagree quite strongly with parts of the post. Read it first if you haven't already. And yes I know I'm feeding the internet.</p>
+
+<p>I'm going to pick parts of the post out and then comment. Hopefully I'm not quoting these in any way out of context.</p>
+
+<p>h2. "It's got the potential to make a handful of people a lot of money in the same way that Agile did, but nobody is really executing on."</p>
+
+<p>People are pretty aware of this fact I think, but watch what happens when people post on the mailing lists or turn up at community events with a purely marketing hat on. They just get no traction and even damage their product brand amongst the early adopters. The fact the term is starting to get used in job adverts and marketing materials isn't really being driven by the people talking about what devops might or might not be. I think the main reason for this is that most of the people I talk to in person or online are actually pretty happy with their jobs and generally work inside companies rather than as independent consultants. They have often reached an age where they want to improve within a given field but would like a wider network than their current colleagues to discuss things with.</p>
+
+<p>h2. "How do you implement Devops?"</p>
+
+<p>I don't think you do. The comparisons with Agile are interesting from a community point of view but Scrum is a methodology. To me at least devops isn't, it's just a banner or tag under which interesting conversations are happening. The argument that "You should be doing this anyway. Not earth shattering." is a good thing. You'd be suprised by how many people don't do all the things they should be doing, especially in small and young companies. And one of the reasons for that is no one bothered writing a list of these things down anywhere and then discussing them. I'm not saying this huge list exists or even whether it should, but the discussion is happening.</p>
+
+<p>h2. "The underlying problem, however, is that dev and ops have different goals"</p>
+
+<p>This is spot on. I think this maybe does get missed in talk that focuses more on tools but not in the wider discussion happening about business improvements. Devops quite litterally brings those two things together. You'll always have individual goals but where you have separate operations and development teams they should have the same fundamental goals.</p>
+
+<p>h2. "Developers develop in the same environment production runs in If you deploy to Linux, you develop on Linux. No more of this coding on your Macbook Pro and deploying to Ubuntu: that is why you can't have nice things."</p>
+
+<p>Yes, yes and yes again. I'm definitely from the developer side of the tracks and I'm constantly telling people this and it's definitely something I don't see enough people doing. What I'd love is for all the operations people to state this to their development team and most importantly to help them set that up. Just saying <em>work like me or I won't let you near the production machines</em> is just being obstructive. Educating and helping with tooling helps build those bridges and trust. And with trust comes the access the developers want. And less stupid bugs and less deployment issues with differing package dependencies.</p>
+
+<p>h2. "None of this amounts to a methodology, as the Devops people would have you believe."</p>
+
+<p>Still unsure which Devops people are saying it's a bonefide methodology. I see the word used sometimes but generally in passing and not I don't think meant how you mean here. And I don't think I've heard people speak about it in person. "Scrum methodology" returns more than 113,000 results in Google. "Devops methodology" returns about 150, some of which 404 and half of which are agregators pointing at the other half.</p>
+
+<p>h2. "The Devops movement smells of a scam in the making"</p>
+
+<p>Some company or other is definitely going to be scammed into paying over the odds for a consultant because they used the word Devops in the sales pitch. That will have next to nothing to do with what I'd see as the Devops movement and everything to do with human nature (and sales people).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Devops - More Than Marketing - Talk By James Turnbull]]></title>
+    <link href="http://www.morethanseven.net/2011/03/02/Devops-more-than-marketing-talk-by-james-turnbull/"/>
+    <updated>2011-03-02T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/03/02/Devops-more-than-marketing-talk-by-james-turnbull</id>
+    <content type="html"><![CDATA[<p>I've just found my notes from "James Turnbull's":http://kartar.net talk at "FOSDEM":http://fosdem.org. I found the talk excellent, and I'm already part of the choir. But much of the audience I'd guess have only come across the devops term in passing, or worse had it pushed at them as part of marketing materials. Hopefully I captured the main points:</p>
+
+<p>h2. So what is devops all about?</p>
+
+<ul>
+<li>Cooperation (between development and operations teams)</li>
+<li>Buzzword bingo?</li>
+<li>Pop culture movement?</li>
+<li>Discussion</li>
+<li>It's early days</li>
+<li>No one has all the answers</li>
+<li>Nothing is fixed in stone</li>
+<li>It's all about outreach</li>
+</ul>
+
+
+<p>h2. It's about</p>
+
+<ul>
+<li>Simplicity - Repeatable, Reusable, Easy to communicate</li>
+<li>Relationships - Engage early, engage often, "Toss it over the fence", Talk to people</li>
+<li>Process - Test everything, Automate everything, Redundancy and expectation of failure, Transparent and open to everyone</li>
+</ul>
+
+
+<p>h2. Tools</p>
+
+<ul>
+<li>Not just ops tools - Config mnagement, Deployment and orchestration, Monitoring, Security, Testing</li>
+<li>Use for entire lifecycle dev -> test -> ops</li>
+<li>Not just dev tools - Version control, Agile, Application architecture</li>
+<li>Testing methodology - Low level vs functional</li>
+<li>Documentation - "The only time the network diagram is up to date is after the post mortem"</li>
+</ul>
+
+
+<p>h2. Continuous improvement</p>
+
+<ul>
+<li>Nothing stands still - Customers, Products, Technology, Your team</li>
+<li>Strike often, striek hard, be aggressive</li>
+</ul>
+
+
+<p>h2. It's a culture change</p>
+
+<ul>
+<li>This is Hard</li>
+<li>People hate change</li>
+<li>People hate people who introduce change</li>
+<li>Fear of change is irrational - Listen, Concrete examples</li>
+<li>Make developers resonsible for uptime - Pagers</li>
+</ul>
+
+
+<p>h2. FUD</p>
+
+<ul>
+<li>"We've always done this"</li>
+<li>"That can't work here"</li>
+<li>"This is all about one group or another"</li>
+<li>"You're an elitist bunch of Europeans"</li>
+</ul>
+
+
+<p>h2. Dangers</p>
+
+<ul>
+<li>Marketing speak</li>
+<li>Lip service</li>
+<li>Disenchantment</li>
+<li>Disenfranchisement</li>
+</ul>
+
+
+<p>h2. Takeaway</p>
+
+<ul>
+<li>"Not about a person, or a team. About changing how your operations team works"</li>
+<li>Automate away small boring repetative tasks to make time for interesting activities</li>
+<li>Embed ops people into dev teams</li>
+<li>Drag devs to ops standups</li>
+<li>Build shared appreciation</li>
+<li>Metrics conversations are really powerful</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Why Developers Should Care About System Packages]]></title>
+    <link href="http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/"/>
+    <updated>2011-01-16T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages</id>
+    <content type="html"><![CDATA[<p>First a bit of background. I'm a software developer (lately in Ruby and a tiny bit of Java, previously in Python, C# and PHP; yes I got around a bit), but have spent enough time looking after production hardware (mainly debian, solaris and recently a bit of RHEL) to have a feel for sysadmin work. I even have friends who are systems administrators. I mainly use a shiny apple laptop for my development work, but I actually execute all the code on Linux virtual machines. The aim of this post is to bridge a divide, not start a flame war about specific tools.</p>
+
+<p>I'm writing this partly to address "a tweet I made":http://twitter.com/CoffeeScript/status/18867889742282752 that in hindsight needed more than 140 characters. Actually a number of my recent tweets have been on the same theme so I should be more helpful. What I'm seeing recently is an increase in the ways I'm being asked to install software and for me at least that's annoying.</p>
+
+<h1>Several projects will ask you to do something like <em>curl http://bit.ly/installsh | sh</em> which downloads a shell script and executes it.</h1>
+
+<h1>Some will insist I have git installed</h1>
+
+<h1>A new framework might come with it's own package manager</h1>
+
+<p>I'm a polyglot programmer (so I shouldn't care about #3) that uses git for everything (scratch #2) and who writes little bash scripts to make my life easier (exactly like #1). So I understand exactly how and why these solutions appear fine. And for certain circumstances they are, in particular for local development on a machine owned and maintained by one person. But on a production machine and even on my clean and tidy virtual machines none of these cut it for me in most cases.</p>
+
+<p>Most developers I know have only a passing awareness of packaging so I'm going to have an aside to introduce some cool tricks. I think this is one place where sysadmins go wrong, they assume developers understand their job and that they know the various tools intimately.</p>
+
+<p>h2. System Package Tips</p>
+
+<p>I'm going to show examples using the debian tools so these apply to debian and ubuntu distros. RPM and the Yum tool have similar commands too, I just happen to know debs better.</p>
+
+<p>h3. List all installed packages</p>
+
+<p>This one is a bit obvious, it's probably going to be available in anyones home grown package management system. But if you're installing software via hand using git or a shell script then you can't even ask the machine what is installed.</p>
+
+<pre>dpkg -l</pre>
+
+
+<p>h3. List files from package</p>
+
+<p>I love this one. Have you ever installed a package and wondered where the config files are? You can soft of guess based on your understanding of the OS file system layout but this command is handy.</p>
+
+<pre>dpkg -L lynx
+/.
+/usr
+/usr/share
+/usr/share/doc
+/usr/share/doc/lynx
+/usr/share/doc/lynx/copyright
+/usr/share/doc/lynx/changelog.gz
+/usr/share/doc/lynx/changelog.Debian.gz</pre>
+
+
+<p>h3. Where did that file come from?</p>
+
+<p>Have a file on disk that you're not sure where it came from? Ask the system package manager. The more everything is installed from packages the more useful this becomes.</p>
+
+<pre>dpkg -S /bin/netstat</pre>
+
+
+<p>h3. Unmet dependencies</p>
+
+<p>At the heart of a good package system is the ability to map dependencies and to have unmet dependencies installed as needed. Having tools to query that tree is useful in various places.</p>
+
+<pre>apt-cache unmet</pre>
+
+
+<p>Will give you output a little like the followning:</p>
+
+<pre>Package libdataobjects-sqlite3-ruby1.9.1 version 0.10.1.1-1 has an unmet dep:
+ Depends: libdataobjects-ruby1.9</pre>
+
+
+<p>h3. What needs upgrading?</p>
+
+<p>The apticron tool can alert you to packages that are now out of date. It's easy to set it up to email you each day for each host and tell you about packages that need upgrading. Remember that the reason one of these might have an update could be a documented security bug and it becomes even more important to know about it quickly.</p>
+
+<pre>apticron report [Fri, 19 Jan 2007 18:42:01 -0800]
+========================================================================
+
+apticron has detected that some packages need upgrading on: 
+
+    faustus.example.com
+    [ 1.2.3.4 ]
+
+The following packages are currently pending an upgrade:
+
+    xfree86-common 4.3.0.dfsg.1-14sarge3
+    libice6 4.3.0.dfsg.1-14sarge3
+    libsm6 4.3.0.dfsg.1-14sarge3
+    xlibs-data 4.3.0.dfsg.1-14sarge3
+    libx11-6 4.3.0.dfsg.1-14sarge3
+    libxext6 4.3.0.dfsg.1-14sarge3
+    libxpm4 4.3.0.dfsg.1-14sarge3</pre>
+
+
+<p>I'm really not an expert on using debs but even I find these tools useful, and you don't get the same capabilities when you use anything else.</p>
+
+<p>h2. Good and bad examples</p>
+
+<p>Still here? Good. I'm going to pick on a few pieces of software to give examples of what I mean. All of this software I actively use and think is brilliant earth shattering stuff, I'm not dissing the software so if any fanboys reading can kindly not attack me please, I'm one of you.</p>
+
+<p>h3. RabbitMQ (Erlang)</p>
+
+<p>The nice folk building the "RabbitMQ":http://www.rabbitmq.com/ message queue provide downloads of the "source code as well as various system packages":http://www.rabbitmq.com/server.html. Knowing that some people will want to use the latest and greatest version of the application they also host the latest deboan packages in their "own package repo with details on their site":http://www.rabbitmq.com/debian.html.</p>
+
+<p>h3. Chef (Ruby)</p>
+
+<p>The "Chef configuration management system":http://wiki.opscode.com/display/chef/Home also provides multiple methods to install their software. For people already using, happy and familiar with it they provide everything as a ruby gem. If you prefer "system packages they have those too":http://wiki.opscode.com/display/chef/Installation. They also provide their "own deb repo":http://wiki.opscode.com/display/chef/Package+Installation+on+Debian+and+Ubuntu for people to grab the latest software.</p>
+
+<p>h3. Cloudera Hadoop (Java)</p>
+
+<p>Before I found the Cloudera Hadoop packages I remember having great fun "manually applying patches":http://morethanseven.net/2009/10/18/problems-installing-hadoop-and-dumbo-ubuntu.html to get everything working. Cloudera do exactly the same as the above two developers, namely "host their owns debs":https://docs.cloudera.com/display/DOC/Hadoop+Installation+%28CDH3%29.</p>
+
+<p>h3. RVM</p>
+
+<p>"RVM":http://rvm.beginrescueend.com/ is a fantastic way of managing multiple ruby versions and multiple isolated sets of gems. But it's also probably the first place I saw the install from remote shell script approach.</p>
+
+<pre>bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )</pre>
+
+
+<p>I like to do the same things on my development machine as I do in production, and the main problem I have with RVM is that it's so useful I want it everywhere. I'd prefer if the system wide install had some sort of option to install the rubies from packages rather than compile everything on the machine (meaning you need a full set of compile tools installed everywhere), or that we can automate the creation of the packages using rvm.</p>
+
+<p>h3. Solr</p>
+
+<p>You'll probably find packages for the "Solr search server":http://lucene.apache.org/solr/ in recent distros. It's hugely popular predominantly because it's a fantasic piece of software. But everytime I have a look at the system packages I can't quite get them to work, or they are out of date. I now know my way around Solr setup relatively well and just end up creating my own packages and I've spoken to other folk who have done the same. The "Solr documentation":http://lucene.apache.org/solr/tutorial.html recommends downloading a zip file to get started and I can't see any mention of the packages. My guess is the packages aren't maintained as part of the core development which is a quick way to get them out of sync with current progress.</p>
+
+<p>h2. Enough beating up on my fellow developers</p>
+
+<p>System packages aren't blameless, I think the culture often seen in debian of splitting the developer from the package maintainer is part of the problem. This manifests in various ways, all negative:</p>
+
+<ul>
+<li>Out of date packages. The biggest complaint from developers about system packages is nearly always that they are out of date. Maintainers should more readily release packaging scripts (ideally back to the project) so people can easily roll their own.</li>
+<li>The documentation around packaging is either fantastic or terrible, depending on what you want to do and who you are. It turns out making your own packages (using something like "checkinstall":http://checkinstall.izto.org/) is actually quite easy.</li>
+<li>The official debian docs I think focus on the role of package maintainer, rather than trying to push that downstream to the developers. That doesn't make them bad, it just means we need documentation aimed at a developer just getting started with packaging their software.</li>
+<li>Developers hosting their own package repository and asking people to point at that is also quite easy. The projects I praised above all do it nicely. But simple attractive documentation is hard to come by.</li>
+</ul>
+
+
+<p>h2. What to do</p>
+
+<p>First up lets talk more about the distribution and installation of software. And lets do that in the spirit of making things better for everyone involved. The ongoing spat between Ruby and Debian people is just counterproductive. "This":http://ryanbigg.com/2010/12/ubuntu-ruby-rvm-rails-and-you/ would be a good article if it didn't lead with:</p>
+
+<p>bq. This system (apt-get) is out-dated and leads to major headaches. Avoid it for Ruby-related packages. We do Ruby, we know what’s best. Trust us.</p>
+
+<p>We need better documentation aimed at developers. I'm going to try and write some brief tutorials soon (otherwise I'd feel like this rant was just me complaining) but I'm not an expert. I'll hapily help "promote":http://devopsweekly.com or collate good material as well. Maybe it already exists and I just can't find it?</p>
+
+<p>I'm a git user and a big "GitHub":http://github.com fan, but one of the features of Launchpad I really like is the "Personal Package Archive":https://help.launchpad.net/Packaging/PPA. This lets you upload source code and have it automatically built into a package. This is specific to Ubuntu but that's understandable given Launchpad is also operated by Canonical. What I'd like is the same feature in GitHub but that allowed building debs and RPMs for different architectures. Alternatively a webhook based third party that could do the same would be awesome (anyone fancy building one? I might pitch in). The only real advantage of it being GitHub would be it would make packages immediately cool, which hopefully you all now realise that they are.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,333 @@
+
+worker_processes  1;
+daemon off;
+
+events {
+  worker_connections  1024;
+}
+
+
+http {
+  include       mime.types;
+  default_type  application/octet-stream;
+
+  sendfile           on;
+  keepalive_timeout  65;
+
+  server {
+    listen           <%= ENV['PORT'] %>;
+    server_name      localhost;
+    port_in_redirect off;
+
+    error_page  503 /maintenance.html;
+    error_page  404 /404.html;
+
+    location /atmedia/ {
+      return 410;
+    }
+
+    location /atmedia2006/home {
+      return 410;
+    }
+
+    location /carson/ {
+      return 410;
+    }
+
+    location /dconstruct {
+      return 410;
+    }
+
+    location /presents/target {
+      return 410;
+    }
+
+    location /presents/yahoolive/ {
+      return 410;
+    }
+
+    location /2007/10/23/www.digital-web.com/articles/hacking_open_apis/ {
+      return 410;
+    }
+
+    location /2008/03/29/why-the-webstandards-world-appears-to-be-choosing-django/ {
+      rewrite ^ /2008/03/29/why-the-webstandards-world-appears-to-be-choosing-.html  permanent;
+    }
+
+    location /2008/05/20/geekdinner.co.uk/ {
+      return 410;
+    }
+
+    location /2009/.../simple-wsgi-middleware-app-engine.htm {
+      rewrite ^ /2009/03/18/simple-wsgi-middleware-app-engine.html  permanent;
+    }
+
+    location /2009/01/18/simple-<b><b>python</b></b>-jabber-bot/ {
+      rewrite ^ /2009/01/18/simple-python-jabber-bot.html permanent;
+    }
+
+    location /2009/08/15/your-own-pypi-server/ {
+      rewrite ^ /2009/08/15/your-own-pypi-server.html permanent;
+    }
+
+    location /2010/11/04/why-you-should-be-using-virtualisation.html {
+      rewrite ^ /2010/11/04/Why-you-should-be-using-virtualisation.html permanent;
+    }
+
+    location /feed/ {
+      rewrite /articles.atom permanent;
+    }
+
+    location /posts/background-images-in-email {
+      rewrite ^ /2006/12/06/background-images-in-email.html permanent;
+    }
+
+    location /posts/6-hours-on-a-train-with-code-igniter {
+      rewrite ^ /2006/09/18/6-hours-on-a-train-with-code-igniter.html permanent;
+    }
+
+    location /posts/a-first-class-web-citizen/ {
+      rewrite ^ /2008/04/04/a-first-class-web-citizen.html permanent;
+    }
+
+    location /posts/a-proliferation-of-feed-standards {
+      rewrite ^ /2006/04/23/a-proliferation-of-feed-standards.html permanent;
+    }
+
+    location /posts/along-comes-a-reboot {
+      rewrite ^ /2006/04/16/along-comes-a-reboot.html permanent;
+    }
+
+    location /posts/an-admission-about-source-control {
+      rewrite ^ /2006/11/12/an-admission-about-source-control.html permanent;
+    }
+
+    location /posts/an-apology-to-xslt {
+      rewrite ^ /2006/10/21/an-apology-to-xslt.html permanent;
+    }
+
+    location /posts/and-then-it-was-all-over {
+      rewrite ^ /2006/06/19/and-then-it-was-all-over.html permanent;
+    }
+
+    location /posts/apples-and-pears {
+      rewrite ^ /2006/03/08/apples-and-pears.html permanent;
+    }
+
+    location /posts/brighton-rocks/ {
+      rewrite ^ /2007/09/10/brighton-rocks.html permanent;
+    }
+
+    location /posts/category/projects {
+      return 410;
+    }
+
+    location /posts/category/symfony/ {
+      return 410;
+    }
+
+    location /posts/cms-on-rails {
+      rewrite ^ /2006/12/23/cms-on-rails.html permanent;
+    }
+
+    location /posts/content-management-systems-a-go-go/ {
+      rewrite ^ /2007/02/24/content-management-systems-a-go-go.html permanent;
+    }
+
+    location /posts/continuous-integration-for-front-end-developers/ {
+      rewrite ^ /2008/02/04/continuous-integration-for-front-end-developers.html permanent;
+    }
+
+    location /posts/dabbledb {
+      rewrite ^ /2006/05/28/dabbledb.html permanent;
+    }
+
+    location /posts/dconstruct {
+      rewrite ^ /2006/09/12/dconstructor.html permanent;
+    }
+
+    location /posts/dconstructor {
+      rewrite ^ /2006/09/12/dconstructor.html permanent;
+    }
+
+    location /posts/example-of-the-yahoo-live-api/ {
+      rewrite ^ /2008/02/13/example-of-the-yahoo-live-api.html permanent;
+    }
+
+    location /posts/fluidflash {
+      rewrite ^ /2007/01/07/fluidflash.html permanent;
+    }
+
+    location /posts/geekout {
+      rewrite ^ /2006/08/14/geekout.html permanent;
+    }
+
+    location /posts/getting-going-with-symfony/ {
+      rewrite ^ /2007/09/16/getting-going-with-symfony.html permanent;
+    }
+
+    location /posts/how-to-deploy-php-sites-with-the-pake-build-tool/ {
+      rewrite ^ /2008/01/07/how-to-deploy-php-sites-with-the-pake-build-tool.html permanent;
+    }
+
+    location /posts/html-an-alternative-to-word/ {
+      rewrite ^ /2007/08/19/html-an-alternative-to-word.html permanent;
+    }
+
+    location /posts/ie-7-readiness-toolkit {
+      rewrite ^ /2006/06/22/ie-7-readiness-toolkit.html permanent;
+    }
+
+    location /posts/insert-dojo-and-yui-bookmarklets/ {
+      rewrite ^ /2007/12/08/insert-dojo-and-yui-bookmarklets.html permanent;
+    }
+
+    location /posts/invited-to-join-wasp/ {
+      rewrite ^ /2008/02/19/invited-to-join-wasp.html permanent;
+    }
+
+    location /posts/jruby-vs-pythonnet {
+      rewrite ^ /2006/11/01/jruby-vs-pythonnet.html permanent;
+    }
+
+    location /posts/learning-modern-web-design {
+      rewrite ^ /2006/08/29/learning-modern-web-design.html permanent;
+    }
+
+    location /posts/mailing-lists-and-me {
+      rewrite ^ /2005/09/20/mailing-lists-and-me.html permanent;
+    }
+
+    location /posts/media-and-google-calendar {
+      rewrite ^ /2006/04/20/media-and-google-calendar.html permanent;
+    }
+
+    location /posts/media-in-pictures {
+      rewrite ^ /2006/07/16/media-in-pictures.html permanent;
+    }
+
+    location /posts/mission-impossible {
+      rewrite ^ /2006/05/08/mission-impossible.html permanent;
+    }
+
+    location /posts/more-dconstruct-craziness {
+      rewrite ^ /2006/07/19/more-dconstruct-craziness.html permanent;
+    }
+
+    location /posts/more-devices-with-browsers {
+      rewrite ^ /2006/09/21/more-devices-with-browsers.html permanent;
+    }
+
+    location /posts/nice-bits-of-symfony-web-debug-toolbar/ {
+      rewrite ^ /2007/12/26/nice-bits-of-symfony-web-debug-toolbar.html permanent;
+    }
+
+    location /posts/niche-job-boards-and-hot-skills {
+      rewrite ^ /2006/09/26/niche-job-boards-and-hot-skills.html permanent;
+    }
+
+    location /posts/parsing-erdf {
+      rewrite ^ /2007/03/04/parsing-erdf.html permanent;
+    }
+
+    location /posts/pas-78 {
+      rewrite ^ /2006/04/02/pas-78.html permanent;
+    }
+
+    location /posts/posting-to-twitter-using-php {
+      rewrite ^ /2007/01/20/posting-to-twitter-using-php.html permanent;
+    }
+
+    location /posts/posting-to-twitter-using-php/ {
+      rewrite ^ /2007/01/20/posting-to-twitter-using-php.html permanent;
+    }
+
+    location /posts/pygunfog/ {
+      rewrite ^ /2007/01/03/pygunfog.html permanent;
+    }
+
+    location /posts/python-at-microsoft {
+      rewrite ^ /2006/05/13/python-at-microsoft.html permanent;
+    }
+
+    location /posts/reboot {
+      rewrite ^ /2005/11/01/reboot.html permanent;
+    }
+
+    location /posts/ruby-on-rails-on-nokia-n800/ {
+      rewrite ^ /2007/07/15/ruby-on-rails-on-nokia-n800.html permanent;
+    }
+
+    location /posts/simple-deployment-with-svn-and-phing/ {
+      rewrite ^ /2008/01/30/simple-deployment-with-svn-and-phing.html permanent;
+    }
+
+    location /posts/some-start-of-the-week-fun-with-yahoo {
+      rewrite ^ /2006/08/07/some-start-of-the-week-fun-with-yahoo.html permanent;
+    }
+
+    location /posts/teaching {
+      rewrite ^ /2006/11/10/teaching.html permanent;
+    }
+
+    location /posts/tips-for-fluid-design-ii {
+      rewrite ^ /2005/12/04/tips-for-fluid-design-ii.html permanent;
+    }
+
+    location /posts/using-curl-to-play-with-couchdb {
+      rewrite ^ /2007/12/11/using-curl-to-play-with-couchdb.html permanent;
+    }
+
+    location /posts/virtualhosts-on-mac-os-x {
+      rewrite ^ /2006/10/14/virtualhosts-on-mac-os-x.html permanent;
+    }
+
+    location /posts/well-how-did-i-do {
+      rewrite ^ /2006/12/03/well-how-did-i-do.html permanent;
+    }
+
+    location /posts/who-is-pushing-the-envelope-anyhow {
+      rewrite ^ /2006/07/09/who-is-pushing-the-envelope-anyhow.html permanent;
+    }
+
+    location /posts/who-loses-out-to-x-ua-compatible/ {
+      rewrite ^ /2008/01/22/who-loses-out-to-x-ua-compatible.html permanent;
+    }
+
+    location /posts/why-the-webstandards-world-appears-to-be-choosing-djang {
+      rewrite ^ /2008/03/29/why-the-webstandards-world-appears-to-be-choosing-.html permanent;
+    }
+
+    location /posts/why-the-webstandards-world-appears-to-be-choosing-django/ {
+      rewrite ^ /2008/03/29/why-the-webstandards-world-appears-to-be-choosing-.html permanent;
+    }
+
+    location /posts/working-example-of-microformats-as-an-api/ {
+      rewrite ^ /2007/04/07/working-example-of-microformats-as-an-api.html permanent;
+    }
+
+    location /maintenance.html {
+      root html/morethanseven;
+    }
+
+    if ($uri !~ /index\.html$) {
+      rewrite ^/(\d\d\d\d)/(\d\d)/(\d\d)/(.+)\.html$ /$1/$2/$3/$4/ permanent;
+    }
+
+    if ($request_uri ~ /index\.html($|\?)) {
+      rewrite ^(.*)/index\.html$ $1/ permanent;
+    }
+
+    rewrite ^/articles.atom$ /atom.xml;
+
+    location / {
+      if (-f html/morethanseven/maintenance.html) {
+        return 503;
+      }
+      expires 180s;
+      add_header Vary Accept-Encoding;
+      root  html/morethanseven;
+    }
+  }
+}
+

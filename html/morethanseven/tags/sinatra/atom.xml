@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sinatra | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/sinatra/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Sinatra On Glassfish Example]]></title>
+    <link href="http://www.morethanseven.net/2010/11/28/Sinatra-on-glassfish-example/"/>
+    <updated>2010-11-28T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2010/11/28/Sinatra-on-glassfish-example</id>
+    <content type="html"><![CDATA[<p>I magically turned into a Java developer last week for a bit when I had to do some integration with a SOAP based API that really really wanted me to write Java on client as well. That led me down the route of having a good look at Jruby (which I've used before, mainly for testing using celerity) and in particular how easy it was to use native Java classes in Jruby (very, very easy as it turns out).</p>
+
+<p>All that meant I'll probably end up writing a nice Jruby application in the not too distant future, and not knowing too much about running such a thing in a production environment I thought I'd take a quick look. I went with Glassfish as the application server for no other reason that it took my fancy. I'd definately be interested in hearing about any positive or negative experiences people may have with it or other similar servers. My quick look turned into running a tiny Sinatra application.</p>
+
+<p>First install the required gems for our little experiment. You'll obviously need jruby which is sort of the point, I'd recommend using RVM for that.</p>
+
+<pre><code>gem install sinatra warbler</pre>
+
+
+<p></code></p>
+
+<p>Now create a sinatra app. OK, it could be any Ruby rack based application but I like Sinatra. First we need a rackup file.</p>
+
+<pre><code># config.ru
+require 'init'
+
+set :run, false
+set :environment, :production
+
+run Sinatra::Application</pre>
+
+
+<p></code></p>
+
+<p>Now for our application itself.</p>
+
+<pre><code># init.rb
+require 'rubygems'
+require 'sinatra'
+get '/' do
+  "Hello World!"
+end</pre>
+
+
+<p></code></p>
+
+<p>Warble is the gem we're going to use to create a WAR file, which is basically an all in one bundle of our application and it's dependencies which we can deploy to a java application server.</p>
+
+<pre><code># config/warble.rb
+Warbler::Config.new do |config|
+  config.dirs = %w(config)
+  config.includes = FileList["init.rb"]
+  config.gems += ["sinatra"]
+  config.gems -= ["rails"]
+  config.gem_dependencies = true
+end</pre>
+
+
+<p></code></p>
+
+<p>Now we're ready to generate our WAR file.</p>
+
+<pre><code>warble</pre>
+
+
+<p></code></p>
+
+<p>This should create a file called sample.war or similar. Then just deploy that to your application server and away you go. I got this working very easily with Glassfish which seemed to be the recommended tool for such things. Installing Glassfish was time consuming but "well documented here":http://www.nabisoft.com/tutorials/glassfish/installing-glassfish-301-on-ubuntu. Uploading to Glassfish was done via the web interface for the moment. I just selected a Ruby project from the deployment drop down and uploaded the war file.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sinatra Simple Example]]></title>
+    <link href="http://www.morethanseven.net/2009/02/01/sinatra-simple-example/"/>
+    <updated>2009-02-01T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/02/01/sinatra-simple-example</id>
+    <content type="html"><![CDATA[<p>I've been playing around with the "Sinarta":http://www.sinatrarb.com/ Ruby web development framework recently and building a "larger than usual Hello World Example":http://github.com/garethr/sinatra-hello-world. It's describes itself as <em>a DSL for quickly creating web-applications in Ruby with minimal effort</em> (what is it about Ruby people and their obsession with calling everything a DSL?). In reality it's a great little web framework. It deals with a minimal set of the things you really need to do as part of any application - URL handling and routing, HTTP request and response handling, etc. It reminds me of "web.py":http://webpy.org/ in it's minimalist approach which is definitely a good thing.</p>
+
+<p>The following example is the hello world given on the site</p>
+
+<p>pre. require 'rubygems'
+require 'sinatra'
+get '/' do
+  'Hello world!'
+end</p>
+
+<p>Which isn't a million miles away from a web.py example:</p>
+
+<p>pre. import web
+urls = (</p>
+
+<pre><code>'/', 'hello'
+</code></pre>
+
+<p>)
+app = web.application(urls, globals())
+class hello:</p>
+
+<pre><code>def GET(self, name):
+    return 'Hello World'
+</code></pre>
+
+<p>if <strong>name</strong> == "<strong>main</strong>":</p>
+
+<pre><code>app.run()
+</code></pre>
+
+<p>The only real difference is the separate mapping of URLs to views in web.py, which is closer to how Rails or Django do things.</p>
+
+<p>Their is quite a bit of "documentation":http://www.sinatrarb.com/documentation.html already for Sinatra, including the start of a "book":http://www.sinatrarb.com/book.html. The code (as with all good code these days) is on "github":http://github.com/sinatra/sinatra/tree/master for your forking pleasure.</p>
+
+<p>As for what I've been up to I have a more advanced "Hello World":http://github.com/garethr/sinatra-hello-world example up on GitHub. I'm wanting to get a running application that demonstrates all the basic features (except "HAML and SASS":http://morethanseven.net/2008/04/11/dsls-for-html-and-css-the-future-or-just-plain-wro/ support). So far I've got a simple bit of Rack middleware, several views demonstrating different url handling techniques, basic erb templates, before methods, configuration settings, error handling, decent unit test coverage, a rake file with a tasks for documentation, code coverage, etc. I've also got configuration files for running the application with "Thin":http://code.macournoyer.com/thin/ and using "God":http://god.rubyforge.org/. I'm going to add some simple database connectivity in at some point (either "DataMapper":http://datamapper.org or "Sequel":http://sequel.rubyforge.org/, I haven't decided yet) and play around with writing spec tests and a capistrano recipe file. All in it's a nice way of learning something new at the same time as producing something that might be useful. Once I have the rest of the bits and pieces I might even right a full tutorial.</p>
+
+<p>I think the sweet spot for these sorts of mini frameworks are small services or little applications that just sit their are run. Both "Integrity":http://integrityapp.com/ and "IRCLogger":http://irclogger.com both use Sinatra for instance and I think it's used for the "GitHub WebHooks":http://github.com/guides/post-receive-hooks as well. It's exactly the sort of thing Google AppEngine is useful for in fact and Sinatra would likely be a closer fit that Rails if Google ever feel like adding Ruby support. Although it does depress me a little that the "top four items in the public issue tracker":http://code.google.com/p/googleappengine/issues/list are <em>I want my own language</em>.</p>
+]]></content>
+  </entry>
+  
+</feed>

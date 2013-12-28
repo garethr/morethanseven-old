@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Using Python and Stompserver to Get Started With Message Queues - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Message Queues are cool. It&#8217;s official. Now, banks and financial institutions have been using big Enterprise Java message systems for years. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2008/09/14/using-python-and-stompserver-get-started-message-q">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Using Python and Stompserver to Get Started With Message Queues</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-14T00:00:00+01:00" pubdate data-updated="true">Sep 14<span>th</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Message Queues are cool. It&#8217;s official. Now, banks and financial institutions have been using big Enterprise Java message systems for years. But it&#8217;s only really over the last year or two that the web community at large have got interested. Wonder what all the interest is in Erlang, Scala or Haskell? Distributed systems and a lack of shared state &#8211; hopefully leading to some sort of scalability nirvana &#8211; that&#8217;s what.</p>
+<p>Matt Biddulph of Dopplr has spoken at varying levels of technical detail on the subject over the last year or so. At <a href="http://adamcohenrose.blogspot.com/2007/11/messaging-scales-matt-biddulph.html">barcamps</a> and more recently at <a href="http://2008.dconstruct.org/">dconstruct</a>. But you still don&#8217;t find that many people actually starting to use any of this stuff. Looking around the internet I couldn&#8217;t find that many examples of how to get started. Their are some pretty mature standards, good libraries, server interoperability, but few tutorials aimed at people who don&#8217;t know all about it.</p>
+<p>The first problem is looking for a simple use case that most developers will have experienced problems with. The example I like to give is sending email. If you have a simple form on your site that sends email you probably just submit the request to the backend, it sends the email and then renders the success page back to the user. The problem here comes with scale. How many connections can your mailserver sustain? How many emails can you send from it before you start looking like you&#8217;ve been turned into a spam factory? At what point does the time taken for the mail server to respond to the web server cause the web server to time out or respond so slowly the user left or pressed refresh? If you&#8217;re sending lots of emails you need to think about this sort of stuff. For your average site this might not be a problem, but for the newer breed of applications or social networks this might bite you sooner than you think. You can gain more control over this process by introducing a message queue. Submitting the form simply adds a work task to the queue. A listener reads from the queue and sends the email. The advantage comes when you realise by removing the rendering of the page form the same process as sending the email you can throttle the system without affecting page rendering time.</p>
+<p>So onto a simple working example. I&#8217;ve decided to use Python as that&#8217;s my language of choice at the moment. It&#8217;s also easy to read in a -sudo-<ins>pseudo</ins> code sort of way. Writing these examples using equivalent libraries in Ruby or <span class="caps">PHP</span> should be straightforward enough. As for the message queue itself I&#8217;ve opted for <a href="http://stompserver.rubyforge.org/">stompserver</a> which is available as a Ruby gem. So assuming you have Ruby and gem installed (good instructions for this on the <a href="http://wiki.rubyonrails.com/rails/pages/GettingStartedWithRails">Rails wiki</a>) you can just run:</p>
+<pre><code>sudo gem install stompserver</code></pre>
+<p>Starting the queue is as simple as running:</p>
+<pre><code>stompserver</code></pre>
+<p>This will get you up and running quickly. Stompserver has a number of arguments you can pass in to use different ports or backends but for the purposes of getting started it&#8217;s enough to just run it. This ease of use is the thing I love about stompserver. ApacheMQ is something of a tricky beast to setup, though you might want to use that in a production environment.</p>
+<p>So now we have the server up and running we can get on with talking to it. I used the Python <a href="http://www.briggs.net.nz/log/projects/stomppy/">stomp.py</a> library to deal with the heavy lifting. All the other modules are in the standard library. Their are equivalents for <a href="http://stomp.codehaus.org/PHP"><span class="caps">PHP</span></a> and <a href="http://stomp.codehaus.org/Ruby+Client">Ruby</a> available as well.</p>
+<p>The first script is a listener. Its job is to listen for activity on the queue and then act upon it. You pass the script an argument of the name of the queue to listen to.</p>
+<pre><code>./stomp_listen.py /queue/test</code></pre>
+<p>This example simply prints the messages from the queue to the console, but in reality the on_message handler would be were you act upon the message received. In our email example above it would be were you parse out the email address, subject line and message and actually send the email.</p>
+<p>Stompserver currently exposes a queue for monitoring the queue server at <em>/queue/monitor</em>. You can use this script to subscribe to that queue and get information about the current state of the server. It will tell you which queues currently have items in them and if these are currently being processed.</p>
+<p>You can run multiple instances of this script subscribing to a single queue. This is one of the real advantage of message based systems, two listeners should clear a queue in half the time. This sort of horizontal scaling is hugely useful as you grow a site or application.</p>
+<pre>#!/usr/bin/python
+import time
+import sys
+import logging
+import socket
+import stomp
+# the stomp module uses logging so to stop it complaining
+# we initialise the logger to log to the console
+logging.basicConfig()
+# first argument is the que path
+queue = sys.argv[1]
+# defaults for local stompserver instance
+hosts=[('localhost', 61613)]
+# we want the script to keep running
+def run_server():
+    while 1:
+        time.sleep(20)
+class listener(object):
+    '''define the event handlers'''
+    # if we recieve an error from the server
+    def on_error(self, headers, message):
+        print 'received an error %s' % message
+    # if we retrieve a message from the server
+    def on_message(self, headers, message):
+        print 'received a message %s' % message
+# do we have a connection to the server?
+connected = False
+while not connected:
+    # try and connect to the stomp server
+    # sometimes this takes a few goes so we try until we succeed
+    try:
+        conn = stomp.Connection(host_and_ports=hosts)
+        # register out event hander above
+        conn.add_listener(listener())
+        conn.start()
+        conn.connect()
+        # subscribe to the names que
+        conn.subscribe(destination=queue, ack='auto')
+        connected = True
+    except socket.error:
+        pass
+# we have a connection so keep the script running
+if connected:
+    run_server()</pre>
+<p>The second script allows us to send messages to the queue:</p>
+<pre><code>./stomp_send.py /queue/test "test message 1"</code></pre>
+<p>The script takes a couple of arguments, the first one is the name of the queue, the second is the message you want to send.</p>
+<pre>#!/usr/bin/python
+import time
+import sys
+import logging
+import socket
+import stomp
+# the stomp module uses logging so to stop it complaining
+# we initialise the logger to log to the console
+logging.basicConfig()
+# first argument is the queue
+queue = sys.argv[1]
+# second argument is the message to send
+message = sys.argv[2]
+# defaults for local stompserver instance
+hosts=[('localhost', 61613)]
+# do we have a connection to the server?
+connected = False
+while not connected:
+    try:
+        # connect to the stompserver
+        conn = stomp.Connection(host_and_ports=hosts)
+        conn.start()
+        conn.connect()
+        # send the message
+        conn.send(message,destination=queue)    
+        # disconnect from the stomp server
+        conn.disconnect()
+        connected = True
+    except socket.error:
+        pass</pre>
+<p>Both these scripts are pretty simple examples. In the real world you would probably want to make them a little more robust and user friendly. Both could probably do with checking they have the relevant arguments and providing help information if you run them without. I&#8217;d also probably move the hosts into a config file as it&#8217;s currently hardcoded into the scripts. I&#8217;ve also not tested them with other stomp compatible servers like ApacheMQ. In theory they should work fine assuming stomp.py works as advertised.</p>
+<p>Overall, it&#8217;s surprisingly easy to get started with message queues. If you&#8217;ve been hearing about the advantages of distributed message based architectures but assumed you had to be <a href="http://www.hackdiary.com/">Matt Biddulph</a> to use them, think again.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-14T00:00:00+01:00" pubdate data-updated="true">Sep 14<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/python/'>python</a>, <a class='category' href='/tags/ruby/'>ruby</a>, <a class='category' href='/tags/stomp/'>stomp</a>, <a class='category' href='/tags/stompserver/'>stompserver</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2008/09/14/using-python-and-stompserver-get-started-message-q/" data-via="garethr" data-counturl="http://www.morethanseven.net/2008/09/14/using-python-and-stompserver-get-started-message-q/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/09/14/imified/" title="Previous Post: Imified">&laquo; Imified</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/09/16/openmicroblogging/" title="Next Post: openmicroblogging">openmicroblogging &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2008/09/14/using-python-and-stompserver-get-started-message-q/';
+        var disqus_url = 'http://www.morethanseven.net/2008/09/14/using-python-and-stompserver-get-started-message-q/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

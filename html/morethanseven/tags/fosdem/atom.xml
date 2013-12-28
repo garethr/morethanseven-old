@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: fosdem | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/fosdem/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Devops - More Than Marketing - Talk By James Turnbull]]></title>
+    <link href="http://www.morethanseven.net/2011/03/02/Devops-more-than-marketing-talk-by-james-turnbull/"/>
+    <updated>2011-03-02T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/03/02/Devops-more-than-marketing-talk-by-james-turnbull</id>
+    <content type="html"><![CDATA[<p>I've just found my notes from "James Turnbull's":http://kartar.net talk at "FOSDEM":http://fosdem.org. I found the talk excellent, and I'm already part of the choir. But much of the audience I'd guess have only come across the devops term in passing, or worse had it pushed at them as part of marketing materials. Hopefully I captured the main points:</p>
+
+<p>h2. So what is devops all about?</p>
+
+<ul>
+<li>Cooperation (between development and operations teams)</li>
+<li>Buzzword bingo?</li>
+<li>Pop culture movement?</li>
+<li>Discussion</li>
+<li>It's early days</li>
+<li>No one has all the answers</li>
+<li>Nothing is fixed in stone</li>
+<li>It's all about outreach</li>
+</ul>
+
+
+<p>h2. It's about</p>
+
+<ul>
+<li>Simplicity - Repeatable, Reusable, Easy to communicate</li>
+<li>Relationships - Engage early, engage often, "Toss it over the fence", Talk to people</li>
+<li>Process - Test everything, Automate everything, Redundancy and expectation of failure, Transparent and open to everyone</li>
+</ul>
+
+
+<p>h2. Tools</p>
+
+<ul>
+<li>Not just ops tools - Config mnagement, Deployment and orchestration, Monitoring, Security, Testing</li>
+<li>Use for entire lifecycle dev -> test -> ops</li>
+<li>Not just dev tools - Version control, Agile, Application architecture</li>
+<li>Testing methodology - Low level vs functional</li>
+<li>Documentation - "The only time the network diagram is up to date is after the post mortem"</li>
+</ul>
+
+
+<p>h2. Continuous improvement</p>
+
+<ul>
+<li>Nothing stands still - Customers, Products, Technology, Your team</li>
+<li>Strike often, striek hard, be aggressive</li>
+</ul>
+
+
+<p>h2. It's a culture change</p>
+
+<ul>
+<li>This is Hard</li>
+<li>People hate change</li>
+<li>People hate people who introduce change</li>
+<li>Fear of change is irrational - Listen, Concrete examples</li>
+<li>Make developers resonsible for uptime - Pagers</li>
+</ul>
+
+
+<p>h2. FUD</p>
+
+<ul>
+<li>"We've always done this"</li>
+<li>"That can't work here"</li>
+<li>"This is all about one group or another"</li>
+<li>"You're an elitist bunch of Europeans"</li>
+</ul>
+
+
+<p>h2. Dangers</p>
+
+<ul>
+<li>Marketing speak</li>
+<li>Lip service</li>
+<li>Disenchantment</li>
+<li>Disenfranchisement</li>
+</ul>
+
+
+<p>h2. Takeaway</p>
+
+<ul>
+<li>"Not about a person, or a team. About changing how your operations team works"</li>
+<li>Automate away small boring repetative tasks to make time for interesting activities</li>
+<li>Embed ops people into dev teams</li>
+<li>Drag devs to ops standups</li>
+<li>Build shared appreciation</li>
+<li>Metrics conversations are really powerful</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Configuration Management For Development Environments]]></title>
+    <link href="http://www.morethanseven.net/2011/02/08/Configuration-management-for-development-environments/"/>
+    <updated>2011-02-08T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/02/08/Configuration-management-for-development-environments</id>
+    <content type="html"><![CDATA[<p>I had the pleasure of speaking at "Fosdem":http://www.fosdem.org/2011/ last weekend to a packed "Configuration amd systems management devroom":http://www.fosdem.org/2011/schedule/track/configuration_systems_management_devroom.</p>
+
+<p>My presentation covered some of the same ground as recent blog posts, namely why you should be using virtualisation and config management tools to manage your local development environment.</p>
+
+<object id="__sse6836888" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironments-110207033122-phpapp02&stripped_title=config-managament-for-development-environments-6836888&userName=garethr" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed name="__sse6836888" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironments-110207033122-phpapp02&stripped_title=config-managament-for-development-environments-6836888&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object>
+
+
+<p>People even said "nice things":http://twitter.com/#!/unixdaemon/status/34209307390124033 about it:</p>
+
+<p>bq. @garethr basically has this subject completely covered. He's even advocating the correct editor. excellent #fosdem talk</p>
+
+<p>All in all another good event, I have notes about some of the other talks I went along to that I'll try write up soon.</p>
+]]></content>
+  </entry>
+  
+</feed>

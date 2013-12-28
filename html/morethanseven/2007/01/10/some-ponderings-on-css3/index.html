@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Some ponderings on CSS3 - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;m starting to get properly interested in CSS3 for a few reasons. I&#8217;ve subscribed to the mailing list, read up on some of the working &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2007/01/10/some-ponderings-on-css3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Some Ponderings on CSS3</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-10T00:00:00+00:00" pubdate data-updated="true">Jan 10<span>th</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;m starting to get properly interested in CSS3 for a few reasons. I&#8217;ve subscribed to the <a href="http://www.w3.org/Mail/Lists.html#www-style">mailing list</a>, read up on some of the <a href="http://www.w3.org/Style/CSS/current-work">working group goings on</a> and done a bit of research ahead of really jumping in with some code play. Some of this could be of interest to others so here goes:</p>
+ <p>The best two resources I&#8217;ve found are the <span class="caps">CSS</span> Working group home page and the <a href="http://www.css3.info/">CSS3 Info</a></p>
+ <p>The <a href="http://www.w3.org/Style/CSS/current-work"><span class="caps">CSS</span> Working Group Under Construction</a> site over at the <a href="http://www.w3.org">W3C</a> has a huge ammount of information. For those that dont know <span class="caps">CSS</span> is being split into a number of distinct modules, namely:</p>
+<ul>
+ <li>Advanced layout</li>
+  <li>Aural Style Sheets</li>
+  <li>Backgrounds and Borders</li>
+  <li>Basic User Interfaces</li>
+  <li>Box Model </li>
+  <li>Cascading and Inheritance</li>
+  <li>Color</li>
+  <li>Fonts</li>
+  <li>Generated Content for Paged Media</li>
+  <li>Generated and Replaced Content</li>
+  <li>Hyperlink Presentation</li>
+  <li>Introduction</li>
+  <li>Line Layout</li>
+  <li>Lists</li>
+  <li>Maths</li>
+  <li>Multi Column Layout</li>
+  <li>Namespaces</li>
+  <li>Object Model</li>
+  <li>Paged Media</li>
+  <li>Positioning</li>
+  <li>Presentation Levels</li>
+  <li>Reader Media Types</li>
+  <li>Ruby</li>
+  <li>Scoping</li>
+  <li>Speech</li>
+  <li>Syntax</li>
+  <li>Tables</li>
+  <li>Text</li>
+  <li>Text Layout</li>
+  <li>Values and Units</li>
+  <li>Web Fonts</li>
+</ul>
+ <p>Phew. Their is also some work going on on profiles for TV, Printed media and Mobile. I&#8217;m interested in a few of these modules &#8211; particularly those dealing with Web Typography and the Basic User Interface module which deals with <em>the look of form elements in their various states and more cursors and colors to describe GUIs (graphical user interfaces) that blend well with the user&#8217;s desktop environment.</em></p>
+ <p><a href="http://css3.info">CSS3 Info</a> also has lots of information worth reading, including some good examples of parts of CSS3 that have been implemented ahead of recommendation in the <a href="http://www.css3.info/preview/">preview section</a>. My favourite bit however has to be the <a href="http://www.css3.info/selectors-test/test.html"><span class="caps">CSS</span> selector test</a> by <a href="http://rakaz.nl/">Niels Leenheer</a>. You can read a little more about that, and <a href="http://rakaz.nl/item/how_well_do_browsers_support_css_selectors">how different browsers do</a>, or at least how they did in October. The <a href="http://www.w3.org/Style/CSS/Test/CSS3/Selectors/current/html/index.html">W3C test suite</a> is available too, but no where near as slick.</p>
+ <p>I&#8217;ve even gone and installed a <a href="http://nightly.webkit.org/">WebKit nighly build</a> to try out some of the features only supported their at the moment. Who knows? I might even add new designs to the site using new selectors as a treat for those <em>silly</em> enough to be using such experimental browsers.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-10T00:00:00+00:00" pubdate data-updated="true">Jan 10<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2007/01/10/some-ponderings-on-css3/" data-via="garethr" data-counturl="http://www.morethanseven.net/2007/01/10/some-ponderings-on-css3/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/01/07/new-year-new-site/" title="Previous Post: New year New site">&laquo; New year New site</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/01/16/opml-feeds-using-radiant/" title="Next Post: OPML Feeds using Radiant">OPML Feeds using Radiant &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2007/01/10/some-ponderings-on-css3/';
+        var disqus_url = 'http://www.morethanseven.net/2007/01/10/some-ponderings-on-css3/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

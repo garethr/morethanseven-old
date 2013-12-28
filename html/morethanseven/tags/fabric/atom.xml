@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: fabric | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/fabric/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[EC2 Tasks For Fabric]]></title>
+    <link href="http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric/"/>
+    <updated>2011-12-31T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric</id>
+    <content type="html"><![CDATA[<p>For running ad-hoc commands across a small number of servers you really can't beat "Fabric":http://fabfile.org. It requires nothing other than ssh installed on the servers, is generally just a one-line install and requires next to no syntaxtic fluff between you and the commands you want running. It's much more of a swiss army knife to Capistranos bread knife.</p>
+
+<p>I've found myself doing more and more EC2 work of late and have finally gotten around to making my life easier when using Fabric with Amazon instances. The result of a bit of hacking is "Cloth":https://github.com/garethr/cloth (also "available on PyPi":http://pypi.python.org/pypi/cloth). It contains some utility functions and a few handy tasks for loading host details from the EC2 API and using them in your Fabric tasks. No more static lists of host names that constantly need updating in your fabfile.</p>
+
+<p>Specifically, with a fabfile that looks like:</p>
+
+<pre>#! /usr/bin/env python
+from cloth.tasks import *</pre>
+
+
+<p>You can run:</p>
+
+<pre>fab all list</pre>
+
+
+<p>And get something like:</p>
+
+<pre>instance-name-1 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-2 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-3 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-4 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-5 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-6 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-7 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-8 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+...</pre>
+
+
+<p>And then you could run:</p>
+
+<pre>fab -P all uptime</pre>
+
+
+<p>And you'd happily get the load averages and uptime for all your EC2 instances.</p>
+
+<p>A few more tricks are documented in the "GitHub README":https://github.com/garethr/cloth, including filtering the list by a regex and some convention based mapping to Fabric roles. I'll hopefully add a few more features as I need them and generally tidy up a few things but I'm pretty happy with it so far.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fabric, Django, Git, Apache, mod_wsgi, virtualenv and pip deployment]]></title>
+    <link href="http://www.morethanseven.net/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p/"/>
+    <updated>2009-07-27T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p</id>
+    <content type="html"><![CDATA[<p>I've been playing with automating Django deployments again, this time using "Fabric":http://fabfile.org/. I found a number of examples on the web but non of them quite fit the bill for me. I don't like serving directly from a repository, I like to have either a package or tar I can use to say "that is what went to the server". I also like having a quick rollback command as well as being able to deploy a particular version of the code when the need arises. I also wanted to go from a clean ubuntu install (plus SSH) to a running Django application in one command from the local development machine. The Apache side of things is nicely documented in "this Gist":http://gist.github.com/106077 which made a good starting point.</p>
+
+<p>I'm still missing a few things in this setup mind and at the moment you still have to setup your local machine yourself. I'm probably going to create a paster template and another fabfile to do that I think. The instructions are a little rough as well at the moment and I've left the database out of it as everyone has there own preference.</p>
+
+<p>This particular fabric file makes setting up and deploying a django application much easier, but it does make a few assumptions. Namely that you're using Git, Apache and mod_wsgi and your using Debian or Ubuntu. Also you should have  Django installed on your local machine and SSH installed on both the local machine and any servers you want to deploy to.</p>
+
+<p><em>note that I've used the name project_name throughout this example. Replace this with whatever your project is called.</em></p>
+
+<p>First step is to create your project locally:</p>
+
+<p>pre. mkdir project_name
+cd project_name
+django-admin.py startproject project_name</p>
+
+<p>Now add a requirements file so pip knows to install Django. You'll probably add other required modules in here later. Creat a file called requirements.txt and save it at the top level with the following contents:</p>
+
+<p>pre. Django</p>
+
+<p>Then save this fabfile.py file in the top level directory which should give you:</p>
+
+<p>pre. project_name</p>
+
+<pre><code>fabfile.py
+requirements.txt
+project_name
+    __init__.py
+    manage.py
+    settings.py
+    urls.py
+</code></pre>
+
+<p>You'll need a WSGI file called project_name.wsgi, where project_name  is the name you gave to your django project. It will probably look like the following, depending on your specific paths and the location of your settings module</p>
+
+<p>pre. import os
+import sys</p>
+
+<h1>put the Django project on sys.path</h1>
+
+<p>sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(<strong>file</strong>), "../")))
+os.environ["DJANGO_SETTINGS_MODULE"] = "project_name.settings"
+from django.core.handlers.wsgi import WSGIHandler
+application = WSGIHandler()</p>
+
+<p>Last but not least you'll want a virtualhost file for apache which looks  something like the following. Save this as project_name in the inner directory. You'll want to change /path/to/project_name/ to the location on the remote server you intent to deploy to.</p>
+
+<p>pre. <VirtualHost *:80></p>
+
+<pre><code>    WSGIDaemonProcess project_name-production user=project_name group=project_name threads=10 python-path=/path/to/project_name/lib/python2.6/site-packages
+    WSGIProcessGroup project_name-production
+    WSGIScriptAlias / /path/to/project_name/releases/current/project_name/project_name.wsgi
+    &lt;Directory /path/to/project_name/releases/current/project_name&gt;
+        Order deny,allow
+        Allow from all
+    &lt;/Directory&gt;
+    ErrorLog /var/log/apache2/error.log
+    LogLevel warn
+    CustomLog /var/log/apache2/access.log combined
+</code></pre>
+
+<p></VirtualHost></p>
+
+<p>Now create a file called .gitignore, containing the following. This prevents the compiled python code being included in the repository and the archive we use for deployment.</p>
+
+<p>pre. *.pyc</p>
+
+<p>You should now be ready to initialise a git repository in the top level project_name directory.</p>
+
+<p>pre. git init
+git add .gitignore project_name
+git commit -m "Initial commit"</p>
+
+<p>All of that should leave you with</p>
+
+<p>pre. project_name</p>
+
+<pre><code>.git
+.gitignore
+requirements.txt
+fabfile.py
+project_name
+    __init__.py
+    project_name
+    project_name.wsgi
+    manage.py
+    settings.py
+    urls.py
+</code></pre>
+
+<p>In reality you might prefer to keep your wsgi files and virtual host files elsewhere. The fabfile has a variable (config.virtualhost_path) for this case.  You'll also want to set the hosts that you intend to deploy to (config.hosts) as well as the user (config.user).</p>
+
+<p>The first task we're interested in is called setup. It installs all the  required software on the remote machine, then deploys your code and restarts the webserver.</p>
+
+<p>pre. fab local setup</p>
+
+<p>After you've made a few changes and commit them to the master Git branch you can run to deply the changes.</p>
+
+<p>pre. fab local deploy</p>
+
+<p>If something is wrong then you can rollback to the previous version.</p>
+
+<p>pre. fab local rollback</p>
+
+<p>Note that this only allows you to rollback to the release immediately before the latest one. If you want to pick a arbitrary release then you can use the following, where 20090727170527 is a timestamp for an existing release.</p>
+
+<p>pre. fab local deploy_version:20090727170527</p>
+
+<p>If you want to ensure your tests run before you make a deployment then you can do the following.</p>
+
+<p>pre. fab local test deploy</p>
+
+<p>The actual fabfile looks like this. I've uploaded a "Gist of it":http://gist.github.com/156623, along with the docs, so if you want to improve it please clone it.</p>
+
+<p>pre. # globals
+config.project_name = 'project_name'</p>
+
+<h1>environments</h1>
+
+<p>def local():</p>
+
+<pre><code>"Use the local virtual server"
+config.hosts = ['172.16.142.130']
+config.path = '/path/to/project_name'
+config.user = 'garethr'
+config.virtualhost_path = "/"
+</code></pre>
+
+<h1>tasks</h1>
+
+<p>def test():</p>
+
+<pre><code>"Run the test suite and bail out if it fails"
+local("cd $(project_name); python manage.py test", fail="abort")
+</code></pre>
+
+<p>def setup():</p>
+
+<pre><code>"""
+Setup a fresh virtualenv as well as a few useful directories, then run
+a full deployment
+"""
+require('hosts', provided_by=[local])
+require('path')
+sudo('aptitude install -y python-setuptools')
+sudo('easy_install pip')
+sudo('pip install virtualenv')
+sudo('aptitude install -y apache2')
+sudo('aptitude install -y libapache2-mod-wsgi')
+# we want rid of the defult apache config
+sudo('cd /etc/apache2/sites-available/; a2dissite default;')
+run('mkdir -p $(path); cd $(path); virtualenv .;')
+run('cd $(path); mkdir releases; mkdir shared; mkdir packages;', fail='ignore')
+deploy()
+</code></pre>
+
+<p>def deploy():</p>
+
+<pre><code>"""
+Deploy the latest version of the site to the servers, install any
+required third party modules, install the virtual host and 
+then restart the webserver
+"""
+require('hosts', provided_by=[local])
+require('path')
+import time
+config.release = time.strftime('%Y%m%d%H%M%S')
+upload_tar_from_git()
+install_requirements()
+install_site()
+symlink_current_release()
+migrate()
+restart_webserver()
+</code></pre>
+
+<p>def deploy_version(version):</p>
+
+<pre><code>"Specify a specific version to be made live"
+require('hosts', provided_by=[local])
+require('path')
+config.version = version
+run('cd $(path); rm releases/previous; mv releases/current releases/previous;')
+run('cd $(path); ln -s $(version) releases/current')
+restart_webserver()
+</code></pre>
+
+<p>def rollback():</p>
+
+<pre><code>"""
+Limited rollback capability. Simple loads the previously current
+version of the code. Rolling back again will swap between the two.
+"""
+require('hosts', provided_by=[local])
+require('path')
+run('cd $(path); mv releases/current releases/_previous;')
+run('cd $(path); mv releases/previous releases/current;')
+run('cd $(path); mv releases/_previous releases/previous;')
+restart_webserver()    
+</code></pre>
+
+<h1>Helpers. These are called by other functions rather than directly</h1>
+
+<p>def upload_tar_from_git():</p>
+
+<pre><code>require('release', provided_by=[deploy, setup])
+"Create an archive from the current Git master branch and upload it"
+local('git archive --format=tar master | gzip &gt; $(release).tar.gz')
+run('mkdir $(path)/releases/$(release)')
+put('$(release).tar.gz', '$(path)/packages/')
+run('cd $(path)/releases/$(release) &amp;&amp; tar zxf ../../packages/$(release).tar.gz')
+local('rm $(release).tar.gz')
+</code></pre>
+
+<p>def install_site():</p>
+
+<pre><code>"Add the virtualhost file to apache"
+require('release', provided_by=[deploy, setup])
+sudo('cd $(path)/releases/$(release); cp $(project_name)$(virtualhost_path)$(project_name) /etc/apache2/sites-available/')
+sudo('cd /etc/apache2/sites-available/; a2ensite $(project_name)') 
+</code></pre>
+
+<p>def install_requirements():</p>
+
+<pre><code>"Install the required packages from the requirements file using pip"
+require('release', provided_by=[deploy, setup])
+run('cd $(path); pip install -E . -r ./releases/$(release)/requirements.txt')
+</code></pre>
+
+<p>def symlink_current_release():</p>
+
+<pre><code>"Symlink our current release"
+require('release', provided_by=[deploy, setup])
+run('cd $(path); rm releases/previous; mv releases/current releases/previous;', fail='ignore')
+run('cd $(path); ln -s $(release) releases/current')
+</code></pre>
+
+<p>def migrate():</p>
+
+<pre><code>"Update the database"
+require('project_name')
+run('cd $(path)/releases/current/$(project_name);  ../../../bin/python manage.py syncdb --noinput')
+</code></pre>
+
+<p>def restart_webserver():</p>
+
+<pre><code>"Restart the web server"
+sudo('/etc/init.d/apache2 restart')
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

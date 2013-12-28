@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rest | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/rest/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Python REST Client]]></title>
+    <link href="http://www.morethanseven.net/2009/02/18/python-rest-client/"/>
+    <updated>2009-02-18T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/02/18/python-rest-client</id>
+    <content type="html"><![CDATA[<p>I'm working on a small project involving using RESTful APIs and wanted a simple HTTP client, something that sat a little higher in the stack than "httplib2":http://code.google.com/p/httplib2/ or similar. I turned initially to the "Django Test Client":http://www.djangoproject.com/documentation/models/test_client/ which now "supports all the required methods":http://code.google.com/p/python-rest-client/ but it turned out that I'd have to unpick it from django a little.</p>
+
+<p>With a little bit of looking around I found the "python-rest-client":http://code.google.com/p/python-rest-client/ which certainly sounded like it would do what I wanted. It lets you make HTTP requests in as straight forward a manner as possible and fitted the bill perfectly.</p>
+
+<p>pre. from restful_lib import Connection
+conn = Connection("http://morethanseven.net")
+response = conn.request_get("/")</p>
+
+<p>It supports authentication, nice helper methods and gives you the response in a nice format.</p>
+
+<p>pre. conn = Connection("http://example.org", username="XXX", password="XXX")
+conn.request_delete('/items/11232344')</p>
+
+<p>As an added benefit it also comes with a Google App Engine compatible version.</p>
+]]></content>
+  </entry>
+  
+</feed>

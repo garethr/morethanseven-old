@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: radiant | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/radiant/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New Version of Radiant CMS Out Today]]></title>
+    <link href="http://www.morethanseven.net/2009/02/07/new-version-radiant-cms-out-today/"/>
+    <updated>2009-02-07T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/02/07/new-version-radiant-cms-out-today</id>
+    <content type="html"><![CDATA[<p>Via "tagging a new release":http://github.com/radiant/radiant/tree/master on GitHub I see a new version of "Radiant":http://radiantcms.org/ (0.7) has been released. Radiant is a really nice CMS for smaller projects, it's used on the official "Ruby":http://www.ruby-lang.org/ site and I used it here at one point.</p>
+
+<p>Go check out the "blog post for the full list of the changes":http://radiantcms.org/blog/archives/2009/02/07/radiant-0-7-0---intaglio-release-final/.</p>
+]]></content>
+  </entry>
+  
+</feed>

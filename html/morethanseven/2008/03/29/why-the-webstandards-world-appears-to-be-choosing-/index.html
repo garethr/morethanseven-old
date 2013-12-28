@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Why the webstandards world appears to be choosing Django - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;ve been noticing an interesting trend recently, not one I have any empirical evidence for mind, but one I though interesting non-the-less. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2008/03/29/why-the-webstandards-world-appears-to-be-choosing-">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Why the Webstandards World Appears to Be Choosing Django</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-29T00:00:00+00:00" pubdate data-updated="true">Mar 29<span>th</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been noticing an interesting trend recently, not one I have any empirical evidence for mind, but one I though interesting non-the-less. Parts of the webstandards world appear to all be playing with <a href="http://djangoproject.com">Django</a>. Part of this has been the odd mention down the pub, at barcamps or at <span class="caps">SXSW</span> this year. But the main source of information on the topic has been <a href="http://twitter.com">twitter</a>. To name but a few I&#8217;ve seen tweets from <a href="http://nascentguruism.com">Steve</a>, <a href="http://thecssdiv.co.uk">Ross</a> and <a href="http://aralbalkan.com">Aral</a> recently and <a href="http://muffinresearch.co.uk/">Stuart</a> and <a href="http://cyril.doussin.name/thoughts/">Cyril</a> literally wont shut up about it.</p>
+<p>What&#8217;s interesting is that this didn&#8217;t happen with Rails, not in the corner of the pub that generally talks more about markup, javascript and <span class="caps">CSS</span> anyway. I&#8217;ve worked on a couple of Rails projects both personally and commercially, and I&#8217;ve just launched a little pet project build with django called <a href="http://doesyourapi.com">doesyourapi</a>. What follows is, to my mind, a few reasons why I think this trend exists and also why I think it will continue, at least for the time being.</p>
+<h3>People</h3>
+<p>You can&#8217;t ignore the personal touch, and in <a href="http://simonwillison.com">Simon Willison</a> and <a href="http://www.kryogenix.org/">Stuart Langridge</a> we already have two people who bridge the Python/Django community and the web standards crowd, at least in the UK. Personal technology choices at least are often driven by personal correspondence.</p>
+<h3>Templating</h3>
+<p>Django&#8217;s templating introduces a very simple syntax <em>and nothing else</em>. Rails lets you have the full power of Ruby to do with as you will within your views. Rails also makes heavy use of helpers, further adding to the complexity of views. Now I have mixed views here, based on my own skills more than anything. I know I&#8217;d feel much more comfortable throwing someone with good markup skills at a project using Django than Rails. For the most part with Django you use the html you&#8217;re used to, Rails often wants you to change this to helpers &#8211; in much the same way as <span class="caps">ASP</span>.<span class="caps">NET</span> does in fact. I think some of this comes from the Rails <em>don&#8217;t repeat yourself</em> <del>philosophy</del> <ins>obsession</ins>. Sometimes this leads to programmatic complexity which makes working with templates more akin to programming, even if it means less duplication. I&#8217;ve yet to work on a particularly complex Django project so maybe this simplicity might become a limitation to work around? Always a possibility.</p>
+<h3>Default craziness</h3>
+<p>Some of the bits and pieces that come bundled with Rails are just plain wrong, the Javascript helpers being one example. The abuse of <span class="caps">HTTP</span> by default in some of the scaffolding code being another. Oh, and the markup coming out of various helpers as well. In trying to help the application developer Rails gets in the way of the professional webstandards types. Django does next to none of this for you. Programmers coming from Rails might see this as missing features. Frontend types prefer this clean slate approach because it means you don&#8217;t have to fight the backend (sometimes including people) for control of the output. Note that you can work around much of this (in the same way as you can work <em>around</em> <span class="caps">ASP</span>.<span class="caps">NET</span> if you have to), it&#8217;s just nicer to not have to.</p>
+<h3>Other craziness</h3>
+<p>Rails people love Ruby. After all it&#8217;s better than Java (it&#8217;s also a pretty loveable programming language too). But like computer science departments everywhere many Rails people also dislike or simply put up with <span class="caps">HTML</span>, <span class="caps">CSS</span> and Javascript. If they can find a way of not having to write these and write something else (Rails people are also obsessed with domain specific languages) instead. Hence we have the likes of <a href="http://haml.hamptoncatlin.com/"><span class="caps">HAML</span></a> and <a href="http://lab.hamptoncatlin.com/play/with/sass"><span class="caps">SASS</span></a>. The problem is that us frontend loving folk quite like writing <span class="caps">CSS</span> (well, sometimes) and absolutely love writing <span class="caps">HTML</span>. Most of the time for good reasons too &#8211; just look at microformats for an example. Frontend developers tend to like using a mix of tools, predominantly backend developers not so much it seems.</p>
+<p>Personally I find it interesting. You could quite easily flip many of these arguments around to support why so many people are using Rails. For two frameworks with similar goals and uses it&#8217;s interesting to see the early philosophical differences playing out in the real world. It might be interesting to see what happens with frameworks like <a href="http://merbivore.com/">Merb</a> as well which seems to be set out to avoid many of these perceived issues with Rails. So, have anyone else noticed anything similar? Or even the complete opposite?</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-29T00:00:00+00:00" pubdate data-updated="true">Mar 29<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2008/03/29/why-the-webstandards-world-appears-to-be-choosing-/" data-via="garethr" data-counturl="http://www.morethanseven.net/2008/03/29/why-the-webstandards-world-appears-to-be-choosing-/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/03/25/barcamp-northeast/" title="Previous Post: BarCamp NorthEast">&laquo; BarCamp NorthEast</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/04/01/barcamp-northeast-tickets-available/" title="Next Post: Barcamp NorthEast tickets available">Barcamp NorthEast tickets available &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2008/03/29/why-the-webstandards-world-appears-to-be-choosing-/';
+        var disqus_url = 'http://www.morethanseven.net/2008/03/29/why-the-webstandards-world-appears-to-be-choosing-/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

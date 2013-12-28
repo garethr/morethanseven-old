@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Creating A Cucumber Nagios Package With Fpm - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;ve written before about why I like System Packages, but even I&#8217;ll admit that the barriers to creating them mean I don&#8217;t use them &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Creating a Cucumber Nagios Package With Fpm</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-29T00:00:00+01:00" pubdate data-updated="true">Apr 29<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve written <a href="http://morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages.html">before</a> about why I like System Packages, but even I&#8217;ll admit that the barriers to creating them mean I don&#8217;t use them for everything. <a href="https://github.com/jordansissel/fpm"><span class="caps">FPM</span></a> however is making it much easier, to the point where I&#8217;m starting to create a few packages I can reuse on projects. I thought a write up of how I&#8217;m doing that for <a href="http://cucumber-nagios.org/">Cucumber-Nagios</a> might be useful.</p>
+<p>For those that haven&#8217;t seen it yet, <span class="caps">FPM</span> (or Effing Package Management) is a tool that helps you build packages, like RPMs and DEBs, quickly. It can take in gems, python packages, node.js npm files or just plain directories and make files and from that create you one or more system packages. Lets have a look at a full example with a Ruby gem.I really like using cucumber-nagios, whatever platform or language I happen to be using at the time. I have a number of Django projects for instance with cucumber-nagios checks, so being able to not worry about most of the Ruby install is useful.</p>
+<p>In order to use <span class="caps">FPM</span> you&#8217;ll need to install it. It&#8217;s available as a Ruby gem so lets start there. I&#8217;m not going to delve into setting up a Ruby Gems environment as it&#8217;s annoying and covered for most platforms elsehere on the internet.</p>
+<pre><code>gem install fpm</code></pre>
+<p>First off lets install the cucumber-nagios gem, along with all it&#8217;s dependencies, into a local folder on my build machine. This might be a virtual machine or a separate machine in your cluster. It should be running the same OS as the intended production machines however. The following examples are from Ubuntu, but it&#8217;s much the same for <span class="caps">RPM</span> based distros.</p>
+<pre><code>gem install --no-ri --no-rdoc --install-dir ~/tmp/gems cucumber-nagios</code></pre>
+<p>Cucumber-nagios has a large number of dependencies, so we&#8217;re going to need to create packages for all of those too. <span class="caps">FPM</span> will cleverly deal with maintaining the specified dependencies thought. We&#8217;ll use find to do this quickly, and then instruct <span class="caps">FPM</span> to convert from a gem to a deb. You could obviously do this line by line if you prefer.</p>
+<pre><code>find ~/tmp/gems/cache -name '*.gem' | xargs -rn1 fpm -s gem -t deb -a all</code></pre>
+<p>That should leave us with lots of new .deb files that we can have a closer look at:</p>
+<pre><code>dpkg --info rubygem-cucumber-nagios_0.9.0_i686.deb
+dpkg -c rubygem-cucumber-nagios_0.9.0_i686.deb</code></pre>
+<p>If you already have a private apt repository set up then just upload these packages and away you go. I&#8217;d like to use apt for installing them so I can leave it to manage all the dependencies easily. If not then I&#8217;ll show you briefly how to create a local file system repo, it&#8217;s not much more work to create a shared repo available over <span class="caps">HTTP</span>.</p>
+<p>First create a directory to store our packages and move our newly created .deb files into it. You&#8217;ll need to be able to execute some of these commands as root but given the topic I&#8217;m assuming you&#8217;ll be able to deal with that.</p>
+<pre><code>mkdir /usr/local/repo
+cp *.all.deb /usr/local/repo</code></pre>
+<p>For the next part you&#8217;ll need to install the dpkg development tools, and then create a file that can be read by apt when it&#8217;s looking for packages it can install.</p>
+<pre><code>apt-get install dpkg-dev
+dpkg-scanpackages /usr/local/repo /dev/null | gzip -9c &gt; /usr/local/repo/Packages.gz</code></pre>
+<p>Now add your new package repo to your apt sources and update your package cache.</p>
+<pre><code>/etc/apt/sources.list
+deb file:/usr/local/repo ./
+apt-get update</code></pre>
+<p>At this point everything should be up and running. Let&#8217;s do a search in our repo:</p>
+<pre><code>apt-cache search rubygem-
+rubygem-amqp - AMQP client implementation in Ruby/EventMachine
+rubygem-builder - Builders for MarkUp.
+rubygem-bundler - The best way to manage your application's dependencies
+rubygem-cucumber - cucumber-0.10.2
+rubygem-cucumber-nagios - Systems testing plugin for Nagios using Cucumber.
+rubygem-diff-lcs - Provides a list of changes that represent the difference between two sequenced collections.
+rubygem-eventmachine - Ruby/EventMachine library
+rubygem-extlib - Support library for DataMapper and Merb
+rubygem-gherkin - gherkin-2.3.6
+rubygem-highline - HighLine is a high-level command-line IO library.
+rubygem-json - JSON Implementation for Ruby
+rubygem-mechanize - The Mechanize library is used for automating interaction with websites
+rubygem-net-ssh - Net::SSH: a pure-Ruby implementation of the SSH2 client protocol.
+rubygem-nokogiri - Nokogiri (鋸) is an HTML, XML, SAX, and Reader parser
+rubygem-rack - a modular Ruby webserver interface
+rubygem-rack-test - Simple testing API built on Rack
+rubygem-rspec - rspec-2.5.0
+rubygem-rspec-core - rspec-core-2.5.1
+rubygem-rspec-expectations - rspec-expectations-2.5.0
+rubygem-rspec-mocks - rspec-mocks-2.5.0
+rubygem-templater - Templater has the ability to both copy files from A to B and also to render templates using ERB
+rubygem-term-ansicolor - Ruby library that colors strings using ANSI escape sequences
+rubygem-webrat - Ruby Acceptance Testing for Web applications</code></pre>
+<p>And finally lets install cucumber-nagios from our shiny new package.</p>
+<pre><code>apt-get install rubygem-cucumber-nagios</code></pre>
+<p>If everything has worked out you should be able to run the cucumber-nagios-gen command to create a new project. Note that the path may be different, and in the case of debian based distros the gem bin path is not on the Path.</p>
+<pre><code>/usr/lib/ruby/gems/1.8/bin/cucumber-nagios-gen project test
+Generating with project generator:
+     [ADDED]  .gitignore
+     [ADDED]  .bzrignore
+     [ADDED]  Gemfile
+     [ADDED]  README
+     [ADDED]  features/steps
+     [ADDED]  features/support</code></pre></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-29T00:00:00+01:00" pubdate data-updated="true">Apr 29<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/cucumber-nagios/'>cucumber-nagios</a>, <a class='category' href='/tags/fpm/'>fpm</a>, <a class='category' href='/tags/packaging/'>packaging</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm/" data-via="garethr" data-counturl="http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/04/17/Devops-weekly-archive/" title="Previous Post: Devops Weekly Archive">&laquo; Devops Weekly Archive</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/05/07/Version-control-and-deployment-of-cron-jobs/" title="Next Post: Version Control And Deployment Of Cron Jobs">Version Control And Deployment Of Cron Jobs &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm/';
+        var disqus_url = 'http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

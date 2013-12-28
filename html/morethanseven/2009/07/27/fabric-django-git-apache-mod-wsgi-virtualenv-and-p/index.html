@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Fabric, Django, Git, Apache, mod_wsgi, virtualenv and pip deployment - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;ve been playing with automating Django deployments again, this time using Fabric. I found a number of examples on the web but non of them &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Fabric, Django, Git, Apache, Mod_wsgi, Virtualenv and Pip Deployment</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-27T00:00:00+01:00" pubdate data-updated="true">Jul 27<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been playing with automating Django deployments again, this time using <a href="http://fabfile.org/">Fabric</a>. I found a number of examples on the web but non of them quite fit the bill for me. I don&#8217;t like serving directly from a repository, I like to have either a package or tar I can use to say &#8220;that is what went to the server&#8221;. I also like having a quick rollback command as well as being able to deploy a particular version of the code when the need arises. I also wanted to go from a clean ubuntu install (plus <span class="caps">SSH</span>) to a running Django application in one command from the local development machine. The Apache side of things is nicely documented in <a href="http://gist.github.com/106077">this Gist</a> which made a good starting point.</p>
+<p>I&#8217;m still missing a few things in this setup mind and at the moment you still have to setup your local machine yourself. I&#8217;m probably going to create a paster template and another fabfile to do that I think. The instructions are a little rough as well at the moment and I&#8217;ve left the database out of it as everyone has there own preference.</p>
+<p>This particular fabric file makes setting up and deploying a django application much easier, but it does make a few assumptions. Namely that you&#8217;re using Git, Apache and mod_wsgi and your using Debian or Ubuntu. Also you should have  Django installed on your local machine and <span class="caps">SSH</span> installed on both the local machine and any servers you want to deploy to.</p>
+<p><em>note that I&#8217;ve used the name project_name throughout this example. Replace this with whatever your project is called.</em></p>
+<p>First step is to create your project locally:</p>
+<pre>mkdir project_name
+cd project_name
+django-admin.py startproject project_name</pre>
+<p>Now add a requirements file so pip knows to install Django. You&#8217;ll probably add other required modules in here later. Creat a file called requirements.txt and save it at the top level with the following contents:</p>
+<pre>Django</pre>
+<p>Then save this fabfile.py file in the top level directory which should give you:</p>
+<pre>project_name
+    fabfile.py
+    requirements.txt
+    project_name
+        __init__.py
+        manage.py
+        settings.py
+        urls.py</pre>
+<p>You&#8217;ll need a <span class="caps">WSGI</span> file called project_name.wsgi, where project_name  is the name you gave to your django project. It will probably look like the following, depending on your specific paths and the location of your settings module</p>
+<pre>import os
+import sys
+# put the Django project on sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
+os.environ["DJANGO_SETTINGS_MODULE"] = "project_name.settings"
+from django.core.handlers.wsgi import WSGIHandler
+application = WSGIHandler()</pre>
+<p>Last but not least you&#8217;ll want a virtualhost file for apache which looks  something like the following. Save this as project_name in the inner directory. You&#8217;ll want to change /path/to/project_name/ to the location on the remote server you intent to deploy to.</p>
+<pre>&lt;VirtualHost *:80&gt;
+        WSGIDaemonProcess project_name-production user=project_name group=project_name threads=10 python-path=/path/to/project_name/lib/python2.6/site-packages
+        WSGIProcessGroup project_name-production
+        WSGIScriptAlias / /path/to/project_name/releases/current/project_name/project_name.wsgi
+        &lt;Directory /path/to/project_name/releases/current/project_name&gt;
+            Order deny,allow
+            Allow from all
+        &lt;/Directory&gt;
+        ErrorLog /var/log/apache2/error.log
+        LogLevel warn
+        CustomLog /var/log/apache2/access.log combined
+&lt;/VirtualHost&gt;</pre>
+<p>Now create a file called .gitignore, containing the following. This prevents the compiled python code being included in the repository and the archive we use for deployment.</p>
+<pre>*.pyc</pre>
+<p>You should now be ready to initialise a git repository in the top level project_name directory.</p>
+<pre>git init
+git add .gitignore project_name
+git commit -m "Initial commit"</pre>
+<p>All of that should leave you with</p>
+<pre>project_name
+    .git
+    .gitignore
+    requirements.txt
+    fabfile.py
+    project_name
+        __init__.py
+        project_name
+        project_name.wsgi
+        manage.py
+        settings.py
+        urls.py</pre>
+<p>In reality you might prefer to keep your wsgi files and virtual host files elsewhere. The fabfile has a variable (config.virtualhost_path) for this case.  You&#8217;ll also want to set the hosts that you intend to deploy to (config.hosts) as well as the user (config.user).</p>
+<p>The first task we&#8217;re interested in is called setup. It installs all the  required software on the remote machine, then deploys your code and restarts the webserver.</p>
+<pre>fab local setup</pre>
+<p>After you&#8217;ve made a few changes and commit them to the master Git branch you can run to deply the changes.</p>
+<pre>fab local deploy</pre>
+<p>If something is wrong then you can rollback to the previous version.</p>
+<pre>fab local rollback</pre>
+<p>Note that this only allows you to rollback to the release immediately before the latest one. If you want to pick a arbitrary release then you can use the following, where 20090727170527 is a timestamp for an existing release.</p>
+<pre>fab local deploy_version:20090727170527</pre>
+<p>If you want to ensure your tests run before you make a deployment then you can do the following.</p>
+<pre>fab local test deploy</pre>
+<p>The actual fabfile looks like this. I&#8217;ve uploaded a <a href="http://gist.github.com/156623">Gist of it</a>, along with the docs, so if you want to improve it please clone it.</p>
+<pre># globals
+config.project_name = 'project_name'
+# environments
+def local():
+    "Use the local virtual server"
+    config.hosts = ['172.16.142.130']
+    config.path = '/path/to/project_name'
+    config.user = 'garethr'
+    config.virtualhost_path = "/"
+# tasks
+def test():
+    "Run the test suite and bail out if it fails"
+    local("cd $(project_name); python manage.py test", fail="abort")
+def setup():
+    """
+    Setup a fresh virtualenv as well as a few useful directories, then run
+    a full deployment
+    """
+    require('hosts', provided_by=[local])
+    require('path')
+    sudo('aptitude install -y python-setuptools')
+    sudo('easy_install pip')
+    sudo('pip install virtualenv')
+    sudo('aptitude install -y apache2')
+    sudo('aptitude install -y libapache2-mod-wsgi')
+    # we want rid of the defult apache config
+    sudo('cd /etc/apache2/sites-available/; a2dissite default;')
+    run('mkdir -p $(path); cd $(path); virtualenv .;')
+    run('cd $(path); mkdir releases; mkdir shared; mkdir packages;', fail='ignore')
+    deploy()
+def deploy():
+    """
+    Deploy the latest version of the site to the servers, install any
+    required third party modules, install the virtual host and 
+    then restart the webserver
+    """
+    require('hosts', provided_by=[local])
+    require('path')
+    import time
+    config.release = time.strftime('%Y%m%d%H%M%S')
+    upload_tar_from_git()
+    install_requirements()
+    install_site()
+    symlink_current_release()
+    migrate()
+    restart_webserver()
+def deploy_version(version):
+    "Specify a specific version to be made live"
+    require('hosts', provided_by=[local])
+    require('path')
+    config.version = version
+    run('cd $(path); rm releases/previous; mv releases/current releases/previous;')
+    run('cd $(path); ln -s $(version) releases/current')
+    restart_webserver()
+def rollback():
+    """
+    Limited rollback capability. Simple loads the previously current
+    version of the code. Rolling back again will swap between the two.
+    """
+    require('hosts', provided_by=[local])
+    require('path')
+    run('cd $(path); mv releases/current releases/_previous;')
+    run('cd $(path); mv releases/previous releases/current;')
+    run('cd $(path); mv releases/_previous releases/previous;')
+    restart_webserver()    
+# Helpers. These are called by other functions rather than directly
+def upload_tar_from_git():
+    require('release', provided_by=[deploy, setup])
+    "Create an archive from the current Git master branch and upload it"
+    local('git archive --format=tar master | gzip &gt; $(release).tar.gz')
+    run('mkdir $(path)/releases/$(release)')
+    put('$(release).tar.gz', '$(path)/packages/')
+    run('cd $(path)/releases/$(release) &amp;&amp; tar zxf ../../packages/$(release).tar.gz')
+    local('rm $(release).tar.gz')
+def install_site():
+    "Add the virtualhost file to apache"
+    require('release', provided_by=[deploy, setup])
+    sudo('cd $(path)/releases/$(release); cp $(project_name)$(virtualhost_path)$(project_name) /etc/apache2/sites-available/')
+    sudo('cd /etc/apache2/sites-available/; a2ensite $(project_name)') 
+def install_requirements():
+    "Install the required packages from the requirements file using pip"
+    require('release', provided_by=[deploy, setup])
+    run('cd $(path); pip install -E . -r ./releases/$(release)/requirements.txt')
+def symlink_current_release():
+    "Symlink our current release"
+    require('release', provided_by=[deploy, setup])
+    run('cd $(path); rm releases/previous; mv releases/current releases/previous;', fail='ignore')
+    run('cd $(path); ln -s $(release) releases/current')
+def migrate():
+    "Update the database"
+    require('project_name')
+    run('cd $(path)/releases/current/$(project_name);  ../../../bin/python manage.py syncdb --noinput')
+def restart_webserver():
+    "Restart the web server"
+    sudo('/etc/init.d/apache2 restart')
+</pre></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-27T00:00:00+01:00" pubdate data-updated="true">Jul 27<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/deployment/'>deployment</a>, <a class='category' href='/tags/django/'>django</a>, <a class='category' href='/tags/fabric/'>fabric</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p/" data-via="garethr" data-counturl="http://www.morethanseven.net/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/07/23/whats-new-django-11/" title="Previous Post: What's new in Django 1.1">&laquo; What's new in Django 1.1</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/08/15/your-own-pypi-server/" title="Next Post: Your Own PyPi server">Your Own PyPi server &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p/';
+        var disqus_url = 'http://www.morethanseven.net/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

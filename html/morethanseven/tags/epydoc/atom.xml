@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: epydoc | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/epydoc/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Epydoc Ant task]]></title>
+    <link href="http://www.morethanseven.net/2009/02/23/epydoc-ant-task/"/>
+    <updated>2009-02-23T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/02/23/epydoc-ant-task</id>
+    <content type="html"><![CDATA[<p>I quite like "Epydoc":http://epydoc.sourceforge.net/ for generating Python API documentation, even if the interface looks a little dated and could do with a lick of paint.</p>
+
+<p>For most project I use an Ant build script to generate documentation when needed. You could wrap the basic commands in a make file or a bash script if you prefer that sort of thing though. The only trick is to make sure you have everything you need on your Python Path. In Django projects, or App Engine projects, you'll probably find the default runner script plays with the path somewhat. The following example adds the current directory to the path along with an ext directory where I stash external modules, which should see it run cleanly without any import errors.</p>
+
+<p>pre. <project name="secretproject" default="create-api"></p>
+
+<pre><code>&lt;property name="name" value="secretproject"/&gt;
+&lt;property name="parent" value="/www/projects"/&gt;
+&lt;property name="api" value="/www/project/secretproject/api"/&gt;
+&lt;target name="create-api" description="Generate API documentation with epydoc"&gt;
+     &lt;exec executable="/bin/sh"&gt;
+         &lt;env key="PYTHONPATH" value="${parent}:${parent}/${name}/ext:$PYTHONPATH"/&gt;
+         &lt;env key="DJANGO_SETTINGS_MODULE" value="${name}.settings"/&gt;
+         &lt;arg line="-c 'epydoc --html -o ${api} --name ${name} --graph all ${name}'"/&gt;
+     &lt;/exec&gt;
+&lt;/target&gt;
+</code></pre>
+
+<p></project></p>
+]]></content>
+  </entry>
+  
+</feed>

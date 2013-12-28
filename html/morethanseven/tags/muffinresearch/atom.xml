@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: muffinresearch | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/muffinresearch/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Spyder]]></title>
+    <link href="http://www.morethanseven.net/2008/11/29/spyder/"/>
+    <updated>2008-11-29T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2008/11/29/spyder</id>
+    <content type="html"><![CDATA[<p>"Stuart":http://muffinresearch.co.uk/ at work has been playing with a nice "Python web crawler":https://edge.launchpad.net/spyder recently. I've used "Harvestman":http://www.harvestmanontheweb.com/ before but it's not the most straightforward thing to work with. Spyder has a really nifty callback based approach and a couple of hooks which allows you to write code like:</p>
+
+<p>pre. crawler = Spyder()
+crawler.register(my_custom_method, 'post_fetch_html')
+crawler.run(URL)</p>
+
+<p>On a side note I wish "Launchpad":http://launchpad.net was as clean and tidy as "GitHub":http://github.com though. I can see GitHub adding some of the features that Launchpad has eventually, but I hope they fit them in around the existing features.</p>
+]]></content>
+  </entry>
+  
+</feed>

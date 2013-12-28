@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: hadoop | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/hadoop/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hadoop Hive Web Interface]]></title>
+    <link href="http://www.morethanseven.net/2010/04/05/Hadoop-hive-web-interface/"/>
+    <updated>2010-04-05T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2010/04/05/Hadoop-hive-web-interface</id>
+    <content type="html"><![CDATA[<p>I've been playing with Hive recently and liking what I've found. In theory at least it provides a very nice, simple way of getting into analysing large data sets. To make it even easier to show other people what you're up to Hive has a nascent web interface with a little documentation "on the wiki":http://wiki.apache.org/hadoop/Hive/HiveWebInterface</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRiBfQw" alt="image of hive web ui"/></p>
+
+<p>On the one hand it's rather simple at this point, but that should be easily enought to prettify given a bit of time. The bigger problem was getting it working in the first place. What follows worked for me using the latest cloudera packages on debian testing. I'm assuming you already have Hive and Hadoop installed, the basic packages worked fine for me here.</p>
+
+<p>Next up you'll need the JDK (not just the JRE) as their is some compilation that will go on the first time you run the web interface.</p>
+
+<p><notextile>
+&lt;% syntax_colorize :bash, type=:coderay do %>
+apt-get install ant sun-java6-jdk
+&lt;% end %>
+</notextile></p>
+
+<p>Next up I had to modify the installed <em>/etc/hive/conf/hive-site.xml</em> file as follows:</p>
+
+<p>I changed this:</p>
+
+<p><notextile>
+&lt;% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>hive.metastore.uris</name>
+  <value>file:///var/lib/hivevar/metastore/metadb/</value>
+  <description>Comma separated list of URIs of metastore servers. The first server that can be connected to will be used.</description>
+</property>
+&lt;% end %>
+</notextile></p>
+
+<p>To this. Note the hivevar path doesn't exist so I'm not sure if this was a typo in the source.</p>
+
+<p><notextile>
+&lt;% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>hive.metastore.uris</name>
+  <value>file:///var/lib/hive/var/metastore/metadb/</value>
+  <description>Comma separated list of URIs of metastore servers. The first server that can be connected to will be used.</description>
+</property>
+&lt;% end %>
+</notextile></p>
+
+<p>I also change the following section regarding the metastore name:</p>
+
+<p><notextile>
+&lt;% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>javax.jdo.option.ConnectionURL</name>
+  <value>jdbc:derby:;databaseName=/var/lib/hive/metastore/${user.name}_db;create=true</value>
+  <description>JDBC connect string for a JDBC metastore</description>
+</property>
+&lt;% end %>
+</notextile></p>
+
+<p>To this, with a fixed name. When using the above confirguration the file was actually called ${user.name} rather than my username being subsituted in. Elsewhere this seems to work fine.</p>
+
+<p><notextile>
+&lt;% syntax_colorize :xml, type=:coderay do %>
+<property>
+  <name>javax.jdo.option.ConnectionURL</name>
+  <value>jdbc:derby:;databaseName=/var/lib/hive/metastore/metastore_db;create=true</value>
+  <description>JDBC connect string for a JDBC metastore</description>
+</property>
+&lt;% end %>
+</notextile></p>
+
+<p>I'm not convinced the above two changes are needed but have left them here just in case. The main tricky part is making sure a load of environment variables are correctly set. The following worked for me:</p>
+
+<p><notextile>
+&lt;% syntax_colorize :bash, type=:coderay do %>
+export ANT_LIB=/usr/share/ant/lib
+export HIVE_HOME=/usr/lib/hive
+export HADOOP_HOME=/usr/lib/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
+&lt;% end %>
+</notextile></p>
+
+<p>All being well that should allow you to run the hive command with the web interface like so:</p>
+
+<p><notextile>
+&lt;% syntax_colorize :bash, type=:coderay do %>
+hive --service hwi
+&lt;% end %>
+</notextile></p>
+
+<p>That should bring up a webserver on port 9999 where you should see something similar to the screenshot above.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Problems Installing Hadoop 0.20 and Dumbo 0.21 on Ubuntu]]></title>
+    <link href="http://www.morethanseven.net/2009/10/18/problems-installing-hadoop-and-dumbo-ubuntu/"/>
+    <updated>2009-10-18T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/10/18/problems-installing-hadoop-and-dumbo-ubuntu</id>
+    <content type="html"><![CDATA[<p>The Hadoop wiki has a great introduction to <a href="http://wiki.apache.org/hadoop/Running_Hadoop_On_Ubuntu_Linux_(Single-Node_Cluster)">installing this piece of software</a>, which I wanted to do to have a play with "Dumbo":http://klbostee.github.com/dumbo/. The Dumbo docs also have a good "getting started":http://wiki.github.com/klbostee/dumbo/building-and-installing section which includes a few patches than need to be applied.</p>
+
+<p>bq. Dumbo can be considered to be a convenient Python API for writing MapReduce programs</p>
+
+<p>Unfortunately it's not quite that simple, at least on Ubuntu Jaunty. Hadoop now uses Java6, but if you just follow the instructions on the wikis you'll hit a problem when you run ''ant package'', namely that a third party application ("Apache Forrest":http://forrest.apache.org/) requires Java 1.5. Once you fix that, the build script will complain again that you need to install Forrest. Here's what I did to get everything working:</p>
+
+<p>pre. sudo apt-get install ant sun-java5-jdk</p>
+
+<p>pre. su - hadoop
+wget http://mirrors.dedipower.com/ftp.apache.org/forrest/apache-forrest-0.8.tar.gz
+tar xzf apache-forrest-0.8.tar.gz
+cd /usr/local/hadoop
+patch -p0 &lt; /path/to/HADOOP-1722.patch
+patch -p0 &lt; /path/to/HADOOP-5450.patch
+patch -p0 &lt; /path/to/MAPREDUCE-764.patch
+ant package -Djava5.home=/usr/lib/jvm/java-1.5.0-sun -Dforrest.home=/home/hadoop/apache-forrest-0.8/</p>
+
+<p>With all that out of the way you should be able to run the "simple examples":http://dumbotics.com/2009/05/31/dumbo-on-clouderas-distribution/ found on the rather excellent "dumbotics":http://dumbotics.com blog. If you're using the Cloudera distribution, or when the Hadoop 0.21 gets a release, these problems will disappear but in the meantime hopefully this saves someone else a bit of head scratching.</p>
+]]></content>
+  </entry>
+  
+</feed>

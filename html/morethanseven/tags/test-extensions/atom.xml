@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: test-extensions | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/test-extensions/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[No database test runner added to test extensions]]></title>
+    <link href="http://www.morethanseven.net/2009/09/13/no-database-test-runner-added-test-extensions/"/>
+    <updated>2009-09-13T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/09/13/no-database-test-runner-added-test-extensions</id>
+    <content type="html"><![CDATA[<p>Thanks to "Brad":http://intranation.com/ I've just released a new version of "Django Test Extensions":http://pypi.python.org/pypi/django-test-extensions/0.5 (also on "GitHub":http://github.com/garethr/django-test-extensions with support for running tests without the overhead of setting up and tearing down the database. Django still has a few places were it assumes you'll have a database somewhere in your project - and the default test runner is one of them.</p>
+]]></content>
+  </entry>
+  
+</feed>

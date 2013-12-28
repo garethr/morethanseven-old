@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rant | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/rant/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Why Developers Should Care About System Packages]]></title>
+    <link href="http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/"/>
+    <updated>2011-01-16T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages</id>
+    <content type="html"><![CDATA[<p>First a bit of background. I'm a software developer (lately in Ruby and a tiny bit of Java, previously in Python, C# and PHP; yes I got around a bit), but have spent enough time looking after production hardware (mainly debian, solaris and recently a bit of RHEL) to have a feel for sysadmin work. I even have friends who are systems administrators. I mainly use a shiny apple laptop for my development work, but I actually execute all the code on Linux virtual machines. The aim of this post is to bridge a divide, not start a flame war about specific tools.</p>
+
+<p>I'm writing this partly to address "a tweet I made":http://twitter.com/CoffeeScript/status/18867889742282752 that in hindsight needed more than 140 characters. Actually a number of my recent tweets have been on the same theme so I should be more helpful. What I'm seeing recently is an increase in the ways I'm being asked to install software and for me at least that's annoying.</p>
+
+<h1>Several projects will ask you to do something like <em>curl http://bit.ly/installsh | sh</em> which downloads a shell script and executes it.</h1>
+
+<h1>Some will insist I have git installed</h1>
+
+<h1>A new framework might come with it's own package manager</h1>
+
+<p>I'm a polyglot programmer (so I shouldn't care about #3) that uses git for everything (scratch #2) and who writes little bash scripts to make my life easier (exactly like #1). So I understand exactly how and why these solutions appear fine. And for certain circumstances they are, in particular for local development on a machine owned and maintained by one person. But on a production machine and even on my clean and tidy virtual machines none of these cut it for me in most cases.</p>
+
+<p>Most developers I know have only a passing awareness of packaging so I'm going to have an aside to introduce some cool tricks. I think this is one place where sysadmins go wrong, they assume developers understand their job and that they know the various tools intimately.</p>
+
+<p>h2. System Package Tips</p>
+
+<p>I'm going to show examples using the debian tools so these apply to debian and ubuntu distros. RPM and the Yum tool have similar commands too, I just happen to know debs better.</p>
+
+<p>h3. List all installed packages</p>
+
+<p>This one is a bit obvious, it's probably going to be available in anyones home grown package management system. But if you're installing software via hand using git or a shell script then you can't even ask the machine what is installed.</p>
+
+<pre>dpkg -l</pre>
+
+
+<p>h3. List files from package</p>
+
+<p>I love this one. Have you ever installed a package and wondered where the config files are? You can soft of guess based on your understanding of the OS file system layout but this command is handy.</p>
+
+<pre>dpkg -L lynx
+/.
+/usr
+/usr/share
+/usr/share/doc
+/usr/share/doc/lynx
+/usr/share/doc/lynx/copyright
+/usr/share/doc/lynx/changelog.gz
+/usr/share/doc/lynx/changelog.Debian.gz</pre>
+
+
+<p>h3. Where did that file come from?</p>
+
+<p>Have a file on disk that you're not sure where it came from? Ask the system package manager. The more everything is installed from packages the more useful this becomes.</p>
+
+<pre>dpkg -S /bin/netstat</pre>
+
+
+<p>h3. Unmet dependencies</p>
+
+<p>At the heart of a good package system is the ability to map dependencies and to have unmet dependencies installed as needed. Having tools to query that tree is useful in various places.</p>
+
+<pre>apt-cache unmet</pre>
+
+
+<p>Will give you output a little like the followning:</p>
+
+<pre>Package libdataobjects-sqlite3-ruby1.9.1 version 0.10.1.1-1 has an unmet dep:
+ Depends: libdataobjects-ruby1.9</pre>
+
+
+<p>h3. What needs upgrading?</p>
+
+<p>The apticron tool can alert you to packages that are now out of date. It's easy to set it up to email you each day for each host and tell you about packages that need upgrading. Remember that the reason one of these might have an update could be a documented security bug and it becomes even more important to know about it quickly.</p>
+
+<pre>apticron report [Fri, 19 Jan 2007 18:42:01 -0800]
+========================================================================
+
+apticron has detected that some packages need upgrading on: 
+
+    faustus.example.com
+    [ 1.2.3.4 ]
+
+The following packages are currently pending an upgrade:
+
+    xfree86-common 4.3.0.dfsg.1-14sarge3
+    libice6 4.3.0.dfsg.1-14sarge3
+    libsm6 4.3.0.dfsg.1-14sarge3
+    xlibs-data 4.3.0.dfsg.1-14sarge3
+    libx11-6 4.3.0.dfsg.1-14sarge3
+    libxext6 4.3.0.dfsg.1-14sarge3
+    libxpm4 4.3.0.dfsg.1-14sarge3</pre>
+
+
+<p>I'm really not an expert on using debs but even I find these tools useful, and you don't get the same capabilities when you use anything else.</p>
+
+<p>h2. Good and bad examples</p>
+
+<p>Still here? Good. I'm going to pick on a few pieces of software to give examples of what I mean. All of this software I actively use and think is brilliant earth shattering stuff, I'm not dissing the software so if any fanboys reading can kindly not attack me please, I'm one of you.</p>
+
+<p>h3. RabbitMQ (Erlang)</p>
+
+<p>The nice folk building the "RabbitMQ":http://www.rabbitmq.com/ message queue provide downloads of the "source code as well as various system packages":http://www.rabbitmq.com/server.html. Knowing that some people will want to use the latest and greatest version of the application they also host the latest deboan packages in their "own package repo with details on their site":http://www.rabbitmq.com/debian.html.</p>
+
+<p>h3. Chef (Ruby)</p>
+
+<p>The "Chef configuration management system":http://wiki.opscode.com/display/chef/Home also provides multiple methods to install their software. For people already using, happy and familiar with it they provide everything as a ruby gem. If you prefer "system packages they have those too":http://wiki.opscode.com/display/chef/Installation. They also provide their "own deb repo":http://wiki.opscode.com/display/chef/Package+Installation+on+Debian+and+Ubuntu for people to grab the latest software.</p>
+
+<p>h3. Cloudera Hadoop (Java)</p>
+
+<p>Before I found the Cloudera Hadoop packages I remember having great fun "manually applying patches":http://morethanseven.net/2009/10/18/problems-installing-hadoop-and-dumbo-ubuntu.html to get everything working. Cloudera do exactly the same as the above two developers, namely "host their owns debs":https://docs.cloudera.com/display/DOC/Hadoop+Installation+%28CDH3%29.</p>
+
+<p>h3. RVM</p>
+
+<p>"RVM":http://rvm.beginrescueend.com/ is a fantastic way of managing multiple ruby versions and multiple isolated sets of gems. But it's also probably the first place I saw the install from remote shell script approach.</p>
+
+<pre>bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )</pre>
+
+
+<p>I like to do the same things on my development machine as I do in production, and the main problem I have with RVM is that it's so useful I want it everywhere. I'd prefer if the system wide install had some sort of option to install the rubies from packages rather than compile everything on the machine (meaning you need a full set of compile tools installed everywhere), or that we can automate the creation of the packages using rvm.</p>
+
+<p>h3. Solr</p>
+
+<p>You'll probably find packages for the "Solr search server":http://lucene.apache.org/solr/ in recent distros. It's hugely popular predominantly because it's a fantasic piece of software. But everytime I have a look at the system packages I can't quite get them to work, or they are out of date. I now know my way around Solr setup relatively well and just end up creating my own packages and I've spoken to other folk who have done the same. The "Solr documentation":http://lucene.apache.org/solr/tutorial.html recommends downloading a zip file to get started and I can't see any mention of the packages. My guess is the packages aren't maintained as part of the core development which is a quick way to get them out of sync with current progress.</p>
+
+<p>h2. Enough beating up on my fellow developers</p>
+
+<p>System packages aren't blameless, I think the culture often seen in debian of splitting the developer from the package maintainer is part of the problem. This manifests in various ways, all negative:</p>
+
+<ul>
+<li>Out of date packages. The biggest complaint from developers about system packages is nearly always that they are out of date. Maintainers should more readily release packaging scripts (ideally back to the project) so people can easily roll their own.</li>
+<li>The documentation around packaging is either fantastic or terrible, depending on what you want to do and who you are. It turns out making your own packages (using something like "checkinstall":http://checkinstall.izto.org/) is actually quite easy.</li>
+<li>The official debian docs I think focus on the role of package maintainer, rather than trying to push that downstream to the developers. That doesn't make them bad, it just means we need documentation aimed at a developer just getting started with packaging their software.</li>
+<li>Developers hosting their own package repository and asking people to point at that is also quite easy. The projects I praised above all do it nicely. But simple attractive documentation is hard to come by.</li>
+</ul>
+
+
+<p>h2. What to do</p>
+
+<p>First up lets talk more about the distribution and installation of software. And lets do that in the spirit of making things better for everyone involved. The ongoing spat between Ruby and Debian people is just counterproductive. "This":http://ryanbigg.com/2010/12/ubuntu-ruby-rvm-rails-and-you/ would be a good article if it didn't lead with:</p>
+
+<p>bq. This system (apt-get) is out-dated and leads to major headaches. Avoid it for Ruby-related packages. We do Ruby, we know what’s best. Trust us.</p>
+
+<p>We need better documentation aimed at developers. I'm going to try and write some brief tutorials soon (otherwise I'd feel like this rant was just me complaining) but I'm not an expert. I'll hapily help "promote":http://devopsweekly.com or collate good material as well. Maybe it already exists and I just can't find it?</p>
+
+<p>I'm a git user and a big "GitHub":http://github.com fan, but one of the features of Launchpad I really like is the "Personal Package Archive":https://help.launchpad.net/Packaging/PPA. This lets you upload source code and have it automatically built into a package. This is specific to Ubuntu but that's understandable given Launchpad is also operated by Canonical. What I'd like is the same feature in GitHub but that allowed building debs and RPMs for different architectures. Alternatively a webhook based third party that could do the same would be awesome (anyone fancy building one? I might pitch in). The only real advantage of it being GitHub would be it would make packages immediately cool, which hopefully you all now realise that they are.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Thoughts on the whole XHTML/HTML5 affair]]></title>
+    <link href="http://www.morethanseven.net/2009/07/08/thoughts-whole-xhtml-and-html5-affair/"/>
+    <updated>2009-07-08T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/07/08/thoughts-whole-xhtml-and-html5-affair</id>
+    <content type="html"><![CDATA[<p>I wasn't going to write anything about "the whole XHTML2 thing":http://www.w3.org/News/2009#item119. I noted its passing, got "a nice message on Twitter":https://twitter.com/jamierumbelow/status/2442111140 and thought that would be it. But no. The web standards world exploded. I honestly didn't see that coming.</p>
+
+<p>Let's get a few things straight:</p>
+
+<ul>
+<li>I use XHTML 1.0 for this site. In fact I've been using it for the majority of things for most of my professional life.</li>
+<li>I don't serve content with an XML mime type. Neither does <em>anyone</em> else. It's a complete non issue. Ignore it.</li>
+<li>At my last job we used HTML 4. It meant I had to remember not to close my image elements, which bugged me, but not too much. I still quoted everything. Closed everything I could. And only used lowercase element names.</li>
+<li>My latest two pet projects are using HTML5. I'm still closing everything (including image elements, yay), quoting everything and lowercasing everything.</li>
+</ul>
+
+
+<p>Web Standards are interesting, in that they are standards for both implementors (browser makers) and for authors (us). I like coding standards in programming languages too, it's one of the things I love about Python and "PEP8":http://www.python.org/dev/peps/pep-0008/. But with these standards it's not about making your code <em>work</em>, it's about shared conventions and readability. So common spacing, UPPERCASE for constants and Leading caps for class names for instance. It's also about having a tool to check everyone is adhering to standards, like "pep8.py":http://svn.browsershots.org/trunk/devtools/pep8/pep8.py or FXCOP for .NET. If everyone writes code in the same way it's easier to read, write and to pick up someone else' code. You can do that with HTML, but you <em>have</em> to do that with XHML.</p>
+
+<p>Now the whole HTML 4.0 vs XHTML 1.0 thing has come up lots of times, on mailing lists, at conferences as well as down the pub. I know on occasion me, "Drew":http://allinthehead.com, "Rachel":http://rachelandrew.co.uk and "Jeremy":http://adactio.com side against "Simon":http://simonwillison.net and "Nat":http://natbat.net on the issue. But what's interesting is that I think we all agree on all the typographical conventions stuff. My "former":http://intranation.com "colleagues":http://thecssdiv.com with a passion for front end standards and HTML 4 did the same thing. I even remember Simon looking for ways to validate against HTML 4 but also to check for all lower case elements, closed paragraphs and the like.</p>
+
+<p>Which brings me to the reason why I use XHTML: The validator enforces my preferred coding standards for HTML - lowercase elements, quoted attributes and closed elements. That's it. Not much really. I <em>know</em> it's "marketing XHTML rather than technical XHTML":http://hsivonen.iki.fi/xhtml2-html5-q-and-a/. I don't care. Or rather I do care, I just make a conscious pragmatic decision based on a small personal advantage. I'm both pedantic and like having a tool chain which enforces that, XHTML suits my style.</p>
+
+<p>The markup language debate is being talked about in terms of pragmatists vs purists. But ignoring the people who both really understood and really wanted XHTML2, it's mainly the pragmatists arguing amongst themselves now. Some of them are big company people, others working for themselves. Some have standards or academic leanings, others are rooted in commercial web design. Some people probably work on huge long term projects, others relatively small sites and apps. And I think it's these cultural differences that are the root of arguments now. So blog posts coming out saying the same thing but arguing with other people give a strange impression of disagreement. Throw in that the web lends itself to popular blogs gathering a crowd of like-minded people around them and hey presto we have people feeling unfairly put upon and getting agitated.</p>
+
+<p>What a storm in a teacup. Who doesn't genuinely think the best approach is to use whatever you're using now for most projects, investigate HTML5 as time permits, and then expect to start using HTML5 in bits and pieces in the short to medium term, when being mainly dependent on your target audience?</p>
+
+<p>In my opinion the only genuine problem that this saga has highlighted is the fear, uncertainty and doubt around all flavours of HTML amongst a large number of web professionals. People don't get this stuff at all. With the added resources soon to be put into the HTML5 working group at the W3C this <em>outreach and education</em> side of the project has to have just as much love and attention as the spec itself.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: testing | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/testing/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Testing WSGI Application with Urltest]]></title>
+    <link href="http://www.morethanseven.net/2009/06/04/testing-wsgi-application-urltest/"/>
+    <updated>2009-06-04T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/06/04/testing-wsgi-application-urltest</id>
+    <content type="html"><![CDATA[<p>I found myself wanted something to make writing high level, functional tests for WSGI application easier and quicker. If I liked the term I'd call it a domain specific language for testing URLs. Basically I found myself writing a lot of tests like:</p>
+
+<p>pre. def test_404_handler(self):</p>
+
+<pre><code>response = self.app.get('/does-not-exist', expect_errors=True)        
+self.assertEquals("404 Not Found", response.status)
+</code></pre>
+
+<p>Testing more than a view URLs like this got boring quickly. What I wanted was a short hand syntax for defining this sort of simple test and then running them all individually. So was born "Urltest":http://github.com/garethr/urltest/tree/master. It uses the rather nifty "Webtest":http://pypi.python.org/pypi/WebTest/0.9 module and hooks into unittest from the standard library. You're test script then looks a little like:</p>
+
+<p>pre. #!/usr/bin/env python
+from example_app import application
+from urltest import verify_urls
+if <strong>name</strong> == "<strong>main</strong>":</p>
+
+<pre><code>urls = (
+    {'url':"/", 'code':200},
+    {'url':"/bob", 'code':200},
+    {'url':"/jim", 'code':404},
+    {'url':"/jim", 'method': "POST", 'code':405},
+)    
+verify_urls(urls, application)
+</code></pre>
+
+<p>Let me know if you use it as at the moment this is <em>works for me</em> ware, although it's reasonably well tested and commented.</p>
+]]></content>
+  </entry>
+  
+</feed>

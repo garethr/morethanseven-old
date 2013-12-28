@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Generating Charts using Google Charts API - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I had need recently to produce some nice looking charts and immediately turned to the very nice Google Charts API. Just before Christmas Brian had &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2008/03/02/generating-charts-using-google-charts-api">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Generating Charts Using Google Charts API</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-02T00:00:00+00:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I had need recently to produce some nice looking charts and immediately turned to the very nice <a href="http://code.google.com/apis/chart/">Google Charts <span class="caps">API</span></a>. Just before Christmas <a href="http://suda.co.uk">Brian</a> had written up <a href="http://24ways.org/2007/tracking-christmas-cheer-with-google-charts">a great introduction</a> on <a href="http://24ways.org">24ways</a> and ever since I&#8217;d been looking for an excuse.</p>
+<p><a href="http://www.wait-till-i.com">Chris</a> wrote up a pretty nice approach to <a href="http://www.wait-till-i.com/2008/01/08/generating-charts-from-accessible-data-tables-using-the-google-charts-api/">enhancing well marked up data tables</a> using the Charts <span class="caps">API</span> with a dash of Javascript and I decided to start with that. I made only a couple of changes to this approach based on personal requirements and preferences.</p>
+<p>For a table like this:</p>
+<table class="tochart">
+  <caption>Caption</caption>  
+<tr>
+    <th scope="row">Label</th>
+    <td>Data</td>
+</tr>
+<tr>
+    <th scope="row">Label</th>
+    <td>Data</td>
+</tr>
+</table>
+<p>I prefer to use the table header element to mark up the table row and the original script relied on these being <em>td</em> elements. A couple of changes to the javascript fixed that. I also decided to display the <em>caption</em> as a title on the resulting graph.</p>
+<pre><code>
+&lt;table class="tochart"&gt;
+  &lt;caption&gt;Caption&lt;/caption&gt;  
+  &lt;tr&gt;
+    &lt;th scope="row"&gt;Label&lt;/th&gt;
+    &lt;td&gt;Data&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th scope="row"&gt;Label&lt;/th&gt;
+    &lt;td&gt;Data&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+<p>The original script only supported the 3D pie charts and in a couple of cases I wanted to generate bar-charts from the data or flat pie-charts. A few modifications later and you can pass a type parameter into the script via a class on the table.</p>
+<p>The default if the parameter isn&#8217;t set is the flat pie-chart, which can also be specified via:</p>
+<pre><code>&lt;table class="tochart typep"&gt;</code></pre>
+<p>For the 3D pie-chart:</p>
+<pre><code>&lt;table class="tochart typep3"&gt;</code></pre>
+<p>The horizontal bar-chart is created with:</p>
+<pre><code>&lt;table class="tochart typebhg"&gt;</code></pre>
+<p>And finally the vertical bar-chart is set based on:</p>
+<pre><code>&lt;table class="tochart typebvg"&gt;</code></pre>
+<p>The complete modified version of Chris&#8217; script is below:</p>
+<pre><code>(table2graph = function(){
+
+  /* variables */
+  var triggerClass = 'tochart';
+  var chartClass = 'fromtable';
+  var hideClass = 'hidden';
+  var chartColor = 'FFCC33';
+  var chartSize = '900x300';
+  var chartType = 'p';
+  
+  var toTableClass = 'totable';
+  var tableClass = 'generatedfromchart';
+  /* end variables */
+
+  var tables = document.getElementsByTagName('table');
+  var sizeCheck = /\s?size([^\s]+)/;
+  var colCheck = /\s?color([^\s]+)/;
+  var typeCheck = /\s?type([^\s]+)/;
+  for(var i=0;tables[i];i++){
+    var t = tables[i];
+    var c = t.className;
+    var data = [];
+    var labels = []
+    if(c.indexOf(triggerClass) !== -1){
+      var size = sizeCheck.exec(c);
+      size = size ? size[1] : chartSize;
+      var col = colCheck.exec(c);
+      col = col ? col[1] : chartColor;
+      var type = typeCheck.exec(c);
+      type = type ? type[1] : chartType;
+      
+      if (type == 'bhg') {
+        var label = 'chxl=1:|';
+      } else {
+       var label = 'chl=';
+      }
+      
+      var caption = t.getElementsByTagName('caption')[0].innerHTML;
+      var charturl = 'http://chart.apis.google.com/chart?cht=' + type + '&amp;chtt=' + caption + '&amp;chxt=x,y&amp;chco=' + col + '&amp;chs=' + size + '&amp;chd=t:';
+      t.className += ' '+ hideClass;
+      var ths = t.getElementsByTagName('tbody')[0].getElementsByTagName('th');
+      var tds = t.getElementsByTagName('tbody')[0].getElementsByTagName('td');
+      for(var j=0;tds[j];j+=1){
+        labels.push(ths[j].getElementsByTagName('em')[0].innerHTML.toLowerCase());
+        data.push(tds[j].innerHTML);
+      };
+      var chart = document.createElement('img');
+      chart.setAttribute('src',charturl+data.join(',') + '&amp;' + label + labels.join('|'));
+      chart.setAttribute('alt',t.getAttribute('summary'));
+      chart.className = chartClass;
+      t.parentNode.insertBefore(chart,t);
+    };
+  };
+  
+  /* convert charts to tables */
+  var charts = document.getElementsByTagName('img');
+  for(var i=0;charts[i];i++){
+    if(charts[i].className.indexOf(toTableClass) !== -1){
+      var t = document.createElement('table');
+      var tbody = document.createElement('tbody');
+      var data = charts[i].getAttribute('src');
+      var th,td,tr;
+      var values = data.match(/chd=t:([^&amp;]+)&amp;?/)[1];
+      var labels = data.match(/chl=([^&amp;]+)&amp;?/)[1];
+      var l = labels.split('|');
+      var v = values.split(',');
+      for(var j=0;l[j];j++){
+        tr = document.createElement('tr');
+        th = document.createElement('th');
+        th.appendChild(document.createTextNode(l[j]));
+        th.setAttribute('scope','row');
+        td = document.createElement('td');
+        td.appendChild(document.createTextNode(v[j]));
+        tr.appendChild(th);
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+      };
+      t.appendChild(tbody);
+      t.setAttribute('summary',charts[i].getAttribute('alt'));
+      charts[i].parentNode.insertBefore(t,charts[i]);
+      charts[i].setAttribute('alt','');
+      t.className = tableClass;
+    };
+  };
+}());</code></pre></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-02T00:00:00+00:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2008/03/02/generating-charts-using-google-charts-api/" data-via="garethr" data-counturl="http://www.morethanseven.net/2008/03/02/generating-charts-using-google-charts-api/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/02/24/thinking-digital/" title="Previous Post: Thinking Digital">&laquo; Thinking Digital</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/03/14/accepted-for-xtech/" title="Next Post: Accepted for Xtech">Accepted for Xtech &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2008/03/02/generating-charts-using-google-charts-api/';
+        var disqus_url = 'http://www.morethanseven.net/2008/03/02/generating-charts-using-google-charts-api/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

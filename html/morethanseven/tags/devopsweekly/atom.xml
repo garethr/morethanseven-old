@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: devopsweekly | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/devopsweekly/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Devops Weekly Archive]]></title>
+    <link href="http://www.morethanseven.net/2011/04/17/Devops-weekly-archive/"/>
+    <updated>2011-04-17T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/04/17/Devops-weekly-archive</id>
+    <content type="html"><![CDATA[<p>Since I launched it back in November my "Devops Weekly":http://devopsweekly.com email has been pretty well received I think. Folks on twitter seem to like it, as do a few people I've met at recent events who have said nice things. One thing a few people have been after though is an online archive, either because email just doesn't work for them or more often because they missed out on the earlier issues.</p>
+
+<p>With a little time this weekend and the help of "Jekyll":https://github.com/mojombo/jekyll I've just added the seventeen iss§ues to date to the new "Devops Weekly archive":http://devopsweekly.com/archive. I'd have liked to do something a bit more useful, maybe introduce per link tags or a nifty search feature, but I'm pretty busy at present and reason this should serve the main purpose of getting these links online.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Devops Weekly]]></title>
+    <link href="http://www.morethanseven.net/2010/11/21/Devops-weekly/"/>
+    <updated>2010-11-21T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2010/11/21/Devops-weekly</id>
+    <content type="html"><![CDATA[<p>I've really been enjoying "Ruby Weekly":http://rubyweekly.com recently, it's an email newsletter by "Peter Cooper":http://peterc.org/ which brings the latest Ruby related news and articles to your inbox.</p>
+
+<p>I have to admit to being sceptical at first about the format, I think I unsubscribed from most email newsletters many years ago, moving my reading to RSS and then Twitter. But I've actually found a regularly appearing email a great way to catch up with the goings on. A think the reasons for that change of heart are:</p>
+
+<ul>
+<li>Their is simply more being written now that even a few years ago, and I'm interested in more topics.</li>
+<li>For a short time Hacker News solved this problem for me, but now it's too high volume for me to subscribe and read everything.</li>
+<li>I now manage my email inbox pretty well, I'm not always at inbox zero but I can't remember the last time it was over 20.</li>
+<li>RSS is great, but it's always a limited view unless you follow 1000s of feeds.</li>
+<li>Twitter is great but unless you read every tweet you'll miss some important bit of new.s</li>
+</ul>
+
+
+<p>I think Ruby Weekly works because it's collated by someone with taste. Peter spends a bit of time putting together a small number of high quality links so I don't have to. With "Devops Weekly":http://devopsweekly.com I'm hoping to do the same for a different niche.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjxqwEM"/></p>
+
+<p>So head over to "devopsweekly.com":http://devopsweekly.com to sign up. I'm not 100% sure yet when the first issue will go out but expect it in the next few weeks, and after that I'll try and get one issue out each week. Any ideas are more than welcome, as are any news or articles that you think should go in.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: heroku | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/heroku/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The Vagrantbox.es Story]]></title>
+    <link href="http://www.morethanseven.net/2012/07/01/The-vagrantbox.es-story/"/>
+    <updated>2012-07-01T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2012/07/01/The-vagrantbox.es-story</id>
+    <content type="html"><![CDATA[<p>A few weeks ago now "Vagrantbox.es":http://www.vagrantbox.es/ (a website I maintain for third party hosted "Vagrant":http://vagrantup.com/ base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people "ep.io":https://www.ep.io/ had unfortunately closed down the service they had in beta and I'd been so busy that I hadn't had chance to move it elsewhere.</p>
+
+<p>The original version of the site (I had the code and good backups of the data) was a pretty simple Django application, but I'd used it to experiment (read over-engineer) with various bits of tech including Varnish, Solr, some ORM caching and lots more. This had been great, but it made it less portable. I had everything described in Puppet, but with virtually no spare time I decided to go a different route.</p>
+
+<p>I threw a flat version of the site up on "GitHub":https://github.com/garethr/vagrantboxes-heroku, served it using Nginx on "Heroku":http://www.heroku.com/ and added a quick <em>Fork me on GitHub</em> badge to the top. Suggest a box moved from being a web form to a pull request. It's fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I've had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.</p>
+
+<p>What I'm going to take from this is, if you're building a community project that's aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that's secondary. Pull requests are much better than any content management system or workflow you're likely to build, and even more importantly the time to implement something drops hugely.</p>
+
+<p>With all the spare time I don't have I'll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Static Sites With Nginx On Heroku]]></title>
+    <link href="http://www.morethanseven.net/2012/06/05/Static-sites-with-nginx-on-heroku/"/>
+    <updated>2012-06-05T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2012/06/05/Static-sites-with-nginx-on-heroku</id>
+    <content type="html"><![CDATA[<p>I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration - mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.</p>
+
+<p>Heroku "buildpacks":https://devcenter.heroku.com/articles/buildpacks are great. The newer cedar stack is no longer tied to a particular language or framework, instead all of the discovery and knowledge about particular software is put into a buildpack. As well as the Heroku provided list it's possible to write you're own. Or in this case use one someone has "created earlier":https://github.com/essh/heroku-buildpack-nginx.</p>
+
+<p>I've just moved "Vagrantbox.es":http://www.vagrantbox.es/ over to Heroku due to the closure of a previous service. In doing that, instead of the simple database backed app, I've simply thrown all the content onto "GitHub":https://github.com/garethr/vagrantboxes-heroku. This means anyone can fork the content and send pull requests. Hopefully this should mean I pay a bit more attention to suggestions and new boxes.</p>
+
+<p>The repository is a nice simple example of using the mentioned Heroku Nginx buildpack too. You just run the following command to create a new Heroku application.</p>
+
+<pre>heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git</pre>
+
+
+<p>And then in typical Heroku fashion use a git remote to deploy changes and updates. The repository is split into a <em>www</em> folder with the site content and a <em>conf</em> folder with the nginx configuration. The only clever parts involve the use of an ERB template for the nginx configuration file so we can pickup the correct port. We also use 1 worker process and don't automatically daemonize the process - Heroku deals with this itself.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Heroku For...]]></title>
+    <link href="http://www.morethanseven.net/2010/12/29/Heroku-for.../"/>
+    <updated>2010-12-29T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2010/12/29/Heroku-for...</id>
+    <content type="html"><![CDATA[<p>With the success of "Heroku":http://heroku.com, both in terms of the recent sale and the fact it's awesome, it was always just a matter of time before other languages and frameworks got into the platform as a service game. Here's all the one's I know about so far, many of them in or entering beta testing at the moment. Any others I'm missing?</p>
+
+<p><em>Update</em> Thanks for all the comments on here and on "Hacker News":http://news.ycombinator.com/item?id=2050203, I've updated this list with all the suggestions.</p>
+
+<p>h2. Ruby</p>
+
+<ul>
+<li>"Duostack":http://www.duostack.com/</li>
+</ul>
+
+
+<p>h2. Python</p>
+
+<ul>
+<li>"ep.io":http://www.ep.io/</li>
+<li>"Django Zoom":http://DjangoZoom.com/</li>
+<li>"Djangy":https://www.djangy.com/</li>
+<li>"Google Appengine":http://appengine.google.com/</li>
+<li>"Stable":http://stable.io/</li>
+</ul>
+
+
+<p>h2. PHP</p>
+
+<ul>
+<li>"PHPFog":http://phpfog.com/</li>
+<li>"CloudControl":http://cloudcontrol.com</li>
+</ul>
+
+
+<p>h2. .NET</p>
+
+<ul>
+<li>"AppHarbor":http://appharbor.com/</li>
+<li>"biasLogic":http://biaslogic.com/</li>
+<li>"Moncai":http://moncai.com/</li>
+<li>"Microsoft Azure":http://microsoft.com/azure</li>
+</ul>
+
+
+<p>h2. Java (JVM)</p>
+
+<ul>
+<li>"CloudBees":http://www.cloudbees.com via the purchase of "Stax":http://stax.net/</li>
+<li>"Google Appengine":http://appengine.google.com/</li>
+<li>"Playapps":http://www.playapps.net/ (Play framework only)</li>
+</ul>
+
+
+<p>h2. Node.js</p>
+
+<ul>
+<li>"NodeJSCloud":http://www.nodejscloud.com/</li>
+<li>"Joyent SmartMachine":https://no.de/</li>
+<li>"Duostack":http://www.duostack.com/</li>
+<li>"Nodejitsu":http://nodejitsu.com/</li>
+</ul>
+
+
+<p>h2. RingoJS</p>
+
+<ul>
+<li>"Erbix":http://www.erbix.com/</li>
+</ul>
+
+
+<p>h2. Multi Platform</p>
+
+<ul>
+<li>"Kodingen":http://kodingen.com/</li>
+<li>"DotCloud":http://dotcloud.com</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Books For People Interested In Devops]]></title>
+    <link href="http://www.morethanseven.net/2010/11/07/Books-for-people-interested-in-devops/"/>
+    <updated>2010-11-07T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2010/11/07/Books-for-people-interested-in-devops</id>
+    <content type="html"><![CDATA[<p>Before starting with FreeAgent I decided I should spend a bit more time with Ruby and set about building something I'd been thinking about for a while. I've just launched the first one of my related pet projects so thought I better link to it from here.</p>
+
+<p><a href="http://devopsbooks.com"><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRihnAEM"/></a></p>
+
+<p>"Devops Books":http://devopsbooks.com is exactly what it sounds like; a list of books that people interested in the whole devops concept should read. It's not a complete list just yet and I'll try and keep it up to date as new interesting books get released. Any suggestions to add to the list most welcome.</p>
+
+<p>It gave me a proper excuse to use "Heroku":http://heroku.com which has been very pleasant. Under the hood it's a very simple sinatra application using the Mustache template language. The majority of the code is a build script that pulls down information from the Amazon API and mixes it with my own content. It then creates a JSON document that is used as the basis for generating the pages. I love static generators and hand rolling your own for a particular domain is often worthwhile. It means I have the json already lying around if I want to make a JSONP style badge for instance.</p>
+
+<p>I plan on using the code as a bit of learning tool. Try out some different testing approaches, maybe add in GEOIP detection, make some of the commands I'm running into Rake tasks, that sort of thing. Given how easy it will be to throw up little sites like this using the generator I have a few other similar things in mind too.</p>
+]]></content>
+  </entry>
+  
+</feed>

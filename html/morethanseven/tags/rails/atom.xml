@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rails | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/rails/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Django and Rails presentation from QCon]]></title>
+    <link href="http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon/"/>
+    <updated>2013-01-13T16:31:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon</id>
+    <content type="html"><![CDATA[<p>I had great fun back in November at the "QCon":http://qconsf.com/ conference in San Francisco. As well as currating one of the tracks and catching up with people in the area I managed to give the following talk.</p>
+
+<script async class="speakerdeck-embed" data-id="7e1dd5a03efc0130083b123139173def" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>In hindsight it might have been a bit odd to try and cover both Rails and Django examples in the one presentation but it was quite good fun putting together code examples using both of them at the same time. As well as a large set of tips, tricks and tools I settled on a few things that I think any web (or other) framework should support out of the box.</p>
+
+<ul>
+<li>A debug toolbar</li>
+<li>Transparent caching support</li>
+<li>Hooks for instrumentation</li>
+<li>Configurable logging</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Services Vs Applications: Does Rails Encourage SOA Better Than Django?]]></title>
+    <link href="http://www.morethanseven.net/2009/03/13/does-rails-encourage-soa-better-than-django/"/>
+    <updated>2009-03-13T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/03/13/does-rails-encourage-soa-better-than-django</id>
+    <content type="html"><![CDATA[<p>Building larger applications tends to mean splitting your codebase up some how into manageable chunks. I'm quite interested in what I see as different approaches in the Rails and Django communities:</p>
+
+<p>Django tends to recommend building "Reusable Apps":http://www.b-list.org/weblog/2007/mar/27/reusable-django-apps/ and we have sites like "Django Pluggables":http://djangoplugables.com/ to catalog what's available. You then grab a few of these applications from the web or write your own, add them run them all together as part of a single application. "Pinax":http://pinaxproject.com/ is probabaly the poster child for this approach. The  0.5.1 release for instance appears to have 41 individual reusable apps, many written by other people and projects.</p>
+
+<p>The Rails community tends to "talk more about RESTful service orientated architectures":http://gilesbowkett.blogspot.com/2007/08/activeresource-rails-scalability.html, with things like "ActiveResource":http://api.rubyonrails.org/classes/ActiveResource/Base.html making this sort of thing easier. So rather than your manageable chunks being within your application they're separate instances in their own right.</p>
+
+<p>I'd be interested in hearing from more people about their experiences, in particular if you've gone against the grain so to speak.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Simulating Rails like Environments in Django]]></title>
+    <link href="http://www.morethanseven.net/2008/11/01/simulating-rails-environments-django/"/>
+    <updated>2008-11-01T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2008/11/01/simulating-rails-environments-django</id>
+    <content type="html"><![CDATA[<p>I was always a fan of "Rail environments":http://wiki.rubyonrails.org/rails/pages/Environments and as part of some work upgrading this site to the latest version of Django I decided to clean up my whole deployment process. Part of that involved replacing everything in settings.py with the following snippet of code:</p>
+
+<p>pre. ENV = "development"
+try:</p>
+
+<pre><code>exec "from environments." + ENV + " import *"
+</code></pre>
+
+<p>except ImportError:</p>
+
+<pre><code>print "You must specify a valid environment"
+exit()
+</code></pre>
+
+<p>I now have two settings files stored in an environments module containing all the usual django settings; one for my development environment and one suitable for live. The settings.py above is for my local development environment, with only one small change for live (this file doesn't get deployed along with the source code for the site, so doesn't get overwritten).</p>
+
+<p>pre. ENV = 'live'</p>
+
+<p>This isn't quite the same as the Rails implementation obviously. I run completely different server setups so I'm not too bothered about a flag on the runserver command like the -e flag for mongel. I could also probably do something to autodetect the environment but this works fine for me.</p>
+]]></content>
+  </entry>
+  
+</feed>

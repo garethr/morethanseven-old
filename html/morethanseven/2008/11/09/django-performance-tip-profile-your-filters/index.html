@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Django Performance Tip - Profile Your Filters - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;ve been doing some performance profiling of this here blog. Not because I really need to due to huge amounts of traffic unfortunately, more &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2008/11/09/django-performance-tip-profile-your-filters">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Django Performance Tip - Profile Your Filters</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-09T00:00:00+00:00" pubdate data-updated="true">Nov 9<span>th</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been doing some performance profiling of this here blog. Not because I really need to due to huge amounts of traffic unfortunately, more because I&#8217;m planning on releasing the code and wanted to give it a good once over before I do.</p>
+<pre>69396 function calls (67324 primitive calls) in 0.479 CPU seconds
+Ordered by: internal time, call count
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      123    0.138    0.001    0.154    0.001 build/bdist.macosx-10.5-i386/egg/textile.py:2478(qtags)
+     6300    0.058    0.000    0.079    0.000 build/bdist.macosx-10.5-i386/egg/textile.py:453(preg_replace)
+    15705    0.045    0.000    0.059    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:219(_compile)
+       20    0.025    0.001    0.026    0.001 /Users/gareth.rushgrove/Documents/www/django/django/db/backends/sqlite3/base.py:165(execute)
+     1087    0.021    0.000    0.026    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:136(sub)
+      123    0.014    0.000    0.017    0.000 build/bdist.macosx-10.5-i386/egg/textile.py:2701(links)
+       18    0.012    0.001    0.030    0.002 build/bdist.macosx-10.5-i386/egg/textile.py:892(split_text)
+    12719    0.011    0.000    0.063    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:178(compile)
+      123    0.011    0.000    0.104    0.001 build/bdist.macosx-10.5-i386/egg/textile.py:2372(glyphs)
+      123    0.009    0.000    0.009    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:159(findall)
+      191    0.008    0.000    0.008    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/re.py:154(split)
+       18    0.005    0.000    0.005    0.000 build/bdist.macosx-10.5-i386/egg/textile.py:803(grab_links)
+       11    0.005    0.000    0.005    0.000 /Users/gareth.rushgrove/Documents/www/django/django/utils/text.py:52(truncate_html_words)</pre>
+<p>The above profile is from the home page which seemed a good starting point. The majority of the other pages are more straightforward, generally displaying just one article with a few related bits and pieces.</p>
+<p>What jumped out was that the majority of the slow traces (the list is ordered with the slowest calls first) were to do with the use of the textile filter packaged with Django. Textile is a simple markup language which converts to <span class="caps">HTML</span>, I&#8217;ve used it for all my writing activities since I used Textpattern on this blog many moons ago. It&#8217;s not just the traces that explicitly mentioned textile either &#8211; the regular expression calls are also to do with template filters.</p>
+<p>I quickly added a hidden html field to my model and a custom save method. On saving an article I now automatically transform the textile version of the content and save it in the html field. In the template where I used to have <code>article.content|textile</code> I now have <code>article.html</code>. A quick check of the profile on the same page showed a dramatic increase in performance:</p>
+<pre>15054 function calls (13248 primitive calls) in 0.081 CPU seconds
+Ordered by: internal time, call count
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       20    0.017    0.001    0.018    0.001 /Users/gareth.rushgrove/Documents/www/django/django/db/backends/sqlite3/base.py:165(execute)
+   978/54    0.003    0.000    0.006    0.000 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/copy.py:144(deepcopy)
+     82/1    0.003    0.000    0.069    0.069</pre>
+<p>From nearly half a second (0.479 <span class="caps">CPU</span> seconds) to 0.081 <span class="caps">CPU</span> seconds &#8211; roughly a 500% improvement in performance!</p>
+<p>If you are using text transforming filters in Django that make use of regular expressions I would look to try and get rid of them and move the conversion into a save method. You might not see quite as much of a performance gain as I did here but I&#8217;d be surprised if it&#8217;s not taking an awful lot longer than you might thing.</p>
+<p>Their are a few tools that are handy to have around if you&#8217;re wanting to profile your own applications. Django Snippets has a handy <a href="http://www.djangosnippets.org/snippets/70/">profiling middleware</a> and the really rather nice <a href="http://code.google.com/p/django-command-extensions/">Command Extensions</a> provides a few more tools including profile graph generation.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-09T00:00:00+00:00" pubdate data-updated="true">Nov 9<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/django/'>django</a>, <a class='category' href='/tags/morethanseven/'>morethanseven</a>, <a class='category' href='/tags/profiling/'>profiling</a>, <a class='category' href='/tags/python/'>python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2008/11/09/django-performance-tip-profile-your-filters/" data-via="garethr" data-counturl="http://www.morethanseven.net/2008/11/09/django-performance-tip-profile-your-filters/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/11/01/simulating-rails-environments-django/" title="Previous Post: Simulating Rails like Environments in Django">&laquo; Simulating Rails like Environments in Django</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/11/11/cssdoc/" title="Next Post: CSSDoc">CSSDoc &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2008/11/09/django-performance-tip-profile-your-filters/';
+        var disqus_url = 'http://www.morethanseven.net/2008/11/09/django-performance-tip-profile-your-filters/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

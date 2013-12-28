@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Sorry, but the Flickr API isn&#39;t REST - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="After SemanticCamp me and Rey popped in to see Paul and everyone at Osmosoft towers. A good few interesting conversations ensued, including one about &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2008/02/21/sorry-but-the-flickr-api-isnt-rest">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Sorry, but the Flickr API Isn&#39;t REST</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-21T00:00:00+00:00" pubdate data-updated="true">Feb 21<span>st</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>After <a href="http://semanticcamp.tommorris.org">SemanticCamp</a> me and <a href="http://icepop.org/">Rey</a> popped in to see <a href="http://blog.whatfettle.com/">Paul</a> and everyone at <a href="http://www.osmosoft.com/">Osmosoft</a> towers. A good few interesting conversations ensued, including one about the difference between <a href="http://blog.whatfettle.com/2008/02/19/mashup-or-integration/">mashups and integration</a>. All good fun basically. <a href="http://simonmcmanus.com/">Simon</a> also had an <a href="http://simonmcmanus.com/2008/02/21/off-the-shelf-integration-in-enterprises/">interesting take on the topic</a> as well.</p>
+<p>What has all this to do with the topic of this post? Well, Simon says:</p>
+<blockquote>
+<p>When compared to small RESTful APIs like flickr and twitter&#8230;</p>
+</blockquote>
+<p>Now I&#8217;m not really picking on Simon here, more that I&#8217;ve been meaning to write something on this topic for a while and this proved a good catalyst for a little rant.</p>
+<p>The <a href="http://flickr.com">flickr</a> <a href="http://www.flickr.com/services/api/"><span class="caps">API</span></a> is pretty darn cool. But it&#8217;s not RESTful in pretty much any way you want to shake a stick at it. It&#8217;s a well designed <span class="caps">RPC</span> (remote procedure call) <span class="caps">API</span>. Now even flickr get this wrong. They even have <a href="http://www.flickr.com/services/api/response.rest.html">a page</a> which confuses the issue and makes <span class="caps">REST</span> out to be a response format based on <span class="caps">XML</span>. Bad flickr.</p>
+<p><a href="http://www.flickr.com/services/api/request.rest.html">flickr states</a> that:</p>
+<blockquote>
+<p>The <span class="caps">REST</span> Endpoint <span class="caps">URL</span> is http://api.flickr.com/services/rest/</p>
+</blockquote>
+<p>This turns out to be completely against the whole RESTful principles. Lets try and explain. You can define most of what you want to do with an <span class="caps">API</span> with the use of nouns, verbs and content types. <span class="caps">REST</span> is based around limiting the set of verbs to those available in <span class="caps">HTTP</span>; for instance <span class="caps">GET</span>, <span class="caps">POST</span>, <span class="caps">PUT</span> and <span class="caps">DELETE</span>. For any given application or <span class="caps">API</span> you&#8217;ll also specify a set of content types (representations); for instance <span class="caps">HTML</span>, <span class="caps">JSON</span> or <span class="caps">XML</span>. All you get to play around with are the nouns, in the case of the web these are our URLs.</p>
+<p>In a typical <span class="caps">RPC</span> style <span class="caps">API</span> you have one <span class="caps">URL</span> (like flickr does) which acts as the end point to which all calls are made. You then probably define a few functions which you can call. Lets look at a simple book example.</p>
+<pre><code>getBook()
+deleteBook()
+createBook()
+editBook()</code></pre>
+<p>The RESTful way of designing this might look a little bit more like this:</p>
+<pre><code>GET     /books/{book-id}
+DELETE  /books/{book-id}
+POST    /books
+PUT     /books/{book-id}</code></pre>
+<p>We mentioned content types or representations earlier. Lets say instead of the default response format we might want to get a <span class="caps">JSON</span> representation of a given book we might do something like the following.</p>
+<pre><code>GET /books/{book-id}.json</code></pre>
+<p>The advantages of using URLs as the <span class="caps">API</span> nouns in this way include more than just sane URLs for the site or application in question. The web is based around many of these architectural principles and that seemed to scale pretty well. The idea is that fell envisaged RESTful applications have an advantage here too. For me one of the real benefits of RESTful APIs are in the simplicity they bring to documentation. I already know the available verbs, all I need to know are the set of resource URLs and I can probably use <span class="caps">CURL</span> to work out the <span class="caps">REST</span> (sorry, bad pun).</p>
+<p>This misunderstanding is pretty common. Even <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">WikiPedia</a> appreciates their is a problem:</p>
+<blockquote>
+<p>The difference between the uses of the term â€œRESTâ€ causes some confusion in technical discussions.</p>
+</blockquote>
+<p>This isn&#8217;t just pedantry on my part, well not quite. I&#8217;d recommend anyone involved in designing and architecting web sites read <a href="http://www.amazon.co.uk/RESTful-Web-Services-Leonard-Richardson/dp/0596529260">RESTful Web Services</a> as well as <a href="http://www.ics.uci.edu/~fielding/">Roy Fielding&#8217;s</a> <a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Architectural Styles and the Design of Network-based Software Architectures</a>. But if you just want to <em>get</em> the general principles and don&#8217;t fancy wading through technical documents then you have to read <a href="http://tomayko.com/articles/2004/12/12/rest-to-my-wife">How I Explained <span class="caps">REST</span> to My Wife</a> hilariously written by <a href="http://tomayko.com/">Ryan Tomayko</a>.</p>
+<p>And remember, just because an <span class="caps">API</span> makes use of <span class="caps">HTTP</span> doesn&#8217;t make it RESTful. I&#8217;m looking at you <a href="http://twitter.com">twitter</a>.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-21T00:00:00+00:00" pubdate data-updated="true">Feb 21<span>st</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2008/02/21/sorry-but-the-flickr-api-isnt-rest/" data-via="garethr" data-counturl="http://www.morethanseven.net/2008/02/21/sorry-but-the-flickr-api-isnt-rest/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/02/19/invited-to-join-wasp/" title="Previous Post: Invited to Join WaSP">&laquo; Invited to Join WaSP</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/02/24/thinking-digital/" title="Next Post: Thinking Digital">Thinking Digital &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2008/02/21/sorry-but-the-flickr-api-isnt-rest/';
+        var disqus_url = 'http://www.morethanseven.net/2008/02/21/sorry-but-the-flickr-api-isnt-rest/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: paas | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/paas/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Perils of portability]]></title>
+    <link href="http://www.morethanseven.net/2013/03/23/perils-of-portability/"/>
+    <updated>2013-03-23T16:36:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/03/23/perils-of-portability</id>
+    <content type="html"><![CDATA[<p>I had fun speaking at "QCon":http://qconlondon.com/ in London earlier this month with a talk on the Cloud track entitled the Perils of Portability.</p>
+
+<p>This had some Governmenty stuff in but was mainly part rant, part hope for the future of cloud infrastructure. I had some great conversations with people afterwards who felt some of the similar pain which was nice to know. I also somehow managed to get 120 slides into a 40 minute presentation which I think is a personal records.</p>
+
+<script async class="speakerdeck-embed" data-id="52f90c206ae90130747512313d140c86" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>The videos will be available at some point in the not too distant future too.</p>
+]]></content>
+  </entry>
+  
+</feed>

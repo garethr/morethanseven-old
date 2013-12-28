@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: json | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/json/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Piston And Sanitising Json Callbacks]]></title>
+    <link href="http://www.morethanseven.net/2010/03/08/Piston-and-sanitising-json-callbacks/"/>
+    <updated>2010-03-08T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2010/03/08/Piston-and-sanitising-json-callbacks</id>
+    <content type="html"><![CDATA[<p>I'm a big fan of "Piston":http://bitbucket.org/jespern/django-piston, the django app for creating RESTful web services. As part of a project at work I ended up looking through the source code, mainly at some of the neat tricks of serialisation of objects. While poking around I came across something in my mind that wanted fixing. This being open source rather than just file a bug report I setup a "bitbucket":http://bitbucket.org account and got hacking.</p>
+
+<p><notextile>
+&lt;% syntax_colorize :python, type=:coderay do %>
+def render(self, request):</p>
+
+<pre><code>cb = request.GET.get('callback')
+    seria = simplejson.dumps(self.construct(),
+    cls=DateTimeAwareJSONEncoder,
+    ensure_ascii=False, indent=4)
+
+    # Callback
+    if cb:
+        return '%s(%s)' % (cb, seria)
+
+    return seria
+</code></pre>
+
+<p>&lt;% end %>
+</notextile></p>
+
+<p>Can you spot the problem? Note the use of the callback passed in the query string arguments and then used <em>without any checking</em> in the output.</p>
+
+<p>What we really want to do is something like this:</p>
+
+<p><notextile>
+&lt;% syntax_colorize :python, type=:coderay do %>
+if is_valid_jsonp_callback_value(cb):
+&lt;% end %>
+</notextile></p>
+
+<p>Which is exactly what has just "gone into the code for Piston":http://bitbucket.org/jespern/django-piston/changeset/f558b2c66dcc/. "This article":http://tav.espians.com/sanitising-jsonp-callback-identifiers-for-security.html contains lots of background information about why JSONP callbacks can be a security hole, and helpfully provides a "nice Python module":http://github.com/tav/scripts/blob/master/validate_jsonp.py to help with the sanitisation. Nice to be on the authors list for something I'm using actively.</p>
+
+<p>Thanks to "Jesper Noehr":http://twitter.com/jespern for Piston, for some pointers on bitbucket and for quickly taking the patch. If you're accepting a callback on your site or application, especially if it's a public service, you really want to do something like this or you just might have an exploitable security hole.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Jsonpickle]]></title>
+    <link href="http://www.morethanseven.net/2009/01/29/jsonpickle/"/>
+    <updated>2009-01-29T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/01/29/jsonpickle</id>
+    <content type="html"><![CDATA[<p>"Jsonpickle":http://code.google.com/p/jsonpickle is a Python library for serializing any arbitrary object graph into JSON. The advantage over something like simplejson is the <em>arbitrary</em> part, simplejson throws errors when you try and serialize some types of objects. I also prefer the jsonpickle API (encode, decode) over simplejson (dump, dumps, load, loads).</p>
+]]></content>
+  </entry>
+  
+</feed>

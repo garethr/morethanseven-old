@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>DSLs for HTML and CSS - The Future, or Just Plain Wrong?  - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="After my previous post about Django and the web standards community a number of the comments picked up on the fact I mentioned haml under the title &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2008/04/11/dsls-for-html-and-css-the-future-or-just-plain-wro">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">DSLs for HTML and CSS - the Future, or Just Plain Wrong?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-11T00:00:00+01:00" pubdate data-updated="true">Apr 11<span>th</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>After my previous post about <a href="http://morethanseven.net/posts/why-the-webstandards-world-appears-to-be-choosing-django/">Django and the web standards community</a> a number of the comments picked up on the fact I mentioned <a href="http://haml.hamptoncatlin.com/">haml</a> under the title <em>Other Craziness</em>. Ok, so I was being a little over-poetic but I decided this warranted a closer look.</p>
+<p>Haml is a markup language that&#8217;s used to cleanly and simply describe the <span class="caps">XHTML</span> of any web document without the use of inline code. Haml functions as a replacement for inline page templating systems such as <span class="caps">PHP</span>, <span class="caps">ASP</span>, and <span class="caps">ERB</span>, the templating language used in most Ruby on Rails applications.</p>
+<p>A quick example should help. The following haml code&#8230;</p>
+<pre><code>%div.special#primary Hello, World!</code></pre>
+<p>&#8230;is compiled to the following <span class="caps">HTML</span>:</p>
+<pre><code>&lt;div class="special" id="primary"&gt;
+  Hello, World!
+&lt;/div&gt;</code></pre>
+<p>Depending on your application this could be at runtime or as part of a build step. Although primarily associated with Rails because haml is also available as a command line utility you could in theory use it with any framework or language.</p>
+<p>My initial take on this was to call haml an abstraction of <span class="caps">HTML</span> but <a href="http://nex-3.com/">Nathan Weizenbaum</a>, one of haml&#8217;s developers, put me straight:</p>
+<blockquote>
+<p>Haml doesn&#8217;t really abstract <span class="caps">HTML</span>. Not in the same sense that, say, Rails helpers do. Since Haml has a one-to-one mapping to <span class="caps">HTML</span>, I view it more as an alternate syntax for <span class="caps">HTML</span> than an abstraction.</p>
+</blockquote>
+<p>Lots more examples for anyone interested can be found on <a href="http://haml.hamptoncatlin.com/docs/">the haml documentation site</a>.</p>
+<p>After some research and some playing around with the command line version of the haml engine I decided to see what Twitter thought about the situation. Little did I realise what I was letting myself in for:</p>
+<p><a href="http://tommorris.org/">Tom Morris</a> kicked things off:</p>
+<blockquote cite="http://twitter.com/tommorris/statuses/784959480">
+<p>I&#8217;m not sure why everyone insists on clumsily reinventing <span class="caps">HTML</span> every few weeks (eg. wiki syntaxes, of which there are hundreds)</p>
+</blockquote>
+<p><a href="http://intranation.com/">Brad Wright</a> thought:</p>
+<blockquote cite="http://twitter.com/intranation/statuses/784963589">
+<p>Sass is just stupid, since you&#8217;re basically writing <strong>exactly</strong> the same <span class="caps">CSS</span> just in shitty <span class="caps">YAML</span> style.</p>
+</blockquote>
+<p>And followed with:</p>
+<blockquote>
+<p>What&#8217;s the point of abstracting <span class="caps">HTML</span>? It&#8217;s not that hard</p>
+</blockquote>
+<p>And <a href="http://cackhanded.net">Mark Norman Francis</a> chipped in with:</p>
+<blockquote>
+<p><span class="caps">EVIL</span>. And not in a good, kittenish way.</p>
+</blockquote>
+<p>A few people echoed <a href="http://thecssdiv.co.uk/">Ross Bruniges</a> sentiment that haml and sass are just:</p>
+<blockquote cite="http://twitter.com/rossbruniges/statuses/784954916">
+<p>front-end code for those who don&#8217;t really care all that much about it and would rather create databases</p>
+</blockquote>
+<p>I have to admit to this being my initial reaction on hearing about and looking at haml, hence the remark from the previous post. But that&#8217;s not to say everyone was negative.</p>
+<p><a href="http://donotremove.co.uk/">Mike Stenhouse</a> stepped in and said:</p>
+<blockquote cite="http://twitter.com/mikesten/statuses/784952890">
+<p>Love haml &#8211; it&#8217;s all I use these days. More readable, dynamic and hackable. Took me a while to come around to it though&#8230;</p>
+</blockquote>
+<p>Some of the comments were about how the use of haml might alter the dynamic of a team, to either positive or negative effect &#8211; depending on your point of view.</p>
+<p><a href="http://www.markng.co.uk/">Mark Ng</a> saw it as a cunning way of getting rid of the front-end guy.</p>
+<blockquote cite="http://twitter.com/markng/statuses/784952935">
+<p>at first, they look elegant. Then it becomes obvious how they remove designers from the process of making markup.</p>
+</blockquote>
+<p>Where as <a href="http://thinkdrastic.net/">Olly Hodgson</a> say it maybe as a route to get the dyed in the wool back-end writing decent markup.</p>
+<blockquote cite="http://twitter.com/OllyHodgson/statuses/784957324">
+<p>They look interesting. With proper training it might be a good way to get back-end programmers creating decent <span class="caps">HTML</span> (shock horror!)</p>
+</blockquote>
+<p>At present haml is very much pitched at the Rails community from whence it came. Many of the examples demonstrate benefits compared to <span class="caps">ERB</span>, and haml is of course written in Ruby and available as a Rails plugin. Being perceived as part of that community has obvious benefits but also some subtle costs, in particular regarding those people that don&#8217;t like Rails very much.</p>
+<p>I&#8217;m not really convinced of the benefits in all fairness. The <em>something else to learn</em> barrier only gets magnified when working within a team environment. You now have to train new recruits of whatever skill level in another syntax. One that they might be able to write quickly enough but can they understand from the briefest of glances at a template? <span class="caps">HTML</span> might not be great here but it is familiar to everyone. Their is also the programmers abstraction. What if I can&#8217;t get the markup I want out the other side of the black box? Yes it&#8217;s open source so I can hack the box open but that causes even more problems. And while I quite like meaningful whitespace (for instance in Python), in templates which fail if it&#8217;s not quite right I see a major problem for those whom a text editor is not their best friend.</p>
+<p>I am however interested to see whether the problems people have with haml are with haml in particular or with the overall approach of alternative syntax&#8217;s for <span class="caps">HTML</span> and <span class="caps">CSS</span>. Are DSLs (Domain Specific Languages) needed for <span class="caps">CSS</span> and <span class="caps">HTML</span>? and if so is this a possible avenue for innovation on top of slow moving standards?</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-11T00:00:00+01:00" pubdate data-updated="true">Apr 11<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2008/04/11/dsls-for-html-and-css-the-future-or-just-plain-wro/" data-via="garethr" data-counturl="http://www.morethanseven.net/2008/04/11/dsls-for-html-and-css-the-future-or-just-plain-wro/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/04/06/git-ditz-and-microformats/" title="Previous Post: Git, Ditz and Microformats">&laquo; Git, Ditz and Microformats</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/04/18/resourceful-vs-hackable-search-urls/" title="Next Post: Resourceful Vs Hackable Search URLs">Resourceful Vs Hackable Search URLs &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2008/04/11/dsls-for-html-and-css-the-future-or-just-plain-wro/';
+        var disqus_url = 'http://www.morethanseven.net/2008/04/11/dsls-for-html-and-css-the-future-or-just-plain-wro/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

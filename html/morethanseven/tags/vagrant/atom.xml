@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vagrant | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/vagrant/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Web application security tools]]></title>
+    <link href="http://www.morethanseven.net/2013/04/23/web-application-security-tools/"/>
+    <updated>2013-04-23T07:57:00+01:00</updated>
+    <id>http://www.morethanseven.net/2013/04/23/web-application-security-tools</id>
+    <content type="html"><![CDATA[<p>I've become increasingly interested in web application security issues over the last year or so. Working in Government will do that to you. And I've come to the conclusion that a) there are lots of good open source security tools, b) many of them are terribly packaged and c) most developers don't use any of them.</p>
+
+<p>I've been having related conversations at recent events I've made it along to, including Devopsdays London which featured some good open spaces discussions on the subject. Security is one of those areas that, for many organisations, is basically outsourced to third party penetration testing firms or consultants. Specialists definitely have a role to play, but with a move towards increasingly rapid releases I think in-house security testing and monitoring is going to get more and more important.</p>
+
+<p>h2. A collection of security tools</p>
+
+<p>I've started to build a "collection of tools on GitHub":https://github.com/garethr/pentesting-playground, along with a vagrant setup to test them out. Full instructions are available on that repository but the short version is you can run one command and have one virtual machine filled with security testing tools and, if useful, another machine running a vulnerable web application with which to test. The current list of tools runs to:</p>
+
+<ul>
+<li>"skipfish":http://code.google.com/p/skipfish/</li>
+<li>"nmap":http://nmap.org/</li>
+<li>"nikto":http://www.cirt.net/nikto2</li>
+<li>"w3af":http://w3af.org/</li>
+<li>"garmr":https://github.com/mozilla/Garmr</li>
+<li>"sslyze":https://github.com/iSECPartners/sslyze</li>
+<li>"wpscanner":https://github.com/metachris/wpscanner</li>
+<li>"owasp zap":https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project</li>
+<li>"arachni":http://arachni-scanner.com/</li>
+<li>"gauntlt":https://github.com/gauntlt/gauntlt</li>
+<li>"sqlmap":http://sqlmap.org/</li>
+<li>"wpscan":http://wpscan.org/</li>
+<li>"sslscan":http://sourceforge.net/projects/sslscan/</li>
+<li>"TLSSLed":http://blog.taddong.com/2013/02/tlssled-v13.html</li>
+</ul>
+
+
+<p>But I'll add more tools as I discover them or as people file issues or pull requests.</p>
+
+<p>h2. What about Backtrack?</p>
+
+<p>When I started investigating tools for security and penetration testing most roads led to "Backtrack":http://www.backtrack-linux.org/. This is a complete Linux distribution packed with a huge number of security tools, including many if not all of the above. Why then did I write puppet code rather than create a Vagrant box from Backtrack? Firstly, Backtrack is probably great if you're a professional penetration tester, but the barrier to entry to installing a new distibution for most developers is too high in my view. And with a view to using some of these tools as part of monitoring systems I don't always want a separate virtual machine. I want to be able to install the tools wherever I want. A good configuration management tool gives you that portability, and Vagrant gives you all the benefits of a local virtual machine.</p>
+
+<p>h2. Future plans</p>
+
+<p>As mentioned I'd like to expand how some of these tools are used to include automated monitoring of applications, maybe look at ways of extracting data for metrics or possibily writing a Sensu plugin or two. The first step to that is probably breaking down the monolithic puppet manifest into separate modules for each tool. Along the way I can add support for more operating systems as required. I've already done that for the "wackopicko module which is up on the Forge":http://forge.puppetlabs.com/garethr/wackopicko.</p>
+
+<p>I'm also soliciting any and all feedback, especially from developers who don't do any security related testing but feel like they should.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Vagrantbox.es Story]]></title>
+    <link href="http://www.morethanseven.net/2012/07/01/The-vagrantbox.es-story/"/>
+    <updated>2012-07-01T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2012/07/01/The-vagrantbox.es-story</id>
+    <content type="html"><![CDATA[<p>A few weeks ago now "Vagrantbox.es":http://www.vagrantbox.es/ (a website I maintain for third party hosted "Vagrant":http://vagrantup.com/ base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people "ep.io":https://www.ep.io/ had unfortunately closed down the service they had in beta and I'd been so busy that I hadn't had chance to move it elsewhere.</p>
+
+<p>The original version of the site (I had the code and good backups of the data) was a pretty simple Django application, but I'd used it to experiment (read over-engineer) with various bits of tech including Varnish, Solr, some ORM caching and lots more. This had been great, but it made it less portable. I had everything described in Puppet, but with virtually no spare time I decided to go a different route.</p>
+
+<p>I threw a flat version of the site up on "GitHub":https://github.com/garethr/vagrantboxes-heroku, served it using Nginx on "Heroku":http://www.heroku.com/ and added a quick <em>Fork me on GitHub</em> badge to the top. Suggest a box moved from being a web form to a pull request. It's fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I've had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.</p>
+
+<p>What I'm going to take from this is, if you're building a community project that's aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that's secondary. Pull requests are much better than any content management system or workflow you're likely to build, and even more importantly the time to implement something drops hugely.</p>
+
+<p>With all the spare time I don't have I'll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Talking Configuration Management, Vagrant And Chef At Lrug]]></title>
+    <link href="http://www.morethanseven.net/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug/"/>
+    <updated>2011-08-11T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug</id>
+    <content type="html"><![CDATA[<p>I stepped in at the last minute to do a talk at the last London Ruby User Group. From the feedback afterwards folks seemed to enyoy it and I certainly had fun. Thanks to everyone who came along.</p>
+
+<object id="__sse8828889" width="595" height="497"> <param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&rel=0&stripped_title=config-managament-for-development-environments-ii&userName=garethr" /> <param name="allowFullScreen" value="true"/> <param name="allowScriptAccess" value="always"/> <embed name="__sse8828889" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=configmanagamentfordevelopmentenvironmentsii-110811103611-phpapp02&rel=0&stripped_title=config-managament-for-development-environments-ii&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"></embed> </object>
+
+
+<p>As well as the slides the nice Skills Matter folks have already uploaded the "videos from the night":http://skillsmatter.com/podcast/home/chef-vagrant.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vagrant Plugin For Interacting With Vagrantbox.es]]></title>
+    <link href="http://www.morethanseven.net/2011/05/08/Vagrant-plugin-for-interacting-with-vagrantboxes/"/>
+    <updated>2011-05-08T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/05/08/Vagrant-plugin-for-interacting-with-vagrantboxes</id>
+    <content type="html"><![CDATA[<p>After "Patrick":http://www.jedi.be/blog released "Sahara":https://github.com/jedi4ever/sahara/, a nifty extension for the "Vagrant":http://vagrantup.com command line tool, I've been meaning to put together a similar extension for interacting with the growing list of base boxes on "vagrantbox.es":http://www.vagrantbox.es.</p>
+
+<p>After a bit of hacking this morning I've just pushed out an initial release of the "vagrantboxes gem":https://rubygems.org/gems/vagrantboxes and you can find the "source code and some documentation on GitHub":https://github.com/garethr/ruby-vagrantboxes.</p>
+
+<p>The extensions adds a vagrantboxes namespace to the vagrant command line tool which provides a few useful commands. Specifically you can list all the available boxes, do text searches, show the full details of a box and most handily of all add a box that takes your fancy to your local base box store, all without having to worry about the URLs of the boxes if you don't want to.</p>
+
+<p>Here's an example of a simple search:</p>
+
+<pre>>> vagrant vagrantboxes search centos
+3    centos 5.5                http://dl.dropbox.com/u/15307300/vagrant-0.7-centos-64-base.box
+6    opscode centos 5          http://opscode-vagrant-boxes.s3.amazonaws.com/centos5-gems.box
+7    opscode ubuntu 10.04      http://opscode-vagrant-boxes.s3.amazonaws.com/ubuntu10.04-gems.box
+9    puppet centos 5.5 64      http://puppetlabs.s3.amazonaws.com/pub/centos5_64.box
+10   puppet centos 4 64        http://puppetlabs.s3.amazonaws.com/pub/centos4_64.box
+21   centos 5.6 32             http://yum.mnxsolutions.com/vagrant/centos_56_32.box</pre>
+
+
+<p>And another quick example, this time of show printing the full description. In the future I might look to store more structured metadata and make this more useful.</p>
+
+<pre>>> vagrant vagrantboxes show 18
+puppet debian lenny 64
+http://puppetlabs.s3.amazonaws.com/pub/debian_lenny_64.box
+
+Debian Lucid 64 bit vagrant box. Puppet 2.6.6 installed and ready to provision using the Puppet provisioner in Vagrant.
+
+For good sample modules, try the jeffmccune-motd and jeffmccune-mockbuild modules posted to http://forge.puppetlabs.com/
+
+Created by Ken Barber, ken@puppetlabs.com</pre>
+
+
+<p>This proved a good excuse to delve into the Vagrant source code which is pretty readable for the most part once you understand the libraries it's build upon. It's simple enough to extend for adding commands like this too, which bodes well for other more useful additions in the future.</p>
+
+<p>If anyone has any problems with this extensions do let me know. Error handling currently consists of returning blank output rather than sensible error codes or messages, and as I've yet to add a small test suite so their might (will) be a few bugs lying around. I'll try and make it better behaved in the next week or two but reasoned it's useful straight away.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vagrant At The Guardian]]></title>
+    <link href="http://www.morethanseven.net/2011/04/02/Vagrant-at-the-guardian/"/>
+    <updated>2011-04-02T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/04/02/Vagrant-at-the-guardian</id>
+    <content type="html"><![CDATA[<p>As recent blog posts on here make clear, I'm a big fan of "Vagrant":http://vagrantup.com. And when "Michael":http://www.brunton-spall.co.uk/ asked if I'd fancy talking to some of his colleagues at The Guardian about how I use it I really couldn't say no.</p>
+
+<p>I gave a short talk, running through the following slides, and running a few demos showing creating, destroying and provisioning new machines.</p>
+
+<object id="__sse7492432" width="595" height="497"> <param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=vagrant-110402104037-phpapp01&rel=0&stripped_title=vagrant-and-configuration-management&userName=garethr" /> <param name="allowFullScreen" value="true"/> <param name="allowScriptAccess" value="always"/> <embed name="__sse7492432" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=vagrant-110402104037-phpapp01&rel=0&stripped_title=vagrant-and-configuration-management&userName=garethr" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="595" height="497"></embed> </object>
+
+
+<p>More interesting I thought were the questions and conversations that followed. We talked a little about how Vagrant might fit into a continuous integration setup. Another aspect some of the systems folk took to was how flexible the network configuration was and whether they might be able to use this to more effectively test firewall configurations well before the final push into a production environment. It's not something I've been doing but it sounds feasable and useful in some organisations. If anyone is doing interesting things with Vagrants network config I'd be interested to know.</p>
+]]></content>
+  </entry>
+  
+</feed>

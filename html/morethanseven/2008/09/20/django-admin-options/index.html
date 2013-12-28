@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Django Admin Options  - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Working on a decent sized Django project at work means I&#8217;ve found myself delving into Django&#8217;s admin interface more than a few times. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2008/09/20/django-admin-options">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Django Admin Options</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-20T00:00:00+01:00" pubdate data-updated="true">Sep 20<span>th</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Working on a decent sized Django project at work means I&#8217;ve found myself delving into Django&#8217;s admin interface more than a few times. Although it&#8217;s always possible to just use a custom template and do everything yourself it&#8217;s nearly always easier and often quicker to use the generated admin views. One of the problems with that is, even with therecent 1.0 release, some of the options are not that well documented outside the source code or in posts buried on mailing lists.</p>
+<p>I&#8217;ll assume a little bit of familiarity with the new-forms-admin way of doing things which is now the default in Django 1.0. If you&#8217;re just getting started with building Django sites then you might want to first have a look at a tutorial or two. It&#8217;s quite different to the examples found in the original Django book or older online tutorials but it&#8217;s also much more powerful and flexible with a better separation of concerns.</p>
+<p>We&#8217;ll start off with a very simple model in models.py which defines a simple Article class with a couple of fields.</p>
+<pre>from django.db import models
+class Article(models.Model):    
+    	title = models.CharField(max_length=200)
+	content = models.TextField()
+	publish_date = models.DateTimeField(default=datetime.today)</pre>
+<p>Django 1.0 introduced the concept of admin autodiscovery. By playing your admin declarations in admin.py in an application (most likely next to models.py and views.py) you can tell django to find these automatically. To enable auto loading of admin modules you can add the following to your urls.py.</p>
+<p>.pre from django.contrib import admin<br />
+admin.autodiscover()</p>
+<p>This will load the module admin.py for each of the apps in the installed apps list. Now Lets add an admin class in your admin.py to go with the above models.py. We&#8217;ll call it ArticleAdmin:</p>
+<pre>from django.contrib import admin
+from models import Article
+class ArticleAdmin(admin.ModelAdmin):
+	pass
+admin.site.register(Article, ArticleAdmin)</pre>
+<p>The important line is the last one, in which we register the admin for the Article class. This will display the relevant admin views in the Django admin for that model &#8211; allowing us to add new articles, list existing ones and delete old ones. But by default the admin is quite sparse.</p>
+<p>Once we have a few articles in the system we&#8217;ll find it hard to find them again. Lets add a few more lines to our admin.py file:</p>
+<pre>class ArticleAdmin(admin.ModelAdmin):
+	list_display=('title', 'publish_date')
+	ordering = ['-publish_date']
+	list_per_page = 25
+	search_fields = ['title','content']
+	date_hierarchy = 'publish_date'</pre>
+<p>Lets step though each of these statements and see what we&#8217;ve done:</p>
+<ul>
+	<li>setting <em>list_display</em> for the title and publish_date means these two fields will appear in the changelist. This is the view you get when you hit Articles in the admin and allows you to find the article you are looking for.</li>
+	<li><em>ordering</em> is self explanatory, in that we choose to order the items in the changelist by the publish_date rather than the auto generated numeric id.</li>
+	<li><em>list_per_page</em> is another straightforward option, setting the maximum number of articles to show in the changelist before the list starts paging over multiple pages.</li>
+	<li><em>search_fields</em> adds a simple search to the changelist, the fields specified set which fields to search; title and content in this case.</li>
+	<li><em>date_hierarchy</em> is great when you have a date associated with an object. This outputs a separate filter list which displays the years by which to filter. The option you pass to this setting is the field name which stores the date.</li>
+</ul>
+<p>The simple example above hopefully demonstrates the ease of which the admin can be configured. Knowing about these capabilities already built into Django can save you quite a bit of time when it comes to producing production ready admin interfaces. Except for more complex systems this should suffice. Below is a table of the Django admin options I&#8217;ve been using. If anyone has any more let me know and I&#8217;ll add them here, along with a brief description.</p>
+<table>
+	<tr>
+		<td>Option</td>
+		<td>Description</td>
+	</tr>
+	<tr>
+		<td>model</td>
+		<td> Set the model for which this is the admin </td>
+	</tr>
+	<tr>
+		<td>form</td>
+		<td> Set the form class if one has been created </td>
+	</tr>
+	<tr>
+		<td>list_display</td>
+		<td> Set which fields should appear in the changelist view </td>
+	</tr>
+	<tr>
+		<td>list_filter</td>
+		<td> Se which fields should be used to provide a filter in the changelist view </td>
+	</tr>
+	<tr>
+		<td>raw_id_field</td>
+		<td> Useful when you have a Foreign Key on another model with lots of records. This changes the default interface from the a select box to a custom widget</td>
+	</tr>
+	<tr>
+		<td>ordering</td>
+		<td> Specify the order of the objects in the changelist </td>
+	</tr>
+	<tr>
+		<td>fieldset</td>
+		<td> Fieldsets allow for control over the changeform view, setting which fields to display and whether to separate them out into individual fieldsets. Worth investigating </td>
+	</tr>
+	<tr>
+		<td>save_on_top</td>
+		<td> If you have a long form it&#8217;s useful to be able to display the save buttons at the top as well as the bottom </td>
+	</tr>
+	<tr>
+		<td>date_hierachy</td>
+		<td> Add date based filtering to the chaneglist view </td>
+	</tr>
+	<tr>
+		<td>radio_fields</td>
+		<td> Another alternative widget for Foreign key fields, this time using radio buttons. Useful for fixed small lists of objects </td>
+	</tr>
+	<tr>
+		<td>list_per_page</td>
+		<td> How may objects to list per page on the changelist view </td>
+	</tr>
+	<tr>
+		<td>search_fields</td>
+		<td> Enable search for the model and specify which fields to search </td>
+	</tr>
+	<tr>
+		<td>prepopulated_fields</td>
+		<td> Some fields might be prepopulated based on the user entering text into another field. This is often used to prepopulate slugs based on the title of an object </td>
+	</tr>
+	<tr>
+		<td>filter_horizontal</td>
+		<td> The default widget for many to many fields is the rather shoddy multiple select box. Filter horizontal enhances this with some super javascript, making it much more usable. Never use many to many fields without this or filter_vertical </td>
+	</tr>
+	<tr>
+		<td>filter_vertical</td>
+		<td> Does exactly the same as filter_horizontal, except the filter lists appear one above the other rather than side to side. Useful for thinner admin views</td>
+	</tr>
+</table>
+<p>As you can see you can customise the default admin views a great deal even without creating your own templates and defining custom admin views. The best part is still that as well as being useful for demonstrations and prototypes these interfaces are useful on a live production site. Quite an achievement I think.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-20T00:00:00+01:00" pubdate data-updated="true">Sep 20<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/django/'>django</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2008/09/20/django-admin-options/" data-via="garethr" data-counturl="http://www.morethanseven.net/2008/09/20/django-admin-options/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/09/16/openmicroblogging/" title="Previous Post: openmicroblogging">&laquo; openmicroblogging</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/09/27/headless-vmware-fusion/" title="Next Post: Headless VMWare Fusion">Headless VMWare Fusion &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2008/09/20/django-admin-options/';
+        var disqus_url = 'http://www.morethanseven.net/2008/09/20/django-admin-options/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

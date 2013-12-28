@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: deployment | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/deployment/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Self Contained Jruby Web Applications]]></title>
+    <link href="http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications/"/>
+    <updated>2012-04-06T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications</id>
+    <content type="html"><![CDATA[<p>Several things seemed to come together at once to make me want to hack on this particular project. In no particular order:</p>
+
+<p>The "Thoughtworks Technology Radar":http://www.thoughtworks.com/articles/technology-radar-march-2012 said the following:</p>
+
+<p>bq. Embedding a servlet container, such as Jetty, inside a Java application has many advantages over running the application inside a container. Testing is relatively painless because of the simple startup, and the development environment is closer to production. Nasty surprises like mismatched versions of libraries or drivers are eliminated by not sharing across multiple applications. While you will have to manage and monitor multiple Java Virtual Machines in production using this model, we feel the advantages offered by the simplicity and isolation are significant.</p>
+
+<p>I've been getting more interested in JRuby anyway, partly because we're finding ourselves using both Ruby and Scala at work, and maintaining a single target platform makes sense to me. Throw in the potential for interop between those languages and it's certainly worth investigating.</p>
+
+<p>"Play 2.0":http://www.playframework.org/ shipped and currently only provides the ability to create a self contained executable with bundled web server. Creating WAR files for more traditional application servers is on the roadmap but interestingly wasn't deemed essential for the big 2.0 release. I had a nice chat with "Martyn Inglis":https://twitter.com/minglis at work about some of the nice side effects of this setup.</p>
+
+<p>And throw in every time I have to configure straight Ruby applications for production environments I get cross. I know where all the bits and pieces are buried and can do it well, but with so many moving parts it's absolutely no fun whatsoever.</p>
+
+<p>Warbler, the JRuby tool for creating WAR files from Ruby source, has just added the ability to "embed Jetty to the master branch":https://github.com/jruby/warbler/commit/0558a285eb59a0801cf7c0f274777b06b63883b3.</p>
+
+<p>I decided to take all of this for a quick spin, and the "resulting code is up on GitHub":https://github.com/garethr/jruby-embedded-jetty.</p>
+
+<p>This is the simplest Rack application possible, it just prints <em>Hello Jetty</em>. And the README covers how to install and run it so I won't duplcate that information here.</p>
+
+<p>But I will print some nearly meaningless and unscientific benchmarks because, hey, who doesn't like those?</p>
+
+<pre>⚡ ab -c 50 -n 5000 http://localhost:8090/
+
+Server Software:        Jetty(8.y.z-SNAPSHOT)
+Server Hostname:        localhost
+Server Port:            8090
+
+Document Path:          /
+Document Length:        16 bytes
+
+Concurrency Level:      50
+Time taken for tests:   1.827 seconds
+Complete requests:      5000
+Failed requests:        0
+Write errors:           0
+Total transferred:      555999 bytes
+HTML transferred:       80144 bytes
+Requests per second:    2736.47 [#/sec] (mean)
+Time per request:       18.272 [ms] (mean)
+Time per request:       0.365 [ms] (mean, across all concurrent requests)
+Transfer rate:          297.16 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.2      1      18
+Processing:     1   16   7.7     15      61
+Waiting:        0   14   7.2     13      57
+Total:          2   18   7.5     17      61
+
+Percentage of the requests served within a certain time (ms)
+  50%     17
+  66%     19
+  75%     21
+  80%     22
+  90%     27
+  95%     30
+  98%     42
+  99%     52
+ 100%     61 (longest request)
+</pre>
+
+
+<p>Running the same test on the same machine but using Ruby 1.9.2-p290 and Thin gives.</p>
+
+<pre>Server Software:        thin
+Server Hostname:        localhost
+Server Port:            9292
+
+Document Path:          /
+Document Length:        16 bytes
+
+Concurrency Level:      50
+Time taken for tests:   3.125 seconds
+Complete requests:      5000
+Failed requests:        0
+Write errors:           0
+Total transferred:      620620 bytes
+HTML transferred:       80080 bytes
+Requests per second:    1600.16 [#/sec] (mean)
+Time per request:       31.247 [ms] (mean)
+Time per request:       0.625 [ms] (mean, across all concurrent requests)
+Transfer rate:          193.96 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       9
+Processing:     3   31   6.4     33      52
+Waiting:        3   25   6.4     28      47
+Total:          4   31   6.4     33      52
+
+Percentage of the requests served within a certain time (ms)
+  50%     33
+  66%     34
+  75%     34
+  80%     35
+  90%     38
+  95%     41
+  98%     46
+  99%     50
+ 100%     52 (longest request)</pre>
+
+
+<p>2736 requests per second on JRuby/Jetty vs 1600 on Ruby/Thin. As noted this isn't meaningfully useful, in that it's a hello world example and I've not tried to pick the fastest stacks on either side. I'm more bothered about it not being slower, because the main reason to pursue this approach is simplicity. Having a single self contained artefact that contains all it's dependencies including a production web server is very appealing.</p>
+
+<p>I'm hoping to give this a go with some less trivial applications, and probably more importantly look to compare a production stack based around these self-contained executables vs the dependency chain that is modern Ruby application stacks.</p>
+
+<p>Thanks to "Nick Sieger":http://blog.nicksieger.com/ for both writing Warbler and for helping with a few questions on the JRuby mailing list and on Twitter. Thanks also to "James Abley":https://twitter.com/jabley for a few pointers on Java system properties.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Version Control And Deployment Of Cron Jobs]]></title>
+    <link href="http://www.morethanseven.net/2011/05/07/Version-control-and-deployment-of-cron-jobs/"/>
+    <updated>2011-05-07T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/05/07/Version-control-and-deployment-of-cron-jobs</id>
+    <content type="html"><![CDATA[<p>A recent question on Twitter prompted me to write a quick blog post about managing cron jobs. As more and more people want to automate provisioning and deployment of web applications some, maybe previously manually managed, items come into the fold.</p>
+
+<p>Cron jobs are interesting because you may prefer to see them as part of the infrastructure (like apache or mysql) or as part of your application code. I think both are valid, sometimes at the same time. For instance you might have a cron job which deals with scheduled database backups. All that requires is the database and the script to be present. At other times your cron jobs might require your entire application stack. For instance a rake task which uses a Rails application model, or a django management command.</p>
+
+<p>h2. Configuration Management and Cron</p>
+
+<p>Both "Chef":http://opscode.com/chef/ and "Puppet":http://puppetlabs.com/puppet/ provide a cron resource type. This is particularly handy for things like database backup scripts or ganglia gmetric scripts. You probably want these scripts and cron jobs to be installed on machines that have the related software installed, and you're probably already describing this in your Chef recipes or Puppet manifests. If you're not already using one of these tools using them to manage just your cron jobs is a nice way of starting out.</p>
+
+<p>Using the "Puppet Cron Type":http://docs.puppetlabs.com/references/latest/type.html#cron looks like this:</p>
+
+<pre><code>cron { command:
+  command => "/usr/local/sbin/command",
+  hour => 2,
+  minute => 0
+}</code></pre>
+
+
+<p>And the equivalent "Chef Reasource":http://wiki.opscode.com/display/chef/Resources#Resources-Cron looks like:</p>
+
+<pre><code>cron "describe your job" do
+  hour "2"
+  minute "0"
+  command "/usr/local/sbin/command"
+end</code></pre>
+
+
+<p>The important part is that by describing your cron jobs in code you can then version control them easily, and both Chef and Puppet have mechanisms to push these jobs out to be installed by the relevant hosts. With cron jobs you might not want all your machines to be running the same jobs for instance.</p>
+
+<p>h2. Using Whenever</p>
+
+<p>An alternative, or complimentary, approach to versioning and deploying cron jobs would be to tie it in with your application code. This makes sense when those jobs are tightly coupled to your application, for instance rails specific rake tasks or django management commands. "Whenever":https://github.com/javan/whenever is a tool I've been using recently that makes this pretty simple. You describe your cron jobs in a file called schedule.rb like so:</p>
+
+<pre><code>every 3.hours do
+  command "/usr/local/sbin/command"
+end</code></pre>
+
+
+<p>And then running the provided whenever command line application will generate a working crontab. Whenever ships with capistrano integration and some useful shortcuts for running rake tasks or accessing Ruby code, but it's simple to write your own command shortcuts without having to write ruby code too.</p>
+
+<p>h2. Other Approaches</p>
+
+<p>I have seen some tools which replace cron completely, but I've never liked that idea much. Cron works pretty well, and is clever enough to deal with things like daylight saving time and leap years inteligently if needed. I know other folks who are centralising all regular jobs into something like Jenkins. I can see advantages to that, although I've yet to find a really nice way of automating this outside the gui interface or manually modifying configuration files.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Continuous Deployment Example Setup]]></title>
+    <link href="http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup/"/>
+    <updated>2011-03-20T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup</id>
+    <content type="html"><![CDATA[<p>One of the reasons behind getting around to building "Vagrantbox.es":http://www.vagrantbox.es recently was I was giving a talk to a group of startups on "The Difference Engine":http://thedifferenceengine.eu/ programme and I wanted to have an example project to demonstrate various things. I wanted to demonstrate everything from sensible version control habbits, configuration management, basic orcestration and most importantly a solid deployment process. I've decided to write up what I'm doing for deployment because I think it's pretty nice, and for all the talk about Continuous Deployment I haven't seen many examples of code and configuration to make it happen.</p>
+
+<p>Most of what I'll cover is pretty easy to map to whatever technologies your using. For this project I'd gone for Git, Django, Gunicorn, Nginx, Fabric, Mysql and Jenkins and I'm deploying to Ubuntu running on "Brightbox Cloud":http://www.brightbox.co.uk/. Apart from the Jenkins instance in the middle you could follow the instructions and swap things out easily.</p>
+
+<p>h2. Jenkins</p>
+
+<p>First up lets install "Jenkins":http://jenkins-ci.org/. I setup a separate cloud instance just to run the Continuous Integration server. I find this approach easier to manage but you could always run this locally if you prefer. The Jenkins folk provide very up to date "packages for Debian":http://pkg.jenkins-ci.org/debian/ so I chose to use those.</p>
+
+<p>h3. Plugins</p>
+
+<p>Jenkins provides a huge number of optional plugins which enable various additional features. Plugins are installed via the web interface at /pluginManager. I've installed:</p>
+
+<ul>
+<li>"Jenkins Cobertura Plugin":http://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin</li>
+<li>"Jenkins GIT plugin":http://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin</li>
+<li>"GitHub plugin":http://wiki.jenkins-ci.org/display/JENKINS/Github+Plugin</li>
+<li>"Green Balls":http://wiki.hudson-ci.org/display/HUDSON/Green+Balls</li>
+<li>"Hudson Violations plugin":http://wiki.hudson-ci.org/display/HUDSON/Violations</li>
+</ul>
+
+
+<p>Only the Git plugin is really required for what I'm doing with deployment. Cobertura and Violations are code quality metrics tools that I use to record output from pylint and code coverage for my test suite.</p>
+
+<p>h2. The Source</p>
+
+<p>My finished project was already on GitHub in a private repository. I'm using a requirements.txt file to record python dependencies so I can use pip to install them automatically and I'm using Virtualenv to sandbox this installation. I'm also using South to manage my database schema changes. I won't go into that here as it's pretty Python specific, Rails for instance has Active Record migrations, RVM and Bundler which do pretty much the same job. PHP has PEAR and some of the frameworks offer a migration tool.</p>
+
+<p>I then created two projects in Jenkins:</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiRywEM" alt="Jenkins dashboard"/></p>
+
+<p>h3. Project 1: Vagrantboxes</p>
+
+<p>This is the main build of my master branch in Git. As well as setting up the Git repo as shown below I've set a polling schedule to */5 * * * * (that's every 5 minutes) and also set Trigger builds remotely so I can have a task in my fabfile which triggers a build immediately.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjh2gEM" alt="Git config for Jenkins"/></p>
+
+<p>I then have two build steps, both of which execute shell commands. The first installs any new requirements via pip:</p>
+
+<pre>bash -l -c "source bin/activate; pip install -r requirements.txt"</pre>
+
+
+<p>The second runs my test suite and generates the XML output required to show the test results in Jenkins:</p>
+
+<pre>bash -l -c "source bin/activate; cd vagrantboxes/configs/common; python manage.py jenkins boxes"</pre>
+
+
+<p>I'm using the rather handy "Django Jenkins":https://github.com/kmmbvnr/django-jenkins application for this.</p>
+
+<p>So far so good. This gives us a project that, when we push some changes to GitHub, will pull those changes down to the CI server and run our test suite, giving us feedback as to whether the tests pass or fail.</p>
+
+<p>Now for the trick, in Post-build Actions tick Build other projects and specify the name of another project that we'll setup next. Mine is called Vagrantboxes-deploy.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRirwwEM" alt="Post build action in Jenkins"/></p>
+
+<p>h3. Project 2: Vagrantboxes-deploy</p>
+
+<p>This project is triggered only when the previous project runs successfully. And all it's going to do is run the deployment script on the project we just built. The setup for this project is very simply, it has one build step which just executes the following:</p>
+
+<pre>bash -l -c "cd /var/lib/jenkins/jobs/Vagrantboxes/workspace; source bin/activate; fab appserver deploy"</pre>
+
+
+<p>The specifics of the Fabric script here aren't that important but I'm doing something not too disimilar to "what I described here":http://morethanseven.net/2009/07/27/fabric-django-git-apache-mod_wsgi-virtualenv-and-p.html.</p>
+
+<p>The reason I've setup a separate project for these is so I can, if I choose, trigger a deployment separately to the full build, and also so I can very easily disable deployments even if the main build is still running.</p>
+
+<p>h2. Conclusions</p>
+
+<p>With this setup whenever I push code to master it triggers a build. If the test suite passes it runs the deployment script and pushes out the code to the live web servers. This suites me and this project but you might find it easier to start by pushing all successfull builds out to a staging environment. And maybe then moving on to having a new project which is only triggered manually for deploying to production.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiqwwEM" alt="project view in Jenkins"/></p>
+
+<p>This setup has other advantages too. The Jenkins dashboard becomes a handy tool for recording deployment events. You can easily setup emails or IM messages or Campfire posts to alert other team members whenever a deployment happens. And it really really makes sure your delployment scripts work without hand holding.</p>
+
+<p>This is a simple project that I'm working on on my own, but in a team environment you'd likely have a more complex branching strategy and more Jenkins projects. You might also introduce some gateways for manual testing but the starting point is the same. Jenkins makes archiving successful build artifacts relatively easy as well, this setup has a few race condition possibilities that you can fix by building artifacts from successful builds. Jenkins also supports building from different branches and having different branches trigger different projects, all handy if you want to grow this kind of setup.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git Pre Recieve Hook For Integrity]]></title>
+    <link href="http://www.morethanseven.net/2010/07/11/Git-pre-recieve-hook-for-integrity/"/>
+    <updated>2010-07-11T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2010/07/11/Git-pre-recieve-hook-for-integrity</id>
+    <content type="html"><![CDATA[<p>I'm getting married rather soon so time has been somewhat short (in a good way) for just hacking on stuff, but I've finally found a little bit of time to play with something I've been mulling over for a while. Namely a continuous deployment workflow using the integrity continous integration server.</p>
+
+<p>I'm hoping to have an incredibly simple but fully operation example available at some point - mainly to act as a good discussion point. For now here's my current pre-receive hook.</p>
+
+<script src="http://gist.github.com/471711.js?file=pre-receive"></script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automating web site deployment at Barcamp Brighton]]></title>
+    <link href="http://www.morethanseven.net/2009/09/06/automating-web-site-deployment-barcamp-brighton/"/>
+    <updated>2009-09-06T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/09/06/automating-web-site-deployment-barcamp-brighton</id>
+    <content type="html"><![CDATA[<p>On the first day at Barcamp Brighton this year I did a brief talk about getting started with automating deployment. I kept it nice and simple and didn't focus on any specific technology or tool - just the general principles and pitfalls of doing anything manually. You can see the "slides on Slideshare":</p>
+
+<object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=automatingdeployment-090906054723-phpapp01&stripped_title=automating-web-site-deployment" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=automatingdeployment-090906054723-phpapp01&stripped_title=automating-web-site-deployment" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object>
+
+
+<p>As part of the presentation I even did a live demo and promised I'd upload the code I used. The following is an incredibly simple fabric file that has most the basic set of tasks. "Fabric":http://pypi.python.org/pypi/Fabric/ is a python tool similar to capistrano in Ruby. I don't really care whether you're using make, ant, rake, capistrano or just plain shell scripts. Getting from not automating things to automating deployments is the important part - and it's easier that you think.</p>
+
+<script src="http://gist.github.com/181755.js"></script>
+
+
+<p>The other part of the code example was a very basic apache virtualhost so just in case anyone needed that as well here it is:</p>
+
+<pre>&lt;VirtualHost *:80&gt;
+    ServerName sample.local
+    DocumentRoot /srv/sample/releases/current
+    &lt;Directory /srv/sample/releases/current&gt;
+        Order deny,allow
+        Allow from all
+    &lt;/Directory&gt;
+    ErrorLog /var/log/apache2/sample/error.log
+    LogLevel warn
+    CustomLog /var/log/apache2/sample/access.log combined
+&lt;/VirtualHost&gt;</pre>
+
+]]></content>
+  </entry>
+  
+</feed>

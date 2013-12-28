@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Asteroid - simple app for running scripts and recording the results - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Asteroid is a simple web interface for running scripts and recording the results. It&#8217;s like a much simpler and more general purpose version of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2009/07/15/simple-app-running-scripts-and-recording-results">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Asteroid - Simple App for Running Scripts and Recording the Results</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-15T00:00:00+01:00" pubdate data-updated="true">Jul 15<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Asteroid is a simple web interface for running scripts and recording the results. It&#8217;s like a much simpler and more general purpose version of something like Cruise Control. You can <a href="http://github.com/garethr/Asteroid/tree/master">get the code on Github</a>.</p>
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRj5VQw" alt="Asteroid Dashboard"/></p>
+<p>I built it to solve two main problems:</p>
+<ul>
+	<li>It&#8217;s sometimes useful to have a historical record of a scripts execution, in particular whether it passed or failed and what the output was. Just running a command line script probably doesn&#8217;t give you that. It&#8217;s also useful to have a more graphical interface for those members of the team who don&#8217;t use the command line.</li>
+	<li>When working in a team you often want to run scripts against shared infrastructure, for instance deploying a testing release or running a test suite. Seeing what is running at present helps with that.</li>
+</ul>
+<p>So it should be useful for running deployments, running test suites, running backups, etc. It currently doesn&#8217;t have scheduling or similar build in, but as everything is triggered by hitting a <span class="caps">URL</span> it would be simple enough to use cron for something like that. It should also be useful whatever language you write your scripts in; rake, ant, shell scripts, etc. At the end of the day it just executes a command at the console.</p>
+<h2>Requirements</h2>
+<p>Asteroid uses the Django Python framework under the hood.</p>
+<ul>
+	<li>Django &#8211; <a href="http://www.djangoproject.com/">http://www.djangoproject.com/</a></li>
+</ul>
+<p>You&#8217;ll also need a database. The default in the shipped settings is to use sqlite but this should work with any database supported by Django.</p>
+<p>You&#8217;ll also need a decent web browser. I&#8217;ve gone and used HTML5 as an experiment and with this being a developer tool I&#8217;m hoping to stick with it. It would be easy enough to convert the templates if this is a problem however.</p>
+<p>The application has an optional message queue backend which can be enabled in the settings file. This is used to improve the responsiveness of the application as well as allow commands to be executed on a remote machine, rather than on the box Asteroid is running.</p>
+<ul>
+	<li>AMQPlib &#8211; <a href="http://barryp.org/software/py-amqplib/">http://barryp.org/software/py-amqplib/</a></li>
+	<li>RabbitMQ &#8211; <a href="http://www.rabbitmq.com/">http://www.rabbitmq.com/</a></li>
+</ul>
+<p>Other <span class="caps">AMQP</span> compliant message queues should work but it&#8217;s currently only tested with Rabbit.</p>
+<p>If you are intending to do any development on Asteroid, or just want to look more closely at the code, I&#8217;d recommend installing</p>
+<ul>
+	<li>Clue &#8211; <a href="http://github.com/garethr/django-clue/tree/master">http://github.com/garethr/django-clue/tree/master</a></li>
+	<li>Test Extensions &#8211; <a href="http://github.com/garethr/django-test-extensions/tree/master">http://github.com/garethr/django-test-extensions/tree/master</a></li>
+</ul>
+<h2>Usage Instructions</h2>
+<p>You should be able to just download asteroid and run it from wherever you put it, once you setup the database.</p>
+<pre>cd asteroid/configs/common
+manage.py syncdb
+manage.py runserver</pre>
+<p>This should bring the local web server up on port 8000 so visit http://localhost:8000 and see.</p>
+<p>If you&#8217;re using the message queue backend you&#8217;ll need to run the listener script in order to get your commands executed. At the moment that means modifying a constant in the listener script to point at a running message queue instance at asteroid/bin/asteroid_listen.py.</p>
+<pre>cd asteroid/bin
+./asteroid_listen.py</pre>
+<p>Once you&#8217;re up and running you should be able to add commands via the admin interface at http://localhost:8000/admin/. The username and password should be those you added when creating the database via the syncdb command above.</p>
+<p>The development configs include a few additional applications (mentioned above) which I use for testing and debugging. You can run the test suite like so:</p>
+<pre>cd asteroid/configs/development
+manage.py test --coverage
+</pre>
+<h2>Todo</h2>
+<p>This is an early release that just about <em>works for me</em>. I can already see a number of areas I&#8217;d like to clean up a little or extend. For instance:</p>
+<ul>
+	<li>Other deployment options, including a <span class="caps">WSGI</span> file and a spawning startup script.</li>
+	<li>Use a database migration system to make upgrades easier.</li>
+	<li>Make the message queue listener script more robust.</li>
+	<li>Make the command entry more robust, it sometimes takes a bit of fiddling with to get something to run correctly.</li>
+	<li>Formalise running scripts on remote machines, including support for running on multiple machines.</li>
+	<li>Paging for long lists of commands or runs.</li>
+</ul>
+<h2>Notes</h2>
+<p>I&#8217;m pretty happy with how it&#8217;s shaping up so far. Under the hood it works by having the web app put a <span class="caps">JSON</span> document on the message queue. The <span class="caps">JSON</span> contains the command to be run and a callback <span class="caps">URL</span>. The script listening to the message queue picks up the message, runs the command, and posts a <span class="caps">JSON</span> document back to the webhook url. It keeps the web interface snappy, as well as meaning it can show which commands are currently in progress at any given time. It also has the side benefit of meaning you can execute commands on a remote machine, as the listener doesn&#8217;t care where it&#8217;s running.</p>
+<p>As noted above I have a few ideas of where I want to take it, but I&#8217;m going to try using it for a bit and see how that goes. If anyone else finds it useful then do let me know.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-15T00:00:00+01:00" pubdate data-updated="true">Jul 15<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/asteroid/'>asteroid</a>, <a class='category' href='/tags/django/'>django</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2009/07/15/simple-app-running-scripts-and-recording-results/" data-via="garethr" data-counturl="http://www.morethanseven.net/2009/07/15/simple-app-running-scripts-and-recording-results/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/07/13/its-data-we-want/" title="Previous Post: It's the Data we Want">&laquo; It's the Data we Want</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/07/23/whats-new-django-11/" title="Next Post: What's new in Django 1.1">What's new in Django 1.1 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2009/07/15/simple-app-running-scripts-and-recording-results/';
+        var disqus_url = 'http://www.morethanseven.net/2009/07/15/simple-app-running-scripts-and-recording-results/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

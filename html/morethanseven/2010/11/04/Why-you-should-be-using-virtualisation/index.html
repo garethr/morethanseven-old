@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Why You Should Be Using Virtualisation - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="My main development machine for a while has been an apple laptop. From looking around at conferences, offices and usergroups I know I&#8217;m not &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Why You Should Be Using Virtualisation</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-04T00:00:00+00:00" pubdate data-updated="true">Nov 4<span>th</span>, 2010</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>My main development machine for a while has been an apple laptop. From looking around at conferences, offices and usergroups I know I&#8217;m not alone. But I don&#8217;t really <em>run</em> code on my mac very often, certainly not for work. I might edit the code on my mac but I execute it running in a virtualised Linux environment matching (as close as possible) the production environment it&#8217;s going to end up in. This blog post is an attempt to explain why this is a good idea to the majority of people who develop on a mac (or a windows machine) and deploy to something else. This isn&#8217;t language specific either. You might be working on small <span class="caps">PHP</span> web sites or huge Python applications, you&#8217;ll still one day run into the same issues.</p>
+<h2>Why is virtualisation a good idea?</h2>
+<p>Bugs happen, but catching them early, way before they even hit your shared source code repository makes them much less of an issue. Catching bugs only after a live release, when they affect customers and cost someone money is bad. And if your release is a long period of time after the work was done then fixing them is harder to boot. These are just some of the reasons we&#8217;re all fond of unit testing and continuous integration.</p>
+<p>But if you&#8217;re running those tests against code executing on different hardware, on a different operating system, with different low level libraries or a different web server version or a different database server then you are not going to catch all the problems. If you take this to an extreme then you can only get rid of all of these problems by giving each developer a full production stack of their very own. This is obviously impossibly expensive for anything past the most trivial setup. But eliminating even some of these issues makes it more likely you&#8217;ll catch bugs early and less likely you&#8217;ll have a bug on your hands that you can&#8217;t recreate locally. So we&#8217;ll aim for production like rather than a 100% copy.</p>
+<p>Here&#8217;s a real example, a case insensitive file system. Grab a terminal prompt on your mac and type the following in an empty directory. Then do the same on a typical linux machine. All we&#8217;re doing is using touch to create a file.</p>
+<pre>touch Test
+touch test
+ls
+</pre>
+<p>On you&#8217;re mac you&#8217;ll probably see:</p>
+<pre>Test</pre>
+<p>On your linux box you&#8217;re more likely to get:</p>
+<pre>Test
+test</pre>
+<p>What? The mac treated Test and test as meaning the same thing. It wont let you have a file called test and one called Test in the same place. It&#8217;s case insensitive. But the linux machine didn&#8217;t have this problem. Now imagine we&#8217;re not dealing with empty files called test but either files you&#8217;re running code is creating at run time (a file cache maybe or a user uploaded file) or even more interestingly your source code files. Lets say you have git on a linux box in the corner of the office and someone checks in two files from a linux machine called Pages_controller.rb and pages_controller.rb. What happens when you get these to you&#8217;re mac? I haven&#8217;t actually tried this but it&#8217;s not going to end well. And imagine debugging this sort of issue? If you think this is all hypothetical I know about this little quirk exactly because I saw someone trying to fix a bug related to it.</p>
+<p>What if the bug was because you had one version of lib_xml on your local development machine and a different one on production. Up to that point you might not even know what libxml was or how it got on your shiny apple laptop.</p>
+<p>How many people can genuinely say they have never had a bug they could recreate on live and not on their development machine? Same code, different behaviour. Load and data often play a part in bugs like this as well but these can be isolated and tests created in at least some cases. Being pragmatic what we&#8217;re aiming for isn&#8217;t to eliminate all differences, it&#8217;s to get rid of those that are easy to eliminate.</p>
+<h2>How can I do this?</h2>
+<p>Virtualisation tools used to be cumbersome and expensive and generally not aimed at consumers. I&#8217;ve used both VMWare Fusion and VirtualBox on my mac and even compared to a few years ago these tools are increasingly easy to use. And VirtualBox is free and open source too. On top of that we now have tools like vagrant which I&#8217;ll give a quick example of here.</p>
+<p><a href="http://vagrantup.com">Vagrant</a> for those that haven&#8217;t come across it yet describes itself thus:</p>
+<blockquote>
+<p>Vagrant uses Oracle’s VirtualBox to build configurable, lightweight, and portable virtual machines dynamically</p>
+</blockquote>
+<p>What it really is is a tool for quickly and painlessly building virtual machines based on sensible default configurations, and then providing programatic hooks for more advanced configuration. For instance you&#8217;ll have a configuration file to describe which ports you want forwarded and you can use Chef to install packages when the VM first boots. Once you have it installed it&#8217;s as easy as this to use</p>
+<pre>vagrant box add lucid32 http://files.vagrantup.com/lucid32.box
+vagrant init lucid32
+vagrant up</pre>
+<p>The first line downloads a 32bit Ubuntu disk image but you&#8217;ll only need to do that once. You&#8217;ll find lots of images for different distros too. The next two lines create and then boot a new headless virtual machine. That&#8217;s it.</p>
+<pre>vagrant ssh</pre>
+<p>Will let you jump straight into a ssh session with the new machine, for an idea of what else it can do here&#8217;s the help output:</p>
+<pre>Tasks:
+  vagrant box                        # Commands to manage system boxes
+  vagrant destroy                    # Destroy the environment, deleting the create...
+  vagrant halt                       # Halt the running VMs in the environment
+  vagrant help [TASK]                # Describe available tasks or one specific task
+  vagrant init [box_name] [box_url]  # Initializes the current folder for Vagrant u...
+  vagrant package                    # Package a Vagrant environment for distribution
+  vagrant provision                  # Rerun the provisioning scripts on a running VM
+  vagrant reload                     # Reload the environment, halting it then rest...
+  vagrant resume                     # Resume a suspended Vagrant environment.
+  vagrant ssh                        # SSH into the currently running Vagrant envir...
+  vagrant ssh_config                 # outputs .ssh/config valid syntax for connect...
+  vagrant status                     # Shows the status of the current Vagrant envi...
+  vagrant suspend                    # Suspend a running Vagrant environment.
+  vagrant up                         # Creates the Vagrant environment
+  vagrant version                    # Prints the Vagrant version information</pre>
+<p>I&#8217;ll leave it their as this post is more of a rant than a tutorial, but I might write more about using vagrant later. But in the meantime read the web site for a pretty simple walkthrough. And don&#8217;t be put off by the fact it&#8217;s written in Ruby or that the example shows a Rails app, this is a great tool whatever language you&#8217;re going to be using on the virtual machine.</p>
+<h2>Arguments against</h2>
+<p>I see too few developers doing this for it to just be about a lack of awareness. Lots of developers not doing this might be running local virtual machines for cross browser testing for instance. Here&#8217;s a few complaints I&#8217;ve heard and what I think the answer is.</p>
+<h3>Speed</h3>
+<p>If something is slow and you don&#8217;t have as much <span class="caps">RAM</span> as you can get into your machine then do that before complaining about anything. Running a few extra operating systems inside your main operating system is obviously going to be intensive so don&#8217;t scrimp on your tools. Also the defaults when setting up new virtual machines in VirtualBox or VMWare Fusion at least are quite minimal. Try increasing the ammount of <span class="caps">RAM</span> you let them use or give them access to more processes. I can genuinely say I&#8217;ve had a problem with this once and the real solution was changing the code, not throwing away all the advantages of virtualisation. If you&#8217;re doing some crazy real time video processing thing then your mileage will vary, but then you probably want a faster machine anyway.</p>
+<h3>Lower level that you&#8217;re used to</h3>
+<blockquote>
+<p>As a <span class="caps">PHP</span>/Ruby/Python developer why should I have to care about Apache? I just write code!</p>
+</blockquote>
+<p>This argument just bugs me, but I do know part of that is me. I need to know how all the bits work and fit together and I accept not everyone does, or indeed needs to understand everything. But someone on your team probably wants to know this stuff and importantly be able to tell others how they should do things. It&#8217;s pretty common for developers to setup a development environment for a pure frontend developer or a designer so they can make changes and commit <span class="caps">CSS</span> or new templates. This is no different. Most designers don&#8217;t need to know about the software environment in detail, it&#8217;s easier for them to defer to a domain expert. If a developer just wants to write code then they too should defer to someone who does know about the lower level when it comes to their development environment too.</p>
+<h3>Something else to setup</h3>
+<p>This argument has some merit. We&#8217;re all busy and downing tools to setup something for you and your team is time consuming. And I think until pretty recently the time taken and the knowledge needed was a genuine barrier. Personally I&#8217;ve tended to have few problems, but then I&#8217;m familiar enough with Linux administration to avoid some common pitfalls. But problems with setting up port forwarding or shared folders can be pretty irritating when you want to work on a pressing bug or shiny new feature. But with tools like vagrant providing a simple interface to do this I think this is hopefully a thing of the past.</p>
+<h3>Developers workstations should be personal</h3>
+<p>I agree up to a point here. Discussions of standardising individual developer tools turn into holy flame wars over whether everyone should use some <span class="caps">IDE</span>, Vim or Emacs (answer: Vim). This is pointless. File managers, utilities, test editors, terminal styles, host operating system. All of these and more should be up to the individual developers. But in the same way you generally don&#8217;t allow individual developers to use a new language no one knows without at least some discussion, why would this be different for the web server or operating system on which you&#8217;ll be running that code in production. Most of the time it&#8217;s not that developers make a consious decision to use a different version either. It&#8217;s more likely that they will take the path of least resistance and follow a tutorial or just use a package manager. It&#8217;s more likely if you ask the question &#8220;what specific version of Apache are you using on your development machine&#8221; they won&#8217;t know the answer.</p>
+<h2>Conclusions</h2>
+<p>I&#8217;ve not even gone into some of the other advantages of virtualisation here. Being able to snapshot your environment at any point and roll back an entire virtual machine like you do your code is hugely handy. As is the ability to create virtual machines that you can share with other members of your team. No more do new employees have to spend the first week installing dependencies and just getting code running.</p>
+<p>I&#8217;m certainly not the only person doing this and it&#8217;s not a new idea. But it&#8217;s never been easier or cheaper. And with an increasing move towards virtualisation or cloud computing production environments it&#8217;s even easier to share good practices with your friendly systems administrators.</p>
+<p>I&#8217;ve renabled comments on this blog after something of a break and I&#8217;d love to hear what people think, positive and negative.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-04T00:00:00+00:00" pubdate data-updated="true">Nov 4<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/vagrant/'>vagrant</a>, <a class='category' href='/tags/virtualbox/'>virtualbox</a>, <a class='category' href='/tags/virtualisation/'>virtualisation</a>, <a class='category' href='/tags/vmware/'>vmware</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation/" data-via="garethr" data-counturl="http://www.morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2010/10/30/Chef-hello-world/" title="Previous Post: Chef Hello World">&laquo; Chef Hello World</a>
+      
+      
+        <a class="basic-alignment right" href="/2010/11/07/Books-for-people-interested-in-devops/" title="Next Post: Books For People Interested In Devops">Books For People Interested In Devops &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation/';
+        var disqus_url = 'http://www.morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

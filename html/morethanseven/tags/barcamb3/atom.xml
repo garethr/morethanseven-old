@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: barcamb3 | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/barcamb3/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Devops At Barcamp Cambridge]]></title>
+    <link href="http://www.morethanseven.net/2010/04/24/Devops-at-barcamp-cambridge/"/>
+    <updated>2010-04-24T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2010/04/24/Devops-at-barcamp-cambridge</id>
+    <content type="html"><![CDATA[<p>I'm at barcamp cambridge this weekend and decided to do a short talk on devops. It's still a term that not too many people have come across and something that lots of people building websites should think about.</p>
+
+<object width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=devops-100424081210-phpapp02&stripped_title=devops-3839400" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=devops-100424081210-phpapp02&stripped_title=devops-3839400" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object>
+
+
+<p>I put the slides together this morning so much of it will be familiar to people who have been reading the same blog posts as me over the last year or so. For anyone else either just finding out about the whole world of operations or old hand sysadmins finding likeminded people hopefully the slides will be useful.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: qcon | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/qcon/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Perils of portability]]></title>
+    <link href="http://www.morethanseven.net/2013/03/23/perils-of-portability/"/>
+    <updated>2013-03-23T16:36:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/03/23/perils-of-portability</id>
+    <content type="html"><![CDATA[<p>I had fun speaking at "QCon":http://qconlondon.com/ in London earlier this month with a talk on the Cloud track entitled the Perils of Portability.</p>
+
+<p>This had some Governmenty stuff in but was mainly part rant, part hope for the future of cloud infrastructure. I had some great conversations with people afterwards who felt some of the similar pain which was nice to know. I also somehow managed to get 120 slides into a 40 minute presentation which I think is a personal records.</p>
+
+<script async class="speakerdeck-embed" data-id="52f90c206ae90130747512313d140c86" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>The videos will be available at some point in the not too distant future too.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[March madness]]></title>
+    <link href="http://www.morethanseven.net/2013/02/17/march-madness/"/>
+    <updated>2013-02-17T17:17:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/02/17/march-madness</id>
+    <content type="html"><![CDATA[<p>With only a week or so to go before the end of February, it's looking like March might be a little busy.</p>
+
+<ul>
+<li>I'm speaking at QCon, in London on Wednesday 6th on "Clouds in Government - Perils of Portability":http://qconlondon.com/london-2013/presentation/Clouds%20in%20Government%20-%20Perils%20of%20Portability (which in hindsight is probably the silliest title for a talk I've ever used)</li>
+<li>On the 15th and 16th of March I'll be at "Devopsdays":http://devopsdays.org/events/2013-london/, again in London. I've been helping out with organising the event and I'm very much looking forward to going along after seeing all the work being put in.</li>
+<li>And last but not least I'm heading to Boston for the rather exciting "Monitorama":http://monitorama.com/ from the 26th until the 30th. Looking forward to meeting up in person with quite a few folks I've spoken to over the last year or two.</li>
+</ul>
+
+
+<p>If you're going to be at any of these events (QCon and Devopsdays still have tickets available I think) then let me know.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Django and Rails presentation from QCon]]></title>
+    <link href="http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon/"/>
+    <updated>2013-01-13T16:31:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon</id>
+    <content type="html"><![CDATA[<p>I had great fun back in November at the "QCon":http://qconsf.com/ conference in San Francisco. As well as currating one of the tracks and catching up with people in the area I managed to give the following talk.</p>
+
+<script async class="speakerdeck-embed" data-id="7e1dd5a03efc0130083b123139173def" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>In hindsight it might have been a bit odd to try and cover both Rails and Django examples in the one presentation but it was quite good fun putting together code examples using both of them at the same time. As well as a large set of tips, tricks and tools I settled on a few things that I think any web (or other) framework should support out of the box.</p>
+
+<ul>
+<li>A debug toolbar</li>
+<li>Transparent caching support</li>
+<li>Hooks for instrumentation</li>
+<li>Configurable logging</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

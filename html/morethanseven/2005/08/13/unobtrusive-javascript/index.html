@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>unobtrusive javascript - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Lots of talk around at the moment about unobtrusive javascript on the usual websites and discussion lists. However alot of people, maybe outside the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2005/08/13/unobtrusive-javascript">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Unobtrusive Javascript</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-08-13T00:00:00+01:00" pubdate data-updated="true">Aug 13<span>th</span>, 2005</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Lots of talk around at the moment about <a href="http://adactio.com/atmedia2005/">unobtrusive</a>  <a href="http://www.bobbyvandersluis.com/articles/goodpractices.php">javascript</a> on the usual websites and <a href="http://designersinhouse.com">discussion</a> <a href="http://www.quirksmode.org/dom/list.html ">lists</a>. However alot of people, maybe outside the inner circles, are still finding old school examples of inline code on out of date pages.</p>
+ <p>So here&#8217;s my tuppence. I guess the more websites that post new, up to date, examples and reasoning the better?</p>
+ <p>The premise is pretty simple. In the same way as controlling formating with tables and having everything being mixed up in one .htm file is frowned upon as simply being too much work &#8211; dealing with lots of inline snippets of javascript raises the same problems. Namely being time consuming to update and maintain.</p>
+ <p>The solution is to keep <span class="caps">ALL</span> your javascript in separate .js files, and that includes removing things like <code>href="javascript:"</code> or <code>onclick=</code>. The first question is therefor how &#8211; when I started looking down this route I found a simple answer hard to come by, having to look at more complex examples and reverse engineer them.</p>
+ <p>The following is the method I&#8217;m using at the moment. It may have issues I&#8217;m unaware &#8211; if your a javascript guru let me know. The examples are from the fluidflash page on this site, see it in action at <a href="http://www.morethanseven.net/fluidflash">www.morethanseven.net/fluidflash</a></p>
+ <p>We first I set up an initialisation function:</p>
+
+
+<pre><code>
+function init() {
+    if (!document.getElementById) return false;
+
+    liquid = document.getElementById("iNavLiquid");
+
+    liquid.onclick = liquidChangeClass;
+}
+</code></pre>
+ <p>This sets the onclick event on the element with the id <code>iNavLiquid</code> that will trigger the function <code>liquidChangeClass</code>. Next we define that function:</p>
+
+
+<pre><code>
+function changeClass( targetId, newClass ) {
+    if (document.getElementById){
+        target = document.getElementById( targetId );
+        target.className = newClass;
+    }
+}
+
+function liquidChangeClass() {
+    changeClass("iBody","liquid");
+}
+</code></pre>
+ <p>The specifics aren&#8217;t too important to this example but you can see the <code>liquidChangeClass</code> function which is triggered by the onclick event handler.</p>
+ <p>And finally we need to trigger the <code>init</code> function when the page loads. Their are lots of ways of doing this which is probably a conversation for another time &#8211; I used a <code>schedule</code> function from <a href="http://themaninblue.com">themaninblue.com</a> which you can find below:</p>
+
+
+<pre><code>
+function schedule(objectID, functionCall, iteration) {
+   if (iteration == null){
+   iteration = 0;
+   }
+
+   if (objectID == "window") {
+   var oldonload = window.onload;
+
+   if (typeof window.onload != "function") {
+   window.onload = functionCall;
+   } else {
+   window.onload = function() {
+   oldonload();
+   functionCall();
+   }
+   }
+   } else if (document.getElementById(objectID)) {
+   functionCall();
+   } else if (iteration &amp;lt; 300) {
+   setTimeout(function(){schedule(objectID, 
+           functionCall, iteration + 1)}, 10);
+   }
+
+   return true;
+}  
+
+schedule("window", init);
+</code></pre>
+ <p>So their we have it, hopefully a simple enough example of how to move to unobtrusive javascript. As most of this is generic and used all the time it&#8217;s far simpler that it first appears.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-08-13T00:00:00+01:00" pubdate data-updated="true">Aug 13<span>th</span>, 2005</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2005/08/13/unobtrusive-javascript/" data-via="garethr" data-counturl="http://www.morethanseven.net/2005/08/13/unobtrusive-javascript/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2005/08/11/how-i-came-to-love-visio/" title="Previous Post: How i came to love visio">&laquo; How i came to love visio</a>
+      
+      
+        <a class="basic-alignment right" href="/2005/08/21/the-state-of-newcastle/" title="Next Post: The State of Newcastle">The State of Newcastle &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2005/08/13/unobtrusive-javascript/';
+        var disqus_url = 'http://www.morethanseven.net/2005/08/13/unobtrusive-javascript/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

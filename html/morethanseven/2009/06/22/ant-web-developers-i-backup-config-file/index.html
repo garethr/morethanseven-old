@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ant for Web Developers I - Backup Config File - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I occasionally get carried away with Apache Ant. For those that haven&#8217;t come across it, Ant is a build tool written in Java, using an XML &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2009/06/22/ant-web-developers-i-backup-config-file">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ant for Web Developers I - Backup Config File</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-22T00:00:00+01:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I occasionally get <a href="http://morethanseven.net/2009/01/24/defence-apache-ant/">carried away</a> with <a href="http://ant.apache.org/">Apache Ant</a>. For those that haven&#8217;t come across it, Ant is a build tool written in Java, using an <span class="caps">XML</span> syntax to describe a series of repeatable tasks. In your typical web standards savvy, dynamic language favouring, web developer types that description is probably all they (think they) need to know. It&#8217;s Java. It&#8217;s <span class="caps">XML</span>. It&#8217;s only really useful in the context of building software (dull).</p>
+<p>But I think Ant is a particularly handy tool to have around for anyone working on even simple websites. A couple of strong use cases come to mind:</p>
+<ul>
+	<li>If you&#8217;re working in a team environment then build files are hugely useful when introducing new people to the team, or when moving people around. Getting code up and running at the start of a project, or if you join the team part way through, can be tricky. A well written build file can automate this.</li>
+	<li>Even when working on projects on my own I tend to write simple build files. The main reason is so I don&#8217;t forget how to do something. How do you deploy this particular site? How do you run the test suite or generate the documentation? Build files can encapsulate this, and rather than documentation that might be out of date the build file will be executed to do that job in question.</li>
+</ul>
+<p>So with all that in mind I&#8217;m going to try and do a series of posts each covering a single task, aiming to cover things that your regular web developer will find useful. With that in mind if anyone has any requests or questions let me know either by email or in the comments.</p>
+<p>Out first task lets us backup a file from our remote web server, in this case it&#8217;s the apache2.conf file used to setup apache. Obviously it could be any file you want to get hold of. The example below has a couple of properties for the username and hostname of the remote machine. Save the following snippet into a file called build.xml and place it anywhere you like on your machine.</p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project name="example" basedir="."&gt;
+&lt;property name="username" value="{user}"/&gt;
+&lt;property name="host" value="{host}"/&gt;
+&lt;target name="backup-apacheconf" description="backup apache2.conf file from a remote server"&gt;
+  &lt;exec executable="scp" dir="." failonerror="true"&gt;
+    &lt;arg value="${username}@${host}:/etc/apache2/apache2.conf"/&gt;
+    &lt;arg value="apache2.conf"/&gt;
+  &lt;/exec&gt;
+&lt;/target&gt;
+&lt;/project&gt;</pre>
+<p>Running the task, once you have ant installed (it comes already installed on OS X and is generally available in whatever linux package management system you prefer), is as simple as typing the following into a console.</p>
+<pre>ant backup-apacheconf</pre>
+<p>This should download the apache2.conf file to you local machine, into the same directory as your build file.</p>
+<p>The above task requires that you have scp installed on your machine, which is pretty likely if you&#8217;re using OS X or Linux. Ant comes with an inbuilt <em>scp</em> task, but it requires you to install a separate java library. If you&#8217;re happy doing that then you can write tasks like:</p>
+<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project name="example" basedir="."&gt;
+&lt;property name="username" value="{user}"/&gt;
+&lt;property name="password" value="{password}"/&gt;
+&lt;target name="backup-apacheconf" description="backup apache2.conf file from a remote server"&gt;
+    &lt;scp file="${username}@${host}:/etc/apache2/apache2.conf" todir="." password="${password}"/&gt;
+&lt;/target&gt;
+&lt;/project&gt;</pre></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-22T00:00:00+01:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/ant/'>ant</a>, <a class='category' href='/tags/apache/'>apache</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2009/06/22/ant-web-developers-i-backup-config-file/" data-via="garethr" data-counturl="http://www.morethanseven.net/2009/06/22/ant-web-developers-i-backup-config-file/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/06/17/less-css/" title="Previous Post: Less CSS">&laquo; Less CSS</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/06/23/ant-web-developers-ii-restart-apache/" title="Next Post: Ant for Web Developers II - Restart Apache">Ant for Web Developers II - Restart Apache &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2009/06/22/ant-web-developers-i-backup-config-file/';
+        var disqus_url = 'http://www.morethanseven.net/2009/06/22/ant-web-developers-i-backup-config-file/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

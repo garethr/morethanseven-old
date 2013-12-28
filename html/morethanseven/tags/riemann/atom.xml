@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: riemann | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/riemann/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Riemann Puppet Module]]></title>
+    <link href="http://www.morethanseven.net/2012/08/11/Riemann-puppet-module/"/>
+    <updated>2012-08-11T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2012/08/11/Riemann-puppet-module</id>
+    <content type="html"><![CDATA[<p>Thanks to an "errant tweet":https://twitter.com/bitprophet/status/233626675307479040 I started playing with "Riemann":http://aphyr.github.com/riemann/ again. It ticks lots of boxes for me, from the clojure to configuration as code and the overloadable dashboard application. What started as using Puppet and Vagrant to investigate Riemann turned into a full blown tool and module writing exercise, resulting in two related projects on GitHub.</p>
+
+<ul>
+<li>"garethr-riemann":https://github.com/garethr/garethr-riemann/ is a Puppet module for installing and configuring Riemann. It allows for easily specifying your own server configuration and dashboard views.</li>
+<li>"riemann-vagrant":https://github.com/garethr/riemann-vagrant is a Vagrantfile and other code which uses above puppet module to setup a local testing environment.</li>
+</ul>
+
+
+<p>I like this combination, a separate Puppet module along with a vagrant powered test bed. I've written a reasonable rspec based test suite to check the module but it's always easier to be able to run <em>vagrant provision</em> as well to check everything is working. This also turned out to be the perfect opportunity to use "Librarian-Puppet":https://github.com/rodjek/librarian-puppet to manage the dependencies and eventually to ship the module to the "Puppet Forge":https://forge.puppetlabs.com/garethr/riemann.</p>
+]]></content>
+  </entry>
+  
+</feed>

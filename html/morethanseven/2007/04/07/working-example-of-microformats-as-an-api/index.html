@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Working example of Microformats as an API - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Drew posted a while ago asking can-your-website-be-your-api. The simple idea is that you just might be able to live without a dedicated API in favour &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2007/04/07/working-example-of-microformats-as-an-api">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Working Example of Microformats as an API</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-07T00:00:00+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://allinthehead.com/">Drew</a> posted a while ago asking <a href="http://allinthehead.com/retro/301/can-your-website-be-your-api">can-your-website-be-your-api</a>. The simple idea is that you just might be able to live without a dedicated <span class="caps">API</span> in favour of good use of microformats.</p>
+<p>It also turns out <a href="http://tantek.com/">Tantek</a> has also been on the case with his presentation <a href="http://tantek.com/presentations/20040928sdforumws/semantic-xhtml.html">Can your website be your <span class="caps">API</span>? &#8211; Using semantic <span class="caps">XHTML</span> to show what you mean</a> and</p>
+<p><a href="http://www.glennjones.net">Glenn</a> has <a href="http://www.webdd.org.uk/ViewSession.aspx?SessionID=60">spoken on the subject too</a> at <a href="http://www.webdd.org.uk">WebDD</a> and <a href="http://barcamp.org/BarCampLondon2">BarCamp</a>.</p>
+<p>This has interested me for a while and I&#8217;ve finally gotten around to writing some code, in fact I wrote the bulk of it during <a href="http://thehighlandfling.com/2007/">The Highand Fling</a> and then the rest before the <a href="http://refreshedinburgh.com/">Refresh</a> event after I got to te venue an hour early.</p>
+<p>I used Drew&#8217;s <a href="http://allinthehead.com/hkit">hKit</a> for the microformat parsing so everything that follows is PHP5 only I&#8217;m afraid. The also means I dont have a working example on this server at the moment but you can <a href="http://morethanseven.net/_assets/downloads/microformatsapi/microformatsapi.zip">grab the code</a> and try it out yourself. It also makes use of a couple of <a href="http://pear.php.net"><span class="caps">PEAR</span></a> modules; <span class="caps">PEAR</span> <a href="http://pear.php.net/package/Validate">Validate</a> and <span class="caps">PEAR</span> <a href="http://pear.php.net/package/HTTP_Request">HTTP_Request</a>.</p>
+<p>At the moment I&#8217;ve worked on a simple hCard example. It demonstrates the idea of a website exposing methods based on the presense of microformats, plus using that exposed method to extract the information we&#8217;re looking for.</p>
+<p>First we create objects for the parser and the website:</p>
+<pre><code>$parser = new hKit;
+$website = new Website('http://morethanseven.net',$parser);</code></pre>
+<p>Then we&#8217;ll ask what methods the website exposes:</p>
+<pre><code>$website-&gt;expose();</code></pre>
+<p>In this example we get back an array of the available methods, in this case <em>getContacts</em>. Then just as an example lets print out some contact details:</p>
+<pre><code>foreach ($website-&gt;getContacts() as $contact) {
+   echo $contact-&gt;getFN();
+}</code></pre>
+<p>This is a very early release, more of a proof of concept and as such their is no documentation and only a portion of hCard is supported. Hell, their&#8217;s not even a name beginning with h! Having said that I have a plan for a little project to kick the tyres and so I&#8217;l l be adding to it and hopfully have a proper release at some point.</p>
+<p>The plan is to introduce methods like getReviews, getEvents, etc. which allow for the extraction of the relevant details. The part I find most interesting however is the idea of the expose method &#8211; asking a web page if it has an <span class="caps">API</span>, and if it does then what information you can extract automagically. If you&#8217;re interested let me know what you think.</p>
+<p><a href="http://morethanseven.net/_assets/downloads/microformatsapi/microformatsapi.zip">Download example</a></p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-07T00:00:00+01:00" pubdate data-updated="true">Apr 7<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2007/04/07/working-example-of-microformats-as-an-api/" data-via="garethr" data-counturl="http://www.morethanseven.net/2007/04/07/working-example-of-microformats-as-an-api/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/04/02/software-i-installed-on-my-n800/" title="Previous Post: Software I Installed on my N800">&laquo; Software I Installed on my N800</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/04/16/authoritative-hcards-authority-in-microformats/" title="Next Post: Authoritative hCards - Authority in microformats">Authoritative hCards - Authority in microformats &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2007/04/07/working-example-of-microformats-as-an-api/';
+        var disqus_url = 'http://www.morethanseven.net/2007/04/07/working-example-of-microformats-as-an-api/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

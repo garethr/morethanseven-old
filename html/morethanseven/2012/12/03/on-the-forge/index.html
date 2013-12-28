@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>On the forge - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;ve been spending a bit of time recently pushing a few Puppet modules to the Forge. This is Puppetlabs attempt to make a central repository of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2012/12/03/on-the-forge">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">On the Forge</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-03T08:18:00+00:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been spending a bit of time recently pushing a few Puppet modules to the <a href="http://forge.puppetlabs.com">Forge</a>. This is Puppetlabs attempt to make a central repository of reusable puppet modules. I started doing it as a bit of an experiment, to find out what I liked and what worked and I decided to writeup a few opinions.</p>
+<p>So far I&#8217;ve shipped the following modules:</p>
+<ul>
+	<li><a href="http://forge.puppetlabs.com/garethr/riemann">Riemann</a></li>
+	<li><a href="http://forge.puppetlabs.com/garethr/graphite">Graphite</a></li>
+	<li><a href="http://forge.puppetlabs.com/garethr/logstash">Logstash</a></li>
+	<li><a href="http://forge.puppetlabs.com/garethr/freight">Freight</a></li>
+</ul>
+<p>Quite a few of these started as forks of other modules but have evolved quite a bit towards being more reusable.</p>
+<p>I&#8217;ve also started sending pull requests for modules that basically do what I want but don&#8217;t always play well with others.</p>
+<ul>
+	<li><a href="https://github.com/thomasvandoren/puppet-redis/pull/10">Redis</a></li>
+</ul>
+<h2>Improved tools</h2>
+<p>It turns out the experience is mainly a pleasurable one, partly down to the much improved tooling around Puppet. Specifically I&#8217;m making extensive use of:</p>
+<ul>
+	<li><a href="http://rspec-puppet.com/">Rspec Puppet</a> &#8211; for writing tests for module behavious</li>
+	<li><a href="https://github.com/rodjek/librarian-puppet">Librarian Puppet</a> &#8211; dependency management for modules</li>
+	<li><a href="https://github.com/puppetlabs/puppetlabs_spec_helper">Puppet spec helper</a> &#8211; conventions and helpers for testing modules</li>
+	<li><a href="https://travis-ci.org/">Travis CI</a> &#8211; easy continuous integration for module code</li>
+	<li><a href="http://vagrantup.com/">Vagrant</a> &#8211; manage virtual machines, useful for smoke testing on different distributions</li>
+</ul>
+<p>Lots of those tools make testing Puppet modules both easier and useful. Here&#8217;s an example of one of the above modules being tested. Note that it&#8217;s run across Ruby 1.8.7, 1.9.2 and 1.9.3 and Puppet versions 2.7.17, 2.7.18 and 3.0.1 for a total of 9 builds. Handily the Redis module mentioned also had a test suite. The pull request includes changes to that, and Travis <a href="https://travis-ci.org/thomasvandoren/puppet-redis/builds/3462513">automatically tested the pull request</a> for the modules author.</p>
+<h2>Antipatterns</h2>
+<p>Using modules from the Forge really forces you to think about reusability. The pull request mentioned above for the Redis module for instance replaced an explicit mention of the build-essential package with the &#8220;puppetlabs/gcc&#8221;: class from the Forge. This makes the module less self contained, but without that change the module is incompatible with any other module that also uses that common package. I also went back and replaced explicit references to wget and build-essential in my Riemann module.</p>
+<p>As a rule of thumb. For a specific module only include resources that are unique to the software the module manages. Anything else should be in another module with a dependency in the Modulefile.</p>
+<p>This can feel a little much when you&#8217;re replacing a simple Package resource with a whole new module but it has two advantages I care about. As well as the ability to use the module with other third party modules more easily it also makes it more likely that the module will work cross platform.</p>
+<h2>What&#8217;s missing?</h2>
+<p>I&#8217;d like to see a few things improved when it comes to the Forge.</p>
+<ul>
+	<li>I&#8217;d like to be able to publish a new version of a module without having to use the web interface. The current workflow involves running a build command, then uploading the generated artifact via a web form after logging in.</li>
+	<li>I&#8217;d like to see best practice module development guides front and centre on the Forge. Lots of modules won&#8217;t work with other modules and I think that&#8217;s fixable.</li>
+	<li>Integration with puppet-lint would be nice, giving some indication of whether the authors care about the Puppet styleguide.</li>
+	<li><del>A command line search interface would be useful</del>. And <a href="http://docs.puppetlabs.com/man/module.html">turns out to exist</a>. Thanks <a href="http://twitter.com/a1cy">@a1cy</a> for the heads up.</li>
+	<li>The Forge tracks number of downloads, but as a publisher I don&#8217;t know how often my modules have been downloaded.</li>
+	<li>And finally I&#8217;d like to see more people using it.</li>
+</ul></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-03T08:18:00+00:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/puppet/'>puppet</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2012/12/03/on-the-forge/" data-via="garethr" data-counturl="http://www.morethanseven.net/2012/12/03/on-the-forge/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/10/21/shipping/" title="Previous Post: Shipping">&laquo; Shipping</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/12/30/my-personal-package-repository/" title="Next Post: my personal package repository">my personal package repository &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2012/12/03/on-the-forge/';
+        var disqus_url = 'http://www.morethanseven.net/2012/12/03/on-the-forge/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

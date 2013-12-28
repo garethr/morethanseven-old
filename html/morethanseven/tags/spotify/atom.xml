@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: spotify | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/spotify/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Search for Genres on Spotify]]></title>
+    <link href="http://www.morethanseven.net/2008/12/13/search-genres-spotify/"/>
+    <updated>2008-12-13T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2008/12/13/search-genres-spotify</id>
+    <content type="html"><![CDATA[<p>"Spotify":http://www.spotify.com/ is great. It seems stable, the desktop interface is simple and straight forward, and it has an entire album of emo bands doing covers of other emo bands. One thing that's not quite clear just yet in the interface however is how to search for all the Rock tracks, or more specifically how to search for all the tracks in a given genre.</p>
+
+<p>Turns out it's quite simple. Just do a search for <em>genre:Rock</em>. My guess is there are various other textual shortcuts hidden in that search box. If anyone knows of any others post a comment.</p>
+]]></content>
+  </entry>
+  
+</feed>

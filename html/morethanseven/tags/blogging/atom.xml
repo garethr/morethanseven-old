@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: blogging | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/blogging/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[On blogging platforms]]></title>
+    <link href="http://www.morethanseven.net/2010/02/15/blogging-platforms/"/>
+    <updated>2010-02-15T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2010/02/15/blogging-platforms</id>
+    <content type="html"><![CDATA[<p>Every now and again I feel the need for a change and spent a little time tonight looking at different blogging software. I'm currently running a custom django app I wrote a good while ago, more as an excuse to play with Django than anything. Previously I've used Wordpress, Textpattern and even Radiant. But I'm coming to the conclusion that what I want doesn't exist. In theory that means an opportunity for someone to enter the market, in reality I think it might just be me. So, what do I want?</p>
+
+<ul>
+<li>Customisable URL patterns and redirects. Tumblr did well until this point but I have years of content on nice URLs and I'd not going to throw that away.</li>
+<li>Command line interface for posting snippets</li>
+<li>Nice looking web based API (bonus points to Typepad here for some nifty features like pubsubhubhub)</li>
+<li>iPod touch app</li>
+<li>Real control over the design, not just pre-made templates unless you pay for a pro account</li>
+<li>Hackable (this could mean anything, but I know it when I see it. So not WordPress then.)</li>
+<li>Export plain text out</li>
+<li>Use my own domain name</li>
+</ul>
+
+
+<p>I have a sneaking suspicion what I might be thinking about is a private tumblr blog used as a datasource for "Nanoc3":http://nanoc.stoneship.org/. But that relies on me having the time to build that as I can't find anyone who might have written such a think. Maybe one day.</p>
+]]></content>
+  </entry>
+  
+</feed>

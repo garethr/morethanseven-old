@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Getting going with Symfony - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;ve tinkered with a rather large number of these web application frameworks, in Ruby, Python, PHP and C#, at some point over the last few &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2007/09/16/getting-going-with-symfony">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Getting Going With Symfony</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-16T00:00:00+01:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve tinkered with a rather large number of these web application frameworks, in Ruby, Python, <span class="caps">PHP</span> and C#, at some point over the last few years. But I&#8217;ve never really settled on any of them &#8211; mainly because my day job didn&#8217;t need me to and also because I like playing with new toys. I even tinkered with <a href="http://morethanseven.net/posts/webphp/">my own homage</a> to <a href="http://webpy.org/">Web.py</a> in <span class="caps">PHP</span> which a few people have picked and are <a href="http://code.google.com/p/wephp/">running with</a>.</p>
+<p>Right now though I&#8217;ve been doing some work with a <a href="http://rbd.shiftnetwork.co.uk/">few</a> <a href="http://www.bofh.org.uk/">people</a> on a Rails project. Their are some seriously nice things in Rails that I don&#8217;t see elsewhere; really good testing support baked in for one, and some serious deplyments for another.</p>
+<p><a href="http://www.symfony-project.com/">Symfony</a> is another <span class="caps">PHP</span> framework but one that only supports PHP5 (a good thing in my book). It&#8217;s basically a slick integration of lots of existing mature <span class="caps">PHP</span> tools plus some good old <span class="caps">MVC</span> and tried and trusted Software Patterns. I also discovered from a few YAHOO&#8217;s that they have started using it on some levels within <span class="caps">YAHOO</span>.</p>
+<p>My interest piqued I found a couple of <a href="http://www.slideshare.net/fullo/federico-feroldi-php-in-yahoo/">related</a> <a href="http://www.slideshare.net/dustin.whittle/symfony-yui-professional-web-20">presentations</a> on <a href="http://www.slideshare.net/">Slideshare</a> (my new favourite web app), and the site has a <a href="http://www.symfony-project.com/book/1_0">high quality online documentation</a> which can also be <a href="http://www.amazon.co.uk/Definitive-Guide-Symfony-Experts-Source/dp/1590597869">purchased in dead tree format</a>.</p>
+<p>Having a play around with Symfony it took me a little while to get everything up and running, but I&#8217;d kept some handy notes for later. Hopefully they might be useful to someone other than me.</p>
+<p>I&#8217;ve dropped in a few variables denoted by braces where relevant. The paths are from my <span class="caps">MAMP</span> and <span class="caps">PEAR</span> based environment and I&#8217;m using a MySQL database, though you could just as easily use Sqlite.</p>
+<p>First we set up a virtual host in Apache. You have to do this manually at the moment. I already have a script for setting up virtual hosts under apache on OS X which I might extend to do this for me if I end up using Symfony alot.</p>
+<p><code>&lt;pre&gt;&lt;VirtualHost 127.0.0.1&gt;
+  ServerName 
+  DocumentRoot "/Applications/MAMP/htdocs/{project}/web"
+  DirectoryIndex index.php
+  Alias /sf /Applications/MAMP/bin/php5/lib/php/data/symfony/web/sf
+  &lt;Directory "/Applications/MAMP/bin/php5/lib/php/data/symfony/web/sf"&gt;
+    AllowOverride All 
+    Allow from All</p>
+</Directory>
+&lt;Directory &#8220;/Applications/<span class="caps">MAMP</span>/htdocs/{project}/web&#8221;&gt;
+AllowOverride All
+Allow from All
+</Directory>
+<p></VirtualHost></pre></code></p>
+<p><code>&lt;pre&gt;cd /www
+mkdir {project}
+cd {project}&lt;/pre&gt;</code></p>
+<p>Now we dive into the actual symfony commands. We&#8217;ll just setting up both a frontend and a backend for this app which I think is likely to be pretty typical. I quite like the idea of seperate entities for these.</p>
+<p><code>&lt;pre&gt;symfony init-project {project_name}
+symfony init-app frontend
+symfony init-module frontend {module_name}&lt;/pre&gt;</code></p>
+<p>Next we have to configure our database connection by editing /config/databases.yml</p>
+<p><code>&lt;pre&gt;all:
+    propel:
+      class: sfPropelDatabase
+      param:
+        dsn: mysql://{username}:{password}@localhost:3306/{database_name}&lt;/pre&gt;</code></p>
+<p>That done we can set up our data definitions in <em>/config/schema.yml</em>. Read the documention for all the details but you can probably get the general idea.</p>
+<p><code>&lt;pre&gt;propel:
+ item:
+   id:
+   title: varchar(200)
+   description: longvarchar
+   created_at:&lt;/pre&gt;</code></p>
+<p>And yet another quick change in <em>/config/propel.ini</em></p>
+<p><code>&lt;pre&gt;propel.database.createUrl = mysql://{username}:{password}@localhost:3306
+propel.database.url = mysql://{username}:{password}@localhost:3306/{database_name}&lt;/pre&gt;</code></p>
+<p>The next set of commands build our model files, create <span class="caps">SQL</span> for out chosen database and then create the tables in the database.</p>
+<p><code>&lt;pre&gt;symfony propel-build-model
+symfony propel-build-sql
+symfony propel-insert-sql&lt;/pre&gt;</code></p>
+<p>We&#8217;ll quickly create a backend using the scaffolding. Note that <em>item</em> here is the model name which is taken from the <em>schema.yml</em> config file above.</p>
+<p><code>&lt;pre&gt;symfony init-app backend
+symfony propel-generate-crud backend items Item&lt;/pre&gt;</code></p>
+<p>All in all not bad going. And that&#8217;s basically the same for most of the apps you&#8217;re likely to develop. It could probably be a little easier in the database and apache config areas in fairness. Rails&#8217; use of an inbuild webserver really helps here. But the use of <span class="caps">YAML</span> to define the model is, in my mind, more straightforward that using Ruby in Rails migrations. I&#8217;ve an app in the works at the moment and I&#8217;m looking at using Symfony. If that pans out I&#8217;ll blog more about the bits I&#8217;m interested in &#8211; the inbuilt unit testing framework high on my list.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-16T00:00:00+01:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2007/09/16/getting-going-with-symfony/" data-via="garethr" data-counturl="http://www.morethanseven.net/2007/09/16/getting-going-with-symfony/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/09/10/brighton-rocks/" title="Previous Post: Brighton Rock(s)">&laquo; Brighton Rock(s)</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/10/19/mashup-demo/" title="Next Post: Mashup Demo">Mashup Demo &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2007/09/16/getting-going-with-symfony/';
+        var disqus_url = 'http://www.morethanseven.net/2007/09/16/getting-going-with-symfony/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

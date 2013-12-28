@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: presentations | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/presentations/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Django and Rails presentation from QCon]]></title>
+    <link href="http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon/"/>
+    <updated>2013-01-13T16:31:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon</id>
+    <content type="html"><![CDATA[<p>I had great fun back in November at the "QCon":http://qconsf.com/ conference in San Francisco. As well as currating one of the tracks and catching up with people in the area I managed to give the following talk.</p>
+
+<script async class="speakerdeck-embed" data-id="7e1dd5a03efc0130083b123139173def" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script>
+
+
+<p>In hindsight it might have been a bit odd to try and cover both Rails and Django examples in the one presentation but it was quite good fun putting together code examples using both of them at the same time. As well as a large set of tips, tricks and tools I settled on a few things that I think any web (or other) framework should support out of the box.</p>
+
+<ul>
+<li>A debug toolbar</li>
+<li>Transparent caching support</li>
+<li>Hooks for instrumentation</li>
+<li>Configurable logging</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Recent Projects And Talks]]></title>
+    <link href="http://www.morethanseven.net/2012/03/31/Recent-projects-and-talks/"/>
+    <updated>2012-03-31T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2012/03/31/Recent-projects-and-talks</id>
+    <content type="html"><![CDATA[<p>I've been pretty busy with all things "GOV.UK":https://www.gov.uk recently but I've managed to get a few bits of unrelated code up and a few talks in. I'm <em>still</em> pretty busy so here's a list of some of them rather than a proper blog post.</p>
+
+<ul>
+<li>"Puppet Data Mining":http://www.slideshare.net/garethr/mining-puppet talk from last weeks PuppetCamp in Edinburgh.</li>
+<li>"Introducting Web Operations":http://www.slideshare.net/garethr/web-operations talk I gave at work to give my mainly non-development colleagues an idea about what it's all about.</li>
+<li>"Learning from building GOV.UK":http://www.slideshare.net/garethr/learnings-from-govuk talk I gave a month back or so to Cambridge Geek Night. We did an excellent full project retrospective after the beta launch and this lists some of the things we learnt.</li>
+</ul>
+
+
+<p>After someone bugged me on Twitter I realised the small bit of code we've been using for our Nagios dashboard wasn't out in the wild. So introducing "Nash":https://github.com/garethr/nash, a very simple high level check dashboard which screenscrapes nagiosand runs happily on Heroku.</p>
+
+<p>Although I've not been writing too much on here I've been keeping "Devops Weekly":http://devopsweekly.com/ going each week for over a year now. I've just crossed 3000 subscribers which is pretty neat for a pet project.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Trac Ticket setup - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;ve been busy really getting to grips with Trac recently and thought I&#8217;d post up a few details. Trac for those that haven&#8217;t come &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2007/10/23/my-trac-ticket-setup">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">My Trac Ticket Setup</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-23T00:00:00+01:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been busy really getting to grips with <a href="http://trac.edgewall.org/">Trac</a> recently and thought I&#8217;d post up a few details. Trac for those that haven&#8217;t come across it is a wiki, issue tracking systems and source code browser all rolled into one. It&#8217;s open source and written in Python.</p>
+<p>I&#8217;ll start off describing my current ticket setup, along with the code I use for reports. In future posts I&#8217;ll hopefully describe thinks like setting up users and permissions in a flexible way. I&#8217;ll leave describing <a href="http://trac.edgewall.org/wiki/TracOnUbuntu">installation</a> to <a href="https://svn.geophysik.uni-muenchen.de/trac/tracmods/wiki/InstallationGuide">others</a>, mainly because it&#8217;s a pain. I&#8217;ll also assume you&#8217;ve installed the <a href="http://trac.edgewall.org/wiki/WebAdmin">WebAdmin</a> plugin, or are familiar with trac-admin.</p>
+<h2>Create a new Ticket</h2>
+<p>By default Trac comes set up with severity, milestones, ticket types, priority and components and a few default options in each. The problem with all these options is that it takes more time and effort to add and manage issues &#8211; so they don&#8217;t get logged. Unless you know you absolutely need them I find it easier to remove most of these options in the first instance.</p>
+<p><img src="http://morethanseven.net/_assets/media/imgTracTicket.png" title="Trac new ticket" alt="Trac new ticket" /></p>
+<p>I prefer using Trac soley for issue tracking. It suffers badly in my opinion if used for more project management related activity. <a href="http://basecamphq.com">Other tools</a> do that job better (and also do bug tracking poorly).</p>
+<p>I keep priority in, but by default it&#8217;s blank and only has one other options &#8211; High. I only assign High priority to issues which are causing major problems, either preventing a successful build or stopping something happening that&#8217;s meant to.</p>
+<h2>Available reports</h2>
+<p><img src="http://morethanseven.net/_assets/media/imgTracReports.png" title="Trac reports list" alt="Trac reports list" /></p>
+<p>Trac reports are simple (or not so simple) <span class="caps">SQL</span> queries with a few bits of special syntax. I have four reports set up; Open, Closed, Important and My Issues:</p>
+<p>Open, not too suprisingly, displays all the open issues. As mixing different components here would be confusing we divide the list with headers for each components</p>
+<p><code>&lt;pre&gt;SELECT
+  component AS &amp;#95;&amp;#95;group&amp;#95;&amp;#95;,
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &amp;#95;&amp;#95;color&amp;#95;&amp;#95;,
+  id, summary, owner,
+  time AS created,
+  component AS &amp;#95;component, 
+  priority AS &amp;#95;priority,
+  changetime AS &amp;#95;changetime,
+  description AS &amp;#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status IN ('new', 'assigned', 'reopened') 
+ORDER BY priority DESC, p.value, t.type, time&lt;/pre&gt;</code></p>
+<p>Closed is the reverse of Open (I&#8217;m starting to state the obvious here) but with a few differences in terms of the listing. I&#8217;m more bothered here about seeing a timeline of closed issues. Good for keeping a eye (or a feed) on to see progress.</p>
+<p><code>&lt;pre&gt;SELECT
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &amp;#95;&amp;#95;color&amp;#95;&amp;#95;,
+  id, summary, owner, component, resolution,
+  priority AS &amp;#95;priority, 
+  changetime AS modified,
+  description AS &amp;#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status NOT IN ('new', 'assigned', 'reopened') 
+ORDER BY changetime DESC&lt;/pre&gt;</code></p>
+<p>My Issues lists only those issues which are assigned to me (or the currently logged in user) and open.</p>
+<p><code>&lt;pre&gt;SELECT
+  component AS &amp;#95;&amp;#95;group&amp;#95;&amp;#95;,
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &amp;#95;&amp;#95;color&amp;#95;&amp;#95;,
+  id, summary,
+  time AS created,
+  component AS &amp;#95;component,
+  priority AS &amp;#95;priority, 
+  changetime AS &amp;#95;changetime,
+  description AS &amp;#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status IN ('new', 'assigned', 'reopened') AND owner = '$USER'
+ORDER BY priority DESC, p.value, t.type, time&lt;/pre&gt;</code></p>
+<p>Important is an overview of critical issues. Software can have small bugs and be perfectly usable in the vast majority of cases. But some issues either effect lots of users or prevent the system working at all. These High priority issues need addressing first, before anything else.</p>
+<p><code>&lt;pre&gt;SELECT
+  component AS &amp;#95;group&amp;#95;&amp;#95;,
+  (CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &amp;#95;&amp;#95;color&amp;#95;&amp;#95;,
+  id, summary, owner,
+  time AS created,
+  component AS &amp;#95;component,
+  priority AS &amp;#95;priority, 
+  changetime AS &amp;#95;changetime,
+  description AS &amp;#95;description
+FROM ticket t
+LEFT JOIN enum p ON p.name = t.priority AND p.type = 'priority'
+WHERE status IN ('new', 'assigned', 'reopened') AND priority = 'High'
+ORDER BY priority DESC, p.value, t.type, time&lt;/pre&gt;</code></p>
+<p>Interesting bits here include the following line which makes all High priority tasks have a red border:</p>
+<p><code>&lt;pre&gt;(CASE priority WHEN 'High' THEN '1' ELSE '' END) AS &amp;#95;&amp;#95;color&amp;#95;&amp;#95;,&lt;/pre&gt;</code></p>
+<p>As a side note, I hadn&#8217;t written proper <span class="caps">SQL</span> for a while (all that <a href="www.digital-web.com/articles/hacking_open_apis/">hacking on APIs</a>). Suprisingly good fun as it turns out.</p>
+<h2>Conclusions</h2>
+<p>The main benefit of this setup is simplicity. Too many bug tracking systems are either way too complicated, or come with defaults which are on the complex side (I include Trac in this last category). <a href="http://garrettdimon.com">Garret Dimon</a> has been <a href="http://garrettdimon.com/archives/tags/tracker">writing</a> about the development of a new bug tracking system with a focus on simplicity. <a href="http://fixxbugs.com/">Fixx</a> and <a href="http://lighthouseapp.com/">Lighthouse</a> are other products looking to fill this niche. That&#8217;s not to say larger teams don&#8217;t need to store more information than this, just that by starting small you can actually find out what you&#8217;re missing &#8211; rather than guessing and making the whole process of adding and fixing bugs a particularly painful one.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-23T00:00:00+01:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2007/10/23/my-trac-ticket-setup/" data-via="garethr" data-counturl="http://www.morethanseven.net/2007/10/23/my-trac-ticket-setup/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/10/21/the-future-of-the-future-of-web-apps/" title="Previous Post: The Future of The Future of Web Apps">&laquo; The Future of The Future of Web Apps</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/10/28/php-asset-packager/" title="Next Post: PHP Asset Packager">PHP Asset Packager &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2007/10/23/my-trac-ticket-setup/';
+        var disqus_url = 'http://www.morethanseven.net/2007/10/23/my-trac-ticket-setup/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

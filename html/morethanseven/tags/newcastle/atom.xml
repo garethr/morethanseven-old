@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: newcastle | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/newcastle/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Speaking at DIBI]]></title>
+    <link href="http://www.morethanseven.net/2010/01/07/speaking-dibi/"/>
+    <updated>2010-01-07T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2010/01/07/speaking-dibi</id>
+    <content type="html"><![CDATA[<p>I'll be heading back up to Newcastle in April to give a talk at what's shaping up to be a good looking conference to kick off the year with. "DIBI":http://www.whatisdibi.com/ is trying to please everyone, with both front and backend focused streams.</p>
+
+<p>bq. Created for both sides of the web coin, DIBI brings together designers and developers for an unusual two-track web conference. World renowned speakers leading in their fields of work will talk about all things web. Taking place in Newcastle upon Tyne, (it's oop north) at The Sage Gateshead on the 28th April 2010, we're bringing both sides of the web world together with some awesome speakers.</p>
+
+<p>I'm not a big fan of making a point of dividing frontend and backend work. You nearly always end up with javascript dominated horribleness (because we only had a front end person available) or a so called content management system that means all sites have to look the same except for the colour palette. So I'm hoping lots of cross over stuff happens and interesting conversations abound.</p>
+
+<p>Oh, and if you're wondering what I'll be speaking about it's probably going to be something about all the cool tools you could and should be using when building or looking after web applications. I'll probably be doing my best to convince people to look outside the comfort of the LAMP or C#/MSSQL stacks and realise the future for lots of web developers might just be more devops.</p>
+]]></content>
+  </entry>
+  
+</feed>

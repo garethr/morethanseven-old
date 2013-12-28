@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: html | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/html/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Content to Markup ratio bookmarklet]]></title>
+    <link href="http://www.morethanseven.net/2009/03/05/content-markup-ratio-bookmarklet/"/>
+    <updated>2009-03-05T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/03/05/content-markup-ratio-bookmarklet</id>
+    <content type="html"><![CDATA[<p>"Stoyan Stefanov":http://www.phpied.com/ just released an excellent little "bookmarklet to calculate a content to markup ratio":http://www.phpied.com/content-to-markup-ratio-bookmarklet/</p>
+
+<p>It's interesting browsing around a few sites and comparing ratios:</p>
+
+<ul>
+<li>This site - 0.55</li>
+<li>"bbc.co.uk":http://bbc.co.uk - 0.26</li>
+<li>"capitalradio.co.uk":http://capitalradio.co.uk - 0.45</li>
+<li>"clearleft.com":http://clearleft.com - 0.48</li>
+<li>"alistapart.com":http://alistapart.com/ - 0.44</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: python | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/python/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[EC2 Tasks For Fabric]]></title>
+    <link href="http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric/"/>
+    <updated>2011-12-31T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric</id>
+    <content type="html"><![CDATA[<p>For running ad-hoc commands across a small number of servers you really can't beat "Fabric":http://fabfile.org. It requires nothing other than ssh installed on the servers, is generally just a one-line install and requires next to no syntaxtic fluff between you and the commands you want running. It's much more of a swiss army knife to Capistranos bread knife.</p>
+
+<p>I've found myself doing more and more EC2 work of late and have finally gotten around to making my life easier when using Fabric with Amazon instances. The result of a bit of hacking is "Cloth":https://github.com/garethr/cloth (also "available on PyPi":http://pypi.python.org/pypi/cloth). It contains some utility functions and a few handy tasks for loading host details from the EC2 API and using them in your Fabric tasks. No more static lists of host names that constantly need updating in your fabfile.</p>
+
+<p>Specifically, with a fabfile that looks like:</p>
+
+<pre>#! /usr/bin/env python
+from cloth.tasks import *</pre>
+
+
+<p>You can run:</p>
+
+<pre>fab all list</pre>
+
+
+<p>And get something like:</p>
+
+<pre>instance-name-1 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-2 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-3 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-4 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-5 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-6 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-7 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+instance-name-8 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
+...</pre>
+
+
+<p>And then you could run:</p>
+
+<pre>fab -P all uptime</pre>
+
+
+<p>And you'd happily get the load averages and uptime for all your EC2 instances.</p>
+
+<p>A few more tricks are documented in the "GitHub README":https://github.com/garethr/cloth, including filtering the list by a regex and some convention based mapping to Fabric roles. I'll hopefully add a few more features as I need them and generally tidy up a few things but I'm pretty happy with it so far.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python On Cloudfoundry]]></title>
+    <link href="http://www.morethanseven.net/2011/05/15/Python-on-cloudfoundry/"/>
+    <updated>2011-05-15T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/05/15/Python-on-cloudfoundry</id>
+    <content type="html"><![CDATA[<p>For those that haven't yet had a look "Cloudfoundry":http://cloudfoundry.com/ from VMware is two things, one of which is nice, one of which is very cool indeed:</p>
+
+<ul>
+<li>On one hand it's a platform as a service, allowing you to easily deploy Ruby, Java and Node.js applications to "cloudfoundry.com":http://cloudfoundry.com/.</li>
+<li>On the other hand it's an "open source project":http://cloudfoundry.org/ with all the code on "Github":http://github.com/cloudfoundry allowing you to run the entire stack wherever you like.</li>
+</ul>
+
+
+<p>I'm pretty interested in the latter. Its API could in theory become a defacto standard for application and service buildouts, in the same way as we're seeing the EC2 API expand outside AWS for managing infrastructure (and arguably how we're using Chef and Puppet for managing the things installed on that infrastructure). The really interesting bit is the fact it's all open source. Not only does that mean you can run it on your own infrastructure (including as I'm doing on a virtual machine on my laptop), but it's also designed so new services (like Redis, MySQL, RabbitMQ), new runtimes (like Ruby 1.8, RUby 1.9, Java) and new frameworks (like Rails, Sinatra, Spring) can be added easily.</p>
+
+<p>I'm running vcap on a "vagrant":http://vagrantup.com managed VirtualBox instance, but you could install it anywhere you like. I used "these chef recipes":https://github.com/auser/cloudfoundry-quickstart to get everything installed. I ran into an issue with the mysql service not starting correctly that "I fixed":https://github.com/auser/cloudfoundry-quickstart/pull/2 and I needed to manually install chef into the rvm gemset part way through the install, but the recipes pretty much just worked.</p>
+
+<p>Looking for an excuse to have a route through the vcap code I decided to see if I could add rudimentary support for Python applications. After a day of noodling around I've forked the code and sent a few pull requests back with it basically working. This required changes to the "vmc client":https://github.com/cloudfoundry/vmc/pull/18, to the "vcap service":https://github.com/cloudfoundry/vcap/pull/57 and like all good open source contributions to the "test suite":https://github.com/cloudfoundry/vcap-tests/pull/4.</p>
+
+<p>Thanks hugely to existing pull requests (mainly the one's for "adding PHP support":https://github.com/cloudfoundry/vcap/pull/25) it's not taken long at all. The Sinatra and Rails support which shipped with the first release from VMWare supports using Bundler to define gem dependencies that can be pulled in at deploy time. It shouldn't be too much effort I'm hoping to do the same for using pip and virtualenv for each deployed python application. I think I can also see how to support python3 and how to add django as a supported framework.</p>
+
+<p>I had huge fun, but you might not at this early stage in the project. I'm relatively happy with reading and writing Ruby, futzing with rvm, debugging installation woes and hunting down service configuration problems. The best tool for working out what was happening was generally tailing the logs in /tmp/vcap-run/ and finding the code that wrote a given message. If you just want something to work I'd wait a little while, if you like the sound of the above it's a pretty nice codebase to play around in. I'd love to eventually see some official contributor documentation and some hints and tips on things like running the tests. At the moment flicking through reported issues and pull requests on GitHub is the best place to start.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Continuous Deployment Example Setup]]></title>
+    <link href="http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup/"/>
+    <updated>2011-03-20T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup</id>
+    <content type="html"><![CDATA[<p>One of the reasons behind getting around to building "Vagrantbox.es":http://www.vagrantbox.es recently was I was giving a talk to a group of startups on "The Difference Engine":http://thedifferenceengine.eu/ programme and I wanted to have an example project to demonstrate various things. I wanted to demonstrate everything from sensible version control habbits, configuration management, basic orcestration and most importantly a solid deployment process. I've decided to write up what I'm doing for deployment because I think it's pretty nice, and for all the talk about Continuous Deployment I haven't seen many examples of code and configuration to make it happen.</p>
+
+<p>Most of what I'll cover is pretty easy to map to whatever technologies your using. For this project I'd gone for Git, Django, Gunicorn, Nginx, Fabric, Mysql and Jenkins and I'm deploying to Ubuntu running on "Brightbox Cloud":http://www.brightbox.co.uk/. Apart from the Jenkins instance in the middle you could follow the instructions and swap things out easily.</p>
+
+<p>h2. Jenkins</p>
+
+<p>First up lets install "Jenkins":http://jenkins-ci.org/. I setup a separate cloud instance just to run the Continuous Integration server. I find this approach easier to manage but you could always run this locally if you prefer. The Jenkins folk provide very up to date "packages for Debian":http://pkg.jenkins-ci.org/debian/ so I chose to use those.</p>
+
+<p>h3. Plugins</p>
+
+<p>Jenkins provides a huge number of optional plugins which enable various additional features. Plugins are installed via the web interface at /pluginManager. I've installed:</p>
+
+<ul>
+<li>"Jenkins Cobertura Plugin":http://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin</li>
+<li>"Jenkins GIT plugin":http://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin</li>
+<li>"GitHub plugin":http://wiki.jenkins-ci.org/display/JENKINS/Github+Plugin</li>
+<li>"Green Balls":http://wiki.hudson-ci.org/display/HUDSON/Green+Balls</li>
+<li>"Hudson Violations plugin":http://wiki.hudson-ci.org/display/HUDSON/Violations</li>
+</ul>
+
+
+<p>Only the Git plugin is really required for what I'm doing with deployment. Cobertura and Violations are code quality metrics tools that I use to record output from pylint and code coverage for my test suite.</p>
+
+<p>h2. The Source</p>
+
+<p>My finished project was already on GitHub in a private repository. I'm using a requirements.txt file to record python dependencies so I can use pip to install them automatically and I'm using Virtualenv to sandbox this installation. I'm also using South to manage my database schema changes. I won't go into that here as it's pretty Python specific, Rails for instance has Active Record migrations, RVM and Bundler which do pretty much the same job. PHP has PEAR and some of the frameworks offer a migration tool.</p>
+
+<p>I then created two projects in Jenkins:</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiRywEM" alt="Jenkins dashboard"/></p>
+
+<p>h3. Project 1: Vagrantboxes</p>
+
+<p>This is the main build of my master branch in Git. As well as setting up the Git repo as shown below I've set a polling schedule to */5 * * * * (that's every 5 minutes) and also set Trigger builds remotely so I can have a task in my fabfile which triggers a build immediately.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjh2gEM" alt="Git config for Jenkins"/></p>
+
+<p>I then have two build steps, both of which execute shell commands. The first installs any new requirements via pip:</p>
+
+<pre>bash -l -c "source bin/activate; pip install -r requirements.txt"</pre>
+
+
+<p>The second runs my test suite and generates the XML output required to show the test results in Jenkins:</p>
+
+<pre>bash -l -c "source bin/activate; cd vagrantboxes/configs/common; python manage.py jenkins boxes"</pre>
+
+
+<p>I'm using the rather handy "Django Jenkins":https://github.com/kmmbvnr/django-jenkins application for this.</p>
+
+<p>So far so good. This gives us a project that, when we push some changes to GitHub, will pull those changes down to the CI server and run our test suite, giving us feedback as to whether the tests pass or fail.</p>
+
+<p>Now for the trick, in Post-build Actions tick Build other projects and specify the name of another project that we'll setup next. Mine is called Vagrantboxes-deploy.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRirwwEM" alt="Post build action in Jenkins"/></p>
+
+<p>h3. Project 2: Vagrantboxes-deploy</p>
+
+<p>This project is triggered only when the previous project runs successfully. And all it's going to do is run the deployment script on the project we just built. The setup for this project is very simply, it has one build step which just executes the following:</p>
+
+<pre>bash -l -c "cd /var/lib/jenkins/jobs/Vagrantboxes/workspace; source bin/activate; fab appserver deploy"</pre>
+
+
+<p>The specifics of the Fabric script here aren't that important but I'm doing something not too disimilar to "what I described here":http://morethanseven.net/2009/07/27/fabric-django-git-apache-mod_wsgi-virtualenv-and-p.html.</p>
+
+<p>The reason I've setup a separate project for these is so I can, if I choose, trigger a deployment separately to the full build, and also so I can very easily disable deployments even if the main build is still running.</p>
+
+<p>h2. Conclusions</p>
+
+<p>With this setup whenever I push code to master it triggers a build. If the test suite passes it runs the deployment script and pushes out the code to the live web servers. This suites me and this project but you might find it easier to start by pushing all successfull builds out to a staging environment. And maybe then moving on to having a new project which is only triggered manually for deploying to production.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiqwwEM" alt="project view in Jenkins"/></p>
+
+<p>This setup has other advantages too. The Jenkins dashboard becomes a handy tool for recording deployment events. You can easily setup emails or IM messages or Campfire posts to alert other team members whenever a deployment happens. And it really really makes sure your delployment scripts work without hand holding.</p>
+
+<p>This is a simple project that I'm working on on my own, but in a team environment you'd likely have a more complex branching strategy and more Jenkins projects. You might also introduce some gateways for manual testing but the starting point is the same. Jenkins makes archiving successful build artifacts relatively easy as well, this setup has a few race condition possibilities that you can fix by building artifacts from successful builds. Jenkins also supports building from different branches and having different branches trigger different projects, all handy if you want to grow this kind of setup.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using Checkinstall With Virtualenv For Python Deployments]]></title>
+    <link href="http://www.morethanseven.net/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments/"/>
+    <updated>2011-01-29T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments</id>
+    <content type="html"><![CDATA[<p>Michael Brunton-Spall wrote last week about some "frustrations with packagings and deploying Python web applications":http://www.brunton-spall.co.uk/post/2011/01/26/packaging-and-deploying-python-web-apps/. Although his experience was with Python, the problems he describes are the same for Ruby and PHP and a whole host of languages. The following example uses Python, but works equally as well for anything else.</p>
+
+<p>Michael has three simple rules for his servers:</p>
+
+<h1>they cannot access the internet</h1>
+
+<h1>they cannot access internal services that are for development</h1>
+
+<h1>they cannot have compilers / utilities on them</h1>
+
+<p>I won't go into all the reasons for doing this (you can read the blog post linked to above) but these are pretty sensible security precautions.</p>
+
+<p>My approach to this problem would be to use your friendly system packages and using a handy tool called "Checkinstall":http://www.asic-linux.com.mx/~izto/checkinstall/ to create a deb or rpm. I'm going to use as an example the "Eventlet":http://wiki.secondlife.com/wiki/Eventlet library. This is available in PyPi and one of it's dependencies (Greenlets) provides a C extension. The same approach would work for an entire Python web application too. I'm as ever using the apt package management tool but this should work with yum as well.</p>
+
+<p>The first step is to build the package on a build machine. This should be a machine or virtual machine running the same operating system as your production web servers. You might build these packages manually or as part of a continuous integration system. On this machine we'll need the compilers and development tools:</p>
+
+<pre>sudo apt-get install build-essential python-dev python-setuptools checkinstall
+sudo easy_install virtualenv</pre>
+
+
+<p>We'll also create a virtualenv into which we'll be installing our packages:</p>
+
+<pre>sudo virtualenv --no-site-packages /usr/local/environment
+source /usr/local/environment/bin/activate</pre>
+
+
+<p>Now, instead of just calling easy_install to install the package, we prefix it with checkinstall.</p>
+
+<pre>sudo checkinstall /usr/local/environment/bin/easy_install eventlet</pre>
+
+
+<p>This will prompt for various meta data about the package you want to create, including the name and version of the package. If you're using this method in the real world you'll want to decide on a versioning and naming scheme for your packages to avoid clashes with system provided packages. You can also set many of these options from the command line rather than having to manually fill them in each time.</p>
+
+<p>Once everything has been filled in successfully this should run through, installing eventlet and greenlets and eventually creating a deb or rpm package depending on what platform you're running on. You should see something like:</p>
+
+<pre>Done. The new package has been installed and saved to
+
+ /home/vagrant/eventlet-gareth_20110129-1_i386.deb
+
+ You can remove it from your system anytime using: 
+
+      dpkg -r eventlet-gareth</pre>
+
+
+<p>Now lets grab that package and take it to one of our front end web servers via a controlled deployment process. That front end web server needs the virtualenv creating but nothing else. So:</p>
+
+<pre>sudo apt-get install python-virtualenv
+sudo virtualenv --no-site-packages /usr/local/environment</pre>
+
+
+<p>(Now you might be thinking that installing the python-virtualenv package in this way breaks rule 1 above. And you'd be right in most cases, but I'm guessing Michael's systems team have a local package repo for authorised packages, or alternatively you could download the package to the build machine and push it to the production environment.)</p>
+
+<p>Now install the package we created earlier.</p>
+
+<pre>sudo dpkg -i eventlet-gareth_20110129-1_i386.deb</pre>
+
+
+<p>That should throw all the required files into the virtualenv environment we created. No compilers. No calls to internal or external systems. Just move some precompiled binaries and text files to predefined places on disk.</p>
+
+<p>I used a PyPi package as an example. Checkinstall could have been pointed at a custom build file written especially for your own application, one that moves files and folders to where they are needed. Say something that looks like this:</p>
+
+<pre>#!/bin/sh
+cp /home/stage/myapplication /var/www/apps/</pre>
+
+
+<p>The running checkinstall against that (or a more complex build file using capistrano or ant or fabric) you can create a package containing your application code and install it into the specified place.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Solr Libraries and Good API Design]]></title>
+    <link href="http://www.morethanseven.net/2011/01/01/Solr-libraries-and-good-api-design/"/>
+    <updated>2011-01-01T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/01/01/Solr-libraries-and-good-api-design</id>
+    <content type="html"><![CDATA[<p>I'm a huge "Solr":http://wiki.apache.org/solr/ fan. Once you understand what it does (it's a search engine, which means more than you think) and how it works you spot lots of thorny problems that map to it's features really well. In my experience it's also very fast and very stable once installed and setup. Oh, and the community support is great as well.</p>
+
+<p>When I talk to some folks about Solr all they can think about is full text search. The main reason for this I think is a number of poor libraries. I've come across lots of Python or Ruby libraries that simply say you don't have to know anything about Solr, just install this code and you get full text search! This works in the same way as using the default Mysql or Apache configs works, nowhere near as well as if you get your hands dirty even a little. Some of the ruby gems even ship the Solr jar file in the gem. Now you don't even need to know Solr exists. You take a generic configuration and run it using a rake task behind which is some unknown Java application server. Good luck debugging that when it goes wrong, that's one hell of a leeky abstraction.</p>
+
+<p>In better news I've now found two excellent Solr libraries, one's that start with the assumption that you know what you're doing or happy to learn about the tools you're using. All you really want from a library is a good API that maps to how you write in that language.</p>
+
+<p>h2. Delsolr (Ruby)</p>
+
+<p>The "delsolr":http://delsolr.rubyforge.org/ API is beautiful. It seemlessly merges the worlds of Ruby and Solr in a way that's easy to write and easy to guess. It's also clever, the design accepts that new features might be added to Solr before the library is updated or that the library might not support every usecase or option. In these cases you can still pass information through to Solr directly.</p>
+
+<p>Solr's interface is based around URLs, so any library is really just giving you an interface to creating those URLs.Writing the following in Ruby:</p>
+
+<pre>rsp = solr.query('standard',
+               :query => '*:*',
+               :filters => {:status => 'Active'},
+               :facets => [{:field => 'project'}]
+    ])</pre>
+
+
+<p>Results in the following URL:</p>
+
+<pre>/select?q=*:*&wt=ruby&facet=true&facet.field=status&facet.field=name&fq=status:Active</pre>
+
+
+<p>If you already know Solr and how to construct URLs for searches by hand you'll immediately get the Ruby code. You can probably even guess how to pass other params like sort or order.</p>
+
+<p>Another nice touch is that you can use either hashes or Lucene search syntax for each attribute. So:</p>
+
+<pre>:filters => {:status => 'Active'}</pre>
+
+
+<p>Is the same as:</p>
+
+<pre>:filters => 'status:Active'</pre>
+
+
+<p>h2. Sunburnt (Python)</p>
+
+<p>"Sunburnt":http://blog.timetric.com/2010/02/08/sunburnt-a-python-solr-interface is a python Solr interface from the nice folks at "Timetric":http://timetric.com. I've not had chance to use this library in anger as it was released after I'd dont quite a bit of python-solr work in an old job but I'd definately use it now. The API looks like:</p>
+
+<pre>rsp = solr.query('*:*').filter(status='Active').facet_by('project').execute()</pre>
+
+
+<p>It's based around chaining so again you can probably guess how to make further queries from even this simple example.</p>
+
+<p>Both Sunburnt and Delsolr also support adding documents to the index.</p>
+
+<p>h2. Uses</p>
+
+<p>Once you understand facets and the usefulness of filter queries you see lots of places where Solr is useful apart from text search. Lots of ecommerce operations use facetted search interfaces, I'm sure everyone has spent time clicking through nested heirachies and watching the numbers (showing the number of products) next to the links decrease? You can built these interfaces using SQL but it's incredibly expensive and gets out of hand quickly. Caching only helps a bit due to the number of permutations in all but the smallest stores or simplest products. It's a similar problem with tagging, it's pretty easy to kill your database</p>
+
+<p>But it's not just things that have the word search in that you can map Solr to. Two good examples are Timetric (from whom the Sunburnt library comes from) and the "Guardian Content API":http://www.guardian.co.uk/open-platform/blog/what-is-powering-the-content-api. Both of these present lots of read data straight from Solr with great success and less database killing performance issues. Solr can really be seen as a simple place to denormalise your data, one advantage being that it keeps your database schema clean.</p>
+
+<p>h2. Learning More</p>
+
+<p>Solr could do with better documentation for beginners. The wiki is an excellent reference once you know how to write schema and configuration files but I think the getting started section sacrifices introducing configuration in favour of getting people searching quicker. The example schema and solrconfig files that ship with Solr are also amazingly useful references (officially the best commented XML I've ever seen) but also intimidating to beginners. The Drupal community appear to be writing some good docs that fill this gap though, here's a few links that I'd recommend:</p>
+
+<ul>
+<li>"Step by step guide including Tomcat":http://www.drupalconnect.com/blog/steve/configuring-apache-solr-multi-core-drupal-and-tomcat-ubuntu-910</li>
+<li>"Fantastic multi-part tutorial":http://synapticloop.com/tomes/solr/solr-tutorial/</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

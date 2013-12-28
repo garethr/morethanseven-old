@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: webdev | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/webdev/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Beyond Basic Web Development]]></title>
+    <link href="http://www.morethanseven.net/2009/05/25/beyond-basic-web-development/"/>
+    <updated>2009-05-25T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/05/25/beyond-basic-web-development</id>
+    <content type="html"><![CDATA[<p>I did a talk at the recent barcamp North East on web development tools. Specifically I wanted to talk about the fact that an awful lot of people just use the basic stack of tools they are familiar with. So Microsoft people will just use C#, MSSQL and ISS and lots of people just use PHP, MySQL and Apache. I'm not saying their is anything wrong with those tools, but if they are all you have in your tool box you're limited how well designed your software can be.</p>
+
+<object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=beyondbasicwebdev-090525052654-phpapp02&stripped_title=beyond-basic-web-development" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=beyondbasicwebdev-090525052654-phpapp02&stripped_title=beyond-basic-web-development" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object>
+
+
+<p>I'd knocked the presentation together in my hotel room pretty quickly before heading down to barcamp and the lack of an internet connection meant I didn't have links and didn't cover a few tools I should have. It did seem to have the desired result in any case as several people spoke to me afterwards about wanting to use one of the tools I mentioned for something specific.</p>
+
+<ul>
+<li>"Memcached":http://www.danga.com/memcached/</li>
+<li>Non relational databases ("Hbase":http://hadoop.apache.org/hbase/, "Couchdb":http://couchdb.apache.org/)</li>
+<li>"Tokyo Tyrant":http://tokyocabinet.sourceforge.net/tyrantdoc/</li>
+<li>"Apache Bench":http://httpd.apache.org/docs/2.0/programs/ab.html</li>
+<li>"Continuous Integration":http://integrityapp.com/</li>
+<li>"Django":http://djangoproject.com/ (specifically for nearly free admin interfaces)</li>
+<li>Small web servers - "Nginx":http://nginx.net/, "Thin":http://code.macournoyer.com/thin/ and "Spawning":http://pypi.python.org/pypi/Spawning/0.7</li>
+<li>Message queues - "RabbitMQ":http://www.rabbitmq.com/ and "Stompserver":http://stompserver.rubyforge.org/</li>
+<li>HTTP tools - "Pound":http://www.apsis.ch/pound/, "Varnish":http://varnish.projects.linpro.no/ and "Squid":http://www.squid-cache.org/</li>
+<li>"Hadoop":http://hadoop.apache.org/core/</li>
+</ul>
+
+
+<p>We also had a good discussion afterwards and people mentioned a few other tools.</p>
+
+<ul>
+<li>"Puppet":http://reductivelabs.com/products/puppet/</li>
+<li>"Nagios":http://www.nagios.org/</li>
+<li>"Ganglia":http://ganglia.info/</li>
+<li>"Jetty":http://www.mortbay.org/jetty/</li>
+<li>"Solr":http://lucene.apache.org/solr/</li>
+</ul>
+
+
+<p>Now it's possible to spend too much time playing with small tools that are likely to be peripheral to the bulk of your application. But the number of stories I've head of people writing their own messages queuing systems in PHP, or using PHPMyAdmin as an application admin interface or ignoring the fact that their fancy new application only supports a few people at once.</p>
+]]></content>
+  </entry>
+  
+</feed>

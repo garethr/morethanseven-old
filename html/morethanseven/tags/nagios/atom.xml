@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: nagios | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/nagios/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rundeck And Nagios Nrpe Checks]]></title>
+    <link href="http://www.morethanseven.net/2011/09/11/Rundeck-and-nagios-nrpe-checks/"/>
+    <updated>2011-09-11T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/09/11/Rundeck-and-nagios-nrpe-checks</id>
+    <content type="html"><![CDATA[<p>I've been playing with "Rundeck":http://rundeck.org/ recently. For those that haven't seen it yet it's an application for running commands across a cluster of machines and recording the results. It has both a command line client and a very rich web interface which boths allows you to trigger commands and shows the results.</p>
+
+<p>I've played with a few different jobs so far, including triggering Puppet runs across machines triggered by a Jenkins plugin. I've also been looking at running all my monitoring tasks at the click of a button (or again as part of a smoke test triggered by Jenkins) and I thought that might make a nice simple example.</p>
+
+<p>My checks are written as Nagios plugins, and run periodically by Nagios. I also trigger them manually, using Dean's "NRPE runner script":http://www.unixdaemon.net/tools/commandline/introducing-nrpe-runner.html.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRiJoQIM" alt="Rundeck showing a job output"/></p>
+
+<p>The above shows a successful run across a few machines I use for experimenting with tools. Hopefully you can see the summary of the run on each of the four machines, each ran five NRPE checks and all passed. On failure we'd see the results as well as different symbols and colous. We can easily save the output to a file if we need to, rerun or duplicate the job (maybe to have it run against a different group of machines) or we can export the job definition file to load into another instance.</p>
+
+<p>The same job can also be run on the command line (which makes use the of Rundeck API)</p>
+
+<pre>./run -j "Run NRPE checks" -p PRGMR</pre>
+
+
+<p>This example shows running a specific pre-defined job, but it's also equally possible to fire of adhoc commands to some or all of the machines rundeck knows about.</p>
+
+<p>One thing in particular that I prefer about this approach to say using Capistrano or Fabric for remote execution tasks is that you have a centralised authentication and logging capability. It would be easy enough to encapsulate the jobs into cap or fabric tasks (and manage that in source control) which means you're not stuck if Rundeck isn't available.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RabbitMQ support for Cucumber-nagios]]></title>
+    <link href="http://www.morethanseven.net/2010/01/30/rabbitmq-support-cucumber-nagios/"/>
+    <updated>2010-01-30T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2010/01/30/rabbitmq-support-cucumber-nagios</id>
+    <content type="html"><![CDATA[<p>I've been doing more operations related work of late and am starting to use "Cucumber-nagios":http://auxesis.github.com/cucumber-nagios/ for various monitoring tasks. "Nagios":http://www.nagios.org/ might not be the most attractive of web interfaces but it's so simple to get clients up and running and extend to do what you need. Cucumber however has a lovely, text based, user interface. And although I'm mainly working with Python at the moment cucumber-nagios (written in Ruby) really is the easiest way I've found of writing simple functional tests.</p>
+
+<p>Cucumber-nagios is the creation of "Lindsay Holmwood":http://holmwood.id.au/~lindsay/ and after several brief conversations over Twitter I set about adding a feature I wanted for my own monitoring setup. Namely support for keeping an eye on RabbitMQ.</p>
+
+<p>At the moment the code is in a "fork on GitHub":http://github.com/garethr/cucumber-nagios but I'm hoping that once any rough edges have been ironed out and a few people have kicked the tyres then it will make it's way into trunk. If you want to use this with an existing project straight away you can always drop the contents of "amqp_steps.rb":http://github.com/garethr/cucumber-nagios/blob/master/lib/generators/project/features/steps/amqp_steps.rb into your feature steps file after installing the "amqp gem":http://gems.rubyforge.org/gems/amqp.</p>
+
+<p>I've included a little documentation in the fork as well with a quick example:</p>
+
+<pre>Feature: github.com
+  To make sure the rest of the system is in order
+  All our message queues must not be backed up
+  Scenario: test queue
+    Given I have a AMQP server on rabbit.github.com
+    And I want to check on the fork queue
+    Then it should have less than 400 messages
+    Then it should have at least 5 consumers
+    Then it should have less than 50 messages per consumer</pre>
+
+
+<p>My main usecase was to keep an eye on a known queue size and number of consumers. I'm sure I'm missing some features at the moment so any feedback much appreciated.</p>
+]]></content>
+  </entry>
+  
+</feed>

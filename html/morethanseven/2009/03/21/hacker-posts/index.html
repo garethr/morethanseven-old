@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Hacker Posts - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;ve been playing again with App Engine, and going back to an on/off pet project that I&#8217;ve build variations of for a while. It&#8217;s &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2009/03/21/hacker-posts">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Hacker Posts</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-21T00:00:00+00:00" pubdate data-updated="true">Mar 21<span>st</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been playing again with App Engine, and going back to an on/off pet project that I&#8217;ve build variations of for a while.</p>
+<p><a href="http://hackerposts.appspot.com"><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRihHww" alt="Hacker Posts"/></a></p>
+<p>It&#8217;s basically a pretty straightforward aggregation platform, taking content from a number of feeds and creating relationships between the items. It&#8217;s mainly an experiment in creating a decent size site on App Engine &#8211; it can be surprising how many urls you can get out of a good corpus of data:</p>
+<ul>
+	<li>400 items, each with a unique url</li>
+	<li>each item has a variable number of tags generated, at the moment that amounts to about 1000 unique urls</li>
+	<li>each month and year of content gets a url so that&#8217;s another 4 or so</li>
+	<li>each day for which we have items we also get a url, so that&#8217;s another 90 or so</li>
+</ul>
+<p>So starting off with 1500 or so pages isn&#8217;t bad. The site also grows over time as new items are posted or I add more feeds. Everything else I&#8217;ve done with App Engine has been more <a href="http://imified-demo.appspot.com/">application</a> <a href="http://image-host.appspot.com/">focused</a> so seeing how a content site performs is interesting in and of itself.</p>
+<p>The data in question I used for this first experiment was the feeds I could find from the <a href="http://news.ycombinator.com/leaders">top posters on Hacker News</a>. Hence the name <a href="http://hackerposts.appspot.com">Hacker Posts</a>. That left me with 35 feeds:</p>
+<ul>
+	<li>http://www.matasano.com/log/feed/</li>
+	<li>http://feeds2.feedburner.com/ThinkGene</li>
+	<li>http://www.mechanicalrobotfish.com/rss.xml</li>
+	<li>http://feeds.feedburner.com/Cloudknow</li>
+	<li>http://mark.nirv.net/rss</li>
+	<li>http://feeds.feedburner.com/seldomlogical</li>
+	<li>http://feeds.feedburner.com/mattmaroon/AAcm</li>
+	<li>http://www.swombat.com/rss.xml</li>
+	<li>http://feeds.feedburner.com/woobius</li>
+	<li>http://feeds2.feedburner.com/danieltenner</li>
+	<li>http://www.nilkanth.com/feed/</li>
+	<li>http://feeds.feedburner.com/NewCartographer</li>
+	<li>http://inthebox.webmin.com/feed</li>
+	<li>http://www.maximise.dk/blog/xml/rss.xml</li>
+	<li>http://www.pchristensen.com/blog/feed/</li>
+	<li>http://280north.com/blog/feed/</li>
+	<li>http://tlrobinson.net/blog/feed/</li>
+	<li>http://www.WhatToFix.com/atom.xml</li>
+	<li>http://alexkrupp.typepad.com/sensemaking/atom.xml</li>
+	<li>http://feeds.feedburner.com/yegg</li>
+	<li>http://scotchi.net/feed/atom/</li>
+	<li>http://paulbuchheit.blogspot.com/feeds/posts/default</li>
+	<li>http://www.owenbyrne.com/feed/</li>
+	<li>http://blog.jrock.us/feeds/articles/atom</li>
+	<li>http://www.kalzumeus.com/feed/</li>
+	<li>http://feeds.feedburner.com/gojomo</li>
+	<li>http://davidpiccione.com/blog/feed/</li>
+	<li>http://blog.blinker.net/feed/</li>
+	<li>http://dambalah.com/feed/</li>
+	<li>http://dustincurtis.com/rss.xml</li>
+	<li>http://blog.jodoro.com/feeds/posts/default</li>
+	<li>http://arantaday.com/blog/feed/</li>
+	<li>http://www.allanjosephbatac.com/blog/feed</li>
+	<li>http://feeds.feedburner.com/offbytwo</li>
+	<li>http://feeds.feedburner.com/FoundersBlog-Cluttermecom</li>
+</ul>
+<p>I have a couple of other communities or events that I&#8217;d like to do the same thing around, as well as a few features I want to add to the underlying software. The nice thing with App Engine is rolling new instances out is as simple as running a command.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-21T00:00:00+00:00" pubdate data-updated="true">Mar 21<span>st</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/appengine/'>appengine</a>, <a class='category' href='/tags/hackernews/'>hackernews</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2009/03/21/hacker-posts/" data-via="garethr" data-counturl="http://www.morethanseven.net/2009/03/21/hacker-posts/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/03/19/webapp-custom-filters/" title="Previous Post: Webapp custom filters">&laquo; Webapp custom filters</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/03/22/github-links-lines-code/" title="Next Post: Github Links to Lines of Code">Github Links to Lines of Code &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2009/03/21/hacker-posts/';
+        var disqus_url = 'http://www.morethanseven.net/2009/03/21/hacker-posts/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

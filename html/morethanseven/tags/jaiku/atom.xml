@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: jaiku | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/jaiku/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[XMPP and Queues in App Engine via Jaiku? Not quite yet]]></title>
+    <link href="http://www.morethanseven.net/2009/03/14/xmpp-and-queues-app-engine-jaiku-not-quite-yet/"/>
+    <updated>2009-03-14T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/03/14/xmpp-and-queues-app-engine-jaiku-not-quite-yet</id>
+    <content type="html"><![CDATA[<p>So "JauikuEngine":http://code.google.com/p/jaikuengine, the open source, App Engine based, version of Jaiku is now available for everyone to look at. I "found the repo a couple of days ago":http://twitter.com/garethr/status/1321372099 but it was restricted to project members. The main reason I want to hunt through the code is to have a look at what I'm guessing will be API's available in a soon to be released version of App Engine - with specific interest in anything to do with XMPP, queues and offline processing.</p>
+
+<p>Well it looks like I'm out of luck for the moment at least. In the "settings file":http://code.google.com/p/jaikuengine/source/browse/trunk/settings.py I found the following two snippets though:</p>
+
+<p>pre. #</p>
+
+<h1>XMPP / IM</h1>
+
+<p>#</p>
+
+<h1>Enabling IM will require a bit more than just making this True, please</h1>
+
+<h1>read the docs at http://code.google.com/p/jaikuengine/wiki/im_support</h1>
+
+<p>IM_ENABLED = False</p>
+
+<h1>This is the id (JID) of the IM bot that you will use to communicate with</h1>
+
+<h1>users of the IM interface</h1>
+
+<p>IM_BOT = 'root@example.com'</p>
+
+<h1>Turn on test mode for IM</h1>
+
+<p>IM_TEST_ONLY = False</p>
+
+<h1>JIDs to allow when testing live XMPP so you don't spam all your users</h1>
+
+<p>IM_TEST_JIDS = []</p>
+
+<p>And another for queues:</p>
+
+<p>pre. #</p>
+
+<h1>Task Queue</h1>
+
+<p>#</p>
+
+<h1>Enabling the queue will allow you to process posts with larger numbers</h1>
+
+<h1>of followers but will require you to set up a cron job that will continuously</h1>
+
+<h1>ping a special url to make sure the queue gets processed</h1>
+
+<p>QUEUE_ENABLED = True</p>
+
+<h1>The secret to use for your cron job that processes your queue</h1>
+
+<p>QUEUE_VENDOR_SECRET = 'SECRET'</p>
+
+<p>The only problem appears to be that the page referenced, "code.google.com/p/jaikuengine/wiki/im_support":http://code.google.com/p/jaikuengine/wiki/im_support, currently says:</p>
+
+<p>bq. TODO(termie): describe how to get IM working with Jaiku Engine</p>
+
+<p>So "termie":http://twitter.com/termie, or anyone else on the inside, I'd love to know how to get this up and running?</p>
+
+<p>I'll be having a better look through the code when I get a chance. This was just the first thing I jumped on before heading out the door. I love Open Source.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Are XMPP and offline processing coming to Google App Engine?]]></title>
+    <link href="http://www.morethanseven.net/2009/01/15/are-xmpp-and-offline-processing-coming-google-app-/"/>
+    <updated>2009-01-15T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/01/15/are-xmpp-and-offline-processing-coming-google-app-</id>
+    <content type="html"><![CDATA[<p>Google "just announced":http://google-code-updates.blogspot.com/2009/01/changes-for-jaiku-and-farewell-to.html that, once the port of "Jaiku":http://www.jaiku.com to App Engine is complete they will be Open Sourcing the code and stopping official development. I only used Jaiku sporadically in the heady days when everyone had to sign up for a new web 2.0 service every week or be mocked by their colleagues. What really interests me about this move though is what it means for App Engine.</p>
+
+<p>If memory serves "Jaiku had an instant message interface":http://www.jaiku.com/blog/2007/08/30/jaiku-from-your-instant-messenger/. Does that mean App Engine is going to get an XMPP interface?</p>
+
+<p>I'm also presuming the original Jaiku application had at least some features powered by offline processing or used a message based architecture behind the scenes? Or used scheduled batch jobs for reporting or data mungling?</p>
+
+<p>All of these issues are high up on the "App Engine issues list":http://code.google.com/p/googleappengine/issues/list and solutions to these two outstanding problems would move App Engine, in my opinion, to being very cool to being very useful. I've been impressed with the simple, well designed and well documented current set of APIs and I'd love to see a few more added for XMPP and offline processing. If the Jaiku code is open source but relies on Google only APIs it would seem a little odd.</p>
+
+<p>So does anyone have any more information on this? Any passing Googlers who can get us an answer?</p>
+]]></content>
+  </entry>
+  
+</feed>

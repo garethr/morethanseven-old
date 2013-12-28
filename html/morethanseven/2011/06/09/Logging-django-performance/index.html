@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Logging Django Performance - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="I&#8217;ve been doing some basic performance profiling work with Ruby on Rails recently and one tool I found very useful was the request log analyzer &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2011/06/09/Logging-django-performance">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Logging Django Performance</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-09T00:00:00+01:00" pubdate data-updated="true">Jun 9<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been doing some basic performance profiling work with Ruby on Rails recently and one tool I found very useful was the <a href="https://github.com/wvanbergen/request-log-analyzer">request log analyzer</a>. It&#8217;s a relatively simple command line application that you can point at the Rails application log files and it outputs lots of information in agregate. So information about request duration averages or about <span class="caps">SQL</span> queries run. When working on a recent Django project I wanted a tool to do the same thing and ended up writing timelog.</p>
+<p>I did a bit of research to see if I could find something similar. Here are a few other interesting tools that didn&#8217;t quite do what I wanted:</p>
+<ul>
+	<li><a href="https://github.com/jmoiron/django-slow-log">Django Slow Log</a> &#8211; This logs things like memory and load averages</li>
+	<li><a href="https://github.com/lamby/django-dumpslow">Django Dump Slow</a> &#8211; Similar but designed to just log slow requests rather than everything, also needs a Redis backend</li>
+	<li><a href="https://github.com/jbalogh/zamboni/blob/master/apps/amo/middleware.py#L162">Zamboni Middleware</a> &#8211; This is very similar to what I wanted, but it&#8217;s not a separate module and I didn&#8217;t find anything to analyse the results</li>
+</ul>
+<p>Timelog is very similar to the middleware in Zamboni, the only real difference being I&#8217;m using the new logging support in Django 1.3. More interesting is the bundled management command which will output something like:</p>
+<pre>
++--------------------------+--------+--------+-------+---------+---------+-------+-----------------+
+| view                     | method | status | count | minimum | maximum | mean  | stdev           |
++--------------------------+--------+--------+-------+---------+---------+-------+-----------------+
+| boxes.viewsBoxDetailView | GET    | 200    | 9430  | 0.14    | 0.28    | 0.21  | 0.0700037118541 |
++--------------------------+--------+--------+-------+---------+---------+-------+-----------------+
+| boxes.viewsBoxListView   | GET    | 200    | 66010 | 0.17    | 0.28    | 0.232 | 0.0455415351076 |
++--------------------------+--------+--------+-------+---------+---------+-------+-----------------+
+| django.views.staticserve | GET    | 200    | 61295 | 0.00    | 0.02    | 0.007 | 0.0060574669888 |
++--------------------------+--------+--------+-------+---------+---------+-------+-----------------+
+</pre>
+<p>At the moment I&#8217;ve not done any real benchmarking or optimisation of the script, but it will chew through a 300,000 line (20MB) log file in under 20s on my aging macbook.</p>
+<p>The code for Timelog is on github at <a href="http://github.com/garethr/django-timelog">github.com/garethr/django-timelog</a> and I&#8217;ve uploaded to PyPi as well at <a href="http://pypi.python.org/pypi/django-timelog">pypi.com/django-timelog</a>. You can install it with the usual tools like pip:</p>
+<pre>pip install django-timelog</pre>
+<p>Once installed you need to do a little configuration to get things working. First add the middleware to your MIDDLEWARE_CLASSES in your settings file.</p>
+<pre>
+MIDDLEWARE_CLASSES = (
+  'timelog.middleware.TimeLogMiddleware',
+</pre>
+<p>Next add timelog to your INSTALLED_APPS list. This is purely for the management command discovery.</p>
+<pre>
+INSTALLED_APPS = (
+  'timelog',
+</pre>
+<p>Then configure the logger you want to use. This really depends on what you want to do, the django 1.3 logging setup is pretty powerful. Here&#8217;s how I&#8217;ve got logging setup as an example:</p>
+<pre>
+TIMELOG_LOG = '/path/to/logs/timelog.log'
+
+LOGGING = {
+  'version': 1,
+  'formatters': {
+    'plain': {
+      'format': '%(asctime)s %(message)s'},
+    },
+  'handlers': {
+    'timelog': {
+      'level': 'DEBUG',
+      'class': 'logging.handlers.RotatingFileHandler',
+      'filename': TIMELOG_LOG,
+      'maxBytes': 1024 * 1024 * 5,  # 5 MB
+      'backupCount': 5,
+      'formatter': 'plain',
+    },
+  },
+  'loggers': {
+    'timelog.middleware': {
+      'handlers': ['timelog'],
+      'level': 'DEBUG',
+      'propogate': False,
+     }
+  }
+}
+</pre>
+<p>In order for the analyser script to work correctly you&#8217;ll need to use the plain formatter and to register a handler for the timelog.middleware logger.</p>
+<p>With that all configured try hitting your application a few times. You should see a log file created at the location specified in TIMELOG_LOG. Fill that up with a few lines and then run the analyze_timelog management command:</p>
+<pre>python manage.py analyze_timelog</pre>
+<p>This should output something similar to the above table but with your timings and views. The management command currently allows you to point the analyzer at a different file say from a backup, or a file you&#8217;ve pulled down from production but want to run the command locally. I&#8217;ll likely add some filters as time permits for things like not showing all views or showing only views between a given date range.</p>
+<p>The above table showing the view function is good for big picture trends, but if you want to dig down into a particular path then you can pass an argument to not reverse the path:</p>
+<pre>python manage.py analyze_timelog --noreverse</pre>
+<p>This should give you something more like:</p>
+<pre>
++----------------------------------+--------+--------+-------+---------+---------+-------+------------------+
+| view                             | method | status | count | minimum | maximum | mean  | stdev            |
++----------------------------------+--------+--------+-------+---------+---------+-------+------------------+
+| /assets/css/main.css             | GET    | 200    | 61295 | 0.00    | 0.02    | 0.007 | 0.0060574669888  |
++----------------------------------+--------+--------+-------+---------+---------+-------+------------------+
+| / bob                            | GET    | 404    | 4715  | 0.01    | 0.01    | 0.01  | 0.0              |
++----------------------------------+--------+--------+-------+---------+---------+-------+------------------+
+| /                                | GET    | 200    | 66010 | 0.17    | 0.28    | 0.232 | 0.0455415351076  |
++----------------------------------+--------+--------+-------+---------+---------+-------+------------------+
+| /__debug__/m/css/toolbar.min.css | GET    | 304    | 4715  | 0.00    | 0.00    | 0.0   | 0.0              |
++----------------------------------+--------+--------+-------+---------+---------+-------+------------------+
+| /14/                             | GET    | 200    | 9430  | 0.14    | 0.28    | 0.21  | 0.0700037118541  |
++----------------------------------+--------+--------+-------+---------+---------+-------+------------------+
+</pre></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-09T00:00:00+01:00" pubdate data-updated="true">Jun 9<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/django/'>django</a>, <a class='category' href='/tags/performance/'>performance</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2011/06/09/Logging-django-performance/" data-via="garethr" data-counturl="http://www.morethanseven.net/2011/06/09/Logging-django-performance/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/06/04/Getting-http-headers-right/" title="Previous Post: Debugging HTTP Headers with RedBot">&laquo; Debugging HTTP Headers with RedBot</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/06/26/New-ganglia-web-interface-improvements/" title="Next Post: New Ganglia Web Interface Improvements">New Ganglia Web Interface Improvements &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2011/06/09/Logging-django-performance/';
+        var disqus_url = 'http://www.morethanseven.net/2011/06/09/Logging-django-performance/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

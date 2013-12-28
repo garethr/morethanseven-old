@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: screencasts | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/screencasts/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Erlang Screencasts]]></title>
+    <link href="http://www.morethanseven.net/2009/11/01/erlang-screencasts/"/>
+    <updated>2009-11-01T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/11/01/erlang-screencasts</id>
+    <content type="html"><![CDATA[<p>I've been trying to learn Erlang for a while. What I actually mean is it's been on my list of <em>things to learn</em> for months, along with all sorts of other incredibly interesting bits and pieces. I spend a little bit of time at home but the majority of my learning time is now spent commuting to London and back most days. Sometimes I'm even going all the way to Swindon which gives me even longer to not learn Erlang.</p>
+
+<p>The main problem with learning something new on the train is space. Reading a book (or my new Kindle) or just using my laptop is fine. Trying to do both at once is nearly impossible (I've tried). So I've decided to give another approach a try, namely screencasts.</p>
+
+<p>I've only done the first "Erlang in Practice":http://www.pragprog.com/screencasts/v-kserl/erlang-in-practice episode so far but I was hugely impressed with the content and general presentation. $5 as well doesn't seem bad at all I don't think. The episode was half an hour long, but took me a little longer, probably closer to 45 minutes, as I was playing along at home and typing the code examples as I went. I also got sidetracked with messing with my vim configuration at the same time but hey. This makes them perfect for my hour long commute. The full series is 8 episodes long and with luck I'll be able to work through them this week.</p>
+
+<p>So, good job "Kevin Smith":http://weblog.hypotheticalabs.com/ and "Pragmatic":http://www.pragprog.com for a nice, accessible start to Erlang. All I need to do now is find something interesting to hack on in Erlang.</p>
+]]></content>
+  </entry>
+  
+</feed>

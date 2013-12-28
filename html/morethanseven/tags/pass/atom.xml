@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: pass | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/pass/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Heroku For...]]></title>
+    <link href="http://www.morethanseven.net/2010/12/29/Heroku-for.../"/>
+    <updated>2010-12-29T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2010/12/29/Heroku-for...</id>
+    <content type="html"><![CDATA[<p>With the success of "Heroku":http://heroku.com, both in terms of the recent sale and the fact it's awesome, it was always just a matter of time before other languages and frameworks got into the platform as a service game. Here's all the one's I know about so far, many of them in or entering beta testing at the moment. Any others I'm missing?</p>
+
+<p><em>Update</em> Thanks for all the comments on here and on "Hacker News":http://news.ycombinator.com/item?id=2050203, I've updated this list with all the suggestions.</p>
+
+<p>h2. Ruby</p>
+
+<ul>
+<li>"Duostack":http://www.duostack.com/</li>
+</ul>
+
+
+<p>h2. Python</p>
+
+<ul>
+<li>"ep.io":http://www.ep.io/</li>
+<li>"Django Zoom":http://DjangoZoom.com/</li>
+<li>"Djangy":https://www.djangy.com/</li>
+<li>"Google Appengine":http://appengine.google.com/</li>
+<li>"Stable":http://stable.io/</li>
+</ul>
+
+
+<p>h2. PHP</p>
+
+<ul>
+<li>"PHPFog":http://phpfog.com/</li>
+<li>"CloudControl":http://cloudcontrol.com</li>
+</ul>
+
+
+<p>h2. .NET</p>
+
+<ul>
+<li>"AppHarbor":http://appharbor.com/</li>
+<li>"biasLogic":http://biaslogic.com/</li>
+<li>"Moncai":http://moncai.com/</li>
+<li>"Microsoft Azure":http://microsoft.com/azure</li>
+</ul>
+
+
+<p>h2. Java (JVM)</p>
+
+<ul>
+<li>"CloudBees":http://www.cloudbees.com via the purchase of "Stax":http://stax.net/</li>
+<li>"Google Appengine":http://appengine.google.com/</li>
+<li>"Playapps":http://www.playapps.net/ (Play framework only)</li>
+</ul>
+
+
+<p>h2. Node.js</p>
+
+<ul>
+<li>"NodeJSCloud":http://www.nodejscloud.com/</li>
+<li>"Joyent SmartMachine":https://no.de/</li>
+<li>"Duostack":http://www.duostack.com/</li>
+<li>"Nodejitsu":http://nodejitsu.com/</li>
+</ul>
+
+
+<p>h2. RingoJS</p>
+
+<ul>
+<li>"Erbix":http://www.erbix.com/</li>
+</ul>
+
+
+<p>h2. Multi Platform</p>
+
+<ul>
+<li>"Kodingen":http://kodingen.com/</li>
+<li>"DotCloud":http://dotcloud.com</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

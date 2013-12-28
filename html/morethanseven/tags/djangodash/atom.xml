@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: djangodash | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/djangodash/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Pants Python Code]]></title>
+    <link href="http://www.morethanseven.net/2009/07/01/pants-python-code/"/>
+    <updated>2009-07-01T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/07/01/pants-python-code</id>
+    <content type="html"><![CDATA[<p>One of the projects that came out of the "Django Dash":http://alt.djangodash.com/ recently was "PyPants":http://pypants.org which I'm finding very cool.</p>
+
+<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRiRTgw" alt="Urltest on PyPants"/></p>
+
+<p>It's basically a quality tracking service for Python modules. For instance my recent "UrlTest module has a page on PyPants":http://pypants.org/projects/urltest/0.2.3/evaluations/3142/, scoring a good B grade after some cleanup work earlier today.</p>
+
+<p>Under the hood I think it's probably "CheeseCake":http://pycheesecake.org/ which is available as a command line application, maybe with a hint of "PyLint":http://pypi.python.org/pypi/pylint and "pep8.py":http://svn.browsershots.org/trunk/devtools/pep8/pep8.py thrown in. But the nice interface, as well as tracking of scores over time, really add something. GitHub has been credited by some as making sharing code more fun, I'm hoping projects like PyPants can do the same for quality in Python code.</p>
+
+<p>Congrats to "Eric Holscher":http://ericholscher.com/, "Travis Cline":http://traviscline.com/, and "Nathan Borror":http://playgroundblues.com/ on a fantastic addition to the Python community.</p>
+]]></content>
+  </entry>
+  
+</feed>

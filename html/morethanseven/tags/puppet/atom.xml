@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: puppet | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/puppet/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Web application security tools]]></title>
+    <link href="http://www.morethanseven.net/2013/04/23/web-application-security-tools/"/>
+    <updated>2013-04-23T07:57:00+01:00</updated>
+    <id>http://www.morethanseven.net/2013/04/23/web-application-security-tools</id>
+    <content type="html"><![CDATA[<p>I've become increasingly interested in web application security issues over the last year or so. Working in Government will do that to you. And I've come to the conclusion that a) there are lots of good open source security tools, b) many of them are terribly packaged and c) most developers don't use any of them.</p>
+
+<p>I've been having related conversations at recent events I've made it along to, including Devopsdays London which featured some good open spaces discussions on the subject. Security is one of those areas that, for many organisations, is basically outsourced to third party penetration testing firms or consultants. Specialists definitely have a role to play, but with a move towards increasingly rapid releases I think in-house security testing and monitoring is going to get more and more important.</p>
+
+<p>h2. A collection of security tools</p>
+
+<p>I've started to build a "collection of tools on GitHub":https://github.com/garethr/pentesting-playground, along with a vagrant setup to test them out. Full instructions are available on that repository but the short version is you can run one command and have one virtual machine filled with security testing tools and, if useful, another machine running a vulnerable web application with which to test. The current list of tools runs to:</p>
+
+<ul>
+<li>"skipfish":http://code.google.com/p/skipfish/</li>
+<li>"nmap":http://nmap.org/</li>
+<li>"nikto":http://www.cirt.net/nikto2</li>
+<li>"w3af":http://w3af.org/</li>
+<li>"garmr":https://github.com/mozilla/Garmr</li>
+<li>"sslyze":https://github.com/iSECPartners/sslyze</li>
+<li>"wpscanner":https://github.com/metachris/wpscanner</li>
+<li>"owasp zap":https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project</li>
+<li>"arachni":http://arachni-scanner.com/</li>
+<li>"gauntlt":https://github.com/gauntlt/gauntlt</li>
+<li>"sqlmap":http://sqlmap.org/</li>
+<li>"wpscan":http://wpscan.org/</li>
+<li>"sslscan":http://sourceforge.net/projects/sslscan/</li>
+<li>"TLSSLed":http://blog.taddong.com/2013/02/tlssled-v13.html</li>
+</ul>
+
+
+<p>But I'll add more tools as I discover them or as people file issues or pull requests.</p>
+
+<p>h2. What about Backtrack?</p>
+
+<p>When I started investigating tools for security and penetration testing most roads led to "Backtrack":http://www.backtrack-linux.org/. This is a complete Linux distribution packed with a huge number of security tools, including many if not all of the above. Why then did I write puppet code rather than create a Vagrant box from Backtrack? Firstly, Backtrack is probably great if you're a professional penetration tester, but the barrier to entry to installing a new distibution for most developers is too high in my view. And with a view to using some of these tools as part of monitoring systems I don't always want a separate virtual machine. I want to be able to install the tools wherever I want. A good configuration management tool gives you that portability, and Vagrant gives you all the benefits of a local virtual machine.</p>
+
+<p>h2. Future plans</p>
+
+<p>As mentioned I'd like to expand how some of these tools are used to include automated monitoring of applications, maybe look at ways of extracting data for metrics or possibily writing a Sensu plugin or two. The first step to that is probably breaking down the monolithic puppet manifest into separate modules for each tool. Along the way I can add support for more operating systems as required. I've already done that for the "wackopicko module which is up on the Forge":http://forge.puppetlabs.com/garethr/wackopicko.</p>
+
+<p>I'm also soliciting any and all feedback, especially from developers who don't do any security related testing but feel like they should.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[On the forge]]></title>
+    <link href="http://www.morethanseven.net/2012/12/03/on-the-forge/"/>
+    <updated>2012-12-03T08:18:00+00:00</updated>
+    <id>http://www.morethanseven.net/2012/12/03/on-the-forge</id>
+    <content type="html"><![CDATA[<p>I've been spending a bit of time recently pushing a few Puppet modules to the "Forge":http://forge.puppetlabs.com. This is Puppetlabs attempt to make a central repository of reusable puppet modules. I started doing it as a bit of an experiment, to find out what I liked and what worked and I decided to writeup a few opinions.</p>
+
+<p>So far I've shipped the following modules:</p>
+
+<ul>
+<li>"Riemann":http://forge.puppetlabs.com/garethr/riemann</li>
+<li>"Graphite":http://forge.puppetlabs.com/garethr/graphite</li>
+<li>"Logstash":http://forge.puppetlabs.com/garethr/logstash</li>
+<li>"Freight":http://forge.puppetlabs.com/garethr/freight</li>
+</ul>
+
+
+<p>Quite a few of these started as forks of other modules but have evolved quite a bit towards being more reusable.</p>
+
+<p>I've also started sending pull requests for modules that basically do what I want but don't always play well with others.</p>
+
+<ul>
+<li>"Redis":https://github.com/thomasvandoren/puppet-redis/pull/10</li>
+</ul>
+
+
+<p>h2. Improved tools</p>
+
+<p>It turns out the experience is mainly a pleasurable one, partly down to the much improved tooling around Puppet. Specifically I'm making extensive use of:</p>
+
+<ul>
+<li>"Rspec Puppet":http://rspec-puppet.com/ - for writing tests for module behavious</li>
+<li>"Librarian Puppet":https://github.com/rodjek/librarian-puppet - dependency management for modules</li>
+<li>"Puppet spec helper":https://github.com/puppetlabs/puppetlabs_spec_helper - conventions and helpers for testing modules</li>
+<li>"Travis CI":https://travis-ci.org/ - easy continuous integration for module code</li>
+<li>"Vagrant":http://vagrantup.com/ - manage virtual machines, useful for smoke testing on different distributions</li>
+</ul>
+
+
+<p>Lots of those tools make testing Puppet modules both easier and useful. Here's an example of one of the above modules being tested. Note that it's run across Ruby 1.8.7, 1.9.2 and 1.9.3 and Puppet versions 2.7.17, 2.7.18 and 3.0.1 for a total of 9 builds. Handily the Redis module mentioned also had a test suite. The pull request includes changes to that, and Travis "automatically tested the pull request":https://travis-ci.org/thomasvandoren/puppet-redis/builds/3462513 for the modules author.</p>
+
+<p>h2. Antipatterns</p>
+
+<p>Using modules from the Forge really forces you to think about reusability. The pull request mentioned above for the Redis module for instance replaced an explicit mention of the build-essential package with the "puppetlabs/gcc": class from the Forge. This makes the module less self contained, but without that change the module is incompatible with any other module that also uses that common package. I also went back and replaced explicit references to wget and build-essential in my Riemann module.</p>
+
+<p>As a rule of thumb. For a specific module only include resources that are unique to the software the module manages. Anything else should be in another module with a dependency in the Modulefile.</p>
+
+<p>This can feel a little much when you're replacing a simple Package resource with a whole new module but it has two advantages I care about. As well as the ability to use the module with other third party modules more easily it also makes it more likely that the module will work cross platform.</p>
+
+<p>h2. What's missing?</p>
+
+<p>I'd like to see a few things improved when it comes to the Forge.</p>
+
+<ul>
+<li>I'd like to be able to publish a new version of a module without having to use the web interface. The current workflow involves running a build command, then uploading the generated artifact via a web form after logging in.</li>
+<li>I'd like to see best practice module development guides front and centre on the Forge. Lots of modules won't work with other modules and I think that's fixable.</li>
+<li>Integration with puppet-lint would be nice, giving some indication of whether the authors care about the Puppet styleguide.</li>
+<li>-A command line search interface would be useful-. And "turns out to exist":http://docs.puppetlabs.com/man/module.html. Thanks "@a1cy":http://twitter.com/a1cy for the heads up.</li>
+<li>The Forge tracks number of downloads, but as a publisher I don't know how often my modules have been downloaded.</li>
+<li>And finally I'd like to see more people using it.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Riemann Puppet Module]]></title>
+    <link href="http://www.morethanseven.net/2012/08/11/Riemann-puppet-module/"/>
+    <updated>2012-08-11T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2012/08/11/Riemann-puppet-module</id>
+    <content type="html"><![CDATA[<p>Thanks to an "errant tweet":https://twitter.com/bitprophet/status/233626675307479040 I started playing with "Riemann":http://aphyr.github.com/riemann/ again. It ticks lots of boxes for me, from the clojure to configuration as code and the overloadable dashboard application. What started as using Puppet and Vagrant to investigate Riemann turned into a full blown tool and module writing exercise, resulting in two related projects on GitHub.</p>
+
+<ul>
+<li>"garethr-riemann":https://github.com/garethr/garethr-riemann/ is a Puppet module for installing and configuring Riemann. It allows for easily specifying your own server configuration and dashboard views.</li>
+<li>"riemann-vagrant":https://github.com/garethr/riemann-vagrant is a Vagrantfile and other code which uses above puppet module to setup a local testing environment.</li>
+</ul>
+
+
+<p>I like this combination, a separate Puppet module along with a vagrant powered test bed. I've written a reasonable rspec based test suite to check the module but it's always easier to be able to run <em>vagrant provision</em> as well to check everything is working. This also turned out to be the perfect opportunity to use "Librarian-Puppet":https://github.com/rodjek/librarian-puppet to manage the dependencies and eventually to ship the module to the "Puppet Forge":https://forge.puppetlabs.com/garethr/riemann.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Setting Puppet Class Using Environment Variables]]></title>
+    <link href="http://www.morethanseven.net/2011/12/13/Setting-puppet-class-using-environment-variables/"/>
+    <updated>2011-12-13T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2011/12/13/Setting-puppet-class-using-environment-variables</id>
+    <content type="html"><![CDATA[<p>I'm not sure how novel this approach is but a few folks at work hadn't seen it before so I thought it worth jotting down.</p>
+
+<p>If you have even a small but dynamic set of servers then a problem arises with how those nodes are defined in puppet. A node remember is defined in puppet like so:</p>
+
+<pre>node web3.example.com {
+  include web_server
+}</pre>
+
+
+<p>The problem is twofold. If you have a growing infrastructure, that list of nodes is going to get quickly out of hand. The other problem is around provisioning new hosts, the obvious approach to which is something like:</p>
+
+<ol>
+<li>Summon new EC2 instance</li>
+<li>Change the node definition to include the new hostname</li>
+<li>Install puppet on instance and so the ssl certificate signing dance</li>
+<li>Run puppet</li>
+</ol>
+
+
+<p>Step 2 stands out. The others are easily automated, but do you want to automate a change to your puppet manifests and a redeploy to the puppetmaster for a new instance? Probably not.
+Puppet has the concept of an external node classifier which can be used to solve this problem, but another simpler approach is to use an environment variable on the new machine.</p>
+
+<p>Lets say we define our nodes something like this instead:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>node default {
+</span><span class='line'>  case $machine_role {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>frontend:           { include web_server }
+</span><span class='line'>backend:            { include app_server }
+</span><span class='line'>data:               { include db_server }
+</span><span class='line'>monitoring:         { include monitoring_server }
+</span><span class='line'>development:        { include development }
+</span><span class='line'>default:            { include base }
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>If a machine runs and sets the $machine_role variable to frontend it includes the web_server class, if that variable equals 'data' it's going to include the db_server class instead. Much cleaner and more maintainable in my view. Now to set that variable.</p>
+
+<p>Facter is the tool used by Puppet to get system information like the operating system or processor count. You can use these facter provided variables anywhere in your manifests. And one way of adding a new fact is via an environment variable on the client. Any environment variable prefixed with FACTER_ will be available in Puppet manifests. So in this case we can:</p>
+
+<pre>export FACTER_machine_role=frontend</pre>
+
+
+<p>So our steps from above become something like:</p>
+
+<ol>
+<li>Summon new machine</li>
+<li>echo "export FACTER_machine_role=backend" >> /etc/environment</li>
+<li>Install puppet on instance and so the ssl certificate signing dance</li>
+<li>Run puppet</li>
+</ol>
+
+
+<p>Much easier to automate. And if you're looking at a box and want to know what it's role is you can check the relevant environment variable.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Version Control And Deployment Of Cron Jobs]]></title>
+    <link href="http://www.morethanseven.net/2011/05/07/Version-control-and-deployment-of-cron-jobs/"/>
+    <updated>2011-05-07T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2011/05/07/Version-control-and-deployment-of-cron-jobs</id>
+    <content type="html"><![CDATA[<p>A recent question on Twitter prompted me to write a quick blog post about managing cron jobs. As more and more people want to automate provisioning and deployment of web applications some, maybe previously manually managed, items come into the fold.</p>
+
+<p>Cron jobs are interesting because you may prefer to see them as part of the infrastructure (like apache or mysql) or as part of your application code. I think both are valid, sometimes at the same time. For instance you might have a cron job which deals with scheduled database backups. All that requires is the database and the script to be present. At other times your cron jobs might require your entire application stack. For instance a rake task which uses a Rails application model, or a django management command.</p>
+
+<p>h2. Configuration Management and Cron</p>
+
+<p>Both "Chef":http://opscode.com/chef/ and "Puppet":http://puppetlabs.com/puppet/ provide a cron resource type. This is particularly handy for things like database backup scripts or ganglia gmetric scripts. You probably want these scripts and cron jobs to be installed on machines that have the related software installed, and you're probably already describing this in your Chef recipes or Puppet manifests. If you're not already using one of these tools using them to manage just your cron jobs is a nice way of starting out.</p>
+
+<p>Using the "Puppet Cron Type":http://docs.puppetlabs.com/references/latest/type.html#cron looks like this:</p>
+
+<pre><code>cron { command:
+  command => "/usr/local/sbin/command",
+  hour => 2,
+  minute => 0
+}</code></pre>
+
+
+<p>And the equivalent "Chef Reasource":http://wiki.opscode.com/display/chef/Resources#Resources-Cron looks like:</p>
+
+<pre><code>cron "describe your job" do
+  hour "2"
+  minute "0"
+  command "/usr/local/sbin/command"
+end</code></pre>
+
+
+<p>The important part is that by describing your cron jobs in code you can then version control them easily, and both Chef and Puppet have mechanisms to push these jobs out to be installed by the relevant hosts. With cron jobs you might not want all your machines to be running the same jobs for instance.</p>
+
+<p>h2. Using Whenever</p>
+
+<p>An alternative, or complimentary, approach to versioning and deploying cron jobs would be to tie it in with your application code. This makes sense when those jobs are tightly coupled to your application, for instance rails specific rake tasks or django management commands. "Whenever":https://github.com/javan/whenever is a tool I've been using recently that makes this pretty simple. You describe your cron jobs in a file called schedule.rb like so:</p>
+
+<pre><code>every 3.hours do
+  command "/usr/local/sbin/command"
+end</code></pre>
+
+
+<p>And then running the provided whenever command line application will generate a working crontab. Whenever ships with capistrano integration and some useful shortcuts for running rake tasks or accessing Ruby code, but it's simple to write your own command shortcuts without having to write ruby code too.</p>
+
+<p>h2. Other Approaches</p>
+
+<p>I have seen some tools which replace cron completely, but I've never liked that idea much. Cron works pretty well, and is clever enough to deal with things like daylight saving time and leap years inteligently if needed. I know other folks who are centralising all regular jobs into something like Jenkins. I can see advantages to that, although I've yet to find a really nice way of automating this outside the gui interface or manually modifying configuration files.</p>
+]]></content>
+  </entry>
+  
+</feed>

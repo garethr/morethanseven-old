@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: settings | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/settings/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Let you Sys Admin Override your Django Settings]]></title>
+    <link href="http://www.morethanseven.net/2009/02/15/let-you-sys-admin-override-your-django-settings/"/>
+    <updated>2009-02-15T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/02/15/let-you-sys-admin-override-your-django-settings</id>
+    <content type="html"><![CDATA[<p>The previous "Django settings tip":http://morethanseven.net/2009/02/11/django-settings-tip-setting-relative-paths/ seemed to go down well so I thought I'd jot down a few more over the next few weeks. Most of these have come out of working with a decent sized Django team at "Global":http://thisisglobal.com so I can't take credit for anything but writing them down for the most part. For this example I think "Alex Knowles":http://alixandalex.com/obfuscated-signatures/ did the original version.</p>
+
+<p>I was talking with out friendly "sys":http://search.cpan.org/~rclamp/ "admins":http://www.unixdaemon.net/ on Friday about a new application and whether they were happy with some application specific logging (using the Python logging module) I'd build in. Nothing fancy, just application logging to a rotated log file for system events. Their answer was yes, as long as they could control where the log files ended up and the maximum file size, ideally without having to play around in the code or to redeploy the application if they wanted to move the files elsewhere.</p>
+
+<p>These things were already specified in the settings file rather than hardcode into the application but that only gets us half way. The standard Linux way of setting this sort of thing is with a configuration file stored in the /etc directory. So we ended up with the following snippet of code in our settings.py file.</p>
+
+<p>pre. # we're going to allow overriding of settings via a yml file.</p>
+
+<h1>This makes live nicer for anyone managing the box</h1>
+
+<h1>and means settings can be overloaded without redeploying the site</h1>
+
+<p>SETTINGS_OVERIDE = "/etc/application_name.yml"
+try:</p>
+
+<pre><code>file = open(SETTINGS_OVERIDE)
+for key, value in yaml.load(file).items():
+    globals()[key]=value
+</code></pre>
+
+<p>except:</p>
+
+<pre><code># we don't always have the file around or need the setting 
+# defined so best to be quite if things go wrong
+pass
+</code></pre>
+
+<p>Then in the yaml file you can simply clobber any of the settings using a simple name value pair approach.</p>
+
+<p>pre. LOG_FILE: "/var/log/application_name.log"</p>
+
+<p>It lets us keep production paths that might change out of the developers code, at the same time as giving the sys admins a familiar way of managing the production environment.</p>
+
+<p>It does have one downside, if you're not aware of it's presence then it can make debugging settings related issues a pain. With that in mind you could wrap it so as to only work this way when DEBUG is False, or take the approach here which is to leave extensive comments.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Django Settings Tip - Setting Relative Paths ]]></title>
+    <link href="http://www.morethanseven.net/2009/02/11/django-settings-tip-setting-relative-paths/"/>
+    <updated>2009-02-11T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/02/11/django-settings-tip-setting-relative-paths</id>
+    <content type="html"><![CDATA[<p>Django settings files are pretty interesting. Rather than being written in some sort of purely declarative markup they just use Python. This brings both lots of power as well as the ability to do things in the settings file that you probably shouldn't do.</p>
+
+<p>One area where I find this capability particularly useful is when specifying file system paths. Lots of the settings concern where Django can find templates, images, or stylesheets for instance. The examples given in the default settings file are all of the form <em>/this/directory/structure/</em>. If you plan on only working on your own, and never running your applications anywhere except your local machine this is probably fine. The moment you want to deploy your application, or want to collaborate with others this becomes a problem. You either have to agree upon a fixed directory structure between all developers (annoying) or have distinct settings files for each machine, which probably means them being outside source control (also annoying).</p>
+
+<p>A better approach is to have those paths dynamically ascertained at runtime. It makes the application much more portable, making local development and production use easier. Using the standard library <em>os</em> module we can do just that.</p>
+
+<p>pre. import os
+import django</p>
+
+<h1>calculated paths for django and the site</h1>
+
+<h1>used as starting points for various other paths</h1>
+
+<p>DJANGO_ROOT = os.path.dirname(os.path.realpath(django.<strong>file</strong>))
+SITE_ROOT = os.path.dirname(os.path.realpath(<strong>file</strong>))</p>
+
+<p>Here we set a couple of useful constants, one is the path to the site folder and the other the path to where django is stored on this machine. settings.py contains a number of places where these constants are useful. For instance the MEDIA_ROOT settings which specifies the file system location for assets like images or stylesheets. The default settings file even comes with an instruction and example showing a non portable path.</p>
+
+<p>pre. # Absolute path to the directory that holds media.</p>
+
+<h1>Example: "/home/media/media.lawrence.com/"</h1>
+
+<p>MEDIA_ROOT = os.path.join(SITE_ROOT, 'assets')</p>
+
+<p>Other examples include setting the path for a SQLite database:</p>
+
+<p>pre. DATABASE_ENGINE = 'sqlite3'
+DATABASE_NAME = os.path.join(SITE_ROOT, 'db') + '/development.db'</p>
+
+<p>Or specifying directories in which we can place templates.</p>
+
+<p>pre. TEMPLATE_DIRS = (</p>
+
+<pre><code>os.path.join(SITE_ROOT, 'templates')
+</code></pre>
+
+<p>)</p>
+
+<p>I actually think this should probably make it's way into the default settings file. I might very well be missing something but I can't see when it's not much better to do things this way.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CSS Snapshots, CSS3 Modules and an Agile Way Forward - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="The state of CSS has been a common topic of conversation this year. Ever since Andy Budd stirred things up at The Highland Fling about The Future of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2007/11/04/css-snapshots-css3-modules-and-an-agile-way-forwar">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">CSS Snapshots, CSS3 Modules and an Agile Way Forward</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-11-04T00:00:00+00:00" pubdate data-updated="true">Nov 4<span>th</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>The state of <span class="caps">CSS</span> has been a common topic of conversation this year. Ever since <a href="http://www.andybudd.com">Andy Budd</a> stirred things up at <a href="http://thehighlandfling.com">The Highland Fling</a> about <a href="http://thehighlandfling.com/sessions/the-future-of-css/">The Future of <span class="caps">CSS</span></a> and followed up with a <a href="http://www.andybudd.com/archives/2007/05/css22/">call for <span class="caps">CSS</span> 2.2</a> we&#8217;ve been wanting more.</p>
+<p>Well, in response to all this the CSS3 working group have released <a href="http://www.w3.org/TR/css-beijing/"><span class="caps">CSS</span> Snapshot 2007</a> as a working draft. CSS3, in theory, has a modular structure. The idea behind this was that individual pieces could be worked up, specified and released without having to work on the whole thing at once. Sounds a lot like iterative development to me. The problem is we haven&#8217;t, until now, had a stable <em>release one</em> of CSS3.</p>
+<blockquote>
+<p>At the time this specification enters Candidate Recommendation, Cascading Style Sheets (<span class="caps">CSS</span>) is defined by the following specifications:<br />
+* <span class="caps">CSS</span> Level 2 Revision 1 (including errata)<br />
+* Selectors Level 3<br />
+* <span class="caps">CSS</span> Namespaces<br />
+* <span class="caps">CSS</span> Color Level 3</p>
+</blockquote>
+<p>So (at least when this document reaches Candidate Recommendation at some unknown point in the future), we can get on and use all those selectors we keep eyeing up. Colors and Namespaces are not particularly interesting, at least to me, but useful non-the-less. CSS2.1 is important as a baseline going forward, especially for the browser makers, rather than being particular interesting for the jobbing web designer.</p>
+<p>The problems come when we look at some of the features we want, and the modules they are part of. Andy specifically references <a href="http://andybudd.com/archives/2007/10/snapshot_2007_i/">text-shadow</a> as something that&#8217;s already got more than two sample implementations but is part of the <a href="http://www.w3.org/TR/css3-text/">Text module</a> which we won&#8217;t see for a while due to it&#8217;s complexity. (As a side note text-shadow was formerly part of CSS2.1 but got dropped due to lack of implementations at the time.) <a href="http://my.opera.com/dstorey/blog/">Dave Storey</a> summed this problem up nicely over on <a href="http://www.css3.info/css-snapshot-2007-released-as-a-working-draft/#comment-59776">CSS3.info</a></p>
+<blockquote>
+<p>I guess this is due to not wanting to put partial parts of a module in this snapshot. Iâ€™d like to see another snapshot draft in around six months that includes full or partial modules that have progressed since the time this snapshot was published.</p>
+</blockquote>
+<p>From a quick look at the <a href="http://www.w3.org/Style/CSS/current-work">current work</a> of the <span class="caps">CSS</span> working group I count six modules at candidate recommendations, six at last call, twenty three at working draft and six not yet started. If modules really are discrete blocks then this to me looks like a recipe for disaster. If modules aren&#8217;t discrete blocks then why are they divided into modules? Rather than focus on shipping modules it appears that the effort of the working group has been spread out across nearly the whole spectrum of CSS3. This pretty much invalidates the idea of a modular approach.</p>
+<p>CSS3 is a big project. And specification, like software, is hard. In well organised and managed agile software teams it&#8217;s common to split things down into features, or groups of features (modules). The <span class="caps">CSS</span> working group did this. In a well managed agile team shipping something early is hugely important. Everyone focuses on that goal, rather than on their favorite part of the project that might not be needed until later on. The <span class="caps">CSS</span> working group definitely didn&#8217;t do that. But it&#8217;s what I think is needed now.</p>
+<p>The working group are now <a href="http://xhtml.com/en/css/conversation-with-css-3-team/">starting to talk</a> more openly about what they are up to. And the <a href="http://csseleven.com/"><span class="caps">CSS</span> Eleven</a> are looking to add some support from a web design industry point of view. I&#8217;m interested to see what they come up with as suggestions and support. The problem I see is that, unless the working group back down on the strict nature of the modules and define sub-modules or simply go to specifying features then we could hit an impasse. The best course of action (from a complete outsider anyhow) would be to get all the people from the working group and from the <span class="caps">CSS</span> Eleven working on one module at a time. Only once a little momentum has been built up maybe they could work on more than one at once, just not thirty five this time. All of that would take some hefty project management and some setting aside personal and organisational politics to get done. Fingers crossed.</p>
+<p>I actually think things are looking up, but time is certainly a factor here. Lets assume IE.next is released late next year or the start of 2009 (wild speculation). If the <a href="http://blogs.msdn.com/ie/">Internet Explorer team</a> implement to the current specs at that time &#8211; that could easily not include <span class="caps">CSS</span> Snapshot 2008, which would be reaching candidate recommendation around about the same time as they ship. Which could in theory mean it&#8217;s four years or more before we see text-shadow well supported. Never mind elements of CSS3 which currently have no reference implementations at all! Anyone else with any bright idea? Or insider info that you want to share?</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-11-04T00:00:00+00:00" pubdate data-updated="true">Nov 4<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2007/11/04/css-snapshots-css3-modules-and-an-agile-way-forwar/" data-via="garethr" data-counturl="http://www.morethanseven.net/2007/11/04/css-snapshots-css3-modules-and-an-agile-way-forwar/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/10/29/bbc-innovation-labs-2008/" title="Previous Post: BBC Innovation Labs 2008">&laquo; BBC Innovation Labs 2008</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/11/07/some-useful-mobile-web-design-links/" title="Next Post: Some useful mobile web design links">Some useful mobile web design links &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2007/11/04/css-snapshots-css3-modules-and-an-agile-way-forwar/';
+        var disqus_url = 'http://www.morethanseven.net/2007/11/04/css-snapshots-css3-modules-and-an-agile-way-forwar/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

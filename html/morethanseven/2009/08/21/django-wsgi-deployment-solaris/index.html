@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Django and WSGI deployment on Solaris - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Now I&#8217;m generally an Ubuntu guy, but I&#8217;ve just had the need to setup some boxes running Solaris for Django and a handful of WSGI &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2009/08/21/django-wsgi-deployment-solaris">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Django and WSGI Deployment on Solaris</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-21T00:00:00+01:00" pubdate data-updated="true">Aug 21<span>st</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Now I&#8217;m generally an Ubuntu guy, but I&#8217;ve just had the need to setup some boxes running Solaris for Django and a handful of <span class="caps">WSGI</span> applications. I know my way around Ubuntu pretty well. I know all the packages I need to install and in what order. Hell, I even have all that scripted so I can just run a command and it works by magic. I&#8217;ll script the following steps if I can do when I get round to it but here, in one list, are the installation instructions for Apache, mod_wsgi, Mysql, MySQLdb, setuptools and memcached that worked for me on the latest version of <a href="http://www.opensolaris.com/">Open Solaris</a> (2009.06 at the time of writing).</p>
+<p>First up I needed to install Apache and start the service running.</p>
+<pre>pfexec pkg install SUNWapch22
+svcadm enable http:apache22</pre>
+<p>You should be able to test that&#8217;s running by hitting localhost on a browser running on the same box. Now for MySQL.</p>
+<pre>pfexec pkg install SUNWmysql5
+svcadm enable mysql:version_50</pre>
+<p>This installs the mysql binary into /usr/mysql/5.0/bin/mysql on the system I&#8217;m working on. As I want to talk to the MySQL database server using Python I need to install MySQLdb.</p>
+<pre>pfexec pkg install SUNWmysql-python
+ln -s /usr/mysql/5.0/lib/mysql/libmysqlclient_r.so.15 /usr/lib/libmysqlclient_r.so.15</pre>
+<p>This installs the library files into /usr/mysql/5.0/lib and Python doesn&#8217;t know were to find them. The above command links them into the more standard /usr/lib folder were Python will pick it up nicely.</p>
+<p>I tend to use <a href="http://code.google.com/p/modwsgi/">mod_wsgi</a> for serving Python apps behind Apache,  however a mod_wsgi package isn&#8217;t part of the default package list. It is however available in the pending list so first you need to add that list of packages.</p>
+<pre>pfexec pkg set-authority -O http://pkg.opensolaris.org/pending pending
+pfexec pkg refresh
+pfexec pkg install mod-wsgi</pre>
+
+<p>This installs the module but you then need to tell Apache to load it. Add the following line to /etc/apache2/2.2/conf.d/modules-32.load or /etc/apache2/2.2/conf.d/modules-64.load depending on your architecture.</p>
+<pre>LoadModule wsgi_module    libexec/mod_wsgi.so</pre>
+<p>To get Apache to load that module you need to restart it like so:</p>
+<pre>svcadm restart http:apache22</pre>
+<p>I use <a href="http://pypi.python.org/pypi/pip">Pip</a> for installing Python code, but tend to install setuptools to make installing Pip easier. I don&#8217;t know if an up to date Pip package exists.</p>
+<pre>pfexec pkg install python-setuptools</pre>
+<p>This should leave you with easy_install on your path so installing Pip, then virtualenv should be a breeze.</p>
+<p>As an added bonus I also installed memcached for some snappy caching.</p>
+<pre>pfexec pkg install SUNWmemcached</pre>
+<p>This won&#8217;t start up by default and needs a little configuration. The first command will launch you into a prompt where you can type the rest of the commands.</p>
+<pre>svccfg
+svc:&gt; select memcached
+svc:/application/database/memcached&gt; setprop memcached/options=("-u" "nobody")
+svc:/application/database/memcached&gt; quit</pre>
+<p>Once you&#8217;d done that you should be able to start memcache on the standard port.</p>
+<pre>svcadm refresh memcached
+svcadm enable memcached</pre>
+<p>Et voila. The internet helped massively on my quest to track down this information. Not all of the following links turned out to work for me but all of them led me in the right direction. Thanks everyone.</p>
+<ul>
+	<li>http://blogs.sun.com/quenelle/entry/jazz_guitar_and_rpath</li>
+	<li>http://blogs.sun.com/natarajan/entry/installing_amp_stack_within_glassfish</li>
+	<li>http://blogs.sun.com/overstre/entry/django_on_solaris10_with_the</li>
+	<li>https://cds.sun.com/is-bin/<span class="caps">INTERSHOP</span>.enfinity/<span class="caps">WFS</span>/<span class="caps">CDS</span>-CDS_SMI-Site/en_US/-/<span class="caps">USD</span>/ViewProductDetail-Start?ProductRef=Web-Stack-1.5-<span class="caps">OTH</span>-G-F@CDS-CDS_SMI</li>
+	<li>http://wiki.joyent.com/mod_wsgi</li>
+	<li>http://textusers.com/wiki/AcceleratorDjango</li>
+	<li>http://wiki.joyent.com/accelerators:kb:django</li>
+	<li>http://www.b-list.org/weblog/2007/sep/04/django-accelerated/</li>
+	<li>http://blogs.sun.com/natarajan/entry/getting_ruby_or_amp_apache</li>
+	<li>http://blogs.sun.com/overstre/entry/opensolaris_with_mod_wsgi</li>
+	<li>http://branesks.blogspot.com/2009/01/installing-modwsgi-on-opensolaris.html</li>
+	<li>http://blogs.sun.com/overstre/entry/django_on_opensolaris</li>
+	<li>http://code.google.com/p/modwsgi/wiki/InstallationOnSolaris</li>
+	<li>http://groups.google.com/group/modwsgi/browse_thread/thread/7e2cc7ce366253cc</li>
+	<li>http://blogs.sun.com/lr/entry/django_setup_mysql_python_opensolaris</li>
+	<li>http://blogs.sun.com/trond/entry/memcached_in_solaris</li>
+	<li>http://blog.hendrikvolkmer.de/2009/1/29/deploying-a-rails-application-on-opensolaris-with-passenger-aka-modrails/</li>
+</ul>
+<p>I&#8217;m not a Solaris admin. I&#8217;m not really a sysadmin at all, I just end up pretending to be one of late. Any experienced Solaris people with experience of these tools reading this I&#8217;d be grateful for any hints and tips. Hopefully this saves a few people from the head scratching I&#8217;ve been doing for the last few days.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-21T00:00:00+01:00" pubdate data-updated="true">Aug 21<span>st</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/django/'>django</a>, <a class='category' href='/tags/solaris/'>solaris</a>, <a class='category' href='/tags/wsgi/'>wsgi</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2009/08/21/django-wsgi-deployment-solaris/" data-via="garethr" data-counturl="http://www.morethanseven.net/2009/08/21/django-wsgi-deployment-solaris/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/08/15/your-own-pypi-server/" title="Previous Post: Your Own PyPi server">&laquo; Your Own PyPi server</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/08/31/another-chance-djugl/" title="Next Post: Another chance to DJUGL">Another chance to DJUGL &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2009/08/21/django-wsgi-deployment-solaris/';
+        var disqus_url = 'http://www.morethanseven.net/2009/08/21/django-wsgi-deployment-solaris/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

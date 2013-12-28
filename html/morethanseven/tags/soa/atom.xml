@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: soa | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/soa/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Services Vs Applications: Does Rails Encourage SOA Better Than Django?]]></title>
+    <link href="http://www.morethanseven.net/2009/03/13/does-rails-encourage-soa-better-than-django/"/>
+    <updated>2009-03-13T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/03/13/does-rails-encourage-soa-better-than-django</id>
+    <content type="html"><![CDATA[<p>Building larger applications tends to mean splitting your codebase up some how into manageable chunks. I'm quite interested in what I see as different approaches in the Rails and Django communities:</p>
+
+<p>Django tends to recommend building "Reusable Apps":http://www.b-list.org/weblog/2007/mar/27/reusable-django-apps/ and we have sites like "Django Pluggables":http://djangoplugables.com/ to catalog what's available. You then grab a few of these applications from the web or write your own, add them run them all together as part of a single application. "Pinax":http://pinaxproject.com/ is probabaly the poster child for this approach. The  0.5.1 release for instance appears to have 41 individual reusable apps, many written by other people and projects.</p>
+
+<p>The Rails community tends to "talk more about RESTful service orientated architectures":http://gilesbowkett.blogspot.com/2007/08/activeresource-rails-scalability.html, with things like "ActiveResource":http://api.rubyonrails.org/classes/ActiveResource/Base.html making this sort of thing easier. So rather than your manageable chunks being within your application they're separate instances in their own right.</p>
+
+<p>I'd be interested in hearing from more people about their experiences, in particular if you've gone against the grain so to speak.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: erlang | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/erlang/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Erlang Screencasts]]></title>
+    <link href="http://www.morethanseven.net/2009/11/01/erlang-screencasts/"/>
+    <updated>2009-11-01T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2009/11/01/erlang-screencasts</id>
+    <content type="html"><![CDATA[<p>I've been trying to learn Erlang for a while. What I actually mean is it's been on my list of <em>things to learn</em> for months, along with all sorts of other incredibly interesting bits and pieces. I spend a little bit of time at home but the majority of my learning time is now spent commuting to London and back most days. Sometimes I'm even going all the way to Swindon which gives me even longer to not learn Erlang.</p>
+
+<p>The main problem with learning something new on the train is space. Reading a book (or my new Kindle) or just using my laptop is fine. Trying to do both at once is nearly impossible (I've tried). So I've decided to give another approach a try, namely screencasts.</p>
+
+<p>I've only done the first "Erlang in Practice":http://www.pragprog.com/screencasts/v-kserl/erlang-in-practice episode so far but I was hugely impressed with the content and general presentation. $5 as well doesn't seem bad at all I don't think. The episode was half an hour long, but took me a little longer, probably closer to 45 minutes, as I was playing along at home and typing the code examples as I went. I also got sidetracked with messing with my vim configuration at the same time but hey. This makes them perfect for my hour long commute. The full series is 8 episodes long and with luck I'll be able to work through them this week.</p>
+
+<p>So, good job "Kevin Smith":http://weblog.hypotheticalabs.com/ and "Pragmatic":http://www.pragprog.com for a nice, accessible start to Erlang. All I need to do now is find something interesting to hack on in Erlang.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Jabber, Erlang, Debugging. Things I'm playing with at the moment]]></title>
+    <link href="http://www.morethanseven.net/2008/10/05/jabber-erlang-debugging-things-im-playing-with-at-/"/>
+    <updated>2008-10-05T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2008/10/05/jabber-erlang-debugging-things-im-playing-with-at-</id>
+    <content type="html"><![CDATA[<p>I'm busy experimenting with various blogging approaches at the moment, hence the short links I've been posting recently. Another type of post I thought I'd give a try to was the list of interesting things. I find this sort of thing strangely cathartic - if nothing else by writing down the things I'm thinking about I won't forget to spend time playing with them.</p>
+
+<ul>
+<li>I still need to play around some more with Jabber/XMPP. I tried a little time ago to install a server locally on my Mac with only some success. I've now got a load of linux virtual images handy which might make that easier. What I would really like to see is a dirt simple XMPP server that you can use for local development. Something like "Morbid":http://pypi.python.org/pypi/morbid/0.8.2. I'm just not sure I have the time to build one.</li>
+<li>Which brings me on to virtualisation. I'm more convinced than ever that sand boxing different local environments is a good idea. I now have a stack of VMWare images set up for configuring.</li>
+<li>It turns out "Yahoo used Erlang":http://blog.socklabs.com/cufp2008.html under the hood for some part of the new "Delicious":http://del.icio.us I'm still pretty interested in actually doing something with Erlang, though what I'm not yet sure. I've been kicking round an idea for ages involving logging which might fit the bill.</li>
+<li>I talked at barcampbrighton recently about debugging tools for django (and more broadly any development environment) that you need once you have a reasonable sized team. I've been busy packaging some of the tools I mentioned. I'll either turn it into an article somewhere, multiple blog posts and/or hopefully get some code released on google code some time soon.</li>
+<li>The "Sphinx":http://sphinx.pocoo.org/ documentation system used by Django for the "1.0 documentation":http://docs.djangoproject.com/en/dev/ is pretty nifty. I'm investigating it for use at work at the moment.</li>
+<li>I've been a huge fan of Textile since I used Textpattern years ago for an earlier incarnation of this site. But recently I've had a few niggling issues around extensibility and slight differences in implementation. So I'm pondering using "ReStructuredText":http://docutils.sourceforge.net/rst.html for my writing duties. It appears to be more powerful, more flexible and inherently extensible.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Last Week with Ajax - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Last friday I got the chance to stick around in London and attend the Clearleft Ajax workshop with Jeremy Keith. 30 people from different web &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2006/02/19/last-week-with-ajax">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Last Week With Ajax</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-19T00:00:00+00:00" pubdate data-updated="true">Feb 19<span>th</span>, 2006</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Last friday I got the chance to stick around in London and attend the <a href="http://clearleft.com">Clearleft</a> Ajax workshop with <a href="http://adactio.com">Jeremy Keith</a>. 30 people from different web disciplines and backgrounds trying to get as much out of a single day on the latest buzz word has to sound like fun?</p>
+ <p>I had heard Jeremy&#8217;s speak before at <a href="http://vivabit.com/atmedia2006">@media</a> last year where he was one of the highlights and friday was much of the same. In a good way. Clear, to the point, explanations. Examples where they help to make a point, some wry humour and the odd culinary simile. The only real let down there was he&#8217;s <a href="http://www.flickr.com/photos/adactio/96454214/">cut his hair short</a>. This tendency for <a href="http://www.flickr.com/photos/andybudd/98405129/in/pool-summit2006/">minimalism in hair cuts</a>  amongst <a href="http://htmldog.com">web designers</a> is disturbing me. Only <a href="http://www.flickr.com/photos/andybudd/98405572/in/pool-summit2006/">Norm</a> can <a href="http://cackhanded.net/">save us now</a>.</p>
+ <p>Back on topic the day covered everything from theory and first principals to some fully working examples, but stuck with playing with Javascript and code from scratch, rather than frameworks and server side stuff. A descision I think really made the day useful.</p>
+ <p>The morning was, to be fair, less useful from my standpoint. The speed introduction to Javascript, and some of the concepts of Ajax where covering ground I&#8217;d already covered personally. That&#8217;s not to say they weren&#8217;t well placed or interesting though, far from it, and did provide some people with what was probably the best crash course in Javascript imaginable.</p>
+ <p>The afternoon really kicked into gear though. Lots of examples; from simple updating content through to making use of the Yahoo <span class="caps">API</span>. Throw in some examples with server side code, the obligatory shopping basket example and, particularly impressive, a detailed look at <span class="caps">JSON</span>. This all in one afternoon remember.</p>
+ <p>The code examples we got to take away with, and much of this was generic enough to have already found it&#8217;s way into my working library. I&#8217;m very much a fan of Jeremy&#8217;s <span class="caps">DIY</span> ethic with regards Javascript. I too am sceptical of using huge frameworks to crack nuts without a clue about what they are doing. The actual simplicity of the Ajax methods I think was one thing that Jeremy got over better than anyone I&#8217;ve listened to date. It really is about application design more than new, fancy, complex technology.</p>
+ <p>A few other people who attended have posted <a href="http://www.molly.com/2006/02/17/jeremy-keith-and-the-truth-about-ajax/">their</a> <a href="http://www.brucelawson.co.uk/index.php/2006/ajax-hijax-and-accessibility/">opinions</a> .<em>I&#8217;m really not stalking Molly by the way</em>.</p>
+ <p>As Molly had hinted, Jermey is also very quotable. So here are a few of the things I&#8217;m sure he said, any loss of context here is completely my fault though:</p>
+<blockquote>
+  <p>The validator is my friend</p>
+</blockquote>
+<blockquote>
+  <p>What&#8217;s the problem? Reality! (refering to IE)</p>
+</blockquote>
+<blockquote>
+  <p><span class="caps">DOM</span> is like a scalpel, innerHTML is like a sledgehammer!</p>
+</blockquote>
+<blockquote>
+  <p>It&#8217;s hard to argue with one line of code (on innerHTML vs <span class="caps">DOM</span>)</p>
+</blockquote>
+<blockquote>
+  <p>Pointing at Google maps as an example of Ajax is like pointing at a ferari on a race course as an example of the combustion engine. You spend most of your time going wow!</p>
+</blockquote>
+ <p>We closed up the afternoon with some discussion of the accessibility concerns, some of the development issues (wireframing ajax apps anyone?) and a whistle stop look at frameworks. All in all a very useful day, both personally (ie. I had fun) and professionally (I think my employer got value for money.) It also reinforced what I&#8217;ve been thinking more and more recently. It&#8217;s nearly all about design when it comes to real work. <em>When</em> and <em>where</em> and <em>why</em> must come first, and <em>how</em> is often more trivial than you think.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-19T00:00:00+00:00" pubdate data-updated="true">Feb 19<span>th</span>, 2006</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2006/02/19/last-week-with-ajax/" data-via="garethr" data-counturl="http://www.morethanseven.net/2006/02/19/last-week-with-ajax/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2006/02/14/easy-for-whom-a-minor-rant-about-help-from-framewo/" title="Previous Post: Easy for whom? - a minor rant about help from frameworks">&laquo; Easy for whom? - a minor rant about help from frameworks</a>
+      
+      
+        <a class="basic-alignment right" href="/2006/02/23/keyboards-and-web-applications/" title="Next Post: keyboards and web applications">keyboards and web applications &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2006/02/19/last-week-with-ajax/';
+        var disqus_url = 'http://www.morethanseven.net/2006/02/19/last-week-with-ajax/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

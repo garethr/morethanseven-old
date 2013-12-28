@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: freeagent | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/freeagent/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Working For Freeagent]]></title>
+    <link href="http://www.morethanseven.net/2010/09/13/Working-for-freeagent/"/>
+    <updated>2010-09-13T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2010/09/13/Working-for-freeagent</id>
+    <content type="html"><![CDATA[<p>So, I've just accepted a new job at "FreeAgent":http://freeagentcentral.com, the rather snappy online small business accounting startup. I'll be starting in about a month, when I get back from devopsdays in Hamburg.</p>
+
+<p>I'm joining a pretty well knit group of designers and developers working on a pretty well loved piece of software. I've known Roan (one of the directors) for years, ever since the first Highland Fling conference I think. And the rest of the team seem a good mix of technical smarts and professionalism. Hopefully I can live up to their already high standards.</p>
+
+<p>I'm looking forward to jumping into a decent sized Ruby project and getting properly reacquainted with Rails as well. I've spent most of the previous few years in the Python world so that should be a nice challenge. I'm constantly impressed with the number of high quality tools written in Ruby andRails 3 looks a genuinely nice piece of software. Hopefully with a bit more idiomatic ruby under my belt, more time on my hands and some new real world problems to solve I'll increase my open source contributions and get back to writing again as well. I'll likely be spending most of my time on those good developer staples new feature development, supporting existing code and scaling systems. I'll also be involved in some operations stuff if I get chance, introducing software I'm a huge fan of and automating everything I can get my hands on.</p>
+
+<p>The rest of the team are based up in Edinburgh but I'll be working from home most of the time. I'm quite looking forward to working from Cambridge after having lived here for a few years. I'll also get to see various friends in Edinburgh that I don't get chance to meet up with very often and still have time to make it to London for the odd event or get together. I'll likely be looking into coworking spaces or desk shares in and around Cambridge so if anyone has any recommendations.</p>
+
+<p>Given this weeks pubstandards is apparently all about weddings, birthdays and new jobs (and I have all 3 within a month) it would be rude not to go along for at least one drink. If you're around London I might see you there.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: gitbug | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/gitbug/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Simple issue tracking]]></title>
+    <link href="http://www.morethanseven.net/2009/04/12/simple-issue-tracking/"/>
+    <updated>2009-04-12T00:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2009/04/12/simple-issue-tracking</id>
+    <content type="html"><![CDATA[<p>Another project I hacked together on the train running on App Engine I'm afraid. Anyone getting bored of my <em>new project each week</em> posts please stop reading now.</p>
+
+<p><a href="http://gitbug.appspot.com"><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRjZNgw" alt="GitBug interface"/></a></p>
+
+<p>Issue or bug tracking is just one of those things we all deal with and probably have opinions on. Lots of open source software exists ("BugZilla":http://www.bugzilla.org/, "Trac":http://trac.edgewall.org/) to do the job and various companies have commercial products ("Lighthouse":http://lighthouseapp.com/, "Sifter":http://sifterapp.com/, "Fixx":http://hedgehoglab.com/products/fixx/). So why did I go and create another one?</p>
+
+<p>Certainly not because I think I can do a better job for the majority. This is very much a personal pet project and I don't very much fancy competing with teams of smart people building good products.</p>
+
+<p>Like most software projects my issue tracker was designed to scratch a personal itch. I now have 28 repos over on "GitHub":http://github.com/garethr (how did that happen?). Some of these are public projects I'd like other peoples input on, and for me that means having a public list of issues. But these aren't active projects being worked on by a team of people - it's mainly just me (with Brad and Simon occasionally correcting my spelling and grammar) hacking on the train to work and back. I don't need collaboration features. I don't want to be limited to a small number of projects. I'd rather not pay lots of money, or worry too much about hosting.</p>
+
+<p>So that's where "GitBug":http://gitbug.appspot.com comes in. Bug tracking for people with minimal needs.</p>
+
+<p>The only real <em>feature</em> past a very minimal bug tracker is the ability to close bugs via a GitHub webhook. Oh and lots of JSON and RSS feeds for everything but that's just the way we should build things now anyway.</p>
+
+<p>Their are areas of the interface that could do with some streamlining and a couple of open bugs that don't yet cause me enough pain to fix. I have however opened it up for anyone with a Google account to use and a few people have started adding their own projects and issues already. I'm hoping that for the most part by keeping it as simple as possible I can avoid having to do any work on <em>it</em> and work on bugs in other projects instead, of which I'm sure there are many.</p>
+]]></content>
+  </entry>
+  
+</feed>

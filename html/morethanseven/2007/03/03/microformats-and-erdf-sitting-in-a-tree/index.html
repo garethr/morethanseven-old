@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Microformats and eRDF sitting in a tree - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Following on from my previous post on eRDF I&#8217;ve started to play around with it. For anyone bored enought to have read the source of this site &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2007/03/03/microformats-and-erdf-sitting-in-a-tree">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Microformats and eRDF Sitting in a Tree</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-03T00:00:00+00:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Following on from <a href="http://morethanseven.net/posts/what-erdf-can-learn-from-microformats/">my previous post</a> on <a href="http://www.w3.org/RDF/">eRDF</a> I&#8217;ve started to play around with it. For anyone bored enought to have read the source of this site today you&#8217;ll have seen a couple of behind the scenes changes &#8211; specifically I&#8217;ve added a dash of <a href="http://www.foaf-project.org/"><span class="caps">FOAF</span></a>.</p>
+<p>The <span class="caps">FOAF</span>, or Friend of a Friend, project is:</p>
+<blockquote>
+<p>creating a Web of machine-readable pages describing people, the links between them and the things they create and do.</p>
+</blockquote>
+<p>I sort of see it as a bigger and more complicated older brother to <a href="http://gmpg.org/xfn"><span class="caps">XFN</span></a> and <a href="http://microformats.org/wiki/hcard">hCard</a>.</p>
+<p>First things first, unlike <a href="http://microformats.org">Microformats</a>, using eRDF needs a bit of setup outside just adding classes and attributes &#8211; specifically you need to add a profile to the <em>head</em> element of your document and then add some namespaces links into the <em>head</em> like so:</p>
+<pre><code>&lt;head profile="http://purl.org/NET/erdf/profile"&gt;
+  &lt;link rel="schema.rdfs" href="http://www.w3.org/2000/01/rdf-schema#" /&gt;
+  &lt;link rel="schema.foaf" href="http://xmlns.com/foaf/0.1/" /&gt;
+&lt;/head&gt;</code></pre>
+<p>Then you&#8217;re onto the more familiar ground (if you&#8217;re used to Microformats) of adding semantic attributes. I already had the following snippet markup up in hCard, i just needed to add a few more classes (-foaf-Person, foaf-weblog and foaf-name) to existing elements.</p>
+<pre><code>&lt;div id="iHead"&gt;
+  &lt;h2 class="vcard -foaf-Person" id="gareth"&gt;
+  &lt;a href="/" class="url org foaf-weblog"&gt;Morethanseven&lt;/a&gt;
+  &lt;span&gt;is where &lt;a href="mailto:&amp;#103;&amp;#097;&amp;#114;&amp;#101;&amp;#116;&amp;#104;&amp;#064;&amp;#109;&amp;#111;&amp;#114;&amp;#101;&amp;#116;&amp;#104;&amp;#097;&amp;#110;&amp;#115;&amp;#101;&amp;#118;&amp;#101;&amp;#110;&amp;#046;&amp;#110;&amp;#101;&amp;#116;" 
+    class="email fn foaf-name"&gt;Gareth Rushgrove&lt;/a&gt; plays with the web
+    &lt;/span&gt;&lt;/h2&gt;
+&lt;/div&gt;</code></pre>
+<p>The full <a href="http://xmlns.com/foaf/0.1/"><span class="caps">FOAF</span> Specification</a> details a huge range of other elements &#8211; everything from <a href="http://xmlns.com/foaf/0.1/#term_Project">foaf:Project</a> for making associations between yourself and projects you have worked on, to <a href="http://xmlns.com/foaf/0.1/#term_OnlineGamingAccount">foaf:OnlineGamingAccount</a> which is pretty self explanatory.</p>
+<p>When parsed out that gives you a foaf document a little something like:</p>
+<pre><code>&lt;?xml version="1.0" encoding="utf-8" standalone="no"?&gt;
+&lt;rdf:RDF xmlns:admin="http://webns.net/mvcb/" 
+  xmlns:doap="http://usefulinc.com/ns/doap#" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:foaf="http://xmlns.com/foaf/0.1/" 
+  xmlns:h="http://www.w3.org/1999/xhtml" 
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;
+  &lt;rdf:Description rdf:about=""&gt;
+    &lt;admin:generatorAgent 
+      rdf:resource="http://purl.org/NET/erdf/extract"/&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about=""/&gt;
+  &lt;rdf:Description rdf:about="#gareth"&gt;
+    &lt;rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/&gt;
+    &lt;ns_13:weblog xmlns:ns_13="http://xmlns.com/foaf/0.1/"&gt;
+      Morethanseven
+    &lt;/ns_13:weblog&gt;
+    &lt;ns_14:name xmlns:ns_14="http://xmlns.com/foaf/0.1/"&gt;
+      Gareth Rushgrove
+    &lt;/ns_14:name&gt;
+  &lt;/rdf:Description&gt;
+  &lt;rdf:Description rdf:about="http://morethanseven.net"/&gt;
+  &lt;rdf:Description rdf:about="mailto:gareth@morethanseven.net"/&gt;
+&lt;/rdf:RDF&gt;</code></pre>
+<p>So far I&#8217;d agree with <a href="http://ben-ward.co.uk/journal/fao-rdf/">Ben</a>. All I&#8217;ve done is something people (including me) have been doing already with hCard. But I&#8217;ve done it in a way, using eRDF, that doesn&#8217;t in any way stop me continuing using Microformats.</p>
+<p>Marking things up with Microformats for it&#8217;s own sake was only ever really of interest to markup junkies (including me again). It&#8217;s only when you can parse that information out that it gets more interesting. I&#8217;ve got a follow up post to this on just that subject involving some <span class="caps">XSL</span>, Javascript, <span class="caps">PHP</span> and some standing on the shoulder of giants. It will be left to a post after that when I try do something a little different.</p>
+<p>On a related note; so far I&#8217;ve found only scattered and often overly technical and verbose documentation on eRDF and <span class="caps">RDF</span> in general. I&#8217;ve been adding links to <a href="http://del.icio.us/garethr">del.icio.us</a> as I find useful resources but I can see how useful <a href="http://getsemantic.com">Get Semantic</a> has the potential to be if any of this is going to take off in the web standards community.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-03T00:00:00+00:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2007/03/03/microformats-and-erdf-sitting-in-a-tree/" data-via="garethr" data-counturl="http://www.morethanseven.net/2007/03/03/microformats-and-erdf-sitting-in-a-tree/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/02/28/uk-web-design-meetups-map/" title="Previous Post: UK Web Design Meetups Map">&laquo; UK Web Design Meetups Map</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/03/04/parsing-erdf/" title="Next Post: Parsing ERDF">Parsing ERDF &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2007/03/03/microformats-and-erdf-sitting-in-a-tree/';
+        var disqus_url = 'http://www.morethanseven.net/2007/03/03/microformats-and-erdf-sitting-in-a-tree/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

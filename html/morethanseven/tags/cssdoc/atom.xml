@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: cssdoc | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/cssdoc/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-26T18:51:05+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CSSDoc]]></title>
+    <link href="http://www.morethanseven.net/2008/11/11/cssdoc/"/>
+    <updated>2008-11-11T00:00:00+00:00</updated>
+    <id>http://www.morethanseven.net/2008/11/11/cssdoc</id>
+    <content type="html"><![CDATA[<p>"CSSDOC":http://cssdoc.net/ looks like a good idea. I'm sure a few people mentioned this last year at @media after the talk by the people from The Guardian but nothing came from it. Hopefully tools will start to come about soon.</p>
+
+<p>bq. CSSDOC is a convention to comment Cascading Style Sheets (CSS) to help individuals and teams to improve writing/coding/styling/managing CSS files. It is an adoption of the well known JavaDoc / DocBlock based way of commenting source-code. That's putting style, docblocks and tags together.</p>
+]]></content>
+  </entry>
+  
+</feed>

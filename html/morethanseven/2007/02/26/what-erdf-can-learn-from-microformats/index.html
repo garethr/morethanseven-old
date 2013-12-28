@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>What eRDF can learn from Microformats  - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Quite a bit of time at BarCamp was spent thinking, talking and in running skirmishes about the Semantic Web. Or the semantic web depending which side &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2007/02/26/what-erdf-can-learn-from-microformats">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">What eRDF Can Learn From Microformats</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-26T00:00:00+00:00" pubdate data-updated="true">Feb 26<span>th</span>, 2007</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Quite a bit of time at <a href="http://barcamp.org/BarCampLondon2">BarCamp</a> was spent thinking, talking and in running skirmishes about the Semantic Web. Or the semantic web depending which <em>side</em> you&#8217;re on.</p>
+<p>Now I&#8217;m a big fan and perpetual user of <a href="http://microformats.org">Microformats</a>. They make sense, are simple to add everywhere (by stealth if needs be) and the potential is pretty interesting to boot. They are designed in the open, allowing everyone to participate and have a strong emphasis on solving every day problems in the real world.</p>
+<p>Contrast that with <a href="http://www.w3.org/RDF/"><span class="caps">RDF</span></a> and the Semantic Web. Most of the work here has been going on for years in academic institutions and W3C working groups. It&#8217;s all rather grandiose. Everything I&#8217;d seen previously horribly broke <span class="caps">HTML</span>. But someone seems to have seen the light. <a href="http://blogs.opml.org/tommorris/">Tom Morris</a> mentioned in one of his talks <a href="http://research.talis.com/2005/erdf/wiki/Main/RdfInHtml">eRDF</a>, which is a method for embedding <span class="caps">RDF</span> in <em>valid</em> <span class="caps">HTML</span>.</p>
+<p>After one of the talks I got chatting with Tom Morris and <a href="http://www.kid666.com/blog/">Tom Croucher</a>, both card carrying <span class="caps">RDF</span> folk, and <a href="http://niquimerret.com/">Niqui Merret</a> another interested bystander. Toms argument basically comes down to Microformats solve the 80% problem, <span class="caps">RDF</span> trys to solve the other 20%. I sort of think the Microformats group would probably agree with that. I also like the idea of creating your own formats off the cuff. I&#8217;ve seen enough to at least have a further look see and hopefully try out a few experiements myself.</p>
+<p><a href="http://ben-ward.co.uk/">Ben Ward</a> had a <a href="http://ben-ward.co.uk/journal/fao-rdf/">few things to say on the subject</a> which are worth a good read. I agree with the majority of his arguments but coudn&#8217;t resist commenting on at least one:</p>
+<blockquote>
+<p>If youâ€™re working with <span class="caps">RDF</span>, show me something new. Donâ€™t just rehash vcard and icalendar into your own format; Iâ€™m not interested</p>
+</blockquote>
+<p>I disagree. One of the best thinks about Microformats, that draw people (including me) in from the get go, is the unquestionable ease with which you can add <a href="http://microformats.org/wiki/hcard">hcard</a> or <a href="http://gmpg.org/xfn/">xfn</a> and get on with your day. Weeks or months later, after a few feel good projects you&#8217;ll be keeping an eye on the wiki when you come across something in need of structure. And even then you find it&#8217;s a <a href="http://microformats.org/wiki/hresume">composite</a> of something you&#8217;ve seen before.</p>
+<p>Right now I&#8217;d love to find that. A simple example of how to mark up a few very simple examples of eRDF. Hey, if that means contact details and a calendar event then so be it. If all that&#8217;s wrapped up in a lovely shiny green coat of pain with an icon logo so much the better. Until I can experiment with simple I cant do anything else, never mind anything new. So that&#8217;s two posts for the future sorted then.</p>
+<p>Tom has set up a wiki over at <a href="http://www.getsemantic.com/wiki/Main_Page">GetSemantic</a> to start to collate information together in one place which from my initial research seems like a good idea. If and when I get enough together (and the <a href="http://openid.net">OpenId</a> authentication is up and running) I&#8217;ll make sure to add everything there. If I get carried away and find interesting voices on the blogosphere I might event get a planet up and running. Or I might find way too much <span class="caps">XML</span> and leave it at that.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-26T00:00:00+00:00" pubdate data-updated="true">Feb 26<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2007/02/26/what-erdf-can-learn-from-microformats/" data-via="garethr" data-counturl="http://www.morethanseven.net/2007/02/26/what-erdf-can-learn-from-microformats/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/02/25/people-i-met-in-london/" title="Previous Post: People I met in London">&laquo; People I met in London</a>
+      
+      
+        <a class="basic-alignment right" href="/2007/02/28/uk-web-design-meetups-map/" title="Next Post: UK Web Design Meetups Map">UK Web Design Meetups Map &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2007/02/26/what-erdf-can-learn-from-microformats/';
+        var disqus_url = 'http://www.morethanseven.net/2007/02/26/what-erdf-can-learn-from-microformats/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
