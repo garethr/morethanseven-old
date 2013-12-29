@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: logging | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/logging/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2013-12-29T15:22:59+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Looking into monitoring and logging tools]]></title>
+    <link href="http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools/"/>
+    <updated>2013-10-13T12:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools</id>
+    <content type="html"><![CDATA[<p><em>Originally published on <a href="https://medium.com/p/1cbb173faa3a">Medium</a>.</em></p>
+
+<p>We have a bunch of internal mailing lists at <a href="http://digital.cabinetoffice.gov.uk/">work</a>, and on one of them someone asked:</p>
+
+<blockquote><p>we’re looking into monitoring/logging tools…</p></blockquote>
+
+<p>I ended up writing a bit of a long reply which a few people found useful, so I thought I’d repost it here for posterity. I’m sure this will date but I think it’s a reasonable snapshot of the state of open source monitoring tools at the end of 2013.</p>
+
+<p>Simply put, think about four elements and you won’t be far off on the
+technical front. Miss one and you’re probably in trouble.</p>
+
+<ul>
+<li>logs</li>
+<li>metric storage</li>
+<li>metric collection</li>
+<li>monitoring checks</li>
+</ul>
+
+
+<p>For logs, some combination of syslog at one end and elasticsearch and
+<a href="http://www.elasticsearch.org/overview/kibana/">Kibana</a> at the other are probably the state of the open source art at
+the moment. The shipping around is more interesting; <a href="http://logstash.net/">Logstash</a> is improving constantly, <a href="http://heka-docs.readthedocs.org/en/latest/">Heka</a> is an similar alternative from Mozilla, and <a href="http://fluentd.org/">Fluentd</a> looks nice too.</p>
+
+<p>For pure metrics it’s all about <a href="http://graphite.wikidot.com/">Graphite</a>, which is both awesome and
+perilous. Not much else really competes in the open source world at
+present. Maybe <a href="http://opentsdb.net/">OpenTSB</a> (is you’re into a Hadoop stack.)</p>
+
+<p>For collecting metrics on boxes I’d probably look at <a href="http://collectd.org/">collectd</a> or <a href="https://github.com/BrightcoveOS/Diamond">diamond</a> both of which have pros and cons but work well. <a href="https://github.com/etsy/statsd/">Statsd</a> is also useful here for different types of metric collection and aggregation. <a href="http://ganglia.sourceforge.net/">Ganglia</a> is interesting too, it combines some aspects of the metrics collection tools with an integrated storage and visualisation tool similar to Graphite.</p>
+
+<p>Monitoring checks is a bit more painful. I’ve been experimenting with <a href="http://sensuapp.org/">Sensu</a> in hope of not installing Nagios. Nagios works but it’s just a bit ungainly. But you do need somewhere to write checks against metrics or other aspects of your system and to issue alerts.</p>
+
+<p>At this point everyone loves dashboards, and <a href="http://shopify.github.io/dashing/">Dashing</a> is particularly lovely. <a href="https://github.com/paperlesspost/graphiti">Graphiti</a> and <a href="https://github.com/obfuscurity/tasseo">Tasseo</a> for Graphite are useful too.</p>
+
+<p>For bonus points things like <a href="http://flapjack.io/">Flapjack</a> and <a href="http://riemann.io/">Reimann</a> provide some interesting extra capabilities around alert control or real time monitoring respectively.</p>
+
+<p>And for that elusive top of the class grade take a look at <a href="http://codeascraft.com/2013/06/11/introducing-kale/">Kale</a>, which provides anomaly detection on top of Graphite and Elasticsearch .</p>
+
+<p>You might be thinking that’s a lot of moving parts and you’d be right. If you’re a small project running all of that is too much overhead, turning to something like Zabbix might be more sensible.</p>
+
+<p>Depending on money/sensitivity/control issues lots of nice and not so
+nice commercial products exist. <a href="http://www.circonus.com/">Circonus</a>, <a href="http://www.splunk.com/">Splunk</a>, <a href="http://newrelic.com/">New Relic</a>, <a href="http://boundary.com/">Boundary</a> and <a href="https://metrics.librato.com/">Librato Metrics</a> are all lovely in different ways and provide part of the puzzle.</p>
+
+<p>And that’s just the boring matter of tools. Now you get into alert design and other gnarly people stuff.</p>
+
+<p>If you got this far you should watch all the <a href="http://vimeo.com/monitorama">Monitorama videos</a> too.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2013-12-26T18:51:05+00:00</updated>
+  <updated>2013-12-29T15:22:59+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,386 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Making the web secure, one unit test at a time]]></title>
+    <link href="http://www.morethanseven.net/2013/12/29/making-the-web-secure/"/>
+    <updated>2013-12-29T14:28:00+00:00</updated>
+    <id>http://www.morethanseven.net/2013/12/29/making-the-web-secure</id>
+    <content type="html"><![CDATA[<p><em>Originally written as part of <a href="http://sysadvent.blogspot.co.uk/2013/12/day-21-making-web-secure-one-unit-test.html">Sysadvent 2013</a>.</em></p>
+
+<p>Writing automated tests for your code is one of those things that,
+once you have gotten into it, you never want to see code without tests
+ever again. Why write pages and pages of documentation about how
+something should work when you can write tests to show exactly how something does work? Looking at the number and quality of testing tools and frameworks (like cucumber,
+rspec, <a href="https://github.com/test-kitchen/test-kitchen">Test Kitchen</a>,
+<a href="http://serverspec.org/">Server Spec</a>,
+<a href="https://github.com/puppetlabs/beaker">Beaker</a>,
+<a href="http://casperjs.org/">Casper</a> and
+<a href="http://pivotal.github.io/jasmine/">Jasmine</a> to name a few) that have
+popped up in the last year or so I&#8217;m obviously not the only person who
+has a thing for testing utilities.</p>
+
+<p>One of the other things I am interested in is web application
+security, so this post is all about using the tools and techniques
+from unit testing to avoid common web application security issues. I&#8217;m
+using Ruby in the examples but you could quickly convert these to other languages if you desire.</p>
+
+<h2>Any port in a storm</h2>
+
+<p>Lets start out with something simple. Accidentally exposing
+applications on TCP ports can lead to data loss or introduce a vector
+for attack. Maybe your main website is super secure, but you left the
+port for your database open to the internet. It&#8217;s the server configuration equivalent of forgetting to lock the back door.</p>
+
+<p>Nmap is a tool lots of people will be familiar with for spanning for
+open ports. As well as a command line interface Nmap also has good
+library support in lots of languages so lets try and write a simple
+tests suite around it.</p>
+
+<pre><code>require "tempfile"
+require "nmap/program"
+require "nmap/xml"
+
+describe "the scanme.nmap.org website" do
+  file = Tempfile.new("nmap.xml")
+  before(:all) do
+    Nmap::Program.scan do |nmap|
+      nmap.xml = file.path
+      nmap.targets = "scanme.nmap.org"
+    end
+  end
+
+  @open_ports = []
+  Nmap::XML.new("scan.xml") do |xml|
+    xml.each_host do |host|
+      host.each_port do |port|
+        @open_ports &lt;&lt; port.number if port.state == :open
+      end
+    end
+  end
+end
+</code></pre>
+
+<p>With the above code in place we can then write tests like:</p>
+
+<pre><code>it "should have two ports open" do
+ @open_ports.should have(2).items
+end
+
+it "should have port 80 open" do
+ @open_ports.should include(80)
+end
+
+it "should have port 22 closed" do
+ @open_ports.should_not include(22)
+end
+</code></pre>
+
+<p>We can run these manually, but also potentially as part of a
+continuous integration build or constantly as part of a monitoring
+suite.</p>
+
+<h2>Run the Guantlt</h2>
+
+<p>We had to do quite a bit of work wrapping Nmap before we could write
+the tests above. Wouldn&#8217;t it be nice if someone had already wrapped
+lots of useful security minded tools for us? <a href="http://gauntlt.org/">Gauntlt</a> is pretty much just that, it&#8217;s a security testing framework based on cucumber which currently supports curl, nmap, sslyze, sqlmap, garmr and a bunch more tools in master. Lets do something more advanced than our port scanning test above by testing a URL for a SQL injection vulnerability.</p>
+
+<pre><code>@slow
+Feature: Run sqlmap against a target
+  Scenario: Identify SQL injection vulnerabilities
+    Given "sqlmap" is installed
+    And the following profile:
+      | name       | value                                      |
+      | target_url | http://localhost/sql-injection?number_id=1 |
+    When I launch a "sqlmap" attack with:
+      """
+      python &lt;sqlmap_path&gt; -u &lt;target_url&gt; —dbms sqlite —batch -v 0 —tables
+      """
+    Then the output should contain:
+      """
+      sqlmap identified the following injection points
+      """
+    And the output should contain:
+      """
+      [2 tables]
+      +-----------------+
+      | numbers         |
+      | sqlite_sequence |
+      +-----------------+
+      """
+</code></pre>
+
+<p>The Gauntlt team publish <a href="https://github.com/gauntlt/gauntlt/tree/master/examples">lots of examples</a> like this one alongside the source code, so getting started is easy. Gauntlt is very powerful, but as you&#8217;ll see from the example above you need to know quite a bit about the underlying tools it is using. In the case above you need to know the various arguments to sqlmap and also how to interpret the output.</p>
+
+<h2>Enter Prodder</h2>
+
+<p><a href="https://github.com/garethr/prodder">Prodder</a> is a tool I put together
+to automate a few specific types of security testing. In many ways
+it&#8217;s very similar to Gauntlt; it uses the cucumber testing framework
+and uses some of the same tools (like nmap and sslyze) under the hood.
+However rather than a general purpose security framework like Gauntlt,
+Prodder is higher level and very opinionated. Here&#8217;s an example:</p>
+
+<pre><code>Feature: SSL
+  In order to ensure secure connections
+  I want to check the SSL configuration of my servers
+  Background:
+    Given "sslyze.py" is installed
+    Scenario: Check SSLv2 is disabled
+      When we test using the "sslv2" protocol
+      Then the exit status should be 0
+      And the output should contain "SSLv2 disabled"
+
+    Scenario: Check certificate is trusted
+      When we check the certificate
+      Then the output should contain "Certificate is Trusted"
+      And the output should match /OK — (Common|Subject
+</code></pre>
+
+<p>Alternative) Name Matches/</p>
+
+<pre><code>      And the output should not contain "Signature Algorithm: md5"
+      And the output should not contain "Signature Algorithm: md2"
+      And the output should contain "Key Size: 2048"
+
+    Scenario: Check certificate renegotiations
+      When we test certificate renegotiation
+      Then the output should contain "Client-initiated
+</code></pre>
+
+<p>Renegotiations: Rejected&#8221;</p>
+
+<pre><code>      And the output should contain "Secure Renegotiation: Supported"
+
+    Scenario: Check SSLv3 is not using weak ciphers
+      When we test using the "sslv3" protocol
+      Then the output should not contain "Anon"
+      And the output should not contain "96bits"
+      And the output should not contain "40bits"
+      And the output should not contain " 0bits"
+</code></pre>
+
+<p>This is a little higher level than the Gauntlt example — it&#8217;s not
+exposing the workings of sslyze that is doing the actual testing. All
+you need is an understanding of SSL certifcates. Even if you&#8217;re not an
+expert on SSL you can accept the aforementioned opinions of Prodder
+about what good looks like. Prodder currently contains steps and
+exampes for port scanning, SSL certificates and security minded HTTP
+headers. If you already have a cucumber based test suite (including
+one based on Gauntlt) you can reuse the step definitions in that too.</p>
+
+<p>I&#8217;m hoping to build upon Prodder, adding more types of tests and
+getting agreement on the included opinions from the wider systems
+administration community. By having a default set of shared assertions
+about the expected security of out system we can more easily move onto
+new projects, safe in the knowledge that a test will fail if someone
+messes up our once secure configuration.</p>
+
+<h2>I&#8217;m convinced, what should I do next?</h2>
+
+<p>As well as trying out some of the above tools and techniques for
+yourself I&#8217;d recommend encouraging more security conversations in your
+development and operations teams. Here&#8217;s a few  places to start with:</p>
+
+<ul>
+<li><a href="http://www.slideshare.net/beehooze/devopsday-london-ben-hughes-security">Ben Hughes from Etsy talking about security culture at Devopsdays London</a></li>
+<li><a href="https://speakerdeck.com/garethr/security-monitoring-with-open-source-penetration-testing-tools">A presentation I gave at Velocity about using penetration testing tools for monitoring purposes</a></li>
+<li><a href="http://www.slideshare.net/wickett/gauntlt-velocity-eu2013">A workshop, again from Velocity all about getting started with Gauntlt</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Looking into monitoring and logging tools]]></title>
+    <link href="http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools/"/>
+    <updated>2013-10-13T12:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools</id>
+    <content type="html"><![CDATA[<p><em>Originally published on <a href="https://medium.com/p/1cbb173faa3a">Medium</a>.</em></p>
+
+<p>We have a bunch of internal mailing lists at <a href="http://digital.cabinetoffice.gov.uk/">work</a>, and on one of them someone asked:</p>
+
+<blockquote><p>we’re looking into monitoring/logging tools…</p></blockquote>
+
+<p>I ended up writing a bit of a long reply which a few people found useful, so I thought I’d repost it here for posterity. I’m sure this will date but I think it’s a reasonable snapshot of the state of open source monitoring tools at the end of 2013.</p>
+
+<p>Simply put, think about four elements and you won’t be far off on the
+technical front. Miss one and you’re probably in trouble.</p>
+
+<ul>
+<li>logs</li>
+<li>metric storage</li>
+<li>metric collection</li>
+<li>monitoring checks</li>
+</ul>
+
+
+<p>For logs, some combination of syslog at one end and elasticsearch and
+<a href="http://www.elasticsearch.org/overview/kibana/">Kibana</a> at the other are probably the state of the open source art at
+the moment. The shipping around is more interesting; <a href="http://logstash.net/">Logstash</a> is improving constantly, <a href="http://heka-docs.readthedocs.org/en/latest/">Heka</a> is an similar alternative from Mozilla, and <a href="http://fluentd.org/">Fluentd</a> looks nice too.</p>
+
+<p>For pure metrics it’s all about <a href="http://graphite.wikidot.com/">Graphite</a>, which is both awesome and
+perilous. Not much else really competes in the open source world at
+present. Maybe <a href="http://opentsdb.net/">OpenTSB</a> (is you’re into a Hadoop stack.)</p>
+
+<p>For collecting metrics on boxes I’d probably look at <a href="http://collectd.org/">collectd</a> or <a href="https://github.com/BrightcoveOS/Diamond">diamond</a> both of which have pros and cons but work well. <a href="https://github.com/etsy/statsd/">Statsd</a> is also useful here for different types of metric collection and aggregation. <a href="http://ganglia.sourceforge.net/">Ganglia</a> is interesting too, it combines some aspects of the metrics collection tools with an integrated storage and visualisation tool similar to Graphite.</p>
+
+<p>Monitoring checks is a bit more painful. I’ve been experimenting with <a href="http://sensuapp.org/">Sensu</a> in hope of not installing Nagios. Nagios works but it’s just a bit ungainly. But you do need somewhere to write checks against metrics or other aspects of your system and to issue alerts.</p>
+
+<p>At this point everyone loves dashboards, and <a href="http://shopify.github.io/dashing/">Dashing</a> is particularly lovely. <a href="https://github.com/paperlesspost/graphiti">Graphiti</a> and <a href="https://github.com/obfuscurity/tasseo">Tasseo</a> for Graphite are useful too.</p>
+
+<p>For bonus points things like <a href="http://flapjack.io/">Flapjack</a> and <a href="http://riemann.io/">Reimann</a> provide some interesting extra capabilities around alert control or real time monitoring respectively.</p>
+
+<p>And for that elusive top of the class grade take a look at <a href="http://codeascraft.com/2013/06/11/introducing-kale/">Kale</a>, which provides anomaly detection on top of Graphite and Elasticsearch .</p>
+
+<p>You might be thinking that’s a lot of moving parts and you’d be right. If you’re a small project running all of that is too much overhead, turning to something like Zabbix might be more sensible.</p>
+
+<p>Depending on money/sensitivity/control issues lots of nice and not so
+nice commercial products exist. <a href="http://www.circonus.com/">Circonus</a>, <a href="http://www.splunk.com/">Splunk</a>, <a href="http://newrelic.com/">New Relic</a>, <a href="http://boundary.com/">Boundary</a> and <a href="https://metrics.librato.com/">Librato Metrics</a> are all lovely in different ways and provide part of the puzzle.</p>
+
+<p>And that’s just the boring matter of tools. Now you get into alert design and other gnarly people stuff.</p>
+
+<p>If you got this far you should watch all the <a href="http://vimeo.com/monitorama">Monitorama videos</a> too.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Platform as a Service and the network gap]]></title>
+    <link href="http://www.morethanseven.net/2013/08/11/platform-as-a-service-and-the-network-gap/"/>
+    <updated>2013-08-11T14:00:00+01:00</updated>
+    <id>http://www.morethanseven.net/2013/08/11/platform-as-a-service-and-the-network-gap</id>
+    <content type="html"><![CDATA[<p><em>Originally published on <a href="https://medium.com/p/817849715f0a">Medium</a>.</em></p>
+
+<p>I&#8217;m a big fan of the Platform as a Service (PaaS) model of operating web
+application infrastructure. But I&#8217;m a much bigger user and exponent of
+Infrastructure as a Service (IaaS) products within my current role
+working for the UK Government. This post describes why that is, and
+hopefully helps anyone else inside other large enterprise organisations
+reason about the advantages and disadvantages, and helps PaaS vendors
+and developers understand what I personally thing is a barrier to
+adoption in that type of organisation.</p>
+
+<p>A quick word of caution, I don’t know every product inside out. It’s
+very possible a PaaS product exists that deals with the problems I will
+describe. If you know of such a product do let me know.</p>
+
+<h2>A simple use case</h2>
+
+<p>PaaS products make for the very best demos. Have a working application?
+Deployment is probably as simple as:</p>
+
+<pre><code>git push azure master 
+</code></pre>
+
+<p>Your app has started to run slowly because visitors are flooding in?
+Just scale out with something like:</p>
+
+<pre><code>heroku ps:scale web+2
+</code></pre>
+
+<p>The amount of complexity being hidden is astounding and the ability to
+move incredibly quickly is obvious for anyone with experience of doing
+this in a more traditional organisation.</p>
+
+<h2>A not so simple use case</h2>
+
+<p>Even small systems are often being built out of many small services
+these days. Many large organisations have been up to this for a while
+under the banner of Service Orientated Architecture. I&#8217;m a big fan of
+this approach, in my view it moves operational and organisational
+complexity back into the development team where its impact can often be
+minimised by automation. But that’s a topic for another post.</p>
+
+<p>In a PaaS world having many services is fine. We just have more
+applications running on the Platform which can be independently scaled
+out to meet our needs. But services need to communicate with each other
+somehow, and this is where our problems start. We’ll keep things simple
+here by assuming communication is over HTTPS (which should be pretty
+typical) but I don’t think other protocols make the problem I have go
+away. The same problem applies if you’re using a SaaS database for
+example.</p>
+
+<h2>It’s the network, stupid</h2>
+
+<p>Over what network does my HTTPS internal service call travel? The
+internet? The internal PaaS vendor’s network? If the latter, is my
+traffic travelling over the same network as other clients on the
+platform? Maybe I&#8217;m running my own PaaS in-house. But do I trust
+everyone else in my very large organisation and want my traffic on the
+same network as other things I don’t even know about? Even if it’s just
+me do I want internal service traffic mixing with requests coming from
+the internet? And are all my services created equally with regards what
+they can and cannot access?</p>
+
+<p>Throw in questions like: is the PaaS supplier running on infrastructure
+provided by a public IaaS suppliers who you don’t have a relationship
+with and you start to question the suitability of the current public
+PaaS products for building secure service based systems.</p>
+
+<h2>A journey into Enterprise Architectures</h2>
+
+<p>You might be thinking, pah, what’s the worst that can happen? If you
+work for a small company or a shiny startup that might be completely
+valid. If on the other hand you’re working in a regulated environment
+(say PCI) or dealing with large volumes of highly sensitive information
+you’re very likely to have to build systems that provide layers of
+trust, and to be doing inspection, filtering and integrity checking as
+requests flow between those layers.</p>
+
+<p>Imagine that I have a service dealing with some sensitive data. If I
+control the infrastructure (virtualised or not, IaaS provided or not)
+I’ll make sure that service endpoint isn’t available to anything that
+doesn’t need access to it via my network configuration. If I’m being
+more thorough I’ll filter traffic through some sort of proxy that does
+checking of the content; It should be JSON (or XML), it should meet this
+schema, It shouldn’t exceed this rate, it shouldn’t exceed this payload
+size or response size, etc. That is before anything even reaches the
+services application. And that’s on top of SSL and maybe client
+certificates.</p>
+
+<p>If I don’t control the infrastructure, for example when running on a
+PaaS, I lose some of the ability to have the network protect me. I can
+probably get some of this back by running my own PaaS on my own
+infrastructure, but without awareness and a nice interface to that
+functionality at the PaaS layer I’m going to lose lots of the benefits
+of running the PaaS in the first place. It’s nice that I can scale my
+application out, but if new instances can’t connect to the required
+backend services without some additional network configuration that’s
+invisible to the PaaS what use is that?</p>
+
+<p>The question becomes; how to implement security layers within existing
+PaaS products (without changing them). And my answer is “I don’t know”.
+Yet.</p>
+
+<h2>Why isn’t SSL enough?</h2>
+
+<p>SSL doesn’t help as much as you’d like to think here because if I’m an
+attacker what I’m probably going to attack is your buggy code rather
+than the transport mechanism. SSL doesn’t protect you from SQL injection
+or unpatched software or zero-day exploits. If the only thing that my
+backend service will talk to is my frontend application, an attacker has
+to compromise two things rather than just ignore the frontend and go
+after the data. Throw in a filter as described above and it’s really
+three things that need to be overcome.</p>
+
+<h2>The PaaS/IaaS interface</h2>
+
+<p>I think part of the solution lies in exposing some of the underlying
+infrastructure via the PaaS interface. IaaS is often characterised as
+compute, storage and network. In my experience everyone forgets the
+network part. In a PaaS world I don’t want to be exposed to storage
+details (I just want it to appear infinite and pay for what I use) or
+virtual machines (I just care about computing power, say RAM, not the
+number of machines I’m running on) but I think I do, sometimes, want to
+be exposed to the (virtual) network configuration.</p>
+
+<p>Hopefully someone working on OpenShift or CloudFoundry or Azure or
+Heroku or DotCloud or insert PaaS here is already working on this. If
+not maybe this post will prompt someone to do so.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Web application security tools]]></title>
@@ -395,97 +775,6 @@ Percentage of the requests served within a certain time (ms)
 <p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRipwAIM" alt="campfire window showing jenkins tasks"/></p>
 <p>This was made much easier by first looking at the previous Jenkins commands, and then looking at other scripts in the hubot-scripts repository. The best way of learning a new language/framework is still on the shoulders of others.</p>
 <p>I&#8217;ve got a few other good ideas for Jenkins related commands. I want to add a filter command to the jobs list, both by name and by current state. For longer running jobs I also want to report whether a build is currently running. And then maybe get information about a specific job, like the last few runs or similar. Any other requests or ideas most welcome.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[EC2 Tasks For Fabric]]></title>
-    <link href="http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric/"/>
-    <updated>2011-12-31T00:00:00+00:00</updated>
-    <id>http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric</id>
-    <content type="html"><![CDATA[<p>For running ad-hoc commands across a small number of servers you really can&#8217;t beat <a href="http://fabfile.org">Fabric</a>. It requires nothing other than ssh installed on the servers, is generally just a one-line install and requires next to no syntaxtic fluff between you and the commands you want running. It&#8217;s much more of a swiss army knife to Capistranos bread knife.</p>
-<p>I&#8217;ve found myself doing more and more EC2 work of late and have finally gotten around to making my life easier when using Fabric with Amazon instances. The result of a bit of hacking is <a href="https://github.com/garethr/cloth">Cloth</a> (also <a href="http://pypi.python.org/pypi/cloth">available on PyPi</a>). It contains some utility functions and a few handy tasks for loading host details from the EC2 <span class="caps">API</span> and using them in your Fabric tasks. No more static lists of host names that constantly need updating in your fabfile.</p>
-<p>Specifically, with a fabfile that looks like:</p>
-<pre>#! /usr/bin/env python
-from cloth.tasks import *</pre>
-<p>You can run:</p>
-<pre>fab all list</pre>
-<p>And get something like:</p>
-<pre>instance-name-1 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
-instance-name-2 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
-instance-name-3 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
-instance-name-4 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
-instance-name-5 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
-instance-name-6 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
-instance-name-7 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
-instance-name-8 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
-...</pre>
-<p>And then you could run:</p>
-<pre>fab -P all uptime</pre>
-<p>And you&#8217;d happily get the load averages and uptime for all your EC2 instances.</p>
-<p>A few more tricks are documented in the <a href="https://github.com/garethr/cloth">GitHub <span class="caps">README</span></a>, including filtering the list by a regex and some convention based mapping to Fabric roles. I&#8217;ll hopefully add a few more features as I need them and generally tidy up a few things but I&#8217;m pretty happy with it so far.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[First Experience Building Something With Clojure]]></title>
-    <link href="http://www.morethanseven.net/2011/12/26/First-experience-building-something-with-clojure/"/>
-    <updated>2011-12-26T00:00:00+00:00</updated>
-    <id>http://www.morethanseven.net/2011/12/26/First-experience-building-something-with-clojure</id>
-    <content type="html"><![CDATA[<p>I nearly always try and grab some time over Christmas to try something new and this year I&#8217;d been planning on spending some time with Clojure. I have several friends who are big fans, but dipping in and out of a book hadn&#8217;t really worked. What I needed was an itch to scratch.</p>
-<p>I stuck with a domain I&#8217;m pretty familiar with for this first project, namely building a little web application. It renders a web page, makes <span class="caps">HTTP</span> requests, parses <span class="caps">JSON</span> into native data structures and does a bit of data juggling. Nothing fancy or overly ambitious, I was mainly interested in picking up the syntax, understanding common libraries and getting something built. Here&#8217;s what I&#8217;ve got:</p>
-<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjBuAIM" alt="Dasboard for Jenkins builds"/></p>
-<p>Jenkins has various <span class="caps">API</span> endpoints, but most dashboards I&#8217;ve seen concentrate on showing you the current status of all the builds. This is hugely useful when it comes to the simple case of continuous integration, but I&#8217;ve also been using Jenkins for other automation tasks, and making extensive use of parameterized builds. What the dashboard above concentrates on is showing recent builds for a specific job, along with the parameters used to run them.</p>
-<p>Overall it was a fun project. Clojure made much more sense to me building this application than it had from simple examples. The <a href="http://webnoir.org/">Noir</a> web framework is excellent and proved easy enough to jump into and simple enough that I could read the source code if I was interested in how something worked. The <a href="https://github.com/technomancy/leiningen">Leiningen</a> build tool made getting started, downloading and managing dependencies and running tests and the application itself easy.</p>
-<p>What I didn&#8217;t find particularly appealing was the lack of a strong standard library coupled with the difficulty of tracking down suitable libraries. <span class="caps">JSON</span> parsing, dealing with <span class="caps">HTTP</span> requests and date handing are very common activities in web programming and all needed me to jump around looking at the best way of dealing with the common case. I settled on <a href="https://github.com/dakrone/clj-http">clj-http</a>, <a href="https://github.com/dakrone/cheshire">chesire</a> and using Java interop for date formatting. clj-http suffered from having lots of forks on GitHub to navigate through. I started with clojure-json before discovering it had been deprecated. And neither clj-time or date-clj appeared to support unix timestamps as far as I could tell from the source. Throw in some uncertainty over the status of clojure-contrib that isn&#8217;t well documented on the official site and it needs some effort to get started.</p>
-<p>The working code for this is already up on <a href="https://github.com/garethr/jenkins-build-list">GitHub</a> and I&#8217;d be interested in any Clojure experts showing me the error of my ways.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Setting Puppet Class Using Environment Variables]]></title>
-    <link href="http://www.morethanseven.net/2011/12/13/Setting-puppet-class-using-environment-variables/"/>
-    <updated>2011-12-13T00:00:00+00:00</updated>
-    <id>http://www.morethanseven.net/2011/12/13/Setting-puppet-class-using-environment-variables</id>
-    <content type="html"><![CDATA[<p>I&#8217;m not sure how novel this approach is but a few folks at work hadn&#8217;t seen it before so I thought it worth jotting down.</p>
-<p>If you have even a small but dynamic set of servers then a problem arises with how those nodes are defined in puppet. A node remember is defined in puppet like so:</p>
-<pre>node web3.example.com {
-  include web_server
-}</pre>
-<p>The problem is twofold. If you have a growing infrastructure, that list of nodes is going to get quickly out of hand. The other problem is around provisioning new hosts, the obvious approach to which is something like:</p>
-<p>1. Summon new EC2 instance<br />
-2. Change the node definition to include the new hostname<br />
-3. Install puppet on instance and so the ssl certificate signing dance<br />
-4. Run puppet</p>
-<p>Step 2 stands out. The others are easily automated, but do you want to automate a change to your puppet manifests and a redeploy to the puppetmaster for a new instance? Probably not.<br />
-Puppet has the concept of an external node classifier which can be used to solve this problem, but another simpler approach is to use an environment variable on the new machine.</p>
-<p>Lets say we define our nodes something like this instead:</p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>node default {
-</span><span class='line'>  case $machine_role {
-</span><span class='line'>    frontend:           { include web_server }
-</span><span class='line'>    backend:            { include app_server }
-</span><span class='line'>    data:               { include db_server }
-</span><span class='line'>    monitoring:         { include monitoring_server }
-</span><span class='line'>    development:        { include development }
-</span><span class='line'>    default:            { include base }
-</span><span class='line'>  }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p>If a machine runs and sets the $machine_role variable to frontend it includes the web_server class, if that variable equals &#8216;data&#8217; it&#8217;s going to include the db_server class instead. Much cleaner and more maintainable in my view. Now to set that variable.</p>
-<p>Facter is the tool used by Puppet to get system information like the operating system or processor count. You can use these facter provided variables anywhere in your manifests. And one way of adding a new fact is via an environment variable on the client. Any environment variable prefixed with FACTER_ will be available in Puppet manifests. So in this case we can:</p>
-<pre>export FACTER_machine_role=frontend</pre>
-<p>So our steps from above become something like:</p>
-<p>1. Summon new machine<br />
-2. echo &#8220;export FACTER_machine_role=backend&#8221; &gt;&gt; /etc/environment<br />
-3. Install puppet on instance and so the ssl certificate signing dance<br />
-4. Run puppet</p>
-<p>Much easier to automate. And if you&#8217;re looking at a box and want to know what it&#8217;s role is you can check the relevant environment variable.</p>]]></content>
   </entry>
   
 </feed>

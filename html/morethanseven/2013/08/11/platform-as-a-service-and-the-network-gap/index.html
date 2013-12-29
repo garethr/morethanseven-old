@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Platform as a Service and the network gap - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Originally published on Medium. I&#8217;m a big fan of the Platform as a Service (PaaS) model of operating web
+application infrastructure. But I&# &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2013/08/11/platform-as-a-service-and-the-network-gap">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Platform as a Service and the Network Gap</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-11T14:00:00+01:00" pubdate data-updated="true">Aug 11<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><em>Originally published on <a href="https://medium.com/p/817849715f0a">Medium</a>.</em></p>
+
+<p>I&#8217;m a big fan of the Platform as a Service (PaaS) model of operating web
+application infrastructure. But I&#8217;m a much bigger user and exponent of
+Infrastructure as a Service (IaaS) products within my current role
+working for the UK Government. This post describes why that is, and
+hopefully helps anyone else inside other large enterprise organisations
+reason about the advantages and disadvantages, and helps PaaS vendors
+and developers understand what I personally thing is a barrier to
+adoption in that type of organisation.</p>
+
+<p>A quick word of caution, I don’t know every product inside out. It’s
+very possible a PaaS product exists that deals with the problems I will
+describe. If you know of such a product do let me know.</p>
+
+<h2>A simple use case</h2>
+
+<p>PaaS products make for the very best demos. Have a working application?
+Deployment is probably as simple as:</p>
+
+<pre><code>git push azure master 
+</code></pre>
+
+<p>Your app has started to run slowly because visitors are flooding in?
+Just scale out with something like:</p>
+
+<pre><code>heroku ps:scale web+2
+</code></pre>
+
+<p>The amount of complexity being hidden is astounding and the ability to
+move incredibly quickly is obvious for anyone with experience of doing
+this in a more traditional organisation.</p>
+
+<h2>A not so simple use case</h2>
+
+<p>Even small systems are often being built out of many small services
+these days. Many large organisations have been up to this for a while
+under the banner of Service Orientated Architecture. I&#8217;m a big fan of
+this approach, in my view it moves operational and organisational
+complexity back into the development team where its impact can often be
+minimised by automation. But that’s a topic for another post.</p>
+
+<p>In a PaaS world having many services is fine. We just have more
+applications running on the Platform which can be independently scaled
+out to meet our needs. But services need to communicate with each other
+somehow, and this is where our problems start. We’ll keep things simple
+here by assuming communication is over HTTPS (which should be pretty
+typical) but I don’t think other protocols make the problem I have go
+away. The same problem applies if you’re using a SaaS database for
+example.</p>
+
+<h2>It’s the network, stupid</h2>
+
+<p>Over what network does my HTTPS internal service call travel? The
+internet? The internal PaaS vendor’s network? If the latter, is my
+traffic travelling over the same network as other clients on the
+platform? Maybe I&#8217;m running my own PaaS in-house. But do I trust
+everyone else in my very large organisation and want my traffic on the
+same network as other things I don’t even know about? Even if it’s just
+me do I want internal service traffic mixing with requests coming from
+the internet? And are all my services created equally with regards what
+they can and cannot access?</p>
+
+<p>Throw in questions like: is the PaaS supplier running on infrastructure
+provided by a public IaaS suppliers who you don’t have a relationship
+with and you start to question the suitability of the current public
+PaaS products for building secure service based systems.</p>
+
+<h2>A journey into Enterprise Architectures</h2>
+
+<p>You might be thinking, pah, what’s the worst that can happen? If you
+work for a small company or a shiny startup that might be completely
+valid. If on the other hand you’re working in a regulated environment
+(say PCI) or dealing with large volumes of highly sensitive information
+you’re very likely to have to build systems that provide layers of
+trust, and to be doing inspection, filtering and integrity checking as
+requests flow between those layers.</p>
+
+<p>Imagine that I have a service dealing with some sensitive data. If I
+control the infrastructure (virtualised or not, IaaS provided or not)
+I’ll make sure that service endpoint isn’t available to anything that
+doesn’t need access to it via my network configuration. If I’m being
+more thorough I’ll filter traffic through some sort of proxy that does
+checking of the content; It should be JSON (or XML), it should meet this
+schema, It shouldn’t exceed this rate, it shouldn’t exceed this payload
+size or response size, etc. That is before anything even reaches the
+services application. And that’s on top of SSL and maybe client
+certificates.</p>
+
+<p>If I don’t control the infrastructure, for example when running on a
+PaaS, I lose some of the ability to have the network protect me. I can
+probably get some of this back by running my own PaaS on my own
+infrastructure, but without awareness and a nice interface to that
+functionality at the PaaS layer I’m going to lose lots of the benefits
+of running the PaaS in the first place. It’s nice that I can scale my
+application out, but if new instances can’t connect to the required
+backend services without some additional network configuration that’s
+invisible to the PaaS what use is that?</p>
+
+<p>The question becomes; how to implement security layers within existing
+PaaS products (without changing them). And my answer is “I don’t know”.
+Yet.</p>
+
+<h2>Why isn’t SSL enough?</h2>
+
+<p>SSL doesn’t help as much as you’d like to think here because if I’m an
+attacker what I’m probably going to attack is your buggy code rather
+than the transport mechanism. SSL doesn’t protect you from SQL injection
+or unpatched software or zero-day exploits. If the only thing that my
+backend service will talk to is my frontend application, an attacker has
+to compromise two things rather than just ignore the frontend and go
+after the data. Throw in a filter as described above and it’s really
+three things that need to be overcome.</p>
+
+<h2>The PaaS/IaaS interface</h2>
+
+<p>I think part of the solution lies in exposing some of the underlying
+infrastructure via the PaaS interface. IaaS is often characterised as
+compute, storage and network. In my experience everyone forgets the
+network part. In a PaaS world I don’t want to be exposed to storage
+details (I just want it to appear infinite and pay for what I use) or
+virtual machines (I just care about computing power, say RAM, not the
+number of machines I’m running on) but I think I do, sometimes, want to
+be exposed to the (virtual) network configuration.</p>
+
+<p>Hopefully someone working on OpenShift or CloudFoundry or Azure or
+Heroku or DotCloud or insert PaaS here is already working on this. If
+not maybe this post will prompt someone to do so.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-11T14:00:00+01:00" pubdate data-updated="true">Aug 11<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2013/08/11/platform-as-a-service-and-the-network-gap/" data-via="garethr" data-counturl="http://www.morethanseven.net/2013/08/11/platform-as-a-service-and-the-network-gap/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/04/23/web-application-security-tools/" title="Previous Post: Web application security tools">&laquo; Web application security tools</a>
+      
+      
+        <a class="basic-alignment right" href="/2013/10/13/looking-into-monitoring-and-logging-tools/" title="Next Post: Looking into monitoring and logging tools">Looking into monitoring and logging tools &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2013/08/11/platform-as-a-service-and-the-network-gap/';
+        var disqus_url = 'http://www.morethanseven.net/2013/08/11/platform-as-a-service-and-the-network-gap/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

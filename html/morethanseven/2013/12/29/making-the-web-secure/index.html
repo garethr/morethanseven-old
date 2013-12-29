@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Making the web secure, one unit test at a time - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="Originally written as part of Sysadvent 2013. Writing automated tests for your code is one of those things that,
+once you have gotten into it, you &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2013/12/29/making-the-web-secure">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Making the Web Secure, One Unit Test at a Time</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-29T14:28:00+00:00" pubdate data-updated="true">Dec 29<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><em>Originally written as part of <a href="http://sysadvent.blogspot.co.uk/2013/12/day-21-making-web-secure-one-unit-test.html">Sysadvent 2013</a>.</em></p>
+
+<p>Writing automated tests for your code is one of those things that,
+once you have gotten into it, you never want to see code without tests
+ever again. Why write pages and pages of documentation about how
+something should work when you can write tests to show exactly how something does work? Looking at the number and quality of testing tools and frameworks (like cucumber,
+rspec, <a href="https://github.com/test-kitchen/test-kitchen">Test Kitchen</a>,
+<a href="http://serverspec.org/">Server Spec</a>,
+<a href="https://github.com/puppetlabs/beaker">Beaker</a>,
+<a href="http://casperjs.org/">Casper</a> and
+<a href="http://pivotal.github.io/jasmine/">Jasmine</a> to name a few) that have
+popped up in the last year or so I&#8217;m obviously not the only person who
+has a thing for testing utilities.</p>
+
+<p>One of the other things I am interested in is web application
+security, so this post is all about using the tools and techniques
+from unit testing to avoid common web application security issues. I&#8217;m
+using Ruby in the examples but you could quickly convert these to other languages if you desire.</p>
+
+<h2>Any port in a storm</h2>
+
+<p>Lets start out with something simple. Accidentally exposing
+applications on TCP ports can lead to data loss or introduce a vector
+for attack. Maybe your main website is super secure, but you left the
+port for your database open to the internet. It&#8217;s the server configuration equivalent of forgetting to lock the back door.</p>
+
+<p>Nmap is a tool lots of people will be familiar with for spanning for
+open ports. As well as a command line interface Nmap also has good
+library support in lots of languages so lets try and write a simple
+tests suite around it.</p>
+
+<pre><code>require "tempfile"
+require "nmap/program"
+require "nmap/xml"
+
+describe "the scanme.nmap.org website" do
+  file = Tempfile.new("nmap.xml")
+  before(:all) do
+    Nmap::Program.scan do |nmap|
+      nmap.xml = file.path
+      nmap.targets = "scanme.nmap.org"
+    end
+  end
+
+  @open_ports = []
+  Nmap::XML.new("scan.xml") do |xml|
+    xml.each_host do |host|
+      host.each_port do |port|
+        @open_ports &lt;&lt; port.number if port.state == :open
+      end
+    end
+  end
+end
+</code></pre>
+
+<p>With the above code in place we can then write tests like:</p>
+
+<pre><code>it "should have two ports open" do
+ @open_ports.should have(2).items
+end
+
+it "should have port 80 open" do
+ @open_ports.should include(80)
+end
+
+it "should have port 22 closed" do
+ @open_ports.should_not include(22)
+end
+</code></pre>
+
+<p>We can run these manually, but also potentially as part of a
+continuous integration build or constantly as part of a monitoring
+suite.</p>
+
+<h2>Run the Guantlt</h2>
+
+<p>We had to do quite a bit of work wrapping Nmap before we could write
+the tests above. Wouldn&#8217;t it be nice if someone had already wrapped
+lots of useful security minded tools for us? <a href="http://gauntlt.org/">Gauntlt</a> is pretty much just that, it&#8217;s a security testing framework based on cucumber which currently supports curl, nmap, sslyze, sqlmap, garmr and a bunch more tools in master. Lets do something more advanced than our port scanning test above by testing a URL for a SQL injection vulnerability.</p>
+
+<pre><code>@slow
+Feature: Run sqlmap against a target
+  Scenario: Identify SQL injection vulnerabilities
+    Given "sqlmap" is installed
+    And the following profile:
+      | name       | value                                      |
+      | target_url | http://localhost/sql-injection?number_id=1 |
+    When I launch a "sqlmap" attack with:
+      """
+      python &lt;sqlmap_path&gt; -u &lt;target_url&gt; —dbms sqlite —batch -v 0 —tables
+      """
+    Then the output should contain:
+      """
+      sqlmap identified the following injection points
+      """
+    And the output should contain:
+      """
+      [2 tables]
+      +-----------------+
+      | numbers         |
+      | sqlite_sequence |
+      +-----------------+
+      """
+</code></pre>
+
+<p>The Gauntlt team publish <a href="https://github.com/gauntlt/gauntlt/tree/master/examples">lots of examples</a> like this one alongside the source code, so getting started is easy. Gauntlt is very powerful, but as you&#8217;ll see from the example above you need to know quite a bit about the underlying tools it is using. In the case above you need to know the various arguments to sqlmap and also how to interpret the output.</p>
+
+<h2>Enter Prodder</h2>
+
+<p><a href="https://github.com/garethr/prodder">Prodder</a> is a tool I put together
+to automate a few specific types of security testing. In many ways
+it&#8217;s very similar to Gauntlt; it uses the cucumber testing framework
+and uses some of the same tools (like nmap and sslyze) under the hood.
+However rather than a general purpose security framework like Gauntlt,
+Prodder is higher level and very opinionated. Here&#8217;s an example:</p>
+
+<pre><code>Feature: SSL
+  In order to ensure secure connections
+  I want to check the SSL configuration of my servers
+  Background:
+    Given "sslyze.py" is installed
+    Scenario: Check SSLv2 is disabled
+      When we test using the "sslv2" protocol
+      Then the exit status should be 0
+      And the output should contain "SSLv2 disabled"
+
+    Scenario: Check certificate is trusted
+      When we check the certificate
+      Then the output should contain "Certificate is Trusted"
+      And the output should match /OK — (Common|Subject
+</code></pre>
+
+<p>Alternative) Name Matches/</p>
+
+<pre><code>      And the output should not contain "Signature Algorithm: md5"
+      And the output should not contain "Signature Algorithm: md2"
+      And the output should contain "Key Size: 2048"
+
+    Scenario: Check certificate renegotiations
+      When we test certificate renegotiation
+      Then the output should contain "Client-initiated
+</code></pre>
+
+<p>Renegotiations: Rejected&#8221;</p>
+
+<pre><code>      And the output should contain "Secure Renegotiation: Supported"
+
+    Scenario: Check SSLv3 is not using weak ciphers
+      When we test using the "sslv3" protocol
+      Then the output should not contain "Anon"
+      And the output should not contain "96bits"
+      And the output should not contain "40bits"
+      And the output should not contain " 0bits"
+</code></pre>
+
+<p>This is a little higher level than the Gauntlt example — it&#8217;s not
+exposing the workings of sslyze that is doing the actual testing. All
+you need is an understanding of SSL certifcates. Even if you&#8217;re not an
+expert on SSL you can accept the aforementioned opinions of Prodder
+about what good looks like. Prodder currently contains steps and
+exampes for port scanning, SSL certificates and security minded HTTP
+headers. If you already have a cucumber based test suite (including
+one based on Gauntlt) you can reuse the step definitions in that too.</p>
+
+<p>I&#8217;m hoping to build upon Prodder, adding more types of tests and
+getting agreement on the included opinions from the wider systems
+administration community. By having a default set of shared assertions
+about the expected security of out system we can more easily move onto
+new projects, safe in the knowledge that a test will fail if someone
+messes up our once secure configuration.</p>
+
+<h2>I&#8217;m convinced, what should I do next?</h2>
+
+<p>As well as trying out some of the above tools and techniques for
+yourself I&#8217;d recommend encouraging more security conversations in your
+development and operations teams. Here&#8217;s a few  places to start with:</p>
+
+<ul>
+<li><a href="http://www.slideshare.net/beehooze/devopsday-london-ben-hughes-security">Ben Hughes from Etsy talking about security culture at Devopsdays London</a></li>
+<li><a href="https://speakerdeck.com/garethr/security-monitoring-with-open-source-penetration-testing-tools">A presentation I gave at Velocity about using penetration testing tools for monitoring purposes</a></li>
+<li><a href="http://www.slideshare.net/wickett/gauntlt-velocity-eu2013">A workshop, again from Velocity all about getting started with Gauntlt</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-29T14:28:00+00:00" pubdate data-updated="true">Dec 29<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/security/'>security</a>, <a class='category' href='/tags/sysadvent/'>sysadvent</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2013/12/29/making-the-web-secure/" data-via="garethr" data-counturl="http://www.morethanseven.net/2013/12/29/making-the-web-secure/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/10/13/looking-into-monitoring-and-logging-tools/" title="Previous Post: Looking into monitoring and logging tools">&laquo; Looking into monitoring and logging tools</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2013/12/29/making-the-web-secure/';
+        var disqus_url = 'http://www.morethanseven.net/2013/12/29/making-the-web-secure/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

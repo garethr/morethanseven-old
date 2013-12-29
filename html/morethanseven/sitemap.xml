@@ -1649,12 +1649,28 @@
         <lastmod>2013-12-26T17:34:29+00:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://www.morethanseven.net/2013/08/11/platform-as-a-service-and-the-network-gap/
+        </loc>
+        <lastmod>2013-12-29T14:48:02+00:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools/
+        </loc>
+        <lastmod>2013-12-29T15:22:55+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://www.morethanseven.net/2013/12/29/making-the-web-secure/</loc>
+        <lastmod>2013-12-29T14:37:35+00:00</lastmod>
+    </url>
+    <url>
         <loc>http://www.morethanseven.net/blog/archives/</loc>
-        <lastmod>2013-12-26T17:34:29+00:00</lastmod>
+        <lastmod>2013-12-29T15:22:55+00:00</lastmod>
     </url>
     <url>
         <loc>http://www.morethanseven.net/</loc>
-        <lastmod>2013-12-26T17:34:29+00:00</lastmod>
+        <lastmod>2013-12-29T15:22:55+00:00</lastmod>
     </url>
     <url>
         <loc>http://www.morethanseven.net/robots.txt</loc>
