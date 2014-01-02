@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: serverspec | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/serverspec/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2014-01-02T18:08:37+00:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Testing Packer created images with serverspec]]></title>
+    <link href="http://www.morethanseven.net/2014/01/01/testing-packer-created-images-with-serverspec/"/>
+    <updated>2014-01-01T15:24:00+00:00</updated>
+    <id>http://www.morethanseven.net/2014/01/01/testing-packer-created-images-with-serverspec</id>
+    <content type="html"><![CDATA[<p><a href="http://www.packer.io/">Packer</a> provides a great way of describing the steps for creating a virtual machine image. But it doesn't have a built-in way of verifying those images.</p>
+
+<p><a href="http://serverspec.org/">Serverspec</a> provides a nice framework for writing tests against infrastructure, asserting the operation of services or the installation of packages.</p>
+
+<p>I'm interested at the moment in building continous delivery pipelines for infrastructure components and have a simple working example of <a href="https://github.com/garethr/packer-serverspec-example">testing Packer with Serverspec</a> on
+Github. The example uses the AWS builder and the Puppet provisioner but the approach should work with other combinations.</p>
+
+<p>This doesn't represent a complete infrastructure pipeline, but it does demonstrate an approach to automating one particular component - building base images.</p>
+
+<h2>Testing</h2>
+
+<p>In our example I'm using the <a href="https://github.com/puppetlabs/puppetlabs-ntp">Puppetlabs NTP</a> module to install and configure NTP. Once the Puppet provisioner has run, but before we build the AMI (or other virtal machine image) we run a test suite. For our example the tests are pretty simple:</p>
+
+<pre><code>describe package('ntp') do
+  it { should be_installed }
+end
+
+describe service('ntp') do
+  it { should be_enabled   }
+  it { should be_running   }
+end
+</code></pre>
+
+<p>If the tests fail, Packer will stop and the AMI won't be built. The combination of storing the code (Packer template) alongside a test suite (Serverspec) and building a new AMI whenever you change the code, makes this setup perfect for continuous integration.</p>
+
+<h2>Wercker builds</h2>
+
+<p>As an example of a continuous integration setup the repository contains a <a href="https://github.com/garethr/packer-serverspec-example/blob/master/wercker.yml">wercker.yml</a> configuration file for the excellent <a href="http://devcenter.wercker.com/">Wercker</a> service. Wercker makes setting up multi-step built pipelines easy and nicely configurable via a simple text file in your repository.</p>
+
+<p>The Wercker <a href="https://app.wercker.com/#applications/52c450e489daaf145f001ad8">build for this project is public</a>. Currently the build involves downloading Packer, running <code>packer validate</code> to check the template and eventually running <code>packer build</code> to boot an instance and run our serverspec tests.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2013-12-29T15:22:59+00:00</updated>
+  <updated>2014-01-02T18:08:37+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Testing Packer created images with serverspec]]></title>
+    <link href="http://www.morethanseven.net/2014/01/01/testing-packer-created-images-with-serverspec/"/>
+    <updated>2014-01-01T15:24:00+00:00</updated>
+    <id>http://www.morethanseven.net/2014/01/01/testing-packer-created-images-with-serverspec</id>
+    <content type="html"><![CDATA[<p><a href="http://www.packer.io/">Packer</a> provides a great way of describing the steps for creating a virtual machine image. But it doesn&#8217;t have a built-in way of verifying those images.</p>
+
+<p><a href="http://serverspec.org/">Serverspec</a> provides a nice framework for writing tests against infrastructure, asserting the operation of services or the installation of packages.</p>
+
+<p>I&#8217;m interested at the moment in building continous delivery pipelines for infrastructure components and have a simple working example of <a href="https://github.com/garethr/packer-serverspec-example">testing Packer with Serverspec</a> on
+Github. The example uses the AWS builder and the Puppet provisioner but the approach should work with other combinations.</p>
+
+<p>This doesn&#8217;t represent a complete infrastructure pipeline, but it does demonstrate an approach to automating one particular component - building base images.</p>
+
+<h2>Testing</h2>
+
+<p>In our example I&#8217;m using the <a href="https://github.com/puppetlabs/puppetlabs-ntp">Puppetlabs NTP</a> module to install and configure NTP. Once the Puppet provisioner has run, but before we build the AMI (or other virtal machine image) we run a test suite. For our example the tests are pretty simple:</p>
+
+<pre><code>describe package('ntp') do
+  it { should be_installed }
+end
+
+describe service('ntp') do
+  it { should be_enabled   }
+  it { should be_running   }
+end
+</code></pre>
+
+<p>If the tests fail, Packer will stop and the AMI won&#8217;t be built. The combination of storing the code (Packer template) alongside a test suite (Serverspec) and building a new AMI whenever you change the code, makes this setup perfect for continuous integration.</p>
+
+<h2>Wercker builds</h2>
+
+<p>As an example of a continuous integration setup the repository contains a <a href="https://github.com/garethr/packer-serverspec-example/blob/master/wercker.yml">wercker.yml</a> configuration file for the excellent <a href="http://devcenter.wercker.com/">Wercker</a> service. Wercker makes setting up multi-step built pipelines easy and nicely configurable via a simple text file in your repository.</p>
+
+<p>The Wercker <a href="https://app.wercker.com/#applications/52c450e489daaf145f001ad8">build for this project is public</a>. Currently the build involves downloading Packer, running <code>packer validate</code> to check the template and eventually running <code>packer build</code> to boot an instance and run our serverspec tests.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Making the web secure, one unit test at a time]]></title>
@@ -757,24 +795,6 @@ Percentage of the requests served within a certain time (ms)
     <content type="html"><![CDATA[<p>This is a bit of a cheat blog post really. I&#8217;ve been crazy busy all month with little time for anything except work (specifically shipping the first release of <a href="https://www.gov.uk/">www.gov.uk</a>). I have had a little time to blog over on the Cabinet Office blog though, about work we&#8217;ve done with dashboards.</p>
 <p><a href="http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/">http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/</a></p>
 <p>If you&#8217;re ever looking for good little hack projects dashboards are perfect, and often hugely useful once up and running. Convincing people of this before you have a few in the office might be hard &#8211; so just build something simple in a lunch break and find a screen to put it on. We&#8217;ve had great feedback from ours, both from people wandering through the office and from our colleagues who have a better idea of what&#8217;s going on.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Talking To Jenkins From Campfire With Hubot]]></title>
-    <link href="http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/"/>
-    <updated>2012-01-06T00:00:00+00:00</updated>
-    <id>http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot</id>
-    <content type="html"><![CDATA[<p>In what turned out to be a productive holiday hacking with languages I&#8217;d not used before, I got round to writing some coffeescript on node.js. This was more to do with scratching a personal itch that pure experimentation. I had a play with <a href="https://github.com/github/janky">Janky</a> (Github&#8217;s Jenkins/Hubot mashup) but found it a little opinionated on the Jenkins side, but the campfire integration is excellent. Looking at the Jenkins commands in <a href="https://github.com/github/hubot-scripts/">hubot-scripts</a> though I found those even more opinionated.</p>
-<p>The magic of open source though is you can just fix things, then ask nice people if they like what you&#8217;ve done. I set about writing a few more general commands and lo, the&#8217;ve been quickly <a href="https://github.com/github/hubot-scripts/pull/23840h">merged upstream</a>.</p>
-<p>These add:</p>
-<ul>
-	<li>A command to list all your Jenkins jobs and the current state</li>
-	<li>A command to trigger a normal build</li>
-	<li>A command to trigger a build with a list of parameters</li>
-</ul>
-<p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRipwAIM" alt="campfire window showing jenkins tasks"/></p>
-<p>This was made much easier by first looking at the previous Jenkins commands, and then looking at other scripts in the hubot-scripts repository. The best way of learning a new language/framework is still on the shoulders of others.</p>
-<p>I&#8217;ve got a few other good ideas for Jenkins related commands. I want to add a filter command to the jobs list, both by name and by current state. For longer running jobs I also want to report whether a build is currently running. And then maybe get information about a specific job, like the last few runs or similar. Any other requests or ideas most welcome.</p>]]></content>
   </entry>
   
 </feed>
