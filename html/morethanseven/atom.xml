@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-01-02T18:08:37+00:00</updated>
+  <updated>2014-01-12T19:53:59+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,159 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Shell provisioner for Test Kitchen]]></title>
+    <link href="http://www.morethanseven.net/2014/01/12/shell-provisioner-for-test-kitchen/"/>
+    <updated>2014-01-12T19:24:00+00:00</updated>
+    <id>http://www.morethanseven.net/2014/01/12/shell-provisioner-for-test-kitchen</id>
+    <content type="html"><![CDATA[<p>As of a few weeks ago <a href="http://kitchen.ci/">Test Kitchen</a> has a <a href="https://github.com/test-kitchen/test-kitchen/blob/master/lib/kitchen/provisioner/shell.rb">shell provisioner</a> as well as the original Chef provisioners. This opens up all sorts of interesting testing potential.</p>
+
+<p>If you&#8217;ve not already seen Test Kitchen, probably because you&#8217;re not using Chef, it&#8217;s a tool for integration testing infrastructure code. Configured by a simple YAML file it will setup a matrix of virtual machines, using Virtualbox, AWS, OpenStack and more, run some setup code (normally applying Chef recipes) and then run a test suite (with support for Bats, ShUnit2, Rspec and Serverspec). It&#8217;s all very pluggable. With the addition of the shell provisioner it&#8217;s useful to just about anyone. To try and prove that here&#8217;s a hello world style example.</p>
+
+<h2>Dependencies</h2>
+
+<p>First we need to install Test Kitchen. We&#8217;ll use vagrant and virtualbox for our example too so we need a few extra dependencies. I&#8217;m going to assume you have bundler installed, if not you may be able to do so with <code>gem install bundler</code> but as the number of ways of setting a ruby environment up is greater than the number of people on the planet I&#8217;ll have to defer to instructions elsewhere for getting that far.</p>
+
+<p>First create a file called <code>Gemfile</code> with the following contents:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s2">&quot;https://rubygems.org&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;test-kitchen&quot;</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&quot;https://github.com/test-kitchen/test-kitchen.git&quot;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;kitchen-vagrant&quot;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s2">&quot;vagrant-wrapper&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then run:</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>This should install the above software. Note that the shell provisioner is not yet in an official release so where installing direct from GitHub for the moment.</p>
+
+<h2>Configuration</h2>
+
+<p>Next we&#8217;ll tell Test Kitchen what we want to do. As much for demonstration purposes I&#8217;m going to grab one of the Puppetlabs boxes. This is just plain <a href="http://vagrantup.com">Vagrant</a> so feel free to substitude the <code>box</code> and <code>box_url</code> for alternatives you already have installed locally. Otherwise the first run will take a little longer as it downloads a large file.</p>
+
+<p>Pull all of the following in a file called `.kitchen.yml&#8217;.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
+</span><span class='line'><span class="l-Scalar-Plain">driver</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">vagrant</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">provisioner</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">shell</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">platforms</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">puppet-precise64</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">driver_config</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">box</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">puppet-precise64</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">box_url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">suites</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">default</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The shell provisioner is going to look for a file called <code>bootstrap.sh</code> by default. You can overide this but we&#8217;ll leave it for the moment. Our bootstrap script is going to do something very simple, install the ntp package. But the important part is it could do anything; run Salt, run Ansible, run Puppet, execute any arbitrary code we choose. In this case our script is completely self contained but if it needed some additional files we could put them in a directory called <code>data</code> and they would be copied to the newly created virtual machine under <code>/tmp/kitchen</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'>
+</span><span class='line'>apt-get install ntp -y
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Tests</h2>
+
+<p>The last step is to write a test. I&#8217;m suddently finding lots of excuses to use <a href="http://serverspec.org/">Serverspec</a> so we&#8217;ll use that, but if you prefer you can use pretty much anything. The following file should be saved as  <code>test/integration/default/serverspec/ntp_spec.rb</code>. Note the <code>default</code> in the path which matches our suite above in the <code>.kitchen.yml</code> file. Test Kitchen allows for multiple suites all with separate tests based on a strong set of file path conventions.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;serverspec&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kp">include</span> <span class="no">Serverspec</span><span class="o">::</span><span class="no">Helper</span><span class="o">::</span><span class="no">Exec</span>
+</span><span class='line'><span class="kp">include</span> <span class="no">Serverspec</span><span class="o">::</span><span class="no">Helper</span><span class="o">::</span><span class="no">DetectOS</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">c</span><span class="o">.</span><span class="n">before</span> <span class="ss">:all</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">c</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/sbin:/usr/sbin&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="n">package</span><span class="p">(</span><span class="s1">&#39;ntp&#39;</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_installed</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="n">service</span><span class="p">(</span><span class="s1">&#39;ntp&#39;</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_enabled</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_running</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Running the tests</h2>
+
+<p>With all of that in place we&#8217;re ready to run our tests.</p>
+
+<pre><code>bundle exec kitchen test
+</code></pre>
+
+<p>This should:</p>
+
+<ul>
+<li>download the virtual machine image if you don&#8217;t already have it locally</li>
+<li>create a new virtual machine based on the image</li>
+<li>run the bootstrap.sh script</li>
+<li>run our serverspec test suite</li>
+</ul>
+
+
+<p>The real power comes from doing this iteratively as you work on code, probably code more complex than a simple one-line bash script. You can also test across multiple virtual machines at a time, for instance different operating systems or different machine roles. The <code>kitchen</code> command line tool provides lots of help too, with the ability to login to machines, verify that specific combinations of platform and suite are working and print lots of diagnotic information to aid development.</p>
+
+<p>Hopefully this will make it into a release soon, and we&#8217;ll see more involved examples using higher level tools and more documentation. But even now I&#8217;d be looking at Test Kitchen for any infrastructure testing you might be doing.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Testing Packer created images with serverspec]]></title>
@@ -785,16 +938,6 @@ Percentage of the requests served within a certain time (ms)
 </ul>
 <p>After someone bugged me on Twitter I realised the small bit of code we&#8217;ve been using for our Nagios dashboard wasn&#8217;t out in the wild. So introducing <a href="https://github.com/garethr/nash">Nash</a>, a very simple high level check dashboard which screenscrapes nagiosand runs happily on Heroku.</p>
 <p>Although I&#8217;ve not been writing too much on here I&#8217;ve been keeping <a href="http://devopsweekly.com/">Devops Weekly</a> going each week for over a year now. I&#8217;ve just crossed 3000 subscribers which is pretty neat for a pet project.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Dashboards At Gov.Uk]]></title>
-    <link href="http://www.morethanseven.net/2012/02/19/Dashboards-at-govuk/"/>
-    <updated>2012-02-19T00:00:00+00:00</updated>
-    <id>http://www.morethanseven.net/2012/02/19/Dashboards-at-govuk</id>
-    <content type="html"><![CDATA[<p>This is a bit of a cheat blog post really. I&#8217;ve been crazy busy all month with little time for anything except work (specifically shipping the first release of <a href="https://www.gov.uk/">www.gov.uk</a>). I have had a little time to blog over on the Cabinet Office blog though, about work we&#8217;ve done with dashboards.</p>
-<p><a href="http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/">http://digital.cabinetoffice.gov.uk/2012/02/08/radiating-information/</a></p>
-<p>If you&#8217;re ever looking for good little hack projects dashboards are perfect, and often hugely useful once up and running. Convincing people of this before you have a few in the office might be hard &#8211; so just build something simple in a lunch break and find a screen to put it on. We&#8217;ve had great feedback from ours, both from people wandering through the office and from our colleagues who have a better idea of what&#8217;s going on.</p>]]></content>
   </entry>
   
 </feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/testing/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-01-02T18:08:37+00:00</updated>
+  <updated>2014-01-12T19:53:59+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,123 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Shell provisioner for Test Kitchen]]></title>
+    <link href="http://www.morethanseven.net/2014/01/12/shell-provisioner-for-test-kitchen/"/>
+    <updated>2014-01-12T19:24:00+00:00</updated>
+    <id>http://www.morethanseven.net/2014/01/12/shell-provisioner-for-test-kitchen</id>
+    <content type="html"><![CDATA[<p>As of a few weeks ago <a href="http://kitchen.ci/">Test Kitchen</a> has a <a href="https://github.com/test-kitchen/test-kitchen/blob/master/lib/kitchen/provisioner/shell.rb">shell provisioner</a> as well as the original Chef provisioners. This opens up all sorts of interesting testing potential.</p>
+
+<p>If you've not already seen Test Kitchen, probably because you're not using Chef, it's a tool for integration testing infrastructure code. Configured by a simple YAML file it will setup a matrix of virtual machines, using Virtualbox, AWS, OpenStack and more, run some setup code (normally applying Chef recipes) and then run a test suite (with support for Bats, ShUnit2, Rspec and Serverspec). It's all very pluggable. With the addition of the shell provisioner it's useful to just about anyone. To try and prove that here's a hello world style example.</p>
+
+<h2>Dependencies</h2>
+
+<p>First we need to install Test Kitchen. We'll use vagrant and virtualbox for our example too so we need a few extra dependencies. I'm going to assume you have bundler installed, if not you may be able to do so with <code>gem install bundler</code> but as the number of ways of setting a ruby environment up is greater than the number of people on the planet I'll have to defer to instructions elsewhere for getting that far.</p>
+
+<p>First create a file called <code>Gemfile</code> with the following contents:</p>
+
+<p>```ruby
+source "https://rubygems.org"</p>
+
+<p>gem "test-kitchen", :git => "https://github.com/test-kitchen/test-kitchen.git"
+gem "kitchen-vagrant"
+gem "vagrant-wrapper"
+```</p>
+
+<p>Then run:</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>This should install the above software. Note that the shell provisioner is not yet in an official release so where installing direct from GitHub for the moment.</p>
+
+<h2>Configuration</h2>
+
+<p>Next we'll tell Test Kitchen what we want to do. As much for demonstration purposes I'm going to grab one of the Puppetlabs boxes. This is just plain <a href="http://vagrantup.com">Vagrant</a> so feel free to substitude the <code>box</code> and <code>box_url</code> for alternatives you already have installed locally. Otherwise the first run will take a little longer as it downloads a large file.</p>
+
+<p>Pull all of the following in a file called `.kitchen.yml'.</p>
+
+<h2>```yaml</h2>
+
+<p>driver:
+  name: vagrant</p>
+
+<p>provisioner:
+  name: shell</p>
+
+<p>platforms:
+  - name: puppet-precise64</p>
+
+<pre><code>driver_config:
+  box: puppet-precise64
+  box_url: http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box
+</code></pre>
+
+<p>suites:
+  - name: default
+```</p>
+
+<p>The shell provisioner is going to look for a file called <code>bootstrap.sh</code> by default. You can overide this but we'll leave it for the moment. Our bootstrap script is going to do something very simple, install the ntp package. But the important part is it could do anything; run Salt, run Ansible, run Puppet, execute any arbitrary code we choose. In this case our script is completely self contained but if it needed some additional files we could put them in a directory called <code>data</code> and they would be copied to the newly created virtual machine under <code>/tmp/kitchen</code>.</p>
+
+<p>```bash</p>
+
+<h1>!/bin/bash</h1>
+
+<p>apt-get install ntp -y
+```</p>
+
+<h2>Tests</h2>
+
+<p>The last step is to write a test. I'm suddently finding lots of excuses to use <a href="http://serverspec.org/">Serverspec</a> so we'll use that, but if you prefer you can use pretty much anything. The following file should be saved as  <code>test/integration/default/serverspec/ntp_spec.rb</code>. Note the <code>default</code> in the path which matches our suite above in the <code>.kitchen.yml</code> file. Test Kitchen allows for multiple suites all with separate tests based on a strong set of file path conventions.</p>
+
+<p>```ruby
+require 'serverspec'</p>
+
+<p>include Serverspec::Helper::Exec
+include Serverspec::Helper::DetectOS</p>
+
+<p>RSpec.configure do |c|
+  c.before :all do</p>
+
+<pre><code>c.path = '/sbin:/usr/sbin'
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>describe package('ntp') do
+  it { should be_installed }
+end</p>
+
+<p>describe service('ntp') do
+  it { should be_enabled }
+  it { should be_running }
+end
+```</p>
+
+<h2>Running the tests</h2>
+
+<p>With all of that in place we're ready to run our tests.</p>
+
+<pre><code>bundle exec kitchen test
+</code></pre>
+
+<p>This should:</p>
+
+<ul>
+<li>download the virtual machine image if you don't already have it locally</li>
+<li>create a new virtual machine based on the image</li>
+<li>run the bootstrap.sh script</li>
+<li>run our serverspec test suite</li>
+</ul>
+
+
+<p>The real power comes from doing this iteratively as you work on code, probably code more complex than a simple one-line bash script. You can also test across multiple virtual machines at a time, for instance different operating systems or different machine roles. The <code>kitchen</code> command line tool provides lots of help too, with the ability to login to machines, verify that specific combinations of platform and suite are working and print lots of diagnotic information to aid development.</p>
+
+<p>Hopefully this will make it into a release soon, and we'll see more involved examples using higher level tools and more documentation. But even now I'd be looking at Test Kitchen for any infrastructure testing you might be doing.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Testing WSGI Application with Urltest]]></title>
