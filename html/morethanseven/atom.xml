@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-01-12T19:53:59+00:00</updated>
+  <updated>2014-01-25T18:50:55+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code coverage for Puppet modules]]></title>
+    <link href="http://www.morethanseven.net/2014/01/25/code-coverage-for-puppet-modules/"/>
+    <updated>2014-01-25T17:23:00+00:00</updated>
+    <id>http://www.morethanseven.net/2014/01/25/code-coverage-for-puppet-modules</id>
+    <content type="html"><![CDATA[<p>One of my favourite topics for a while now has been <em>infrastructure as
+code</em>. Part of that involves introducing well understood programming
+techniques to infrastructure - from test driven design, to refactoring
+and version control. One tool I&#8217;m fond of (even with it&#8217;s potential to
+be misused) is <a href="http://en.wikipedia.org/wiki/Code_coverage">code coverage</a>. I&#8217;d been meaning
+to go code spelunking to see if this could be done for testing Puppet
+modules.</p>
+
+<p>The functionality is now in <a href="https://github.com/rodjek/rspec-puppet#producing-coverage-reports">master for rspec-puppet</a>
+and so anyone feeling brave can use it now, or if you must wait for the
+2.0.0 release. The actual implementation is inspired by the same functionality in
+<a href="https://github.com/sethvargo/chefspec#reporting">ChefSpec</a>
+written by <a href="https://sethvargo.com/">Seth Vargo</a>. Lots of the how came
+from here, and the usage is very similar.</p>
+
+<h2>How to use it?</h2>
+
+<p>First add (or hopefully change) your Gemfile line item for rspec-puppet
+to the following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s2">&quot;rspec-puppet&quot;</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://github.com/rodjek/rspec-puppet.git&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then all you need to do is include the following line anywhere in a
+spec.rb file in your spec directory.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="nc">at_exit</span> <span class="p">{</span> <span class="ss">RSpec</span><span class="p">::</span><span class="ss">Puppet</span><span class="p">::</span><span class="ss">Coverage</span><span class="m">.</span><span class="ss">report</span><span class="err">!</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>What do I get?</h2>
+
+<p>Here&#8217;s an <a href="https://github.com/garethr/garethr-nginx">example module</a>,
+including a file called
+<a href="https://github.com/garethr/garethr-nginx/blob/master/spec/classes/coverage_spec.rb">coverage_spec.rb</a>.
+When running the test suite with <code>rake spec</code> you now get coverage
+details like so:</p>
+
+<pre><code>Total resources:   24
+Touched resources: 8
+Resource coverage: 33.33%
+
+Untouched resources:
+  Class[Nginx]
+  File[preferences.d]
+  Anchor[apt::update]
+  Class[Apt::Params]
+  File[sources.list]
+  Exec[Required packages: 'debian-keyring debian-archive-keyring' for nginx]
+  Anchor[apt::source::nginx]
+  Class[Apt::Update]
+  File[configure-apt-proxy]
+  Apt::Key[Add key: 7BD9BF62 from Apt::Source nginx]
+  Anchor[apt::key/Add key: 7BD9BF62 from Apt::Source nginx]
+  Anchor[apt::key 7BD9BF62 present]
+  File[nginx.list]
+  Exec[apt_update]
+  File[sources.list.d]
+  Exec[e407f76c6e349fc397947a4a49260a9320196cb1]
+</code></pre>
+
+<p>Here&#8217;s the output on <a href="https://travis-ci.org/garethr/garethr-nginx/jobs/17597307#L105">Travis CI</a> as
+well for a recent build.</p>
+
+<h2>Why is this useful?</h2>
+
+<p>I&#8217;ve already found coverage useful when writing tests for a few of my
+puppet modules. The information about the total number of resouces is
+interesting (and potentially an indicator of complexity) but the list of
+untouched resources is the main useful part. These represent both
+information about what your module is doing, and potential things you
+might want to test.</p>
+
+<p>I&#8217;m hoping to find some more time to make this even better, providing
+more information about untouched resources, adding some configuration
+options and hopefully to integrate with the <a href="https://coveralls.io/docs/api">Coveralls API</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Shell provisioner for Test Kitchen]]></title>
@@ -923,21 +1010,6 @@ Percentage of the requests served within a certain time (ms)
 <p>2736 requests per second on JRuby/Jetty vs 1600 on Ruby/Thin. As noted this isn&#8217;t meaningfully useful, in that it&#8217;s a hello world example and I&#8217;ve not tried to pick the fastest stacks on either side. I&#8217;m more bothered about it not being slower, because the main reason to pursue this approach is simplicity. Having a single self contained artefact that contains all it&#8217;s dependencies including a production web server is very appealing.</p>
 <p>I&#8217;m hoping to give this a go with some less trivial applications, and probably more importantly look to compare a production stack based around these self-contained executables vs the dependency chain that is modern Ruby application stacks.</p>
 <p>Thanks to <a href="http://blog.nicksieger.com/">Nick Sieger</a> for both writing Warbler and for helping with a few questions on the JRuby mailing list and on Twitter. Thanks also to <a href="https://twitter.com/jabley">James Abley</a> for a few pointers on Java system properties.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Recent Projects And Talks]]></title>
-    <link href="http://www.morethanseven.net/2012/03/31/Recent-projects-and-talks/"/>
-    <updated>2012-03-31T00:00:00+01:00</updated>
-    <id>http://www.morethanseven.net/2012/03/31/Recent-projects-and-talks</id>
-    <content type="html"><![CDATA[<p>I&#8217;ve been pretty busy with all things <a href="https://www.gov.uk"><span class="caps">GOV</span>.UK</a> recently but I&#8217;ve managed to get a few bits of unrelated code up and a few talks in. I&#8217;m <em>still</em> pretty busy so here&#8217;s a list of some of them rather than a proper blog post.</p>
-<ul>
-	<li><a href="http://www.slideshare.net/garethr/mining-puppet">Puppet Data Mining</a> talk from last weeks PuppetCamp in Edinburgh.</li>
-	<li><a href="http://www.slideshare.net/garethr/web-operations">Introducting Web Operations</a> talk I gave at work to give my mainly non-development colleagues an idea about what it&#8217;s all about.</li>
-	<li><a href="http://www.slideshare.net/garethr/learnings-from-govuk">Learning from building <span class="caps">GOV</span>.UK</a> talk I gave a month back or so to Cambridge Geek Night. We did an excellent full project retrospective after the beta launch and this lists some of the things we learnt.</li>
-</ul>
-<p>After someone bugged me on Twitter I realised the small bit of code we&#8217;ve been using for our Nagios dashboard wasn&#8217;t out in the wild. So introducing <a href="https://github.com/garethr/nash">Nash</a>, a very simple high level check dashboard which screenscrapes nagiosand runs happily on Heroku.</p>
-<p>Although I&#8217;ve not been writing too much on here I&#8217;ve been keeping <a href="http://devopsweekly.com/">Devops Weekly</a> going each week for over a year now. I&#8217;ve just crossed 3000 subscribers which is pretty neat for a pet project.</p>]]></content>
   </entry>
   
 </feed>
