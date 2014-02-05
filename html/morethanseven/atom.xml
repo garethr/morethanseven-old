@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-01-25T18:50:55+00:00</updated>
+  <updated>2014-02-05T17:10:02+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,137 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A template for Puppet modules]]></title>
+    <link href="http://www.morethanseven.net/2014/02/05/a-template-for-puppet-modules/"/>
+    <updated>2014-02-05T15:20:00+00:00</updated>
+    <id>http://www.morethanseven.net/2014/02/05/a-template-for-puppet-modules</id>
+    <content type="html"><![CDATA[<p>A little while ago I published a <a href="https://github.com/garethr/puppet-module-skeleton">template writing your own
+puppet modules</a>. It&#8217;s
+very opinionated but comes out of the box with lots of the tools you
+eventually find and add to your tool box. I&#8217;m posting this as it came
+up at the recent <a href="http://cfgmgmtcamp.eu">Configuration Management Camp</a>
+and after discussing it I realised I hadn&#8217;t actually wrote anything
+about it anywhere.</p>
+
+<h2>What do you get?</h2>
+
+<ul>
+<li>A simple install, config, service class pattern</li>
+<li>Unit tests with <a href="https://github.com/rodjek/rspec-puppet">rspec-puppet</a></li>
+<li>Rake tasks for <a href="https://github.com/rodjek/puppet-lint">linting</a> and <a href="https://github.com/gds-operations/puppet-syntax">syntax checking</a></li>
+<li>Integration tests using <a href="https://github.com/puppetlabs/beaker">Beaker</a></li>
+<li>A Modulefile to provide Forge metadata</li>
+<li>Command line tools to upload to the Forge with <a href="github.com/maestrodev/puppet-blacksmith">blacksmith</a></li>
+<li>A README based on the Puppetlabs documentation standards</li>
+<li><a href="https://travis-ci.org">Travis CI</a> configuration based on the official
+Puppetlabs support matrix</li>
+<li>A Guardfile which can run all the tests when you change manifests</li>
+</ul>
+
+
+<p>Obviously you can choose not to use parts of this, or even delete
+aspects, but I find that approach much quicker than starting from scratch
+or copying files from previous modules and changing names.</p>
+
+<h2>How can I use it?</h2>
+
+<p>Simple. The following will install the module skeleton to
+<code>~/.puppet/var/puppet-module/skeleton</code>. This turns out to be picked up
+by the Puppet module tool.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/garethr/puppet-module-skeleton
+</span><span class='line'><span class="nb">cd </span>puppet-module-skeleton
+</span><span class='line'>find skeleton -type f | git checkout-index --stdin --force --prefix<span class="o">=</span><span class="s2">&quot;$HOME/.puppet/var/puppet-module/&quot;</span> --
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With that in place you can then just run the following to create a new
+module, where puppet-ntp is the name of our new module.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>puppet module generate puppet-ntp
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We use <code>puppet module</code> like this rather than just copying the files
+because otherwise you would have to rename everything from class names
+to test assertions. The skeleton actually contains erb templates in
+places, and running <code>puppet module generate</code> results in the module name
+being available to those templates.</p>
+
+<h2>Now what?</h2>
+
+<p>Assuming you have run the above commands you should have a folder called
+<code>puppet-ntp</code> in your current directory. <code>cd</code> into that and then install
+the dependencies:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://bundler.io/">Bundler </a>is a dependency manager for Ruby. If you
+don&#8217;t already have it installed you should be able to do so with the
+following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install bundler
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you have the dependencies why not run the full test suite? This
+checks syntax, lints the Puppet code and runs the unit tests.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>rake <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Unit tests give fast feedback and help make sure the code you write is
+going to do what you intend, but they aren&#8217;t actually applying the
+manifests to a real machine. For that you want an integration test.
+You&#8217;ll need <a href="http://vagrantup.com">Vagrant</a> installed for this next
+step. Lets run those as well with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>rspec spec/acceptance
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will take a while, especially the first time. This uses Beaker to
+download a virtual machine from Puppetlabs (if you don&#8217;t already have
+it) and then brings up a new machine, applies a simple manifest, runs
+the acceptance tests and then destroys the machine.</p>
+
+<p>The <code>CONTRIBUTING.md</code> file has more information for running the test
+suite.</p>
+
+<h2>What&#8217;s new?</h2>
+
+<p>I&#8217;ve recently added a <a href="https://github.com/guard/guard">Guardfile</a> to
+help with testing. You can run this with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bundle <span class="nb">exec </span>guard
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now in a separate tab or pane make a change to any of the manifests. The
+tests should run automatically in the tab or pane where guard is
+running.</p>
+
+<h2>Can you add this new tool?</h2>
+
+<p>Probably. Although I started the repo a few other people have
+contributed code or made improvements already. Just sent a pull request
+or open an issue.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code coverage for Puppet modules]]></title>
@@ -912,104 +1043,6 @@ Finished in 0.01472 seconds
 <p>The repository is a nice simple example of using the mentioned Heroku Nginx buildpack too. You just run the following command to create a new Heroku application.</p>
 <pre>heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git</pre>
 <p>And then in typical Heroku fashion use a git remote to deploy changes and updates. The repository is split into a <em>www</em> folder with the site content and a <em>conf</em> folder with the nginx configuration. The only clever parts involve the use of an <span class="caps">ERB</span> template for the nginx configuration file so we can pickup the correct port. We also use 1 worker process and don&#8217;t automatically daemonize the process &#8211; Heroku deals with this itself.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Self Contained Jruby Web Applications]]></title>
-    <link href="http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications/"/>
-    <updated>2012-04-06T00:00:00+01:00</updated>
-    <id>http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications</id>
-    <content type="html"><![CDATA[<p>Several things seemed to come together at once to make me want to hack on this particular project. In no particular order:</p>
-<p>The <a href="http://www.thoughtworks.com/articles/technology-radar-march-2012">Thoughtworks Technology Radar</a> said the following:</p>
-<blockquote>
-<p>Embedding a servlet container, such as Jetty, inside a Java application has many advantages over running the application inside a container. Testing is relatively painless because of the simple startup, and the development environment is closer to production. Nasty surprises like mismatched versions of libraries or drivers are eliminated by not sharing across multiple applications. While you will have to manage and monitor multiple Java Virtual Machines in production using this model, we feel the advantages offered by the simplicity and isolation are significant.</p>
-</blockquote>
-<p>I&#8217;ve been getting more interested in JRuby anyway, partly because we&#8217;re finding ourselves using both Ruby and Scala at work, and maintaining a single target platform makes sense to me. Throw in the potential for interop between those languages and it&#8217;s certainly worth investigating.</p>
-<p><a href="http://www.playframework.org/">Play 2.0</a> shipped and currently only provides the ability to create a self contained executable with bundled web server. Creating <span class="caps">WAR</span> files for more traditional application servers is on the roadmap but interestingly wasn&#8217;t deemed essential for the big 2.0 release. I had a nice chat with <a href="https://twitter.com/minglis">Martyn Inglis</a> at work about some of the nice side effects of this setup.</p>
-<p>And throw in every time I have to configure straight Ruby applications for production environments I get cross. I know where all the bits and pieces are buried and can do it well, but with so many moving parts it&#8217;s absolutely no fun whatsoever.</p>
-<p>Warbler, the JRuby tool for creating <span class="caps">WAR</span> files from Ruby source, has just added the ability to <a href="https://github.com/jruby/warbler/commit/0558a285eb59a0801cf7c0f274777b06b63883b3">embed Jetty to the master branch</a>.</p>
-<p>I decided to take all of this for a quick spin, and the <a href="https://github.com/garethr/jruby-embedded-jetty">resulting code is up on GitHub</a>.</p>
-<p>This is the simplest Rack application possible, it just prints <em>Hello Jetty</em>. And the <span class="caps">README</span> covers how to install and run it so I won&#8217;t duplcate that information here.</p>
-<p>But I will print some nearly meaningless and unscientific benchmarks because, hey, who doesn&#8217;t like those?</p>
-<pre>⚡ ab -c 50 -n 5000 http://localhost:8090/
-
-Server Software:        Jetty(8.y.z-SNAPSHOT)
-Server Hostname:        localhost
-Server Port:            8090
-
-Document Path:          /
-Document Length:        16 bytes
-
-Concurrency Level:      50
-Time taken for tests:   1.827 seconds
-Complete requests:      5000
-Failed requests:        0
-Write errors:           0
-Total transferred:      555999 bytes
-HTML transferred:       80144 bytes
-Requests per second:    2736.47 [#/sec] (mean)
-Time per request:       18.272 [ms] (mean)
-Time per request:       0.365 [ms] (mean, across all concurrent requests)
-Transfer rate:          297.16 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    2   2.2      1      18
-Processing:     1   16   7.7     15      61
-Waiting:        0   14   7.2     13      57
-Total:          2   18   7.5     17      61
-
-Percentage of the requests served within a certain time (ms)
-  50%     17
-  66%     19
-  75%     21
-  80%     22
-  90%     27
-  95%     30
-  98%     42
-  99%     52
- 100%     61 (longest request)
-</pre>
-<p>Running the same test on the same machine but using Ruby 1.9.2-p290 and Thin gives.</p>
-<pre>Server Software:        thin
-Server Hostname:        localhost
-Server Port:            9292
-
-Document Path:          /
-Document Length:        16 bytes
-
-Concurrency Level:      50
-Time taken for tests:   3.125 seconds
-Complete requests:      5000
-Failed requests:        0
-Write errors:           0
-Total transferred:      620620 bytes
-HTML transferred:       80080 bytes
-Requests per second:    1600.16 [#/sec] (mean)
-Time per request:       31.247 [ms] (mean)
-Time per request:       0.625 [ms] (mean, across all concurrent requests)
-Transfer rate:          193.96 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    0   0.3      0       9
-Processing:     3   31   6.4     33      52
-Waiting:        3   25   6.4     28      47
-Total:          4   31   6.4     33      52
-
-Percentage of the requests served within a certain time (ms)
-  50%     33
-  66%     34
-  75%     34
-  80%     35
-  90%     38
-  95%     41
-  98%     46
-  99%     50
- 100%     52 (longest request)</pre>
-<p>2736 requests per second on JRuby/Jetty vs 1600 on Ruby/Thin. As noted this isn&#8217;t meaningfully useful, in that it&#8217;s a hello world example and I&#8217;ve not tried to pick the fastest stacks on either side. I&#8217;m more bothered about it not being slower, because the main reason to pursue this approach is simplicity. Having a single self contained artefact that contains all it&#8217;s dependencies including a production web server is very appealing.</p>
-<p>I&#8217;m hoping to give this a go with some less trivial applications, and probably more importantly look to compare a production stack based around these self-contained executables vs the dependency chain that is modern Ruby application stacks.</p>
-<p>Thanks to <a href="http://blog.nicksieger.com/">Nick Sieger</a> for both writing Warbler and for helping with a few questions on the JRuby mailing list and on Twitter. Thanks also to <a href="https://twitter.com/jabley">James Abley</a> for a few pointers on Java system properties.</p>]]></content>
   </entry>
   
 </feed>
