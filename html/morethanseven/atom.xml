@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-02-05T17:24:35+00:00</updated>
+  <updated>2014-02-05T17:29:23+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -18,8 +18,7 @@
     <link href="http://www.morethanseven.net/2014/02/05/a-template-for-puppet-modules/"/>
     <updated>2014-02-05T15:20:00+00:00</updated>
     <id>http://www.morethanseven.net/2014/02/05/a-template-for-puppet-modules</id>
-    <content type="html"><![CDATA[<p>A little while ago I published a <a href="https://github.com/garethr/puppet-module-skeleton">template writing your own
-puppet modules</a>. It&#8217;s
+    <content type="html"><![CDATA[<p>A little while ago I published a <a href="https://github.com/garethr/puppet-module-skeleton">template writing your own puppet modules</a>. It&#8217;s
 very opinionated but comes out of the box with lots of the tools you
 eventually find and add to your tool box. I&#8217;m posting this as it came
 up at the recent <a href="http://cfgmgmtcamp.eu">Configuration Management Camp</a>
