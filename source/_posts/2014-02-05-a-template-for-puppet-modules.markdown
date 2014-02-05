@@ -6,8 +6,7 @@ comments: true
 categories: puppet 
 ---
 
-A little while ago I published a [template writing your own
-puppet modules](https://github.com/garethr/puppet-module-skeleton). It's
+A little while ago I published a [template writing your own puppet modules](https://github.com/garethr/puppet-module-skeleton). It's
 very opinionated but comes out of the box with lots of the tools you
 eventually find and add to your tool box. I'm posting this as it came
 up at the recent [Configuration Management Camp](http://cfgmgmtcamp.eu)
