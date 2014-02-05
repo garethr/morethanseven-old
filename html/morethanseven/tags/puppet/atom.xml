@@ -4,7 +4,7 @@
   <title><![CDATA[Category: puppet | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/puppet/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-02-05T17:10:02+00:00</updated>
+  <updated>2014-02-05T17:24:35+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -34,7 +34,7 @@ about it anywhere.</p>
 <li>Rake tasks for <a href="https://github.com/rodjek/puppet-lint">linting</a> and <a href="https://github.com/gds-operations/puppet-syntax">syntax checking</a></li>
 <li>Integration tests using <a href="https://github.com/puppetlabs/beaker">Beaker</a></li>
 <li>A Modulefile to provide Forge metadata</li>
-<li>Command line tools to upload to the Forge with <a href="github.com/maestrodev/puppet-blacksmith">blacksmith</a></li>
+<li>Command line tools to upload to the Forge with <a href="https://github.com/maestrodev/puppet-blacksmith">blacksmith</a></li>
 <li>A README based on the Puppetlabs documentation standards</li>
 <li><a href="https://travis-ci.org">Travis CI</a> configuration based on the official
 Puppetlabs support matrix</li>

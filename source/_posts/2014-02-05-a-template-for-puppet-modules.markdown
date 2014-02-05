@@ -21,7 +21,7 @@ about it anywhere.
 * Rake tasks for [linting](https://github.com/rodjek/puppet-lint) and [syntax checking](https://github.com/gds-operations/puppet-syntax)
 * Integration tests using [Beaker](https://github.com/puppetlabs/beaker)
 * A Modulefile to provide Forge metadata
-* Command line tools to upload to the Forge with [blacksmith](github.com/maestrodev/puppet-blacksmith)
+* Command line tools to upload to the Forge with [blacksmith](https://github.com/maestrodev/puppet-blacksmith)
 * A README based on the Puppetlabs documentation standards
 * [Travis CI](https://travis-ci.org) configuration based on the official
   Puppetlabs support matrix
