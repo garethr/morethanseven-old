@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-02-05T17:29:23+00:00</updated>
+  <updated>2014-02-16T22:45:42+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,156 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Buy vs Build your Monitoring System]]></title>
+    <link href="http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system/"/>
+    <updated>2014-02-16T19:29:00+00:00</updated>
+    <id>http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system</id>
+    <content type="html"><![CDATA[<p>At the excellent <a href="http://www.theguardian.com/info/developer-blog/2014/feb/15/london-devops-meetup-held-at-the-guardian">London Devops meetup</a> last week I asked what was
+apparently a controversial question:</p>
+
+<blockquote><p>should you just use software as a service monitoring products rather than integrate lots of open source tools?</p></blockquote>
+
+<p>This got a few people worked up and I promised a blog post.</p>
+
+<p>Note that I wrote a post listing lots of <a href="http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools/">open source monitoring tools</a>
+not that long ago. And I&#8217;ve been to both the
+<a href="http://monitorama.com/">Monitorama</a> events about open source
+monitoring. And have a bunch of <a href="http://forge.puppetlabs.com/garethr?q=monitoring">Puppet modules for open source monitoring tools</a>. I&#8217;m
+a fan of both open source and of open source monitoring. Please don&#8217;t
+read this as an attack on either, and particularly on the work of
+awesome people working on  great open source monitoring products.</p>
+
+<h2>Some assumptions</h2>
+
+<ol>
+<li>No one product exists that does everything. I think this is true for
+SaaS as much as for open source.</li>
+<li>Lets work with about 200 hosts. This is a somewhat arbitrary number I
+know, some people will have more and others less.</li>
+<li>If it saves money we&#8217;ll pay yearly, rather than monthly or hourly.</li>
+<li>We could probably get some volume discounts from some of the
+suppliers, but we&#8217;ll use list prices for this post.</li>
+</ol>
+
+
+<h2>Show me the money</h2>
+
+<p>So what would it cost to get up and running with a state of the art
+software as a service monitoring system? In order to do this we need to
+choose our software. For this post that means I&#8217;m going to pick products
+I&#8217;ve used (sometimes only a bit) and like. This isn&#8217;t a comprehensive
+study of all the alternatives I&#8217;m afraid - though feel free to write
+your own alternative blog posts.</p>
+
+<ul>
+<li><p><a href="http://newrelic.com/">New Relic</a> provides a crazy amount of data about
+the running of both your servers and your applications. This includes
+application performance data, errors, low level metrics and even rolled
+up method or database query performance. $149 per host per month for our
+200 hosts gives us <em>$29,800</em> per month.</p></li>
+<li><p><a href="https://metrics.librato.com">Librato Metrics</a> provides a fantastic way
+of storing arbitrary time series data. We&#8217;re already storing lots of
+data in New Relic but Metrics provides us with less opinionated software
+so we can use it for anything, for instance number of logins or searches
+or other business level metrics. We&#8217;ll go for a plan with 200 data sources, 100 metrics each and at 10 second resolution for a cost of <em>$3,860</em> per month.</p></li>
+<li><p><a href="http://www.pagerduty.com/">Pagerduty</a> is all about the alerts side of
+monitoring. Most of the other SaaS tools we&#8217;ve chosen integrate with it
+so we can make sure we get actionable emails and SMS messages to the
+right people at the right time. Our plan costs $18 per person per month,
+so lets say we have 30 people at a cost of <em>$540</em> per month.</p></li>
+<li><p><a href="https://papertrailapp.com/">Papertrail</a> is all about logs. Simple setup
+your servers with syslog and Papertrail will collect, analyze and store
+all your log messages. You get a browser based interface, search tools
+and the ability to setup alerts. We like lots of logs so we&#8217;ll have a
+plan for 2 weeks of search, 1 year archive and 100GB month of log
+traffic. That all costs <em>$575</em> per month.</p></li>
+<li><p><a href="https://www.getsentry.com">Sentry</a> is all about exceptions. We could be
+simply logging these and sending them to Papertrail but Sentry provides
+tools for tracking and rolling up occurences. We&#8217;ll go for a plan with
+90 days of history and 200 events per minute at a cost of <em>$199</em> a
+month.</p></li>
+<li><p><a href="https://www.pingdom.com">Pingdom</a> used to provide a very simple
+external check service, but now they have added more complex multistage
+checks as well as real user monitoring to the basic ping. We&#8217;ll choose
+the plan with 250 checks, 20 Real User Monitoring sites and 500 SMS
+alerts for <em>$107 a month</em>.</p></li>
+</ul>
+
+
+<h2>How much!</h2>
+
+<p>In total that all comes to <em>$35,080 (£20,922)</em> per month, or
+<em>$420,960 (£251,062)</em> per year.</p>
+
+<p>Now the first reaction of lots of people will be <em>that&#8217;s a lot of money</em>
+and it is. But remember open source isn&#8217;t free either. We need to pay
+for:</p>
+
+<ul>
+<li>The servers we run our monitoring software on</li>
+<li>The people to operate those servers</li>
+<li>The people to install and configure our monitoring software</li>
+<li>The office space and other costs of employing people (like management
+and hiring)</li>
+</ul>
+
+
+<p>I think people with the ability to build software tend to forget they
+are expensive, whether as a contractor or as a full time member of
+staff. And people without management experience tend to forget costs
+like insurance, rent, management overhead, recruitment, etc.</p>
+
+<p>And probably more important than these for some people we need to consider:</p>
+
+<ul>
+<li>The time taken to build a good open source monitoring system</li>
+</ul>
+
+
+<p>The time needed to put together a good monitoring stack based on for
+instance logstash, kibana, riemann, sensu, graphite and collectd isn&#8217;t
+small. And don&#8217;t forget the number of other moving parts like redis,
+rabbitmq and elasticsearch that need installing configuring and
+maintaining. That probably means compromising in the short term or
+shipping later. In a small team how core is building your monitoring
+stack to what you do as a business?</p>
+
+<h2>But I can&#8217;t use SaaS</h2>
+
+<p>For some people, using a software as a service product just isn&#8217;t going
+to cut it. Here&#8217;s a list of reasons I can think of:</p>
+
+<ul>
+<li>Regulation constrains where your data can be stored, for instance it&#8217;s
+not allowed out of the country</li>
+<li>Sheer size of infrastructure, although you may be able to get a volume
+discount it might not be enough</li>
+</ul>
+
+
+<p>I think everything else is a cost/benefit issue or personal preference
+(or bias). Happy to add more to that list, but I don&#8217;t think it&#8217;s a very
+long list.</p>
+
+<h2>Conclusions</h2>
+
+<p>I&#8217;ve purposefully not talked about the quality of the tools here, just
+the cost. I&#8217;ve also not mentioned that it&#8217;s likely not an all or nothing
+decision, lots of people will mix SaaS products and open source tools.</p>
+
+<p>Whether taking a SaaS approach will be quicker, cheaper or better will
+depend on your specific business context. But try and make that about
+the organisation and not about the technology.</p>
+
+<p>If you&#8217;ve never used the current crop of SaaS monitoring
+tools (and not just the one&#8217;s mentioned above) then I think you&#8217;re missing
+out. Even if you stick with a mainly open source monitoring stack you
+might look at your tools a bit differently after you&#8217;ve experimented
+with some of the commercial competition.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A template for Puppet modules]]></title>
@@ -1029,19 +1179,6 @@ Finished in 0.01472 seconds
 <p>I threw a flat version of the site up on <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>, served it using Nginx on <a href="http://www.heroku.com/">Heroku</a> and added a quick <em>Fork me on GitHub</em> badge to the top. Suggest a box moved from being a web form to a pull request. It&#8217;s fair to say I did this pretty quickly and made a good few typos on the way. But within a couple of weeks I&#8217;ve had 8 pull requests either fixing my bugs, removing dead boxes and adding new ones.</p>
 <p>What I&#8217;m going to take from this is, if you&#8217;re building a community project that&#8217;s aimed at developers, then throw the content on GitHub. In my case I have the entire site on there too but I think that&#8217;s secondary. Pull requests are much better than any content management system or workflow you&#8217;re likely to build, and even more importantly the time to implement something drops hugely.</p>
 <p>With all the spare time I don&#8217;t have I&#8217;ll be thinking about a content management model using GitHub for content, pull requests for workflow and post commit hooks for loading that content into a site or service somewhere.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Static Sites With Nginx On Heroku]]></title>
-    <link href="http://www.morethanseven.net/2012/06/05/Static-sites-with-nginx-on-heroku/"/>
-    <updated>2012-06-05T00:00:00+01:00</updated>
-    <id>http://www.morethanseven.net/2012/06/05/Static-sites-with-nginx-on-heroku</id>
-    <content type="html"><![CDATA[<p>I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration &#8211; mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.</p>
-<p>Heroku <a href="https://devcenter.heroku.com/articles/buildpacks">buildpacks</a> are great. The newer cedar stack is no longer tied to a particular language or framework, instead all of the discovery and knowledge about particular software is put into a buildpack. As well as the Heroku provided list it&#8217;s possible to write you&#8217;re own. Or in this case use one someone has <a href="https://github.com/essh/heroku-buildpack-nginx">created earlier</a>.</p>
-<p>I&#8217;ve just moved <a href="http://www.vagrantbox.es/">Vagrantbox.es</a> over to Heroku due to the closure of a previous service. In doing that, instead of the simple database backed app, I&#8217;ve simply thrown all the content onto <a href="https://github.com/garethr/vagrantboxes-heroku">GitHub</a>. This means anyone can fork the content and send pull requests. Hopefully this should mean I pay a bit more attention to suggestions and new boxes.</p>
-<p>The repository is a nice simple example of using the mentioned Heroku Nginx buildpack too. You just run the following command to create a new Heroku application.</p>
-<pre>heroku create --stack cedar --buildpack http://github.com/essh/heroku-buildpack-nginx.git</pre>
-<p>And then in typical Heroku fashion use a git remote to deploy changes and updates. The repository is split into a <em>www</em> folder with the site content and a <em>conf</em> folder with the nginx configuration. The only clever parts involve the use of an <span class="caps">ERB</span> template for the nginx configuration file so we can pickup the correct port. We also use 1 worker process and don&#8217;t automatically daemonize the process &#8211; Heroku deals with this itself.</p>]]></content>
   </entry>
   
 </feed>

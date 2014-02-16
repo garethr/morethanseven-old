@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Buy vs Build your Monitoring System - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="At the excellent London Devops meetup last week I asked what was
+apparently a controversial question: should you just use software as a service &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Buy vs Build Your Monitoring System</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-16T19:29:00+00:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>At the excellent <a href="http://www.theguardian.com/info/developer-blog/2014/feb/15/london-devops-meetup-held-at-the-guardian">London Devops meetup</a> last week I asked what was
+apparently a controversial question:</p>
+
+<blockquote><p>should you just use software as a service monitoring products rather than integrate lots of open source tools?</p></blockquote>
+
+<p>This got a few people worked up and I promised a blog post.</p>
+
+<p>Note that I wrote a post listing lots of <a href="http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools/">open source monitoring tools</a>
+not that long ago. And I&#8217;ve been to both the
+<a href="http://monitorama.com/">Monitorama</a> events about open source
+monitoring. And have a bunch of <a href="http://forge.puppetlabs.com/garethr?q=monitoring">Puppet modules for open source monitoring tools</a>. I&#8217;m
+a fan of both open source and of open source monitoring. Please don&#8217;t
+read this as an attack on either, and particularly on the work of
+awesome people working on  great open source monitoring products.</p>
+
+<h2>Some assumptions</h2>
+
+<ol>
+<li>No one product exists that does everything. I think this is true for
+SaaS as much as for open source.</li>
+<li>Lets work with about 200 hosts. This is a somewhat arbitrary number I
+know, some people will have more and others less.</li>
+<li>If it saves money we&#8217;ll pay yearly, rather than monthly or hourly.</li>
+<li>We could probably get some volume discounts from some of the
+suppliers, but we&#8217;ll use list prices for this post.</li>
+</ol>
+
+
+<h2>Show me the money</h2>
+
+<p>So what would it cost to get up and running with a state of the art
+software as a service monitoring system? In order to do this we need to
+choose our software. For this post that means I&#8217;m going to pick products
+I&#8217;ve used (sometimes only a bit) and like. This isn&#8217;t a comprehensive
+study of all the alternatives I&#8217;m afraid - though feel free to write
+your own alternative blog posts.</p>
+
+<ul>
+<li><p><a href="http://newrelic.com/">New Relic</a> provides a crazy amount of data about
+the running of both your servers and your applications. This includes
+application performance data, errors, low level metrics and even rolled
+up method or database query performance. $149 per host per month for our
+200 hosts gives us <em>$29,800</em> per month.</p></li>
+<li><p><a href="https://metrics.librato.com">Librato Metrics</a> provides a fantastic way
+of storing arbitrary time series data. We&#8217;re already storing lots of
+data in New Relic but Metrics provides us with less opinionated software
+so we can use it for anything, for instance number of logins or searches
+or other business level metrics. We&#8217;ll go for a plan with 200 data sources, 100 metrics each and at 10 second resolution for a cost of <em>$3,860</em> per month.</p></li>
+<li><p><a href="http://www.pagerduty.com/">Pagerduty</a> is all about the alerts side of
+monitoring. Most of the other SaaS tools we&#8217;ve chosen integrate with it
+so we can make sure we get actionable emails and SMS messages to the
+right people at the right time. Our plan costs $18 per person per month,
+so lets say we have 30 people at a cost of <em>$540</em> per month.</p></li>
+<li><p><a href="https://papertrailapp.com/">Papertrail</a> is all about logs. Simple setup
+your servers with syslog and Papertrail will collect, analyze and store
+all your log messages. You get a browser based interface, search tools
+and the ability to setup alerts. We like lots of logs so we&#8217;ll have a
+plan for 2 weeks of search, 1 year archive and 100GB month of log
+traffic. That all costs <em>$575</em> per month.</p></li>
+<li><p><a href="https://www.getsentry.com">Sentry</a> is all about exceptions. We could be
+simply logging these and sending them to Papertrail but Sentry provides
+tools for tracking and rolling up occurences. We&#8217;ll go for a plan with
+90 days of history and 200 events per minute at a cost of <em>$199</em> a
+month.</p></li>
+<li><p><a href="https://www.pingdom.com">Pingdom</a> used to provide a very simple
+external check service, but now they have added more complex multistage
+checks as well as real user monitoring to the basic ping. We&#8217;ll choose
+the plan with 250 checks, 20 Real User Monitoring sites and 500 SMS
+alerts for <em>$107 a month</em>.</p></li>
+</ul>
+
+
+<h2>How much!</h2>
+
+<p>In total that all comes to <em>$35,080 (£20,922)</em> per month, or
+<em>$420,960 (£251,062)</em> per year.</p>
+
+<p>Now the first reaction of lots of people will be <em>that&#8217;s a lot of money</em>
+and it is. But remember open source isn&#8217;t free either. We need to pay
+for:</p>
+
+<ul>
+<li>The servers we run our monitoring software on</li>
+<li>The people to operate those servers</li>
+<li>The people to install and configure our monitoring software</li>
+<li>The office space and other costs of employing people (like management
+and hiring)</li>
+</ul>
+
+
+<p>I think people with the ability to build software tend to forget they
+are expensive, whether as a contractor or as a full time member of
+staff. And people without management experience tend to forget costs
+like insurance, rent, management overhead, recruitment, etc.</p>
+
+<p>And probably more important than these for some people we need to consider:</p>
+
+<ul>
+<li>The time taken to build a good open source monitoring system</li>
+</ul>
+
+
+<p>The time needed to put together a good monitoring stack based on for
+instance logstash, kibana, riemann, sensu, graphite and collectd isn&#8217;t
+small. And don&#8217;t forget the number of other moving parts like redis,
+rabbitmq and elasticsearch that need installing configuring and
+maintaining. That probably means compromising in the short term or
+shipping later. In a small team how core is building your monitoring
+stack to what you do as a business?</p>
+
+<h2>But I can&#8217;t use SaaS</h2>
+
+<p>For some people, using a software as a service product just isn&#8217;t going
+to cut it. Here&#8217;s a list of reasons I can think of:</p>
+
+<ul>
+<li>Regulation constrains where your data can be stored, for instance it&#8217;s
+not allowed out of the country</li>
+<li>Sheer size of infrastructure, although you may be able to get a volume
+discount it might not be enough</li>
+</ul>
+
+
+<p>I think everything else is a cost/benefit issue or personal preference
+(or bias). Happy to add more to that list, but I don&#8217;t think it&#8217;s a very
+long list.</p>
+
+<h2>Conclusions</h2>
+
+<p>I&#8217;ve purposefully not talked about the quality of the tools here, just
+the cost. I&#8217;ve also not mentioned that it&#8217;s likely not an all or nothing
+decision, lots of people will mix SaaS products and open source tools.</p>
+
+<p>Whether taking a SaaS approach will be quicker, cheaper or better will
+depend on your specific business context. But try and make that about
+the organisation and not about the technology.</p>
+
+<p>If you&#8217;ve never used the current crop of SaaS monitoring
+tools (and not just the one&#8217;s mentioned above) then I think you&#8217;re missing
+out. Even if you stick with a mainly open source monitoring stack you
+might look at your tools a bit differently after you&#8217;ve experimented
+with some of the commercial competition.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-16T19:29:00+00:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/monitoring/'>monitoring</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system/" data-via="garethr" data-counturl="http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/02/05/a-template-for-puppet-modules/" title="Previous Post: A template for Puppet modules">&laquo; A template for Puppet modules</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system/';
+        var disqus_url = 'http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
