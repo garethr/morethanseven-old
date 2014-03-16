@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cucumber | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/cucumber/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-02-16T22:45:42+00:00</updated>
+  <updated>2014-03-15T23:32:30+00:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Testing Vagrant runs with Cucumber]]></title>
+    <link href="http://www.morethanseven.net/2014/03/15/testing-vagrant-runs-with-cucumber/"/>
+    <updated>2014-03-15T20:42:00+00:00</updated>
+    <id>http://www.morethanseven.net/2014/03/15/testing-vagrant-runs-with-cucumber</id>
+    <content type="html"><![CDATA[<p>I've been a big fan of <a href="http://www.vagrantup.com/">Vagrant</a> since it's
+initial release and still find myself using it for various tasks.</p>
+
+<p>Recently I've been using it to test collections of Puppet modules. For a
+single host
+<a href="https://github.com/jvoorhis/vagrant-serverspec">vagrant-serverspec</a> is
+excellent. Simply install the plugin, add a provisioner and write your
+<a href="http://serverspec.org/">serverspec</a> tests. The serverspec provisioner
+looks like the following:</p>
+
+<p><code>ruby
+config.vm.provision :serverspec do |spec|
+  spec.pattern = '*_spec.rb'
+end
+</code></p>
+
+<p>But I also found myself wanting to test behaviour from the host
+(serverspec tests are run on the guest), and also wanted to write tests
+that checked the behaviour of a multi-box setup. I started by simply
+writing some <a href="http://cukes.info/">Cucumber</a> tests which I ran locally,
+but I decided I wanted this integrated with vagrant. Enter
+<a href="https://github.com/garethr/vagrant-cucumber-host">vagrant-cucumber-host</a>.
+This implements a new vagrant provisioner which runs a set of cucumber
+features locally.</p>
+
+<p><code>ruby
+config.vm.provision :cucumber do |cucumber|
+  cucumber.features = []
+end
+</code></p>
+
+<p>Just drop your features in the features folder and run <code>vagrant
+provision</code>. If you just want to run the cucumber features, without any
+of the other provisioners running you can use:</p>
+
+<p><code>bash
+vagrant provision --provision-with cucumber
+</code></p>
+
+<p>Another advantage of writing this as a vagrant plugin is that it uses
+the Ruby bundled with vagrant, meaning you just install the plugin
+rather than faff about with a local Ruby install.</p>
+
+<p>A couple of other vagrant plugins that I've used to make the testing
+setup easier are <a href="https://github.com/cogitatio/vagrant-hostsupdater">vagrant-hostsupdater</a>
+and <a href="https://github.com/adrienthebo/vagrant-hosts">vagrant-hosts</a>. Both
+help with managing hosts files, which makes writing tests without
+knowing the IP addresses easier.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Smoke Testing With Cucumber On Sysadvent]]></title>
