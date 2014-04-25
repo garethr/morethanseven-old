@@ -19,7 +19,7 @@ I'm not explaining Consul here, the above mentioned introduction does a
 good job of stepping through the setup. The following assumes you have
 installed and started consul.
 
-## Instalation and configuration
+## Installation and configuration
 
 I'm running these examples on an Ubuntu 14.04 machine, but dnsmasq
 should be available and packaged for lots of different operating

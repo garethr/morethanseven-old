@@ -4,7 +4,7 @@
   <title><![CDATA[Category: consul | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/consul/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:05:21+02:00</updated>
+  <updated>2014-04-25T12:11:25+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -31,7 +31,7 @@ One answer to this question is
 good job of stepping through the setup. The following assumes you have
 installed and started consul.</p>
 
-<h2>Instalation and configuration</h2>
+<h2>Installation and configuration</h2>
 
 <p>I'm running these examples on an Ubuntu 14.04 machine, but dnsmasq
 should be available and packaged for lots of different operating
