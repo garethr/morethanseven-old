@@ -4,7 +4,7 @@
   <title><![CDATA[Category: amqp | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/amqp/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[RabbitMQ support for Cucumber-nagios]]></title>
     <link href="http://www.morethanseven.net/2010/01/30/rabbitmq-support-cucumber-nagios/"/>
-    <updated>2010-01-30T00:00:00+00:00</updated>
+    <updated>2010-01-30T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2010/01/30/rabbitmq-support-cucumber-nagios</id>
     <content type="html"><![CDATA[<p>I've been doing more operations related work of late and am starting to use "Cucumber-nagios":http://auxesis.github.com/cucumber-nagios/ for various monitoring tasks. "Nagios":http://www.nagios.org/ might not be the most attractive of web interfaces but it's so simple to get clients up and running and extend to do what you need. Cucumber however has a lovely, text based, user interface. And although I'm mainly working with Python at the moment cucumber-nagios (written in Ruby) really is the easiest way I've found of writing simple functional tests.</p>
 

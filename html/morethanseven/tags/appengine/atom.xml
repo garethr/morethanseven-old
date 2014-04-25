@@ -4,7 +4,7 @@
   <title><![CDATA[Category: appengine | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/appengine/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Hacker Posts]]></title>
     <link href="http://www.morethanseven.net/2009/03/21/hacker-posts/"/>
-    <updated>2009-03-21T00:00:00+00:00</updated>
+    <updated>2009-03-21T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/03/21/hacker-posts</id>
     <content type="html"><![CDATA[<p>I've been playing again with App Engine, and going back to an on/off pet project that I've build variations of for a while.</p>
 
@@ -82,7 +82,7 @@
   <entry>
     <title type="html"><![CDATA[Webapp custom filters]]></title>
     <link href="http://www.morethanseven.net/2009/03/19/webapp-custom-filters/"/>
-    <updated>2009-03-19T00:00:00+00:00</updated>
+    <updated>2009-03-19T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/03/19/webapp-custom-filters</id>
     <content type="html"><![CDATA[<p>The webapp framework wish ships with App Engine uses the Django templating system by default, but without Django apps doesn't support the same mechanism for loading template tags and filters. "This is how to do it though":http://javawonders.blogspot.com/2009/01/google-app-engine-templates-and-custom.html using a few webapp.template methods.</p>
 ]]></content>
@@ -91,7 +91,7 @@
   <entry>
     <title type="html"><![CDATA[XMPP and Queues in App Engine via Jaiku? Not quite yet]]></title>
     <link href="http://www.morethanseven.net/2009/03/14/xmpp-and-queues-app-engine-jaiku-not-quite-yet/"/>
-    <updated>2009-03-14T00:00:00+00:00</updated>
+    <updated>2009-03-14T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/03/14/xmpp-and-queues-app-engine-jaiku-not-quite-yet</id>
     <content type="html"><![CDATA[<p>So "JauikuEngine":http://code.google.com/p/jaikuengine, the open source, App Engine based, version of Jaiku is now available for everyone to look at. I "found the repo a couple of days ago":http://twitter.com/garethr/status/1321372099 but it was restricted to project members. The main reason I want to hunt through the code is to have a look at what I'm guessing will be API's available in a soon to be released version of App Engine - with specific interest in anything to do with XMPP, queues and offline processing.</p>
 
@@ -156,7 +156,7 @@
   <entry>
     <title type="html"><![CDATA[App Engine Remote API calls]]></title>
     <link href="http://www.morethanseven.net/2009/03/13/app-engine-remote-api-calls/"/>
-    <updated>2009-03-13T00:00:00+00:00</updated>
+    <updated>2009-03-13T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/03/13/app-engine-remote-api-calls</id>
     <content type="html"><![CDATA[<p>Not sure how I missed this but apparently App Engine (as of 1.1.9) supports "remote access to your live data store":http://code.google.com/appengine/articles/remote_api.html. This means you can create administration applications more easily by running them locally, rather than within the limitations of the live platform. You can even run a local python prompt with access to your live datastore which is pretty neat.</p>
 ]]></content>
@@ -165,7 +165,7 @@
   <entry>
     <title type="html"><![CDATA[Example of using XMPP on App Engine (via IMified)]]></title>
     <link href="http://www.morethanseven.net/2009/02/21/example-using-xmpp-app-engine-imified/"/>
-    <updated>2009-02-21T00:00:00+00:00</updated>
+    <updated>2009-02-21T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/02/21/example-using-xmpp-app-engine-imified</id>
     <content type="html"><![CDATA[<p>As I "mentioned before":http://morethanseven.net/2009/02/07/xmpp-and-offline-processing-coming-google-app-engi/, App Engine is getting an XMPP API at some point soon. But if you just can't wait to start adding IM interfaces to your applications then you <em>can</em> do it now, by using a nifty third party in "IMified":http://imified.com/.</p>
 

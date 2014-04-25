@@ -1,0 +1,73 @@
+---
+layout: post
+title: "Consul, DNS and Dnsmasq"
+date: 2014-04-25 10:40
+comments: true
+categories: consul
+---
+
+While at [Craft](http://craft-conf.com/2014) I decided to have a quick look at
+[Consul](http://www.consul.io/), a new service discovery framework with
+a few intersting features. One of the main selling points is a DNS
+interface with a nice API. The [Introduction](http://www.consul.io/intro/index.html)
+shows how to use this via the dig command line tool, but how do you use
+a custom internal DNS server without modifying all your applications?
+One answer to this question is
+[Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html).
+
+I'm not explaining Consul here, the above mentioned introduction does a
+good job of stepping through the setup. The following assumes you have
+installed and started consul.
+
+## Instalation and configuration
+
+I'm running these examples on an Ubuntu 14.04 machine, but dnsmasq
+should be available and packaged for lots of different operating
+systems.
+
+```bash
+apt-get install dnsmasq
+```
+
+Once installed we can create a very simple configuration.
+
+```bash
+echo "server=/consul/127.0.0.1#8600" > /etc/dnsmasq.d/10-consul
+```
+
+All we're doing here is specifying that DNS requests for consul services
+are to be dealt with by the DNS server at 127.0.0.1 on port 8600. Unless
+you've changed the consul defaults this should work.
+
+Just in case you prefer Puppet their is already a handy
+[dnsmasq](https://github.com/saz/puppet-dnsmasq) module. The resulting
+puppet code then looks like this.
+
+```puppet
+include dnsmasq
+dnsmasq::conf { 'consul':
+  ensure  => present,
+  content => 'server=/consul/127.0.0.1#8600"',
+}
+```
+
+## Usage
+
+The examples from the main documentation specify a custom DNS server for
+dig like so:
+
+```bash
+dig @127.0.0.1 -p 8600 web.service.consul
+```
+
+With Dnsmasq installed and configured as above you should just be able
+to do the following:
+
+```bash
+dig web.service.consul
+```
+
+And now any of your existing applications will be able to use your
+consul instance for service discovery via DNS.
+
+

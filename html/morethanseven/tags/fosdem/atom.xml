@@ -4,7 +4,7 @@
   <title><![CDATA[Category: fosdem | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/fosdem/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Devops - More Than Marketing - Talk By James Turnbull]]></title>
     <link href="http://www.morethanseven.net/2011/03/02/Devops-more-than-marketing-talk-by-james-turnbull/"/>
-    <updated>2011-03-02T00:00:00+00:00</updated>
+    <updated>2011-03-02T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/03/02/Devops-more-than-marketing-talk-by-james-turnbull</id>
     <content type="html"><![CDATA[<p>I've just found my notes from "James Turnbull's":http://kartar.net talk at "FOSDEM":http://fosdem.org. I found the talk excellent, and I'm already part of the choir. But much of the audience I'd guess have only come across the devops term in passing, or worse had it pushed at them as part of marketing materials. Hopefully I captured the main points:</p>
 
@@ -110,7 +110,7 @@
   <entry>
     <title type="html"><![CDATA[Configuration Management For Development Environments]]></title>
     <link href="http://www.morethanseven.net/2011/02/08/Configuration-management-for-development-environments/"/>
-    <updated>2011-02-08T00:00:00+00:00</updated>
+    <updated>2011-02-08T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/02/08/Configuration-management-for-development-environments</id>
     <content type="html"><![CDATA[<p>I had the pleasure of speaking at "Fosdem":http://www.fosdem.org/2011/ last weekend to a packed "Configuration amd systems management devroom":http://www.fosdem.org/2011/schedule/track/configuration_systems_management_devroom.</p>
 

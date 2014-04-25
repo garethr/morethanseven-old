@@ -4,7 +4,7 @@
   <title><![CDATA[Category: node | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/node/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Talking To Jenkins From Campfire With Hubot]]></title>
     <link href="http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/"/>
-    <updated>2012-01-06T00:00:00+00:00</updated>
+    <updated>2012-01-06T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot</id>
     <content type="html"><![CDATA[<p>In what turned out to be a productive holiday hacking with languages I'd not used before, I got round to writing some coffeescript on node.js. This was more to do with scratching a personal itch that pure experimentation. I had a play with "Janky":https://github.com/github/janky (Github's Jenkins/Hubot mashup) but found it a little opinionated on the Jenkins side, but the campfire integration is excellent. Looking at the Jenkins commands in "hubot-scripts":https://github.com/github/hubot-scripts/ though I found those even more opinionated.</p>
 

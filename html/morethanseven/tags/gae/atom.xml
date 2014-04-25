@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gae | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/gae/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Google App Engine PyUnit Test Runner]]></title>
     <link href="http://www.morethanseven.net/2008/10/11/google-app-engine-pyunit-test-runner/"/>
-    <updated>2008-10-11T00:00:00+01:00</updated>
+    <updated>2008-10-11T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2008/10/11/google-app-engine-pyunit-test-runner</id>
     <content type="html"><![CDATA[<p>I'm starting to play around with using "App Engine":http://code.google.com/appengine/ again for small projects. It's great for simple, somewhat throwaway apps as long as you don't need anything too fancy. Actually all I want really is long running processes but I digress.</p>
 

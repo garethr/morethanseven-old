@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cambridgegeeknight | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/cambridgegeeknight/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Collecting Metrics With Ganglia And Friends]]></title>
     <link href="http://www.morethanseven.net/2011/04/02/Collecting-metrics-with-ganglia-and-friends/"/>
-    <updated>2011-04-02T00:00:00+01:00</updated>
+    <updated>2011-04-02T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2011/04/02/Collecting-metrics-with-ganglia-and-friends</id>
     <content type="html"><![CDATA[<p>I had the pleasure of speaking at "Cambridge Geek Night":http://cambridgegeeknights.net/ on Monday again, the topic of conversation being using Ganglia to collect more than just base systems metrics.</p>
 

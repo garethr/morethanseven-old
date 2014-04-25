@@ -4,7 +4,7 @@
   <title><![CDATA[Category: packaging | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/packaging/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[my personal package repository]]></title>
     <link href="http://www.morethanseven.net/2012/12/30/my-personal-package-repository/"/>
-    <updated>2012-12-30T16:52:00+00:00</updated>
+    <updated>2012-12-30T16:52:00+01:00</updated>
     <id>http://www.morethanseven.net/2012/12/30/my-personal-package-repository</id>
     <content type="html"><![CDATA[<p>I'm a "big fan of system packages for lots of reasons":http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/ and have often ended up rolling my own debian package repository at work, or working with others that have done so. Recently I finally got round to setting up a personal package repo, at "packages.garethrushgrove.com":http://packages.garethrushgrove.com. More interesting than the repo is probably the tool chain I used, oh and the rather nice bootstrap based styling.</p>
 
@@ -39,7 +39,7 @@ rake repo:build             # Build the repository</code></pre>
   <entry>
     <title type="html"><![CDATA[Creating A Cucumber Nagios Package With Fpm]]></title>
     <link href="http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm/"/>
-    <updated>2011-04-29T00:00:00+01:00</updated>
+    <updated>2011-04-29T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm</id>
     <content type="html"><![CDATA[<p>I've written "before":http://morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages.html about why I like System Packages, but even I'll admit that the barriers to creating them mean I don't use them for everything. "FPM":https://github.com/jordansissel/fpm however is making it much easier, to the point where I'm starting to create a few packages I can reuse on projects. I thought a write up of how I'm doing that for "Cucumber-Nagios":http://cucumber-nagios.org/ might be useful.</p>
 
@@ -139,7 +139,7 @@ Generating with project generator:
   <entry>
     <title type="html"><![CDATA[Using Checkinstall With Virtualenv For Python Deployments]]></title>
     <link href="http://www.morethanseven.net/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments/"/>
-    <updated>2011-01-29T00:00:00+00:00</updated>
+    <updated>2011-01-29T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments</id>
     <content type="html"><![CDATA[<p>Michael Brunton-Spall wrote last week about some "frustrations with packagings and deploying Python web applications":http://www.brunton-spall.co.uk/post/2011/01/26/packaging-and-deploying-python-web-apps/. Although his experience was with Python, the problems he describes are the same for Ruby and PHP and a whole host of languages. The following example uses Python, but works equally as well for anything else.</p>
 
@@ -213,7 +213,7 @@ cp /home/stage/myapplication /var/www/apps/</pre>
   <entry>
     <title type="html"><![CDATA[Why Developers Should Care About System Packages]]></title>
     <link href="http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/"/>
-    <updated>2011-01-16T00:00:00+00:00</updated>
+    <updated>2011-01-16T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages</id>
     <content type="html"><![CDATA[<p>First a bit of background. I'm a software developer (lately in Ruby and a tiny bit of Java, previously in Python, C# and PHP; yes I got around a bit), but have spent enough time looking after production hardware (mainly debian, solaris and recently a bit of RHEL) to have a feel for sysadmin work. I even have friends who are systems administrators. I mainly use a shiny apple laptop for my development work, but I actually execute all the code on Linux virtual machines. The aim of this post is to bridge a divide, not start a flame war about specific tools.</p>
 

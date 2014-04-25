@@ -4,7 +4,7 @@
   <title><![CDATA[Category: virtualbox | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/virtualbox/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Why You Should Be Using Virtualisation]]></title>
     <link href="http://www.morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation/"/>
-    <updated>2010-11-04T00:00:00+00:00</updated>
+    <updated>2010-11-04T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation</id>
     <content type="html"><![CDATA[<p>My main development machine for a while has been an apple laptop. From looking around at conferences, offices and usergroups I know I'm not alone. But I don't really <em>run</em> code on my mac very often, certainly not for work. I might edit the code on my mac but I execute it running in a virtualised Linux environment matching (as close as possible) the production environment it's going to end up in. This blog post is an attempt to explain why this is a good idea to the majority of people who develop on a mac (or a windows machine) and deploy to something else. This isn't language specific either. You might be working on small PHP web sites or huge Python applications, you'll still one day run into the same issues.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: asteroid | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/asteroid/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Asteroid - simple app for running scripts and recording the results]]></title>
     <link href="http://www.morethanseven.net/2009/07/15/simple-app-running-scripts-and-recording-results/"/>
-    <updated>2009-07-15T00:00:00+01:00</updated>
+    <updated>2009-07-15T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2009/07/15/simple-app-running-scripts-and-recording-results</id>
     <content type="html"><![CDATA[<p>Asteroid is a simple web interface for running scripts and recording the results. It's like a much simpler and more general purpose version of something like Cruise Control. You can "get the code on Github":http://github.com/garethr/Asteroid/tree/master.</p>
 

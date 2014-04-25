@@ -4,7 +4,7 @@
   <title><![CDATA[Category: eventmachine | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/eventmachine/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Script Running Web Interface With Websockets]]></title>
     <link href="http://www.morethanseven.net/2010/09/09/Script-running-web-interface-with-websockets/"/>
-    <updated>2010-09-09T00:00:00+01:00</updated>
+    <updated>2010-09-09T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2010/09/09/Script-running-web-interface-with-websockets</id>
     <content type="html"><![CDATA[<p>After something of a break I found a bit of time for some hacking at the weekend and decided to scratch a personal itch. I like writing shell scripts for everything from checking on things to deploying code. For anything that is more than just executing one command, or anything with detailed output or that takes a while I like to be able to see what's going on. I also like to (OK, only sometimes) let other people run those commands and not all those people want to check something out and run a console. The web maks a pretty good interface for this sort of situation.</p>
 

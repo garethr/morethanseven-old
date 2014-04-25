@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/vim/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Vim With Ruby Support Using Homebrew]]></title>
     <link href="http://www.morethanseven.net/2011/07/31/Vim-with-ruby-support-using-homebrew/"/>
-    <updated>2011-07-31T00:00:00+01:00</updated>
+    <updated>2011-07-31T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2011/07/31/Vim-with-ruby-support-using-homebrew</id>
     <content type="html"><![CDATA[<p>I've spend a bit of time this weekend cleaning, tidying and upgrading software on my mac. While doing that I got round to compiling my own Vim. I'd been meaning to do this for a while, I prefer using Vim in a terminal to using MacVim, and I like having access to things like "Command-T":http://www.vim.org/scripts/script.php?script_id=3025 which requires Ruby support which the inbuild version lacks.</p>
 

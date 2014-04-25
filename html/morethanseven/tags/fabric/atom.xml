@@ -4,7 +4,7 @@
   <title><![CDATA[Category: fabric | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/fabric/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[EC2 Tasks For Fabric]]></title>
     <link href="http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric/"/>
-    <updated>2011-12-31T00:00:00+00:00</updated>
+    <updated>2011-12-31T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric</id>
     <content type="html"><![CDATA[<p>For running ad-hoc commands across a small number of servers you really can't beat "Fabric":http://fabfile.org. It requires nothing other than ssh installed on the servers, is generally just a one-line install and requires next to no syntaxtic fluff between you and the commands you want running. It's much more of a swiss army knife to Capistranos bread knife.</p>
 
@@ -60,7 +60,7 @@ instance-name-8 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
   <entry>
     <title type="html"><![CDATA[Fabric, Django, Git, Apache, mod_wsgi, virtualenv and pip deployment]]></title>
     <link href="http://www.morethanseven.net/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p/"/>
-    <updated>2009-07-27T00:00:00+01:00</updated>
+    <updated>2009-07-27T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2009/07/27/fabric-django-git-apache-mod-wsgi-virtualenv-and-p</id>
     <content type="html"><![CDATA[<p>I've been playing with automating Django deployments again, this time using "Fabric":http://fabfile.org/. I found a number of examples on the web but non of them quite fit the bill for me. I don't like serving directly from a repository, I like to have either a package or tar I can use to say "that is what went to the server". I also like having a quick rollback command as well as being able to deploy a particular version of the code when the need arises. I also wanted to go from a clean ubuntu install (plus SSH) to a running Django application in one command from the local development machine. The Apache side of things is nicely documented in "this Gist":http://gist.github.com/106077 which made a good starting point.</p>
 

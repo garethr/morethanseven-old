@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sass | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/sass/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Less CSS]]></title>
     <link href="http://www.morethanseven.net/2009/06/17/less-css/"/>
-    <updated>2009-06-17T00:00:00+01:00</updated>
+    <updated>2009-06-17T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2009/06/17/less-css</id>
     <content type="html"><![CDATA[<p>Ruby people <em>really</em> don't like CSS do they? But "Less":http://lesscss.org/ is actually pretty cool. It's basically an attempt to bootstrap features, specifically Variables, Mixins, Operations and Nested Rules, into CSS. The best part about this is it uses CSS syntax and a simple one step compiler. I'd be interested to know what the folks at the W3C think about this.</p>
 

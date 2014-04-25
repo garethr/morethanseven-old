@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rundeck | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/rundeck/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Rundeck And Nagios Nrpe Checks]]></title>
     <link href="http://www.morethanseven.net/2011/09/11/Rundeck-and-nagios-nrpe-checks/"/>
-    <updated>2011-09-11T00:00:00+01:00</updated>
+    <updated>2011-09-11T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2011/09/11/Rundeck-and-nagios-nrpe-checks</id>
     <content type="html"><![CDATA[<p>I've been playing with "Rundeck":http://rundeck.org/ recently. For those that haven't seen it yet it's an application for running commands across a cluster of machines and recording the results. It has both a command line client and a very rich web interface which boths allows you to trigger commands and shows the results.</p>
 

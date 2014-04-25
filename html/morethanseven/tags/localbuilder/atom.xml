@@ -4,7 +4,7 @@
   <title><![CDATA[Category: localbuilder | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/localbuilder/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Localbuilder on GitHub]]></title>
     <link href="http://www.morethanseven.net/2009/01/14/localbuilder-github/"/>
-    <updated>2009-01-14T00:00:00+00:00</updated>
+    <updated>2009-01-14T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/01/14/localbuilder-github</id>
     <content type="html"><![CDATA[<p>One of several little projects I have up and running on "GitHub":http://github.com at present is "LocalBuilder":http://github.com/garethr/localbuilder/tree/master. It's a pretty simple little script which watches for changes in a given directory and when they occur runs a given command. I knocked it together to use to trigger the running of a test suite each time I save files in a project. It's written in Python but you could use it to run commands in any language you like.</p>
 

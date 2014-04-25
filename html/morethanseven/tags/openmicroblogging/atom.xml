@@ -4,7 +4,7 @@
   <title><![CDATA[Category: openmicroblogging | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/openmicroblogging/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[openmicroblogging]]></title>
     <link href="http://www.morethanseven.net/2008/09/16/openmicroblogging/"/>
-    <updated>2008-09-16T00:00:00+01:00</updated>
+    <updated>2008-09-16T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2008/09/16/openmicroblogging</id>
     <content type="html"><![CDATA[<p>"Open Microblogging":http://openmicroblogging.org/ looks pretty interesting. An open standard built upon other "open standards":http://oauth.net/ for the purpose of passing information between micro blogging services like Twitter or Facebook.</p>
 ]]></content>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: checkinstall | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/checkinstall/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Using Checkinstall With Virtualenv For Python Deployments]]></title>
     <link href="http://www.morethanseven.net/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments/"/>
-    <updated>2011-01-29T00:00:00+00:00</updated>
+    <updated>2011-01-29T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments</id>
     <content type="html"><![CDATA[<p>Michael Brunton-Spall wrote last week about some "frustrations with packagings and deploying Python web applications":http://www.brunton-spall.co.uk/post/2011/01/26/packaging-and-deploying-python-web-apps/. Although his experience was with Python, the problems he describes are the same for Ruby and PHP and a whole host of languages. The following example uses Python, but works equally as well for anything else.</p>
 

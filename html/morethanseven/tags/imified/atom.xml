@@ -4,7 +4,7 @@
   <title><![CDATA[Category: imified | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/imified/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Example of using XMPP on App Engine (via IMified)]]></title>
     <link href="http://www.morethanseven.net/2009/02/21/example-using-xmpp-app-engine-imified/"/>
-    <updated>2009-02-21T00:00:00+00:00</updated>
+    <updated>2009-02-21T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/02/21/example-using-xmpp-app-engine-imified</id>
     <content type="html"><![CDATA[<p>As I "mentioned before":http://morethanseven.net/2009/02/07/xmpp-and-offline-processing-coming-google-app-engi/, App Engine is getting an XMPP API at some point soon. But if you just can't wait to start adding IM interfaces to your applications then you <em>can</em> do it now, by using a nifty third party in "IMified":http://imified.com/.</p>
 

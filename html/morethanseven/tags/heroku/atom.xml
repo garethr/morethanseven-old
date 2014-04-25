@@ -4,7 +4,7 @@
   <title><![CDATA[Category: heroku | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/heroku/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[The Vagrantbox.es Story]]></title>
     <link href="http://www.morethanseven.net/2012/07/01/The-vagrantbox.es-story/"/>
-    <updated>2012-07-01T00:00:00+01:00</updated>
+    <updated>2012-07-01T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2012/07/01/The-vagrantbox.es-story</id>
     <content type="html"><![CDATA[<p>A few weeks ago now "Vagrantbox.es":http://www.vagrantbox.es/ (a website I maintain for third party hosted "Vagrant":http://vagrantup.com/ base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people "ep.io":https://www.ep.io/ had unfortunately closed down the service they had in beta and I'd been so busy that I hadn't had chance to move it elsewhere.</p>
 
@@ -33,7 +33,7 @@
   <entry>
     <title type="html"><![CDATA[Static Sites With Nginx On Heroku]]></title>
     <link href="http://www.morethanseven.net/2012/06/05/Static-sites-with-nginx-on-heroku/"/>
-    <updated>2012-06-05T00:00:00+01:00</updated>
+    <updated>2012-06-05T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2012/06/05/Static-sites-with-nginx-on-heroku</id>
     <content type="html"><![CDATA[<p>I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration - mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.</p>
 
@@ -53,7 +53,7 @@
   <entry>
     <title type="html"><![CDATA[Heroku For...]]></title>
     <link href="http://www.morethanseven.net/2010/12/29/Heroku-for.../"/>
-    <updated>2010-12-29T00:00:00+00:00</updated>
+    <updated>2010-12-29T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2010/12/29/Heroku-for...</id>
     <content type="html"><![CDATA[<p>With the success of "Heroku":http://heroku.com, both in terms of the recent sale and the fact it's awesome, it was always just a matter of time before other languages and frameworks got into the platform as a service game. Here's all the one's I know about so far, many of them in or entering beta testing at the moment. Any others I'm missing?</p>
 
@@ -134,7 +134,7 @@
   <entry>
     <title type="html"><![CDATA[Books For People Interested In Devops]]></title>
     <link href="http://www.morethanseven.net/2010/11/07/Books-for-people-interested-in-devops/"/>
-    <updated>2010-11-07T00:00:00+00:00</updated>
+    <updated>2010-11-07T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2010/11/07/Books-for-people-interested-in-devops</id>
     <content type="html"><![CDATA[<p>Before starting with FreeAgent I decided I should spend a bit more time with Ruby and set about building something I'd been thinking about for a while. I've just launched the first one of my related pet projects so thought I better link to it from here.</p>
 

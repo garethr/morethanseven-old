@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jaiku | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/jaiku/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[XMPP and Queues in App Engine via Jaiku? Not quite yet]]></title>
     <link href="http://www.morethanseven.net/2009/03/14/xmpp-and-queues-app-engine-jaiku-not-quite-yet/"/>
-    <updated>2009-03-14T00:00:00+00:00</updated>
+    <updated>2009-03-14T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/03/14/xmpp-and-queues-app-engine-jaiku-not-quite-yet</id>
     <content type="html"><![CDATA[<p>So "JauikuEngine":http://code.google.com/p/jaikuengine, the open source, App Engine based, version of Jaiku is now available for everyone to look at. I "found the repo a couple of days ago":http://twitter.com/garethr/status/1321372099 but it was restricted to project members. The main reason I want to hunt through the code is to have a look at what I'm guessing will be API's available in a soon to be released version of App Engine - with specific interest in anything to do with XMPP, queues and offline processing.</p>
 
@@ -81,7 +81,7 @@
   <entry>
     <title type="html"><![CDATA[Are XMPP and offline processing coming to Google App Engine?]]></title>
     <link href="http://www.morethanseven.net/2009/01/15/are-xmpp-and-offline-processing-coming-google-app-/"/>
-    <updated>2009-01-15T00:00:00+00:00</updated>
+    <updated>2009-01-15T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/01/15/are-xmpp-and-offline-processing-coming-google-app-</id>
     <content type="html"><![CDATA[<p>Google "just announced":http://google-code-updates.blogspot.com/2009/01/changes-for-jaiku-and-farewell-to.html that, once the port of "Jaiku":http://www.jaiku.com to App Engine is complete they will be Open Sourcing the code and stopping official development. I only used Jaiku sporadically in the heady days when everyone had to sign up for a new web 2.0 service every week or be mocked by their colleagues. What really interests me about this move though is what it means for App Engine.</p>
 

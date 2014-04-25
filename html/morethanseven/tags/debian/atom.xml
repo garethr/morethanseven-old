@@ -4,7 +4,7 @@
   <title><![CDATA[Category: debian | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/debian/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Installing Integrity On Debian/Ubuntu]]></title>
     <link href="http://www.morethanseven.net/2010/05/18/Installing-integrity-on-debianubuntu/"/>
-    <updated>2010-05-18T00:00:00+01:00</updated>
+    <updated>2010-05-18T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2010/05/18/Installing-integrity-on-debianubuntu</id>
     <content type="html"><![CDATA[<p>I've been playing with "Integrity":http://integrityapp.com again as a simple continuous integration server and have installed it on a few debian and ubuntu machines in the last few weeks. The current site has good installation instructions for the Ruby side of things but leaves it as an excercise for the installer to make sure all the system level dependencies are installed.</p>
 

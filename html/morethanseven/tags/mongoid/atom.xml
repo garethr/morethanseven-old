@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mongoid | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/mongoid/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Javascript In Your Ruby: Mongoid Map Reduce]]></title>
     <link href="http://www.morethanseven.net/2011/10/10/Javascript-in-your-ruby-mongoid-map-reduce/"/>
-    <updated>2011-10-10T00:00:00+01:00</updated>
+    <updated>2011-10-10T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2011/10/10/Javascript-in-your-ruby-mongoid-map-reduce</id>
     <content type="html"><![CDATA[<p>We're pretty fond of "Mongodb":http://mongodb.org/ at work and I've been getting an opportunity to kick some of the more interesting tyres recently. I thought I'd document something I found myself doing here, half hoping it might be useful for anyone else with a similar problem and also to see if anyone else has a much neater approach. The examples are obviously pretty trivial, but hopefully you get the idea.</p>
 

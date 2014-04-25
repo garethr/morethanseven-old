@@ -4,7 +4,7 @@
   <title><![CDATA[Category: caching | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/caching/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Varnish At Refresh Cambridge]]></title>
     <link href="http://www.morethanseven.net/2011/07/07/Varnish-at-refresh-cambridge/"/>
-    <updated>2011-07-07T00:00:00+01:00</updated>
+    <updated>2011-07-07T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2011/07/07/Varnish-at-refresh-cambridge</id>
     <content type="html"><![CDATA[<p>I did a quick lightning talk at the Refresh Cambridge meetup last night, a very quick introduction to "Varnish":https://www.varnish-cache.org/. Given 10 minutes all I really wanted to do was get people to go away and take a look at it. Lots of folks in the room hadn't come across it before so I think the talk was hopefully well pitched.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: djangodash | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/djangodash/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Pants Python Code]]></title>
     <link href="http://www.morethanseven.net/2009/07/01/pants-python-code/"/>
-    <updated>2009-07-01T00:00:00+01:00</updated>
+    <updated>2009-07-01T00:00:00+02:00</updated>
     <id>http://www.morethanseven.net/2009/07/01/pants-python-code</id>
     <content type="html"><![CDATA[<p>One of the projects that came out of the "Django Dash":http://alt.djangodash.com/ recently was "PyPants":http://pypants.org which I'm finding very cool.</p>
 

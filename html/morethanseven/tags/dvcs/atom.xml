@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dvcs | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/dvcs/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[PEP 374]]></title>
     <link href="http://www.morethanseven.net/2009/02/02/pep-374/"/>
-    <updated>2009-02-02T00:00:00+00:00</updated>
+    <updated>2009-02-02T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/02/02/pep-374</id>
     <content type="html"><![CDATA[<p>The Python core developers are currently "discussing whether to move away from SVN to a distributed version control system":http://www.python.org/dev/peps/pep-0374/. It's a worthwhile read for anyone involved in this sort of decision in any capacity. It features hands on examples of each of the contenders (Bazaar, Git and Mercurial), some interesting observations about all of them as well as  some benchmarks against a mature codebase. Lots of conversations keep cropping up on Twitter about why bother switching to Git or other distributed systems - this is a good place to start whether you use Python or not.</p>
 ]]></content>

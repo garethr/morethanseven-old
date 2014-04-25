@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dmigrations | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/dmigrations/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Quick dmigrations Update]]></title>
     <link href="http://www.morethanseven.net/2009/03/02/quick-dmigrations-update/"/>
-    <updated>2009-03-02T00:00:00+00:00</updated>
+    <updated>2009-03-02T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/03/02/quick-dmigrations-update</id>
     <content type="html"><![CDATA[<p>I've finally been getting round to doing a bit of work on "dmigrations":http://code.google.com/p/dmigrations/, the Python based database migration tool we developed at "work":http://thisisglobal.com.</p>
 

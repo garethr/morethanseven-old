@@ -4,7 +4,7 @@
   <title><![CDATA[Category: epydoc | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/epydoc/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Epydoc Ant task]]></title>
     <link href="http://www.morethanseven.net/2009/02/23/epydoc-ant-task/"/>
-    <updated>2009-02-23T00:00:00+00:00</updated>
+    <updated>2009-02-23T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/02/23/epydoc-ant-task</id>
     <content type="html"><![CDATA[<p>I quite like "Epydoc":http://epydoc.sourceforge.net/ for generating Python API documentation, even if the interface looks a little dated and could do with a lick of paint.</p>
 

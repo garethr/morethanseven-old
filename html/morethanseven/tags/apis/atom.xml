@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apis | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/apis/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[A Simple Python Jabber Bot]]></title>
     <link href="http://www.morethanseven.net/2009/01/18/simple-python-jabber-bot/"/>
-    <updated>2009-01-18T00:00:00+00:00</updated>
+    <updated>2009-01-18T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/01/18/simple-python-jabber-bot</id>
     <content type="html"><![CDATA[<p>I've been knocking together various little instant messaging bots recently, partly as a way to play around with XMPP. As well as using the low level "xmppy":http://xmpppy.sourceforge.net/ and "XMPP4R-Simple":http://code.google.com/p/xmpp4r-simple/ libraries I've been having lots of fun with the "JabberBot":http://thpinfo.com/2007/python-jabberbot/ framework.</p>
 

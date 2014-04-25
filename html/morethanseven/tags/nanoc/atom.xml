@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nanoc | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/nanoc/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-03-15T23:32:30+00:00</updated>
+  <updated>2014-04-25T11:54:06+02:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Static Generator For Web Services]]></title>
     <link href="http://www.morethanseven.net/2010/03/19/Static-generator-for-web-services/"/>
-    <updated>2010-03-19T00:00:00+00:00</updated>
+    <updated>2010-03-19T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2010/03/19/Static-generator-for-web-services</id>
     <content type="html"><![CDATA[<p>My latest <em>on a train</em> project is "Dumper":http://github.com/garethr/Dumper, a static generator for web services. I'm a huge fan of "Nanoc":http://nanoc.stoneship.org/ and tools like "Jekyl":http://github.com/mojombo/jekyl for building websites. But I spend at least as much time building small webservicds. I wanted something super simple that would let me expose data I had access to as a read only web service.</p>
 
@@ -57,7 +57,7 @@ dumper -c people.ini dump
   <entry>
     <title type="html"><![CDATA[New Nanoc Powered Blog]]></title>
     <link href="http://www.morethanseven.net/2010/03/07/New-nanoc-powered-blog/"/>
-    <updated>2010-03-07T00:00:00+00:00</updated>
+    <updated>2010-03-07T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2010/03/07/New-nanoc-powered-blog</id>
     <content type="html"><![CDATA[<p>It's taken longer than I would have liked but I've finally gotten around to relaunching this site on "nanoc":http://nanoc.stoneship.org/.</p>
 

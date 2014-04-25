@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Consul, DNS and Dnsmasq - Morethanseven</title>
+  <meta name="author" content="Gareth Rushgrove">
+
+  
+  <meta name="description" content="While at Craft I decided to have a quick look at
+Consul, a new service discovery framework with
+a few intersting features. One of the main selling &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.morethanseven.net/2014/04/25/consul">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/articles.atom" rel="alternate" title="Morethanseven" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-435455-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="header-inner" style="padding-bottom: 30px">
+    <span class="first"><a href="/">Morethanseven</a></span>
+    <p>Gareth Rushgrove</p>
+  </div>
+
+  <div id='carbonads-container' style="position: absolute; top: 30px; right: 55px;">
+    <div class='carbonad' style="height: 118px !important; width: 300px !important;">
+      <div id='carbon'></div>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var z = document.createElement("script");
+          z.type = "text/javascript";
+          z.async = true;
+          z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_HORIZ";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(z, s);
+        //]]>
+      </script>
+    </div>
+  </div>
+
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Consul, DNS and Dnsmasq</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-25T10:40:00+02:00" pubdate data-updated="true">Apr 25<span>th</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>While at <a href="http://craft-conf.com/2014">Craft</a> I decided to have a quick look at
+<a href="http://www.consul.io/">Consul</a>, a new service discovery framework with
+a few intersting features. One of the main selling points is a DNS
+interface with a nice API. The <a href="http://www.consul.io/intro/index.html">Introduction</a>
+shows how to use this via the dig command line tool, but how do you use
+a custom internal DNS server without modifying all your applications?
+One answer to this question is
+<a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">Dnsmasq</a>.</p>
+
+<p>I&#8217;m not explaining Consul here, the above mentioned introduction does a
+good job of stepping through the setup. The following assumes you have
+installed and started consul.</p>
+
+<h2>Instalation and configuration</h2>
+
+<p>I&#8217;m running these examples on an Ubuntu 14.04 machine, but dnsmasq
+should be available and packaged for lots of different operating
+systems.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install dnsmasq
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once installed we can create a very simple configuration.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;server=/consul/127.0.0.1#8600&quot;</span> &gt; /etc/dnsmasq.d/10-consul
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>All we&#8217;re doing here is specifying that DNS requests for consul services
+are to be dealt with by the DNS server at 127.0.0.1 on port 8600. Unless
+you&#8217;ve changed the consul defaults this should work.</p>
+
+<p>Just in case you prefer Puppet their is already a handy
+<a href="https://github.com/saz/puppet-dnsmasq">dnsmasq</a> module. The resulting
+puppet code then looks like this.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='puppet'><span class='line'><span class="kn">include</span> <span class="nc">dnsmasq</span>
+</span><span class='line'><span class="nc">dnsmasq::conf</span> <span class="p">{</span> <span class="s1">&#39;consul&#39;</span><span class="p">:</span>
+</span><span class='line'>  <span class="nt">ensure</span>  <span class="p">=&gt;</span> <span class="ss">present</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">content</span> <span class="p">=&gt;</span> <span class="s1">&#39;server=/consul/127.0.0.1#8600&quot;&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Usage</h2>
+
+<p>The examples from the main documentation specify a custom DNS server for
+dig like so:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dig @127.0.0.1 -p 8600 web.service.consul
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With Dnsmasq installed and configured as above you should just be able
+to do the following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dig web.service.consul
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And now any of your existing applications will be able to use your
+consul instance for service discovery via DNS.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gareth Rushgrove</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-25T10:40:00+02:00" pubdate data-updated="true">Apr 25<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/tags/consul/'>consul</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.morethanseven.net/2014/04/25/consul/" data-via="garethr" data-counturl="http://www.morethanseven.net/2014/04/25/consul/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/03/15/testing-vagrant-runs-with-cucumber/" title="Previous Post: Testing Vagrant runs with Cucumber">&laquo; Testing Vagrant runs with Cucumber</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <div id='carbonads-container'>
+  <div class='carbonad'>
+    <div id='carbon'></div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var z = document.createElement("script");
+        z.type = "text/javascript";
+        z.async = true;
+        z.src = "http://engine.carbonads.com/z/12119/carbon_2_1_0_VERT";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(z, s);
+      //]]>
+    </script>
+  </div>
+</div>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/garethr">@garethr</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'garethr',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("garethr", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/garethr" class="twitter-follow-button" data-show-count="false">Follow @garethr</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Gareth Rushgrove -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'morethanseven';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.morethanseven.net/2014/04/25/consul/';
+        var disqus_url = 'http://www.morethanseven.net/2014/04/25/consul/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

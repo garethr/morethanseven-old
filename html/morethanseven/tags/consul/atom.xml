@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: consul | Morethanseven]]></title>
+  <link href="http://www.morethanseven.net/tags/consul/atom.xml" rel="self"/>
+  <link href="http://www.morethanseven.net/"/>
+  <updated>2014-04-25T11:54:06+02:00</updated>
+  <id>http://www.morethanseven.net/</id>
+  <author>
+    <name><![CDATA[Gareth Rushgrove]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Consul, DNS and Dnsmasq]]></title>
+    <link href="http://www.morethanseven.net/2014/04/25/consul/"/>
+    <updated>2014-04-25T10:40:00+02:00</updated>
+    <id>http://www.morethanseven.net/2014/04/25/consul</id>
+    <content type="html"><![CDATA[<p>While at <a href="http://craft-conf.com/2014">Craft</a> I decided to have a quick look at
+<a href="http://www.consul.io/">Consul</a>, a new service discovery framework with
+a few intersting features. One of the main selling points is a DNS
+interface with a nice API. The <a href="http://www.consul.io/intro/index.html">Introduction</a>
+shows how to use this via the dig command line tool, but how do you use
+a custom internal DNS server without modifying all your applications?
+One answer to this question is
+<a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">Dnsmasq</a>.</p>
+
+<p>I'm not explaining Consul here, the above mentioned introduction does a
+good job of stepping through the setup. The following assumes you have
+installed and started consul.</p>
+
+<h2>Instalation and configuration</h2>
+
+<p>I'm running these examples on an Ubuntu 14.04 machine, but dnsmasq
+should be available and packaged for lots of different operating
+systems.</p>
+
+<p><code>bash
+apt-get install dnsmasq
+</code></p>
+
+<p>Once installed we can create a very simple configuration.</p>
+
+<p><code>bash
+echo "server=/consul/127.0.0.1#8600" &gt; /etc/dnsmasq.d/10-consul
+</code></p>
+
+<p>All we're doing here is specifying that DNS requests for consul services
+are to be dealt with by the DNS server at 127.0.0.1 on port 8600. Unless
+you've changed the consul defaults this should work.</p>
+
+<p>Just in case you prefer Puppet their is already a handy
+<a href="https://github.com/saz/puppet-dnsmasq">dnsmasq</a> module. The resulting
+puppet code then looks like this.</p>
+
+<p><code>puppet
+include dnsmasq
+dnsmasq::conf { 'consul':
+  ensure  =&gt; present,
+  content =&gt; 'server=/consul/127.0.0.1#8600"',
+}
+</code></p>
+
+<h2>Usage</h2>
+
+<p>The examples from the main documentation specify a custom DNS server for
+dig like so:</p>
+
+<p><code>bash
+dig @127.0.0.1 -p 8600 web.service.consul
+</code></p>
+
+<p>With Dnsmasq installed and configured as above you should just be able
+to do the following:</p>
+
+<p><code>bash
+dig web.service.consul
+</code></p>
+
+<p>And now any of your existing applications will be able to use your
+consul instance for service discovery via DNS.</p>
+]]></content>
+  </entry>
+  
+</feed>
