@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rev=canonical | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/rev-canonical/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Support for Rev=Canonical]]></title>
     <link href="http://www.morethanseven.net/2009/04/10/support-revcanonical/"/>
-    <updated>2009-04-10T00:00:00+02:00</updated>
+    <updated>2009-04-10T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/04/10/support-revcanonical</id>
     <content type="html"><![CDATA[<p>There has been "lots of talk":http://adactio.com/journal/1566/ recently about URL shortening. Services like "TinyURL":http://tinyurl.com/ have been around for a good while, offering shortened versions of URLs like "tinyurl.com/dd7w2m":http://tinyurl.com/dd7w2m which are easier to put in a tweet or an email. The problem with this is that not only does the shorter version mask any information about the destination, but if TinyURL or one of the other shortening services goes away, or loses control of it's domain name, a large number of links are going to stop working the way they should.</p>
 

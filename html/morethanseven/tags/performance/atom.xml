@@ -4,7 +4,7 @@
   <title><![CDATA[Category: performance | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/performance/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Going fast in government]]></title>
     <link href="http://www.morethanseven.net/2013/02/17/going-fast-in-government/"/>
-    <updated>2013-02-17T17:08:00+01:00</updated>
+    <updated>2013-02-17T17:08:00-08:00</updated>
     <id>http://www.morethanseven.net/2013/02/17/going-fast-in-government</id>
     <content type="html"><![CDATA[<p>About a month ago I had the good fortune of speaking at the "London Web Performance":http://www.meetup.com/London-Web-Performance-Group/ meetup. This was one of the first talks I've done about our work at The Government Digital Service since the luanch of GOV.UK back in October. The topic was all about moving quickly in a large organisation (The UK Civil Service is about 450,000 people so I think it counts) and featured just a hand full of technical and organisational tricks we used.</p>
 
@@ -30,7 +30,7 @@
   <entry>
     <title type="html"><![CDATA[Django Performance Patterns 1: Measuring Performance]]></title>
     <link href="http://www.morethanseven.net/2011/06/30/Django-performance-1-measuring-performance/"/>
-    <updated>2011-06-30T00:00:00+02:00</updated>
+    <updated>2011-06-30T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/06/30/Django-performance-1-measuring-performance</id>
     <content type="html"><![CDATA[<p>h2. Preface</p>
 
@@ -162,7 +162,7 @@ Transfer rate:          161.82 [Kbytes/sec] received</pre>
   <entry>
     <title type="html"><![CDATA[Logging Django Performance]]></title>
     <link href="http://www.morethanseven.net/2011/06/09/Logging-django-performance/"/>
-    <updated>2011-06-09T00:00:00+02:00</updated>
+    <updated>2011-06-09T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/06/09/Logging-django-performance</id>
     <content type="html"><![CDATA[<p>I've been doing some basic performance profiling work with Ruby on Rails recently and one tool I found very useful was the "request log analyzer":https://github.com/wvanbergen/request-log-analyzer. It's a relatively simple command line application that you can point at the Rails application log files and it outputs lots of information in agregate. So information about request duration averages or about SQL queries run. When working on a recent Django project I wanted a tool to do the same thing and ended up writing timelog.</p>
 

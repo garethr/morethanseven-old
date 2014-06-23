@@ -4,7 +4,7 @@
   <title><![CDATA[Category: muffinresearch | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/muffinresearch/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Spyder]]></title>
     <link href="http://www.morethanseven.net/2008/11/29/spyder/"/>
-    <updated>2008-11-29T00:00:00+01:00</updated>
+    <updated>2008-11-29T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2008/11/29/spyder</id>
     <content type="html"><![CDATA[<p>"Stuart":http://muffinresearch.co.uk/ at work has been playing with a nice "Python web crawler":https://edge.launchpad.net/spyder recently. I've used "Harvestman":http://www.harvestmanontheweb.com/ before but it's not the most straightforward thing to work with. Spyder has a really nifty callback based approach and a couple of hooks which allows you to write code like:</p>
 

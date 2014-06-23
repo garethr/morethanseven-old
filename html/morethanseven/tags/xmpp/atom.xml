@@ -4,7 +4,7 @@
   <title><![CDATA[Category: xmpp | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/xmpp/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Example of using XMPP on App Engine (via IMified)]]></title>
     <link href="http://www.morethanseven.net/2009/02/21/example-using-xmpp-app-engine-imified/"/>
-    <updated>2009-02-21T00:00:00+01:00</updated>
+    <updated>2009-02-21T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/02/21/example-using-xmpp-app-engine-imified</id>
     <content type="html"><![CDATA[<p>As I "mentioned before":http://morethanseven.net/2009/02/07/xmpp-and-offline-processing-coming-google-app-engi/, App Engine is getting an XMPP API at some point soon. But if you just can't wait to start adding IM interfaces to your applications then you <em>can</em> do it now, by using a nifty third party in "IMified":http://imified.com/.</p>
 
@@ -61,7 +61,7 @@ def post(self):
   <entry>
     <title type="html"><![CDATA[XMPP and offline processing coming to Google App Engine]]></title>
     <link href="http://www.morethanseven.net/2009/02/07/xmpp-and-offline-processing-coming-google-app-engi/"/>
-    <updated>2009-02-07T00:00:00+01:00</updated>
+    <updated>2009-02-07T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/02/07/xmpp-and-offline-processing-coming-google-app-engi</id>
     <content type="html"><![CDATA[<p>Three weeks ago I pondered whether "XMPP and offline processing were coming to Google App Engine?":http://morethanseven.net/2009/01/15/are-xmpp-and-offline-processing-coming-google-app-/. It was a hunch based on the upcoming release of Jaiku on App Engine. I reasoned you couldn't really do it without XMPP and offline processing APIs. Looks like I was right.</p>
 
@@ -82,7 +82,7 @@ def post(self):
   <entry>
     <title type="html"><![CDATA[A Simple Python Jabber Bot]]></title>
     <link href="http://www.morethanseven.net/2009/01/18/simple-python-jabber-bot/"/>
-    <updated>2009-01-18T00:00:00+01:00</updated>
+    <updated>2009-01-18T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/01/18/simple-python-jabber-bot</id>
     <content type="html"><![CDATA[<p>I've been knocking together various little instant messaging bots recently, partly as a way to play around with XMPP. As well as using the low level "xmppy":http://xmpppy.sourceforge.net/ and "XMPP4R-Simple":http://code.google.com/p/xmpp4r-simple/ libraries I've been having lots of fun with the "JabberBot":http://thpinfo.com/2007/python-jabberbot/ framework.</p>
 
@@ -151,7 +151,7 @@ next: get details about the next track in the list</p>
   <entry>
     <title type="html"><![CDATA[Are XMPP and offline processing coming to Google App Engine?]]></title>
     <link href="http://www.morethanseven.net/2009/01/15/are-xmpp-and-offline-processing-coming-google-app-/"/>
-    <updated>2009-01-15T00:00:00+01:00</updated>
+    <updated>2009-01-15T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/01/15/are-xmpp-and-offline-processing-coming-google-app-</id>
     <content type="html"><![CDATA[<p>Google "just announced":http://google-code-updates.blogspot.com/2009/01/changes-for-jaiku-and-farewell-to.html that, once the port of "Jaiku":http://www.jaiku.com to App Engine is complete they will be Open Sourcing the code and stopping official development. I only used Jaiku sporadically in the heady days when everyone had to sign up for a new web 2.0 service every week or be mocked by their colleagues. What really interests me about this move though is what it means for App Engine.</p>
 
@@ -168,7 +168,7 @@ next: get details about the next track in the list</p>
   <entry>
     <title type="html"><![CDATA[APIs in 2009 - XMPP and WebHooks]]></title>
     <link href="http://www.morethanseven.net/2009/01/02/apis-2009-xmpp-and-webhooks/"/>
-    <updated>2009-01-02T00:00:00+01:00</updated>
+    <updated>2009-01-02T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/01/02/apis-2009-xmpp-and-webhooks</id>
     <content type="html"><![CDATA[<p>Everyone has to have a post with a year in the title at the start of the year so I thought I better write something. Rather than one of those personal retrospective emails I thought I'd go for something different - a look at what I'd like to see in APIs in the coming year.</p>
 

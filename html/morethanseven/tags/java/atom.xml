@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/java/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Sinatra On Glassfish Example]]></title>
     <link href="http://www.morethanseven.net/2010/11/28/Sinatra-on-glassfish-example/"/>
-    <updated>2010-11-28T00:00:00+01:00</updated>
+    <updated>2010-11-28T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2010/11/28/Sinatra-on-glassfish-example</id>
     <content type="html"><![CDATA[<p>I magically turned into a Java developer last week for a bit when I had to do some integration with a SOAP based API that really really wanted me to write Java on client as well. That led me down the route of having a good look at Jruby (which I've used before, mainly for testing using celerity) and in particular how easy it was to use native Java classes in Jruby (very, very easy as it turns out).</p>
 

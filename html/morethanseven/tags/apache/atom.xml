@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apache | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/apache/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Ant for Web Developers I - Backup Config File]]></title>
     <link href="http://www.morethanseven.net/2009/06/22/ant-web-developers-i-backup-config-file/"/>
-    <updated>2009-06-22T00:00:00+02:00</updated>
+    <updated>2009-06-22T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/06/22/ant-web-developers-i-backup-config-file</id>
     <content type="html"><![CDATA[<p>I occasionally get "carried away":http://morethanseven.net/2009/01/24/defence-apache-ant/ with "Apache Ant":http://ant.apache.org/. For those that haven't come across it, Ant is a build tool written in Java, using an XML syntax to describe a series of repeatable tasks. In your typical web standards savvy, dynamic language favouring, web developer types that description is probably all they (think they) need to know. It's Java. It's XML. It's only really useful in the context of building software (dull).</p>
 
@@ -72,7 +72,7 @@
   <entry>
     <title type="html"><![CDATA[In Defence of Apache Ant]]></title>
     <link href="http://www.morethanseven.net/2009/01/24/defence-apache-ant/"/>
-    <updated>2009-01-24T00:00:00+01:00</updated>
+    <updated>2009-01-24T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/01/24/defence-apache-ant</id>
     <content type="html"><![CDATA[<p>I'm a big fan of the "Ant":http://ant.apache.org/ build tool. Their I said it. Nearly everyone else I end up talking to about build scripts (more people that you'd think, but OK, it's hardly the most exciting topic of conversation) either hates it or treats it with disdain.</p>
 

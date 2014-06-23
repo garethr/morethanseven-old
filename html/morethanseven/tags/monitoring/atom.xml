@@ -4,7 +4,7 @@
   <title><![CDATA[Category: monitoring | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/monitoring/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Buy vs Build your Monitoring System]]></title>
     <link href="http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system/"/>
-    <updated>2014-02-16T19:29:00+01:00</updated>
+    <updated>2014-02-16T19:29:00-08:00</updated>
     <id>http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system</id>
     <content type="html"><![CDATA[<p>At the excellent <a href="http://www.theguardian.com/info/developer-blog/2014/feb/15/london-devops-meetup-held-at-the-guardian">London Devops meetup</a> last week I asked what was
 apparently a controversial question:</p>
@@ -166,7 +166,7 @@ with some of the commercial competition.</p>
   <entry>
     <title type="html"><![CDATA[Looking into monitoring and logging tools]]></title>
     <link href="http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools/"/>
-    <updated>2013-10-13T12:00:00+02:00</updated>
+    <updated>2013-10-13T12:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools</id>
     <content type="html"><![CDATA[<p><em>Originally published on <a href="https://medium.com/p/1cbb173faa3a">Medium</a>.</em></p>
 

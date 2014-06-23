@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sysadvent | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/sysadvent/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Making the web secure, one unit test at a time]]></title>
     <link href="http://www.morethanseven.net/2013/12/29/making-the-web-secure/"/>
-    <updated>2013-12-29T14:28:00+01:00</updated>
+    <updated>2013-12-29T14:28:00-08:00</updated>
     <id>http://www.morethanseven.net/2013/12/29/making-the-web-secure</id>
     <content type="html"><![CDATA[<p><em>Originally written as part of <a href="http://sysadvent.blogspot.co.uk/2013/12/day-21-making-web-secure-one-unit-test.html">Sysadvent 2013</a>.</em></p>
 
@@ -207,7 +207,7 @@ development and operations teams. Here's a few  places to start with:</p>
   <entry>
     <title type="html"><![CDATA[Smoke Testing With Cucumber On Sysadvent]]></title>
     <link href="http://www.morethanseven.net/2010/12/20/Smoke-testing-with-cucumber-on-sysadvent/"/>
-    <updated>2010-12-20T00:00:00+01:00</updated>
+    <updated>2010-12-20T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2010/12/20/Smoke-testing-with-cucumber-on-sysadvent</id>
     <content type="html"><![CDATA[<p>I wrote a quick article last week for the excellent "sysadvent":http://sysadvent.blogspot.com advent calendar, "Smoke Testing Deployments with Cucumber":http://sysadvent.blogspot.com/2010/12/day-17-smoke-testing-deployments-using.html talks a bit more about using a few of my favourite tools to check whether a deployment just broke anything important.</p>
 ]]></content>

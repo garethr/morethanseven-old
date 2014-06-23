@@ -4,7 +4,7 @@
   <title><![CDATA[Category: hadoop | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/hadoop/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Hadoop Hive Web Interface]]></title>
     <link href="http://www.morethanseven.net/2010/04/05/Hadoop-hive-web-interface/"/>
-    <updated>2010-04-05T00:00:00+02:00</updated>
+    <updated>2010-04-05T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2010/04/05/Hadoop-hive-web-interface</id>
     <content type="html"><![CDATA[<p>I've been playing with Hive recently and liking what I've found. In theory at least it provides a very nice, simple way of getting into analysing large data sets. To make it even easier to show other people what you're up to Hive has a nascent web interface with a little documentation "on the wiki":http://wiki.apache.org/hadoop/Hive/HiveWebInterface</p>
 
@@ -109,7 +109,7 @@ hive --service hwi
   <entry>
     <title type="html"><![CDATA[Problems Installing Hadoop 0.20 and Dumbo 0.21 on Ubuntu]]></title>
     <link href="http://www.morethanseven.net/2009/10/18/problems-installing-hadoop-and-dumbo-ubuntu/"/>
-    <updated>2009-10-18T00:00:00+02:00</updated>
+    <updated>2009-10-18T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/10/18/problems-installing-hadoop-and-dumbo-ubuntu</id>
     <content type="html"><![CDATA[<p>The Hadoop wiki has a great introduction to <a href="http://wiki.apache.org/hadoop/Running_Hadoop_On_Ubuntu_Linux_(Single-Node_Cluster)">installing this piece of software</a>, which I wanted to do to have a play with "Dumbo":http://klbostee.github.com/dumbo/. The Dumbo docs also have a good "getting started":http://wiki.github.com/klbostee/dumbo/building-and-installing section which includes a few patches than need to be applied.</p>
 

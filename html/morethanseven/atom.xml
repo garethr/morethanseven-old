@@ -4,7 +4,7 @@
   <title><![CDATA[Morethanseven]]></title>
   <link href="http://www.morethanseven.net/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -14,9 +14,77 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Using OWASP ZAP from the command line]]></title>
+    <link href="http://www.morethanseven.net/2014/06/23/using-owasp-zap-from-the-command-line/"/>
+    <updated>2014-06-23T08:24:00-07:00</updated>
+    <id>http://www.morethanseven.net/2014/06/23/using-owasp-zap-from-the-command-line</id>
+    <content type="html"><![CDATA[<p>I&#8217;m a big fan of <a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">OWASP ZAP</a> or
+the Zed Attack Proxy. It&#8217;s suprisingly user friendly and nicely pulls of
+it&#8217;s aim of being useful to developers as well as more hardcore penetration testers.</p>
+
+<p>One of the features I&#8217;m particularly fond of is the aforementioned
+proxy. Basically it can act as a transparent HTTP proxy, recording the
+traffic, and then analyse that to conduct various active security tests;
+looking for XSS issues or directory traversal vulnerabilities for
+instance. The simplest way of seeding the ZAP with something to analyse is using
+the simple inbuilt spider.</p>
+
+<p>So far, so good. Unfortunately ZAP isn&#8217;t designed to be used from the
+command line. It&#8217;s either a thick client, or it&#8217;s a proxy with a simple
+API. Enter <a href="https://github.com/garethr/zapr">Zapr</a>.</p>
+
+<p>Zapr is a pretty simple wrapper around the ZAP API (using the
+<a href="https://github.com/vpereira/owasp_zap">owasp_zap</a> library under the
+hood). All it does is:</p>
+
+<ul>
+<li>Launch the proxy in headless mode</li>
+<li>Trigger the spider</li>
+<li>Launch various attacks against the collected URLs</li>
+<li>Print out the results</li>
+</ul>
+
+
+<p>This is fairly limited, in that a spider isn&#8217;t going to work
+particularly well for a mor interactive application, but it&#8217;s a farily good
+starting point. I may add different seed methods in the future (or would
+happily accept pull requests). Usage wise it&#8217;s as simple as:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>zapr --summary http://localhost:3000/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That will print you out something like the following, assuming it finds
+an issue.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+-----------------------------------+----------+----------------------------------------+
+</span><span class='line'>| Alert                             | Risk     | URL                                    |
+</span><span class='line'>+-----------------------------------+----------+----------------------------------------+
+</span><span class='line'>| Cross Site Scripting (Reflected)  | High     |http://localhost:3000/forgot_password   |
+</span><span class='line'>+-----------------------------------+----------+----------------------------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above alert is taken from a <a href="https://github.com/garethr/zapr-example">simple example</a>,
+using the <a href="https://github.com/OWASP/railsgoat">RailsGoat</a> vulnerable web
+application as a scape goat. You can see the resulting output from
+<a href="https://travis-ci.org/garethr/zapr-example">Travis running the tests</a>.</p>
+
+<p>Zapr is a bit of a proof of concept so it&#8217;s not particularly robust or
+well tested. Depending on usage and interest I may tidy it up and extend
+it, or I may leave it as a useful experiment and try and finally get ZAP
+support into <a href="http://gauntlt.org">Gauntlt</a>, only time will tell.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Consul, DNS and Dnsmasq]]></title>
     <link href="http://www.morethanseven.net/2014/04/25/consul/"/>
-    <updated>2014-04-25T10:40:00+02:00</updated>
+    <updated>2014-04-25T10:40:00-07:00</updated>
     <id>http://www.morethanseven.net/2014/04/25/consul</id>
     <content type="html"><![CDATA[<p>While at <a href="http://craft-conf.com/2014">Craft</a> I decided to have a quick look at
 <a href="http://www.consul.io/">Consul</a>, a new service discovery framework with
@@ -96,7 +164,7 @@ consul instance for service discovery via DNS.</p>
   <entry>
     <title type="html"><![CDATA[Testing Vagrant runs with Cucumber]]></title>
     <link href="http://www.morethanseven.net/2014/03/15/testing-vagrant-runs-with-cucumber/"/>
-    <updated>2014-03-15T20:42:00+01:00</updated>
+    <updated>2014-03-15T20:42:00-07:00</updated>
     <id>http://www.morethanseven.net/2014/03/15/testing-vagrant-runs-with-cucumber</id>
     <content type="html"><![CDATA[<p>I&#8217;ve been a big fan of <a href="http://www.vagrantup.com/">Vagrant</a> since it&#8217;s
 initial release and still find myself using it for various tasks.</p>
@@ -159,7 +227,7 @@ knowing the IP addresses easier.</p>
   <entry>
     <title type="html"><![CDATA[Buy vs Build your Monitoring System]]></title>
     <link href="http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system/"/>
-    <updated>2014-02-16T19:29:00+01:00</updated>
+    <updated>2014-02-16T19:29:00-08:00</updated>
     <id>http://www.morethanseven.net/2014/02/16/buy-vs-build-your-monitoring-system</id>
     <content type="html"><![CDATA[<p>At the excellent <a href="http://www.theguardian.com/info/developer-blog/2014/feb/15/london-devops-meetup-held-at-the-guardian">London Devops meetup</a> last week I asked what was
 apparently a controversial question:</p>
@@ -309,7 +377,7 @@ with some of the commercial competition.</p>
   <entry>
     <title type="html"><![CDATA[A template for Puppet modules]]></title>
     <link href="http://www.morethanseven.net/2014/02/05/a-template-for-puppet-modules/"/>
-    <updated>2014-02-05T15:20:00+01:00</updated>
+    <updated>2014-02-05T15:20:00-08:00</updated>
     <id>http://www.morethanseven.net/2014/02/05/a-template-for-puppet-modules</id>
     <content type="html"><![CDATA[<p>A little while ago I published a <a href="https://github.com/garethr/puppet-module-skeleton">template writing your own puppet modules</a>. It&#8217;s
 very opinionated but comes out of the box with lots of the tools you
@@ -439,7 +507,7 @@ or open an issue.</p>
   <entry>
     <title type="html"><![CDATA[Code coverage for Puppet modules]]></title>
     <link href="http://www.morethanseven.net/2014/01/25/code-coverage-for-puppet-modules/"/>
-    <updated>2014-01-25T17:23:00+01:00</updated>
+    <updated>2014-01-25T17:23:00-08:00</updated>
     <id>http://www.morethanseven.net/2014/01/25/code-coverage-for-puppet-modules</id>
     <content type="html"><![CDATA[<p>One of my favourite topics for a while now has been <em>infrastructure as
 code</em>. Part of that involves introducing well understood programming
@@ -526,7 +594,7 @@ options and hopefully to integrate with the <a href="https://coveralls.io/docs/a
   <entry>
     <title type="html"><![CDATA[Shell provisioner for Test Kitchen]]></title>
     <link href="http://www.morethanseven.net/2014/01/12/shell-provisioner-for-test-kitchen/"/>
-    <updated>2014-01-12T19:24:00+01:00</updated>
+    <updated>2014-01-12T19:24:00-08:00</updated>
     <id>http://www.morethanseven.net/2014/01/12/shell-provisioner-for-test-kitchen</id>
     <content type="html"><![CDATA[<p>As of a few weeks ago <a href="http://kitchen.ci/">Test Kitchen</a> has a <a href="https://github.com/test-kitchen/test-kitchen/blob/master/lib/kitchen/provisioner/shell.rb">shell provisioner</a> as well as the original Chef provisioners. This opens up all sorts of interesting testing potential.</p>
 
@@ -679,7 +747,7 @@ options and hopefully to integrate with the <a href="https://coveralls.io/docs/a
   <entry>
     <title type="html"><![CDATA[Testing Packer created images with serverspec]]></title>
     <link href="http://www.morethanseven.net/2014/01/01/testing-packer-created-images-with-serverspec/"/>
-    <updated>2014-01-01T15:24:00+01:00</updated>
+    <updated>2014-01-01T15:24:00-08:00</updated>
     <id>http://www.morethanseven.net/2014/01/01/testing-packer-created-images-with-serverspec</id>
     <content type="html"><![CDATA[<p><a href="http://www.packer.io/">Packer</a> provides a great way of describing the steps for creating a virtual machine image. But it doesn&#8217;t have a built-in way of verifying those images.</p>
 
@@ -717,7 +785,7 @@ end
   <entry>
     <title type="html"><![CDATA[Making the web secure, one unit test at a time]]></title>
     <link href="http://www.morethanseven.net/2013/12/29/making-the-web-secure/"/>
-    <updated>2013-12-29T14:28:00+01:00</updated>
+    <updated>2013-12-29T14:28:00-08:00</updated>
     <id>http://www.morethanseven.net/2013/12/29/making-the-web-secure</id>
     <content type="html"><![CDATA[<p><em>Originally written as part of <a href="http://sysadvent.blogspot.co.uk/2013/12/day-21-making-web-secure-one-unit-test.html">Sysadvent 2013</a>.</em></p>
 
@@ -908,7 +976,7 @@ development and operations teams. Here&#8217;s a few  places to start with:</p>
   <entry>
     <title type="html"><![CDATA[Looking into monitoring and logging tools]]></title>
     <link href="http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools/"/>
-    <updated>2013-10-13T12:00:00+02:00</updated>
+    <updated>2013-10-13T12:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2013/10/13/looking-into-monitoring-and-logging-tools</id>
     <content type="html"><![CDATA[<p><em>Originally published on <a href="https://medium.com/p/1cbb173faa3a">Medium</a>.</em></p>
 
@@ -961,7 +1029,7 @@ nice commercial products exist. <a href="http://www.circonus.com/">Circonus</a>,
   <entry>
     <title type="html"><![CDATA[Platform as a Service and the network gap]]></title>
     <link href="http://www.morethanseven.net/2013/08/11/platform-as-a-service-and-the-network-gap/"/>
-    <updated>2013-08-11T14:00:00+02:00</updated>
+    <updated>2013-08-11T14:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2013/08/11/platform-as-a-service-and-the-network-gap</id>
     <content type="html"><![CDATA[<p><em>Originally published on <a href="https://medium.com/p/817849715f0a">Medium</a>.</em></p>
 
@@ -1097,7 +1165,7 @@ not maybe this post will prompt someone to do so.</p>
   <entry>
     <title type="html"><![CDATA[Web application security tools]]></title>
     <link href="http://www.morethanseven.net/2013/04/23/web-application-security-tools/"/>
-    <updated>2013-04-23T07:57:00+02:00</updated>
+    <updated>2013-04-23T07:57:00-07:00</updated>
     <id>http://www.morethanseven.net/2013/04/23/web-application-security-tools</id>
     <content type="html"><![CDATA[<p>I&#8217;ve become increasingly interested in web application security issues over the last year or so. Working in Government will do that to you. And I&#8217;ve come to the conclusion that a) there are lots of good open source security tools, b) many of them are terribly packaged and c) most developers don&#8217;t use any of them.</p>
 <p>I&#8217;ve been having related conversations at recent events I&#8217;ve made it along to, including Devopsdays London which featured some good open spaces discussions on the subject. Security is one of those areas that, for many organisations, is basically outsourced to third party penetration testing firms or consultants. Specialists definitely have a role to play, but with a move towards increasingly rapid releases I think in-house security testing and monitoring is going to get more and more important.</p>
@@ -1130,7 +1198,7 @@ not maybe this post will prompt someone to do so.</p>
   <entry>
     <title type="html"><![CDATA[Government Service Design Manual]]></title>
     <link href="http://www.morethanseven.net/2013/03/23/government-service-design-manual/"/>
-    <updated>2013-03-23T17:04:00+01:00</updated>
+    <updated>2013-03-23T17:04:00-07:00</updated>
     <id>http://www.morethanseven.net/2013/03/23/government-service-design-manual</id>
     <content type="html"><![CDATA[<p>I&#8217;ve not been writing many blog posts lately, but I have been doing quite a bit of writing elsewhere. One of the things I&#8217;ve had a hand in at work is the new <a href="https://www.gov.uk/service-manual">Government Service Design Manual</a>. This is the work of many people I work with as well as further afield. It&#8217;s intended to be a good starting place to find information about building high quality digital services.</p>
 <p>The manual is in beta and we&#8217;re looking for as much feedback as possible on the whole thing. It&#8217;s already proving useful and a good way of framing the scope of discussions, but it has lots of room for improvement.</p>
@@ -1153,7 +1221,7 @@ not maybe this post will prompt someone to do so.</p>
   <entry>
     <title type="html"><![CDATA[Perils of portability]]></title>
     <link href="http://www.morethanseven.net/2013/03/23/perils-of-portability/"/>
-    <updated>2013-03-23T16:36:00+01:00</updated>
+    <updated>2013-03-23T16:36:00-07:00</updated>
     <id>http://www.morethanseven.net/2013/03/23/perils-of-portability</id>
     <content type="html"><![CDATA[<p>I had fun speaking at <a href="http://qconlondon.com/">QCon</a> in London earlier this month with a talk on the Cloud track entitled the Perils of Portability.</p>
 <p>This had some Governmenty stuff in but was mainly part rant, part hope for the future of cloud infrastructure. I had some great conversations with people afterwards who felt some of the similar pain which was nice to know. I also somehow managed to get 120 slides into a 40 minute presentation which I think is a personal records.</p>
@@ -1163,7 +1231,7 @@ not maybe this post will prompt someone to do so.</p>
   <entry>
     <title type="html"><![CDATA[March madness]]></title>
     <link href="http://www.morethanseven.net/2013/02/17/march-madness/"/>
-    <updated>2013-02-17T17:17:00+01:00</updated>
+    <updated>2013-02-17T17:17:00-08:00</updated>
     <id>http://www.morethanseven.net/2013/02/17/march-madness</id>
     <content type="html"><![CDATA[<p>With only a week or so to go before the end of February, it&#8217;s looking like March might be a little busy.</p>
 <ul>
@@ -1177,7 +1245,7 @@ not maybe this post will prompt someone to do so.</p>
   <entry>
     <title type="html"><![CDATA[Going fast in government]]></title>
     <link href="http://www.morethanseven.net/2013/02/17/going-fast-in-government/"/>
-    <updated>2013-02-17T17:08:00+01:00</updated>
+    <updated>2013-02-17T17:08:00-08:00</updated>
     <id>http://www.morethanseven.net/2013/02/17/going-fast-in-government</id>
     <content type="html"><![CDATA[<p>About a month ago I had the good fortune of speaking at the <a href="http://www.meetup.com/London-Web-Performance-Group/">London Web Performance</a> meetup. This was one of the first talks I&#8217;ve done about our work at The Government Digital Service since the luanch of <span class="caps">GOV</span>.UK back in October. The topic was all about moving quickly in a large organisation (The UK Civil Service is about 450,000 people so I think it counts) and featured just a hand full of technical and organisational tricks we used.</p>
 <script async class="speakerdeck-embed" data-id="bc48ed2042c20130b322123138156909" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script>]]></content>
@@ -1186,7 +1254,7 @@ not maybe this post will prompt someone to do so.</p>
   <entry>
     <title type="html"><![CDATA[Django and Rails presentation from QCon]]></title>
     <link href="http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon/"/>
-    <updated>2013-01-13T16:31:00+01:00</updated>
+    <updated>2013-01-13T16:31:00-08:00</updated>
     <id>http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon</id>
     <content type="html"><![CDATA[<p>I had great fun back in November at the <a href="http://qconsf.com/">QCon</a> conference in San Francisco. As well as currating one of the tracks and catching up with people in the area I managed to give the following talk.</p>
 <script async class="speakerdeck-embed" data-id="7e1dd5a03efc0130083b123139173def" data-ratio="1.33333333333333" src="http://www.morethanseven.net//speakerdeck.com/assets/embed.js"></script><p>In hindsight it might have been a bit odd to try and cover both Rails and Django examples in the one presentation but it was quite good fun putting together code examples using both of them at the same time. As well as a large set of tips, tricks and tools I settled on a few things that I think any web (or other) framework should support out of the box.</p>
@@ -1201,7 +1269,7 @@ not maybe this post will prompt someone to do so.</p>
   <entry>
     <title type="html"><![CDATA[my personal package repository]]></title>
     <link href="http://www.morethanseven.net/2012/12/30/my-personal-package-repository/"/>
-    <updated>2012-12-30T16:52:00+01:00</updated>
+    <updated>2012-12-30T16:52:00-08:00</updated>
     <id>http://www.morethanseven.net/2012/12/30/my-personal-package-repository</id>
     <content type="html"><![CDATA[<p>I&#8217;m a <a href="http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/">big fan of system packages for lots of reasons</a> and have often ended up rolling my own debian package repository at work, or working with others that have done so. Recently I finally got round to setting up a personal package repo, at <a href="http://packages.garethrushgrove.com">packages.garethrushgrove.com</a>. More interesting than the repo is probably the tool chain I used, oh and the rather nice bootstrap based styling.</p>
 <p><img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cg0LEgVJbWFnZRjh1wIM" alt="nice looking package repository"/></p>
@@ -1217,7 +1285,7 @@ rake repo:build             # Build the repository</code></pre>
   <entry>
     <title type="html"><![CDATA[On the forge]]></title>
     <link href="http://www.morethanseven.net/2012/12/03/on-the-forge/"/>
-    <updated>2012-12-03T08:18:00+01:00</updated>
+    <updated>2012-12-03T08:18:00-08:00</updated>
     <id>http://www.morethanseven.net/2012/12/03/on-the-forge</id>
     <content type="html"><![CDATA[<p>I&#8217;ve been spending a bit of time recently pushing a few Puppet modules to the <a href="http://forge.puppetlabs.com">Forge</a>. This is Puppetlabs attempt to make a central repository of reusable puppet modules. I started doing it as a bit of an experiment, to find out what I liked and what worked and I decided to writeup a few opinions.</p>
 <p>So far I&#8217;ve shipped the following modules:</p>
@@ -1261,42 +1329,9 @@ rake repo:build             # Build the repository</code></pre>
   <entry>
     <title type="html"><![CDATA[Shipping]]></title>
     <link href="http://www.morethanseven.net/2012/10/21/shipping/"/>
-    <updated>2012-10-21T21:50:00+02:00</updated>
+    <updated>2012-10-21T21:50:00-07:00</updated>
     <id>http://www.morethanseven.net/2012/10/21/shipping</id>
     <content type="html"><![CDATA[<p>Last week we shipped <a href="https://www.gov.uk"><span class="caps">GOV</span>.UK</a>. Over the last year we&#8217;ve built a team to build a website. Now we&#8217;re busy building a culture too. I&#8217;ve got so much that needs writing up about everything we&#8217;ve been up to. Hopefully I&#8217;ll make a start in the next week or so.</p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Tale Of A Grok Pattern]]></title>
-    <link href="http://www.morethanseven.net/2012/08/19/Tale-of-a-grok-pattern/"/>
-    <updated>2012-08-19T00:00:00+02:00</updated>
-    <id>http://www.morethanseven.net/2012/08/19/Tale-of-a-grok-pattern</id>
-    <content type="html"><![CDATA[<p>I&#8217;m all of a sudden adding lots more code to GitHub. Here&#8217;s the latest project, <a href="https://github.com/garethr/logstash-patterns">grok patterns for logstash</a>. At the moment this repo only contains one new pattern but I&#8217;m hoping to add more, and maybe even for others to add more too.</p>
-<p>First, a bit of background. <a href="http://logstash.net/">Logstash</a> is the excellent, open source, log agregation and processing framework. It takes inputs from various configurable places, processes them with filters and then outputs the results. So maybe you&#8217;ll take inputs from various application log files and output then into an elastic search index for easy searching, or output the same inputs to graphite and statsd to get graphs of rates. One of the host powerful filters in logstash is the <a href="http://logstash.net/docs/1.0.17/filters/grok">grok filter</a>. It takes a grok pattern and parses out information contained in the text into fields that can be more easily used by outputs. This post serves hopefully as both an explanation of why and an example of how you might do that.</p>
-<h2>The problem</h2>
-<p>Rails logs are horrible, that is until you install the excellent <a href="https://github.com/roidrage/lograge">lograge</a> output formatter. That gives you lines like:</p>
-<pre>GET /jobs/833552.json format=json action=jobs#show status=200 duration=58.33 view=40.43 db=15.26</pre>
-<p>This contains loads of useful information that&#8217;s easily parsable by a developer. We have the <span class="caps">HTTP</span> status code, the rails controller and information about response time too. A grok filter lets us teach logstash about that information too. The working grok filter for filtering this line looks like this:</p>
-<h2>The solution</h2>
-<pre>LOGRAGE %{WORD:method}%{SPACE}%{DATA}%{SPACE}action=%{WORD:controller}#%{WORD:action}%{SPACE}status=%{INT:status}%{SPACE}duration=%{NUMBER:duration}%{SPACE}view=%{NUMBER:view}(%{SPACE}db=%{NUMBER:db})?%{GREEDYDATA}</pre>
-<p>That was worked out pretty much with a bit of trial and error and use of the logstash java binary, using stdin and stdout inputs and outputs. It works but getting their wasn&#8217;t that much funand proving it works outside a running logstash setup was tricky. Enter rspec and the grok implementation in pure Ruby. The project above contains an Rspec matcher for use when testing grok filters for logstash. I&#8217;ll probably extract that into a gem at some point but you&#8217;ll get the idea. Now we can write tests like these:</p>
-<pre>the lograge grok pattern
-  with a standard lograge log line
-    should have the correct http method value
-    should have the correct value for the request duration
-    should have the correct value for the request view time
-    should have the correct controller and action
-    should have the correct value for db time
-  without the db time
-    should have the correct value for the request view time
-  with a post request
-    should have the correct http method value
-
-Finished in 0.01472 seconds
-7 examples, 0 failures
-</pre>
-<p>The <a href="https://github.com/garethr/logstash-patterns/blob/master/spec/lograge_spec.rb">tests themselves</a> are just basic Rspec with most of the work done in the <a href="https://github.com/garethr/logstash-patterns/blob/master/spec/spec_helper.rb">custom matcher</a>. This not only means I can be a bit more confident that my grok pattern works, it also provides a much nicer framework for writing more patterns for other log formats. Parsing rules like this are one area where test driven development is a huge boon in my experience. And with tests comes continuous integration, in this case via <a href="http://travis-ci.org/#!/garethr/logstash-patterns">Travis</a>.</p>
-<p>I&#8217;ll hopefully find myself writing more patterns and tests for them, and if anyone wants to send pull requests and to start collecting working grok patterns together so much the better.</p>]]></content>
   </entry>
   
 </feed>

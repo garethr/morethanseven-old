@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rest | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/rest/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Python REST Client]]></title>
     <link href="http://www.morethanseven.net/2009/02/18/python-rest-client/"/>
-    <updated>2009-02-18T00:00:00+01:00</updated>
+    <updated>2009-02-18T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/02/18/python-rest-client</id>
     <content type="html"><![CDATA[<p>I'm working on a small project involving using RESTful APIs and wanted a simple HTTP client, something that sat a little higher in the stack than "httplib2":http://code.google.com/p/httplib2/ or similar. I turned initially to the "Django Test Client":http://www.djangoproject.com/documentation/models/test_client/ which now "supports all the required methods":http://code.google.com/p/python-rest-client/ but it turned out that I'd have to unpick it from django a little.</p>
 

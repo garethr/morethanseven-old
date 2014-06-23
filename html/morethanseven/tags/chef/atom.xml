@@ -4,7 +4,7 @@
   <title><![CDATA[Category: chef | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/chef/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Talking Configuration Management, Vagrant And Chef At Lrug]]></title>
     <link href="http://www.morethanseven.net/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug/"/>
-    <updated>2011-08-11T00:00:00+02:00</updated>
+    <updated>2011-08-11T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/08/11/Talking-configuration-management-vagrant-and-chef-at-lrug</id>
     <content type="html"><![CDATA[<p>I stepped in at the last minute to do a talk at the last London Ruby User Group. From the feedback afterwards folks seemed to enyoy it and I certainly had fun. Thanks to everyone who came along.</p>
 
@@ -30,7 +30,7 @@
   <entry>
     <title type="html"><![CDATA[Version Control And Deployment Of Cron Jobs]]></title>
     <link href="http://www.morethanseven.net/2011/05/07/Version-control-and-deployment-of-cron-jobs/"/>
-    <updated>2011-05-07T00:00:00+02:00</updated>
+    <updated>2011-05-07T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/05/07/Version-control-and-deployment-of-cron-jobs</id>
     <content type="html"><![CDATA[<p>A recent question on Twitter prompted me to write a quick blog post about managing cron jobs. As more and more people want to automate provisioning and deployment of web applications some, maybe previously manually managed, items come into the fold.</p>
 
@@ -80,7 +80,7 @@ end</code></pre>
   <entry>
     <title type="html"><![CDATA[Configuration Management For Development Environments]]></title>
     <link href="http://www.morethanseven.net/2011/02/08/Configuration-management-for-development-environments/"/>
-    <updated>2011-02-08T00:00:00+01:00</updated>
+    <updated>2011-02-08T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2011/02/08/Configuration-management-for-development-environments</id>
     <content type="html"><![CDATA[<p>I had the pleasure of speaking at "Fosdem":http://www.fosdem.org/2011/ last weekend to a packed "Configuration amd systems management devroom":http://www.fosdem.org/2011/schedule/track/configuration_systems_management_devroom.</p>
 
@@ -100,7 +100,7 @@ end</code></pre>
   <entry>
     <title type="html"><![CDATA[My Default Recipes For Vagrant Virtual Machines]]></title>
     <link href="http://www.morethanseven.net/2011/01/10/My-default-recipes-for-vagrant-virtual-machines/"/>
-    <updated>2011-01-10T00:00:00+01:00</updated>
+    <updated>2011-01-10T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2011/01/10/My-default-recipes-for-vagrant-virtual-machines</id>
     <content type="html"><![CDATA[<p>I've written about "Vagrant previously":http://morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation.html and the more I use it the more it impresses me and the more it changes how I work. For those that haven't yet used "vagrant":http://vagrantup.com the brief summary is, it's a way of managing, creating and destroying headless virtualbox virtual machines. So when I'm sat at my computer and I want a new 32 bit virtual machine based on Maverick I just type.</p>
 
@@ -140,7 +140,7 @@ end</pre>
   <entry>
     <title type="html"><![CDATA[Chef Hello World]]></title>
     <link href="http://www.morethanseven.net/2010/10/30/Chef-hello-world/"/>
-    <updated>2010-10-30T00:00:00+02:00</updated>
+    <updated>2010-10-30T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2010/10/30/Chef-hello-world</id>
     <content type="html"><![CDATA[<p>I've been playing with Chef recently, in particular the solo variant. The new job at FreeAgent meant setting up new development virtual machines and rather than just jot down instructions I decided to script everything. I'd been wanting an excuse to take a look at Chef for a while and it's certainly suited to this sort of job.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ant | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/ant/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Ant for Web Developers II - Restart Apache]]></title>
     <link href="http://www.morethanseven.net/2009/06/23/ant-web-developers-ii-restart-apache/"/>
-    <updated>2009-06-23T00:00:00+02:00</updated>
+    <updated>2009-06-23T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/06/23/ant-web-developers-ii-restart-apache</id>
     <content type="html"><![CDATA[<p>Following on from "yesterdays first useful ant task":http://morethanseven.net/2009/06/22/ant-web-developers-i-backup-config-file/, here's another commonly used task - restarting a remote service. I've used apache in this example, but it could be any service running on your remote machine and it doesn't have to be the restart command.</p>
 
@@ -57,7 +57,7 @@
   <entry>
     <title type="html"><![CDATA[Ant for Web Developers I - Backup Config File]]></title>
     <link href="http://www.morethanseven.net/2009/06/22/ant-web-developers-i-backup-config-file/"/>
-    <updated>2009-06-22T00:00:00+02:00</updated>
+    <updated>2009-06-22T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/06/22/ant-web-developers-i-backup-config-file</id>
     <content type="html"><![CDATA[<p>I occasionally get "carried away":http://morethanseven.net/2009/01/24/defence-apache-ant/ with "Apache Ant":http://ant.apache.org/. For those that haven't come across it, Ant is a build tool written in Java, using an XML syntax to describe a series of repeatable tasks. In your typical web standards savvy, dynamic language favouring, web developer types that description is probably all they (think they) need to know. It's Java. It's XML. It's only really useful in the context of building software (dull).</p>
 
@@ -113,7 +113,7 @@
   <entry>
     <title type="html"><![CDATA[Epydoc Ant task]]></title>
     <link href="http://www.morethanseven.net/2009/02/23/epydoc-ant-task/"/>
-    <updated>2009-02-23T00:00:00+01:00</updated>
+    <updated>2009-02-23T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/02/23/epydoc-ant-task</id>
     <content type="html"><![CDATA[<p>I quite like "Epydoc":http://epydoc.sourceforge.net/ for generating Python API documentation, even if the interface looks a little dated and could do with a lick of paint.</p>
 
@@ -140,7 +140,7 @@
   <entry>
     <title type="html"><![CDATA[In Defence of Apache Ant]]></title>
     <link href="http://www.morethanseven.net/2009/01/24/defence-apache-ant/"/>
-    <updated>2009-01-24T00:00:00+01:00</updated>
+    <updated>2009-01-24T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/01/24/defence-apache-ant</id>
     <content type="html"><![CDATA[<p>I'm a big fan of the "Ant":http://ant.apache.org/ build tool. Their I said it. Nearly everyone else I end up talking to about build scripts (more people that you'd think, but OK, it's hardly the most exciting topic of conversation) either hates it or treats it with disdain.</p>
 

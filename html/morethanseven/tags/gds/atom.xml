@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gds | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/gds/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Going fast in government]]></title>
     <link href="http://www.morethanseven.net/2013/02/17/going-fast-in-government/"/>
-    <updated>2013-02-17T17:08:00+01:00</updated>
+    <updated>2013-02-17T17:08:00-08:00</updated>
     <id>http://www.morethanseven.net/2013/02/17/going-fast-in-government</id>
     <content type="html"><![CDATA[<p>About a month ago I had the good fortune of speaking at the "London Web Performance":http://www.meetup.com/London-Web-Performance-Group/ meetup. This was one of the first talks I've done about our work at The Government Digital Service since the luanch of GOV.UK back in October. The topic was all about moving quickly in a large organisation (The UK Civil Service is about 450,000 people so I think it counts) and featured just a hand full of technical and organisational tricks we used.</p>
 
@@ -30,7 +30,7 @@
   <entry>
     <title type="html"><![CDATA[Shipping]]></title>
     <link href="http://www.morethanseven.net/2012/10/21/shipping/"/>
-    <updated>2012-10-21T21:50:00+02:00</updated>
+    <updated>2012-10-21T21:50:00-07:00</updated>
     <id>http://www.morethanseven.net/2012/10/21/shipping</id>
     <content type="html"><![CDATA[<p>Last week we shipped "GOV.UK":https://www.gov.uk. Over the last year we've built a team to build a website. Now we're busy building a culture too. I've got so much that needs writing up about everything we've been up to. Hopefully I'll make a start in the next week or so.</p>
 ]]></content>
@@ -39,7 +39,7 @@
   <entry>
     <title type="html"><![CDATA[On Her Majesty's Digital Service]]></title>
     <link href="http://www.morethanseven.net/2011/08/19/On-her-majestys-digital-service/"/>
-    <updated>2011-08-19T00:00:00+02:00</updated>
+    <updated>2011-08-19T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/08/19/On-her-majestys-digital-service</id>
     <content type="html"><![CDATA[<p>This blog post is mainly an excuse to use the pun in the title. It's also an opportunity to tell folks that don't already know I'll be starting a new job on Monday working for the UK Government. I'm going to be work for the "Government Digital Service":http://digital.cabinetoffice.gov.uk/, a new department tasked with a pretty wide range of sorting the Government out online.</p>
 

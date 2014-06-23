@@ -4,7 +4,7 @@
   <title><![CDATA[Category: css | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/css/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Less CSS]]></title>
     <link href="http://www.morethanseven.net/2009/06/17/less-css/"/>
-    <updated>2009-06-17T00:00:00+02:00</updated>
+    <updated>2009-06-17T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/06/17/less-css</id>
     <content type="html"><![CDATA[<p>Ruby people <em>really</em> don't like CSS do they? But "Less":http://lesscss.org/ is actually pretty cool. It's basically an attempt to bootstrap features, specifically Variables, Mixins, Operations and Nested Rules, into CSS. The best part about this is it uses CSS syntax and a simple one step compiler. I'd be interested to know what the folks at the W3C think about this.</p>
 
@@ -50,7 +50,7 @@ h2 {
   <entry>
     <title type="html"><![CDATA[Universal Internet Explorer 6 CSS and different types of sites]]></title>
     <link href="http://www.morethanseven.net/2009/05/21/universal-ie6-css-and-different-types-of-sites/"/>
-    <updated>2009-05-21T00:00:00+02:00</updated>
+    <updated>2009-05-21T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/05/21/universal-ie6-css-and-different-types-of-sites</id>
     <content type="html"><![CDATA[<p>Andy Clarke, as only he can, has started something of a slagging match with his proposals for a "single, central IE6 stylesheet":http://forabeautifulweb.com/blog/about/universal_internet_explorer_6_css/. My first impression was that this is basically a much better version of the browser defaults.</p>
 
@@ -87,7 +87,7 @@ h2 {
   <entry>
     <title type="html"><![CDATA[CSS Test on GitHub]]></title>
     <link href="http://www.morethanseven.net/2008/11/22/css-test-github/"/>
-    <updated>2008-11-22T00:00:00+01:00</updated>
+    <updated>2008-11-22T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2008/11/22/css-test-github</id>
     <content type="html"><![CDATA[<p>I upload the "work I've done so far":http://github.com/garethr/css-test/tree/master on testing CSS. It's still work in progress obviously but if you're interested do let me know. I've stared with the image approach but will hopefully have something up demonstrating the selenium/rendered DOM position approach as well.</p>
 ]]></content>
@@ -96,7 +96,7 @@ h2 {
   <entry>
     <title type="html"><![CDATA[CSSDoc]]></title>
     <link href="http://www.morethanseven.net/2008/11/11/cssdoc/"/>
-    <updated>2008-11-11T00:00:00+01:00</updated>
+    <updated>2008-11-11T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2008/11/11/cssdoc</id>
     <content type="html"><![CDATA[<p>"CSSDOC":http://cssdoc.net/ looks like a good idea. I'm sure a few people mentioned this last year at @media after the talk by the people from The Guardian but nothing came from it. Hopefully tools will start to come about soon.</p>
 
@@ -107,7 +107,7 @@ h2 {
   <entry>
     <title type="html"><![CDATA[Unit Testing CSS - Looking for a Solution]]></title>
     <link href="http://www.morethanseven.net/2008/10/13/unit-testing-css-looking-solution/"/>
-    <updated>2008-10-13T00:00:00+02:00</updated>
+    <updated>2008-10-13T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2008/10/13/unit-testing-css-looking-solution</id>
     <content type="html"><![CDATA[<p>bq. I think it's an epic failure of web standards that CSS is the only essentially untestable technology invented in last decade - "Tomasz":http://twitter.com/t_a_w/statuses/957359524</p>
 

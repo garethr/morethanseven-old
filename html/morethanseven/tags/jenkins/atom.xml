@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jenkins | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/jenkins/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Talking To Jenkins From Campfire With Hubot]]></title>
     <link href="http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/"/>
-    <updated>2012-01-06T00:00:00+01:00</updated>
+    <updated>2012-01-06T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot</id>
     <content type="html"><![CDATA[<p>In what turned out to be a productive holiday hacking with languages I'd not used before, I got round to writing some coffeescript on node.js. This was more to do with scratching a personal itch that pure experimentation. I had a play with "Janky":https://github.com/github/janky (Github's Jenkins/Hubot mashup) but found it a little opinionated on the Jenkins side, but the campfire integration is excellent. Looking at the Jenkins commands in "hubot-scripts":https://github.com/github/hubot-scripts/ though I found those even more opinionated.</p>
 
@@ -42,7 +42,7 @@
   <entry>
     <title type="html"><![CDATA[First Experience Building Something With Clojure]]></title>
     <link href="http://www.morethanseven.net/2011/12/26/First-experience-building-something-with-clojure/"/>
-    <updated>2011-12-26T00:00:00+01:00</updated>
+    <updated>2011-12-26T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2011/12/26/First-experience-building-something-with-clojure</id>
     <content type="html"><![CDATA[<p>I nearly always try and grab some time over Christmas to try something new and this year I'd been planning on spending some time with Clojure. I have several friends who are big fans, but dipping in and out of a book hadn't really worked. What I needed was an itch to scratch.</p>
 
@@ -63,7 +63,7 @@
   <entry>
     <title type="html"><![CDATA[Jenkins Parameterized Builds]]></title>
     <link href="http://www.morethanseven.net/2011/11/16/Jenkins-parameterized-builds/"/>
-    <updated>2011-11-16T00:00:00+01:00</updated>
+    <updated>2011-11-16T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2011/11/16/Jenkins-parameterized-builds</id>
     <content type="html"><![CDATA[<p>I'm a huge Jenkins fan now, but that wasn't always the case. I started (and still have a soft spot for) Cruise Control, mainly building .NET and PHP applications. I then jumped to much simpler projects like "Integrity":http://integrityapp.com/ mainly for Python and Ruby projects. I reasoned I didn't need the complexity of Cruise or Hudson, I just wanted to be able to run my tests on a remote machine and have something go green or red. I then worked out that wasn't quite the case, and ended up committing webhook like functionality to Integrity so I could chain builds together. And then I eventually tried Jenkins and found it's power mixed with flexibility won me over. That's really all just context, but hopefully explains a little about why I like a few Jenkins features in particular, one of which is "Parameterized builds":https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Build.</p>
 
@@ -100,7 +100,7 @@
   <entry>
     <title type="html"><![CDATA[Jenkins Build Pipeline Example]]></title>
     <link href="http://www.morethanseven.net/2011/07/24/Jenkins-build-pipeline-example/"/>
-    <updated>2011-07-24T00:00:00+02:00</updated>
+    <updated>2011-07-24T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/07/24/Jenkins-build-pipeline-example</id>
     <content type="html"><![CDATA[<p>The idea of a build pipeline for web application deployment appears to have picked up lots of interest from the excellent "Continuous Delivery":http://continuousdelivery.com/ book. Inspired by that, some nice folks have build an excellent plugin for Jenkins unsurprisingly called the "Build Pipeline Plugin":https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin. Here's a quick example of how I'm using it for one of my projects*.</p>
 
@@ -131,7 +131,7 @@
   <entry>
     <title type="html"><![CDATA[A Continuous Deployment Example Setup]]></title>
     <link href="http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup/"/>
-    <updated>2011-03-20T00:00:00+01:00</updated>
+    <updated>2011-03-20T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup</id>
     <content type="html"><![CDATA[<p>One of the reasons behind getting around to building "Vagrantbox.es":http://www.vagrantbox.es recently was I was giving a talk to a group of startups on "The Difference Engine":http://thedifferenceengine.eu/ programme and I wanted to have an example project to demonstrate various things. I wanted to demonstrate everything from sensible version control habbits, configuration management, basic orcestration and most importantly a solid deployment process. I've decided to write up what I'm doing for deployment because I think it's pretty nice, and for all the talk about Continuous Deployment I haven't seen many examples of code and configuration to make it happen.</p>
 

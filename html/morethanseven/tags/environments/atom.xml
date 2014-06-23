@@ -4,7 +4,7 @@
   <title><![CDATA[Category: environments | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/environments/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Simulating Rails like Environments in Django]]></title>
     <link href="http://www.morethanseven.net/2008/11/01/simulating-rails-environments-django/"/>
-    <updated>2008-11-01T00:00:00+01:00</updated>
+    <updated>2008-11-01T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2008/11/01/simulating-rails-environments-django</id>
     <content type="html"><![CDATA[<p>I was always a fan of "Rail environments":http://wiki.rubyonrails.org/rails/pages/Environments and as part of some work upgrading this site to the latest version of Django I decided to clean up my whole deployment process. Part of that involved replacing everything in settings.py with the following snippet of code:</p>
 

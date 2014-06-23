@@ -4,7 +4,7 @@
   <title><![CDATA[Category: puppet facter | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/puppet-facter/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Exposing Puppet And Facter Information On The Web]]></title>
     <link href="http://www.morethanseven.net/2011/11/02/Exposing-puppet-and-facter-information-on-the-web/"/>
-    <updated>2011-11-02T00:00:00+01:00</updated>
+    <updated>2011-11-02T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/11/02/Exposing-puppet-and-facter-information-on-the-web</id>
     <content type="html"><![CDATA[<p>I don't appear to have been in a writing mood recently but I've been getting back into hacking on a couple of pet projects. The first fruits of this coding (mainly backwards and forwards on the train) I've just made available to anyone interested.</p>
 

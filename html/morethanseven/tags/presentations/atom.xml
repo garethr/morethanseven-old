@@ -4,7 +4,7 @@
   <title><![CDATA[Category: presentations | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/presentations/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Django and Rails presentation from QCon]]></title>
     <link href="http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon/"/>
-    <updated>2013-01-13T16:31:00+01:00</updated>
+    <updated>2013-01-13T16:31:00-08:00</updated>
     <id>http://www.morethanseven.net/2013/01/13/django-and-rails-presentation-from-qcon</id>
     <content type="html"><![CDATA[<p>I had great fun back in November at the "QCon":http://qconsf.com/ conference in San Francisco. As well as currating one of the tracks and catching up with people in the area I managed to give the following talk.</p>
 
@@ -38,7 +38,7 @@
   <entry>
     <title type="html"><![CDATA[Recent Projects And Talks]]></title>
     <link href="http://www.morethanseven.net/2012/03/31/Recent-projects-and-talks/"/>
-    <updated>2012-03-31T00:00:00+02:00</updated>
+    <updated>2012-03-31T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2012/03/31/Recent-projects-and-talks</id>
     <content type="html"><![CDATA[<p>I've been pretty busy with all things "GOV.UK":https://www.gov.uk recently but I've managed to get a few bits of unrelated code up and a few talks in. I'm <em>still</em> pretty busy so here's a list of some of them rather than a proper blog post.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: deployment | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/deployment/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Self Contained Jruby Web Applications]]></title>
     <link href="http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications/"/>
-    <updated>2012-04-06T00:00:00+02:00</updated>
+    <updated>2012-04-06T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications</id>
     <content type="html"><![CDATA[<p>Several things seemed to come together at once to make me want to hack on this particular project. In no particular order:</p>
 
@@ -130,7 +130,7 @@ Percentage of the requests served within a certain time (ms)
   <entry>
     <title type="html"><![CDATA[Version Control And Deployment Of Cron Jobs]]></title>
     <link href="http://www.morethanseven.net/2011/05/07/Version-control-and-deployment-of-cron-jobs/"/>
-    <updated>2011-05-07T00:00:00+02:00</updated>
+    <updated>2011-05-07T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/05/07/Version-control-and-deployment-of-cron-jobs</id>
     <content type="html"><![CDATA[<p>A recent question on Twitter prompted me to write a quick blog post about managing cron jobs. As more and more people want to automate provisioning and deployment of web applications some, maybe previously manually managed, items come into the fold.</p>
 
@@ -180,7 +180,7 @@ end</code></pre>
   <entry>
     <title type="html"><![CDATA[A Continuous Deployment Example Setup]]></title>
     <link href="http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup/"/>
-    <updated>2011-03-20T00:00:00+01:00</updated>
+    <updated>2011-03-20T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup</id>
     <content type="html"><![CDATA[<p>One of the reasons behind getting around to building "Vagrantbox.es":http://www.vagrantbox.es recently was I was giving a talk to a group of startups on "The Difference Engine":http://thedifferenceengine.eu/ programme and I wanted to have an example project to demonstrate various things. I wanted to demonstrate everything from sensible version control habbits, configuration management, basic orcestration and most importantly a solid deployment process. I've decided to write up what I'm doing for deployment because I think it's pretty nice, and for all the talk about Continuous Deployment I haven't seen many examples of code and configuration to make it happen.</p>
 
@@ -263,7 +263,7 @@ end</code></pre>
   <entry>
     <title type="html"><![CDATA[Git Pre Recieve Hook For Integrity]]></title>
     <link href="http://www.morethanseven.net/2010/07/11/Git-pre-recieve-hook-for-integrity/"/>
-    <updated>2010-07-11T00:00:00+02:00</updated>
+    <updated>2010-07-11T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2010/07/11/Git-pre-recieve-hook-for-integrity</id>
     <content type="html"><![CDATA[<p>I'm getting married rather soon so time has been somewhat short (in a good way) for just hacking on stuff, but I've finally found a little bit of time to play with something I've been mulling over for a while. Namely a continuous deployment workflow using the integrity continous integration server.</p>
 
@@ -277,7 +277,7 @@ end</code></pre>
   <entry>
     <title type="html"><![CDATA[Automating web site deployment at Barcamp Brighton]]></title>
     <link href="http://www.morethanseven.net/2009/09/06/automating-web-site-deployment-barcamp-brighton/"/>
-    <updated>2009-09-06T00:00:00+02:00</updated>
+    <updated>2009-09-06T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/09/06/automating-web-site-deployment-barcamp-brighton</id>
     <content type="html"><![CDATA[<p>On the first day at Barcamp Brighton this year I did a brief talk about getting started with automating deployment. I kept it nice and simple and didn't focus on any specific technology or tool - just the general principles and pitfalls of doing anything manually. You can see the "slides on Slideshare":</p>
 

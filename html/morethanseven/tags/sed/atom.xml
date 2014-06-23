@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sed | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/sed/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Processing large files with sed and awk]]></title>
     <link href="http://www.morethanseven.net/2010/01/26/processing-large-files-sed-and-awk/"/>
-    <updated>2010-01-26T00:00:00+01:00</updated>
+    <updated>2010-01-26T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2010/01/26/processing-large-files-sed-and-awk</id>
     <content type="html"><![CDATA[<p>I found myself using a couple of powerful but underused command line applications this week and felt like sharing.</p>
 

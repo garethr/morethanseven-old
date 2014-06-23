@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sandbox | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/sandbox/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Sandbox Your Ruby Gems]]></title>
     <link href="http://www.morethanseven.net/2010/03/21/Sandbox-your-ruby-gems/"/>
-    <updated>2010-03-21T00:00:00+01:00</updated>
+    <updated>2010-03-21T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2010/03/21/Sandbox-your-ruby-gems</id>
     <content type="html"><![CDATA[<p>I'm a huge fan of virtualenv for Python. It's a simple tool that lets you have an isolated python environment into which you can install libraries via setup tools. It makes experimenting with different versions of code easier and avoids lots of problems with hard to find bugs caused by unknown third party conflicts.</p>
 

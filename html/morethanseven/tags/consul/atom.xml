@@ -4,7 +4,7 @@
   <title><![CDATA[Category: consul | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/consul/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Consul, DNS and Dnsmasq]]></title>
     <link href="http://www.morethanseven.net/2014/04/25/consul/"/>
-    <updated>2014-04-25T10:40:00+02:00</updated>
+    <updated>2014-04-25T10:40:00-07:00</updated>
     <id>http://www.morethanseven.net/2014/04/25/consul</id>
     <content type="html"><![CDATA[<p>While at <a href="http://craft-conf.com/2014">Craft</a> I decided to have a quick look at
 <a href="http://www.consul.io/">Consul</a>, a new service discovery framework with

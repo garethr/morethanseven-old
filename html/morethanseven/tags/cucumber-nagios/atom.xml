@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cucumber-nagios | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/cucumber-nagios/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Creating A Cucumber Nagios Package With Fpm]]></title>
     <link href="http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm/"/>
-    <updated>2011-04-29T00:00:00+02:00</updated>
+    <updated>2011-04-29T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/04/29/Creating-a-cucumber-nagios-package-with-fpm</id>
     <content type="html"><![CDATA[<p>I've written "before":http://morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages.html about why I like System Packages, but even I'll admit that the barriers to creating them mean I don't use them for everything. "FPM":https://github.com/jordansissel/fpm however is making it much easier, to the point where I'm starting to create a few packages I can reuse on projects. I thought a write up of how I'm doing that for "Cucumber-Nagios":http://cucumber-nagios.org/ might be useful.</p>
 
@@ -116,7 +116,7 @@ Generating with project generator:
   <entry>
     <title type="html"><![CDATA[Mysql Support For Cucumber Nagios]]></title>
     <link href="http://www.morethanseven.net/2010/03/07/Mysql-support-for-cucumber-nagios/"/>
-    <updated>2010-03-07T00:00:00+01:00</updated>
+    <updated>2010-03-07T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2010/03/07/Mysql-support-for-cucumber-nagios</id>
     <content type="html"><![CDATA[<p>I just noticed Lindsay had "committed":http://github.com/auxesis/cucumber-nagios the amqp steps for cucumber-nagios and remembered I hadn't mentioned on here some other work I've been doing on the same project. We use MySQL quite a bit at work and I've been wanting to extent our monitoring for a while. So I set about thinking how that would work with cucumber-nagios. What I've come up with looks something like this:</p>
 

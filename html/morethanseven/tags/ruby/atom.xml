@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/ruby/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Javascript In Your Ruby: Mongoid Map Reduce]]></title>
     <link href="http://www.morethanseven.net/2011/10/10/Javascript-in-your-ruby-mongoid-map-reduce/"/>
-    <updated>2011-10-10T00:00:00+02:00</updated>
+    <updated>2011-10-10T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/10/10/Javascript-in-your-ruby-mongoid-map-reduce</id>
     <content type="html"><![CDATA[<p>We're pretty fond of "Mongodb":http://mongodb.org/ at work and I've been getting an opportunity to kick some of the more interesting tyres recently. I thought I'd document something I found myself doing here, half hoping it might be useful for anyone else with a similar problem and also to see if anyone else has a much neater approach. The examples are obviously pretty trivial, but hopefully you get the idea.</p>
 
@@ -86,7 +86,7 @@ end
   <entry>
     <title type="html"><![CDATA[Solr Libraries and Good API Design]]></title>
     <link href="http://www.morethanseven.net/2011/01/01/Solr-libraries-and-good-api-design/"/>
-    <updated>2011-01-01T00:00:00+01:00</updated>
+    <updated>2011-01-01T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2011/01/01/Solr-libraries-and-good-api-design</id>
     <content type="html"><![CDATA[<p>I'm a huge "Solr":http://wiki.apache.org/solr/ fan. Once you understand what it does (it's a search engine, which means more than you think) and how it works you spot lots of thorny problems that map to it's features really well. In my experience it's also very fast and very stable once installed and setup. Oh, and the community support is great as well.</p>
 
@@ -156,7 +156,7 @@ end
   <entry>
     <title type="html"><![CDATA[Script Running Web Interface With Websockets]]></title>
     <link href="http://www.morethanseven.net/2010/09/09/Script-running-web-interface-with-websockets/"/>
-    <updated>2010-09-09T00:00:00+02:00</updated>
+    <updated>2010-09-09T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2010/09/09/Script-running-web-interface-with-websockets</id>
     <content type="html"><![CDATA[<p>After something of a break I found a bit of time for some hacking at the weekend and decided to scratch a personal itch. I like writing shell scripts for everything from checking on things to deploying code. For anything that is more than just executing one command, or anything with detailed output or that takes a while I like to be able to see what's going on. I also like to (OK, only sometimes) let other people run those commands and not all those people want to check something out and run a console. The web maks a pretty good interface for this sort of situation.</p>
 
@@ -173,7 +173,7 @@ end
   <entry>
     <title type="html"><![CDATA[Git Pre Recieve Hook For Integrity]]></title>
     <link href="http://www.morethanseven.net/2010/07/11/Git-pre-recieve-hook-for-integrity/"/>
-    <updated>2010-07-11T00:00:00+02:00</updated>
+    <updated>2010-07-11T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2010/07/11/Git-pre-recieve-hook-for-integrity</id>
     <content type="html"><![CDATA[<p>I'm getting married rather soon so time has been somewhat short (in a good way) for just hacking on stuff, but I've finally found a little bit of time to play with something I've been mulling over for a while. Namely a continuous deployment workflow using the integrity continous integration server.</p>
 
@@ -187,7 +187,7 @@ end
   <entry>
     <title type="html"><![CDATA[Sandbox Your Ruby Gems]]></title>
     <link href="http://www.morethanseven.net/2010/03/21/Sandbox-your-ruby-gems/"/>
-    <updated>2010-03-21T00:00:00+01:00</updated>
+    <updated>2010-03-21T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2010/03/21/Sandbox-your-ruby-gems</id>
     <content type="html"><![CDATA[<p>I'm a huge fan of virtualenv for Python. It's a simple tool that lets you have an isolated python environment into which you can install libraries via setup tools. It makes experimenting with different versions of code easier and avoids lots of problems with hard to find bugs caused by unknown third party conflicts.</p>
 

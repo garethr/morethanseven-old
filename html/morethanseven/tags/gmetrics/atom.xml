@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gmetrics | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/gmetrics/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Very Simple Custom Ganglia Metrics]]></title>
     <link href="http://www.morethanseven.net/2010/06/01/Very-simple-custom-ganglia-metrics/"/>
-    <updated>2010-06-01T00:00:00+02:00</updated>
+    <updated>2010-06-01T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2010/06/01/Very-simple-custom-ganglia-metrics</id>
     <content type="html"><![CDATA[<p>Logging useful information from running systems for monitoring purposes is pretty important if you want to see how your software is behaving in the real world. It's one thing to test something locally, another to test something under load on a testing environment and quite something else to watch production code while running.</p>
 

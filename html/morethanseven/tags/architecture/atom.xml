@@ -4,7 +4,7 @@
   <title><![CDATA[Category: architecture | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/architecture/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Mixing it Up - Programming Language Choice]]></title>
     <link href="http://www.morethanseven.net/2009/04/04/mixing-it-programming-language-choice/"/>
-    <updated>2009-04-04T00:00:00+02:00</updated>
+    <updated>2009-04-04T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/04/04/mixing-it-programming-language-choice</id>
     <content type="html"><![CDATA[<p>So the "Register article about Twitter":http://www.theregister.co.uk/2009/04/01/twitter_on_scala/ seems to have kicked over yet another Ruby/Rails doesn't scale debate - mainly it seems from people who haven't read any of the back story or the real meat of the story. For anyone catching up I'd suggest reading "this recent interview":http://www.artima.com/scalazine/articles/twitter_on_scala.html with three of the Twitter developers. Ikai Lan made some particular good points about "people who don't RTFM":http://ikaisays.com/2009/04/02/twitter-ruby-on-rails-scala-and-people-who-dont-rtfa/ and the comments are well worth reading too. Tony Arcieri, of "Reia":http://wiki.reia-lang.org/ fame, took another approach and wondered why "non of the open source message queues every got a look in":http://unlimitednovelty.com/2009/04/twitter-blaming-ruby-for-their-mistakes.html</p>
 

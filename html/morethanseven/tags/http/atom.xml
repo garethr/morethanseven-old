@@ -4,7 +4,7 @@
   <title><![CDATA[Category: http | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/http/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Varnish At Refresh Cambridge]]></title>
     <link href="http://www.morethanseven.net/2011/07/07/Varnish-at-refresh-cambridge/"/>
-    <updated>2011-07-07T00:00:00+02:00</updated>
+    <updated>2011-07-07T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/07/07/Varnish-at-refresh-cambridge</id>
     <content type="html"><![CDATA[<p>I did a quick lightning talk at the Refresh Cambridge meetup last night, a very quick introduction to "Varnish":https://www.varnish-cache.org/. Given 10 minutes all I really wanted to do was get people to go away and take a look at it. Lots of folks in the room hadn't come across it before so I think the talk was hopefully well pitched.</p>
 
@@ -30,7 +30,7 @@
   <entry>
     <title type="html"><![CDATA[Debugging HTTP Headers with RedBot]]></title>
     <link href="http://www.morethanseven.net/2011/06/04/Getting-http-headers-right/"/>
-    <updated>2011-06-04T00:00:00+02:00</updated>
+    <updated>2011-06-04T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2011/06/04/Getting-http-headers-right</id>
     <content type="html"><![CDATA[<p>I've been using the "Vagrantbox.es":http://www.vagrantbox.es site as a bit of a playground recently and I've been meaning to blog about some of the overengineering I've been doing. Here's a smaller starter.</p>
 

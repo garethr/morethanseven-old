@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cucumber | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/cucumber/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Testing Vagrant runs with Cucumber]]></title>
     <link href="http://www.morethanseven.net/2014/03/15/testing-vagrant-runs-with-cucumber/"/>
-    <updated>2014-03-15T20:42:00+01:00</updated>
+    <updated>2014-03-15T20:42:00-07:00</updated>
     <id>http://www.morethanseven.net/2014/03/15/testing-vagrant-runs-with-cucumber</id>
     <content type="html"><![CDATA[<p>I've been a big fan of <a href="http://www.vagrantup.com/">Vagrant</a> since it's
 initial release and still find myself using it for various tasks.</p>
@@ -72,7 +72,7 @@ knowing the IP addresses easier.</p>
   <entry>
     <title type="html"><![CDATA[Smoke Testing With Cucumber On Sysadvent]]></title>
     <link href="http://www.morethanseven.net/2010/12/20/Smoke-testing-with-cucumber-on-sysadvent/"/>
-    <updated>2010-12-20T00:00:00+01:00</updated>
+    <updated>2010-12-20T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2010/12/20/Smoke-testing-with-cucumber-on-sysadvent</id>
     <content type="html"><![CDATA[<p>I wrote a quick article last week for the excellent "sysadvent":http://sysadvent.blogspot.com advent calendar, "Smoke Testing Deployments with Cucumber":http://sysadvent.blogspot.com/2010/12/day-17-smoke-testing-deployments-using.html talks a bit more about using a few of my favourite tools to check whether a deployment just broke anything important.</p>
 ]]></content>
@@ -81,7 +81,7 @@ knowing the IP addresses easier.</p>
   <entry>
     <title type="html"><![CDATA[RabbitMQ support for Cucumber-nagios]]></title>
     <link href="http://www.morethanseven.net/2010/01/30/rabbitmq-support-cucumber-nagios/"/>
-    <updated>2010-01-30T00:00:00+01:00</updated>
+    <updated>2010-01-30T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2010/01/30/rabbitmq-support-cucumber-nagios</id>
     <content type="html"><![CDATA[<p>I've been doing more operations related work of late and am starting to use "Cucumber-nagios":http://auxesis.github.com/cucumber-nagios/ for various monitoring tasks. "Nagios":http://www.nagios.org/ might not be the most attractive of web interfaces but it's so simple to get clients up and running and extend to do what you need. Cucumber however has a lovely, text based, user interface. And although I'm mainly working with Python at the moment cucumber-nagios (written in Ruby) really is the easiest way I've found of writing simple functional tests.</p>
 

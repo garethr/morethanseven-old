@@ -4,7 +4,7 @@
   <title><![CDATA[Category: settings | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/settings/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Let you Sys Admin Override your Django Settings]]></title>
     <link href="http://www.morethanseven.net/2009/02/15/let-you-sys-admin-override-your-django-settings/"/>
-    <updated>2009-02-15T00:00:00+01:00</updated>
+    <updated>2009-02-15T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/02/15/let-you-sys-admin-override-your-django-settings</id>
     <content type="html"><![CDATA[<p>The previous "Django settings tip":http://morethanseven.net/2009/02/11/django-settings-tip-setting-relative-paths/ seemed to go down well so I thought I'd jot down a few more over the next few weeks. Most of these have come out of working with a decent sized Django team at "Global":http://thisisglobal.com so I can't take credit for anything but writing them down for the most part. For this example I think "Alex Knowles":http://alixandalex.com/obfuscated-signatures/ did the original version.</p>
 
@@ -58,7 +58,7 @@ pass
   <entry>
     <title type="html"><![CDATA[Django Settings Tip - Setting Relative Paths ]]></title>
     <link href="http://www.morethanseven.net/2009/02/11/django-settings-tip-setting-relative-paths/"/>
-    <updated>2009-02-11T00:00:00+01:00</updated>
+    <updated>2009-02-11T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/02/11/django-settings-tip-setting-relative-paths</id>
     <content type="html"><![CDATA[<p>Django settings files are pretty interesting. Rather than being written in some sort of purely declarative markup they just use Python. This brings both lots of power as well as the ability to do things in the settings file that you probably shouldn't do.</p>
 

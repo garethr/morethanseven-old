@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wsgi | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/wsgi/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Django and WSGI deployment on Solaris]]></title>
     <link href="http://www.morethanseven.net/2009/08/21/django-wsgi-deployment-solaris/"/>
-    <updated>2009-08-21T00:00:00+02:00</updated>
+    <updated>2009-08-21T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/08/21/django-wsgi-deployment-solaris</id>
     <content type="html"><![CDATA[<p>Now I'm generally an Ubuntu guy, but I've just had the need to setup some boxes running Solaris for Django and a handful of WSGI applications. I know my way around Ubuntu pretty well. I know all the packages I need to install and in what order. Hell, I even have all that scripted so I can just run a command and it works by magic. I'll script the following steps if I can do when I get round to it but here, in one list, are the installation instructions for Apache, mod_wsgi, Mysql, MySQLdb, setuptools and memcached that worked for me on the latest version of "Open Solaris":http://www.opensolaris.com/ (2009.06 at the time of writing).</p>
 
@@ -113,7 +113,7 @@ svcadm enable memcached</pre>
   <entry>
     <title type="html"><![CDATA[Urltest on PyPi]]></title>
     <link href="http://www.morethanseven.net/2009/06/24/urltest-pypi/"/>
-    <updated>2009-06-24T00:00:00+02:00</updated>
+    <updated>2009-06-24T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/06/24/urltest-pypi</id>
     <content type="html"><![CDATA[<p>I've been meaning to add some of my code to the "Python Package Index":http://pypi.python.org for a while and  have finally gotten around to it with "Urltest":http://github.com/garethr/urltest/tree/master, my simple DSL for testing WSGI apps.</p>
 
@@ -150,7 +150,7 @@ python setup.py bdist_egg upload</p>
   <entry>
     <title type="html"><![CDATA[Testing WSGI Application with Urltest]]></title>
     <link href="http://www.morethanseven.net/2009/06/04/testing-wsgi-application-urltest/"/>
-    <updated>2009-06-04T00:00:00+02:00</updated>
+    <updated>2009-06-04T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/06/04/testing-wsgi-application-urltest</id>
     <content type="html"><![CDATA[<p>I found myself wanted something to make writing high level, functional tests for WSGI application easier and quicker. If I liked the term I'd call it a domain specific language for testing URLs. Basically I found myself writing a lot of tests like:</p>
 
@@ -183,7 +183,7 @@ verify_urls(urls, application)
   <entry>
     <title type="html"><![CDATA[Simple WSGI Middleware (for App Engine)]]></title>
     <link href="http://www.morethanseven.net/2009/03/18/simple-wsgi-middleware-app-engine/"/>
-    <updated>2009-03-18T00:00:00+01:00</updated>
+    <updated>2009-03-18T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/03/18/simple-wsgi-middleware-app-engine</id>
     <content type="html"><![CDATA[<p>bq. WSGI is the Web Server Gateway Interface. It is a specification for web servers and application servers to communicate with web applications (though it can also be used for more than that). It is a Python standard, described in detail in "PEP 333":http://www.python.org/dev/peps/pep-0333/.</p>
 

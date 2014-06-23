@@ -4,7 +4,7 @@
   <title><![CDATA[Category: djugl | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/djugl/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[DJUGL February]]></title>
     <link href="http://www.morethanseven.net/2010/02/11/djugl-february/"/>
-    <updated>2010-02-11T00:00:00+01:00</updated>
+    <updated>2010-02-11T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2010/02/11/djugl-february</id>
     <content type="html"><![CDATA[<p>The next Django User Group London is in two weeks time. You can register over on "Eventwax":http://londonpython.eventwax.com/djugl-february. So far we have "Brad":http://intranation.com talking with more speakers to be announced shortly. Hope to see a few people there.</p>
 ]]></content>
@@ -25,7 +25,7 @@
   <entry>
     <title type="html"><![CDATA[DJUGL December]]></title>
     <link href="http://www.morethanseven.net/2009/11/05/djugl-december/"/>
-    <updated>2009-11-05T00:00:00+01:00</updated>
+    <updated>2009-11-05T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/11/05/djugl-december</id>
     <content type="html"><![CDATA[<p>As mentioned at the last event I've taken over organising the Django User Group London event from Rob. Tickets are now available for the next event which is going to be on the 3rd of December at The Guardian offices in Kings Cross.</p>
 
@@ -36,7 +36,7 @@
   <entry>
     <title type="html"><![CDATA[Another chance to DJUGL]]></title>
     <link href="http://www.morethanseven.net/2009/08/31/another-chance-djugl/"/>
-    <updated>2009-08-31T00:00:00+02:00</updated>
+    <updated>2009-08-31T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2009/08/31/another-chance-djugl</id>
     <content type="html"><![CDATA[<p>"DJUGL":http://djugl.eventwax.com/djugllondon-python is back, the <em>monthly</em> Django meetup in London. I think the last few times have been as much about useful Python stuff as just using Django, and this time it's officially a bit more broad ranging. If you're in or around London on the 24th September then come along.</p>
 
@@ -51,7 +51,7 @@
   <entry>
     <title type="html"><![CDATA[Django Testing Presentation at DJUGL]]></title>
     <link href="http://www.morethanseven.net/2009/01/20/django-testing-presentation-djugl/"/>
-    <updated>2009-01-20T00:00:00+01:00</updated>
+    <updated>2009-01-20T00:00:00-08:00</updated>
     <id>http://www.morethanseven.net/2009/01/20/django-testing-presentation-djugl</id>
     <content type="html"><![CDATA[<p>The second "Django User Group (DJUGL)":http://upcoming.yahoo.com/event/1463406 meeting was last night and was a great success as far as I could tell. Our boardroom at work was chock full of budding Django developers and interested parties - 70 people or so in all. Good work by Rob to get everything back on track at the start of the year and the next event is already planned for the back end of February so I hear. More news soon on the "mailing list":http://groups.google.com/group/django-london hopefully.</p>
 

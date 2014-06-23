@@ -4,7 +4,7 @@
   <title><![CDATA[Category: riemann | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/riemann/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Riemann Puppet Module]]></title>
     <link href="http://www.morethanseven.net/2012/08/11/Riemann-puppet-module/"/>
-    <updated>2012-08-11T00:00:00+02:00</updated>
+    <updated>2012-08-11T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2012/08/11/Riemann-puppet-module</id>
     <content type="html"><![CDATA[<p>Thanks to an "errant tweet":https://twitter.com/bitprophet/status/233626675307479040 I started playing with "Riemann":http://aphyr.github.com/riemann/ again. It ticks lots of boxes for me, from the clojure to configuration as code and the overloadable dashboard application. What started as using Puppet and Vagrant to investigate Riemann turned into a full blown tool and module writing exercise, resulting in two related projects on GitHub.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: stomp | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/stomp/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-04-25T12:11:25+02:00</updated>
+  <updated>2014-06-23T08:46:24-07:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Using Python and Stompserver to Get Started With Message Queues]]></title>
     <link href="http://www.morethanseven.net/2008/09/14/using-python-and-stompserver-get-started-message-q/"/>
-    <updated>2008-09-14T00:00:00+02:00</updated>
+    <updated>2008-09-14T00:00:00-07:00</updated>
     <id>http://www.morethanseven.net/2008/09/14/using-python-and-stompserver-get-started-message-q</id>
     <content type="html"><![CDATA[<p>Message Queues are cool. It's official. Now, banks and financial institutions have been using big Enterprise Java message systems for years. But it's only really over the last year or two that the web community at large have got interested. Wonder what all the interest is in Erlang, Scala or Haskell? Distributed systems and a lack of shared state - hopefully leading to some sort of scalability nirvana - that's what.</p>
 
