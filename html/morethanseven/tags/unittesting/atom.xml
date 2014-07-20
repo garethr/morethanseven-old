@@ -4,7 +4,7 @@
   <title><![CDATA[Category: unittesting | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/unittesting/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Unit Testing CSS - Looking for a Solution]]></title>
     <link href="http://www.morethanseven.net/2008/10/13/unit-testing-css-looking-solution/"/>
-    <updated>2008-10-13T00:00:00-07:00</updated>
+    <updated>2008-10-13T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2008/10/13/unit-testing-css-looking-solution</id>
     <content type="html"><![CDATA[<p>bq. I think it's an epic failure of web standards that CSS is the only essentially untestable technology invented in last decade - "Tomasz":http://twitter.com/t_a_w/statuses/957359524</p>
 

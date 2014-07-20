@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nginx | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/nginx/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Static Sites With Nginx On Heroku]]></title>
     <link href="http://www.morethanseven.net/2012/06/05/Static-sites-with-nginx-on-heroku/"/>
-    <updated>2012-06-05T00:00:00-07:00</updated>
+    <updated>2012-06-05T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2012/06/05/Static-sites-with-nginx-on-heroku</id>
     <content type="html"><![CDATA[<p>I have a few static sites on Heroku but in one case in particular I already had quite an involved nginx configuration - mainly 410s for some previous content and a series of redirects from older versions of the site. The common way of having static sites on Heroku appears to be to use a simple Rack middleware, but that would have meant reimplementing lots of boring redirect logic.</p>
 

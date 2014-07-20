@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ganglia | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/ganglia/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[New Ganglia Web Interface Improvements]]></title>
     <link href="http://www.morethanseven.net/2011/06/26/New-ganglia-web-interface-improvements/"/>
-    <updated>2011-06-26T00:00:00-07:00</updated>
+    <updated>2011-06-26T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/06/26/New-ganglia-web-interface-improvements</id>
     <content type="html"><![CDATA[<p>So I'm a huge "Ganglia":http://ganglia.sourceforge.net/ fan. It's my go-to tool for standard low level metrics and for more ad-hoc higher level stuff as well. So I'm very happy to see the "newly released":http://ganglia.info/?p=393 version of the Ganglia Web interface.</p>
 
@@ -49,7 +49,7 @@
   <entry>
     <title type="html"><![CDATA[Collecting Metrics With Ganglia And Friends]]></title>
     <link href="http://www.morethanseven.net/2011/04/02/Collecting-metrics-with-ganglia-and-friends/"/>
-    <updated>2011-04-02T00:00:00-07:00</updated>
+    <updated>2011-04-02T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/04/02/Collecting-metrics-with-ganglia-and-friends</id>
     <content type="html"><![CDATA[<p>I had the pleasure of speaking at "Cambridge Geek Night":http://cambridgegeeknights.net/ on Monday again, the topic of conversation being using Ganglia to collect more than just base systems metrics.</p>
 
@@ -65,7 +65,7 @@
   <entry>
     <title type="html"><![CDATA[Very Simple Custom Ganglia Metrics]]></title>
     <link href="http://www.morethanseven.net/2010/06/01/Very-simple-custom-ganglia-metrics/"/>
-    <updated>2010-06-01T00:00:00-07:00</updated>
+    <updated>2010-06-01T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2010/06/01/Very-simple-custom-ganglia-metrics</id>
     <content type="html"><![CDATA[<p>Logging useful information from running systems for monitoring purposes is pretty important if you want to see how your software is behaving in the real world. It's one thing to test something locally, another to test something under load on a testing environment and quite something else to watch production code while running.</p>
 

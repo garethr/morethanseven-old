@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gds | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/gds/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -14,9 +14,63 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Leaving GDS never easy]]></title>
+    <link href="http://www.morethanseven.net/2014/07/20/leaving-gds-never-easy/"/>
+    <updated>2014-07-20T20:10:00+01:00</updated>
+    <id>http://www.morethanseven.net/2014/07/20/leaving-gds-never-easy</id>
+    <content type="html"><![CDATA[<p><em>The following is the email I sent to lots of my colleagues at the
+<a href="https://gds.blog.gov.uk/">Government Digital Service</a> last week.</em></p>
+
+<p>So, after 3 rather exciting years I've decided to leave GDS.</p>
+
+<p>That's surprisingly difficult to write if I'm honest.</p>
+
+<p>I was part of the team that built and shipped the beta of <a href="https://www.gov.uk">GOV.UK</a>.
+Since then I've worked across half of what has become GDS, equally
+helping and frustrating (then hopefully helping) lots of you. I've
+done a great deal and learnt even more, as well as collected arcane
+knowledge about government infosec and the dark arts of procurement
+along the way. I've done, and helped others do, work I wouldn't even
+have thought possible (or maybe likely is the right word?) when I
+started.</p>
+
+<p>So why leave? For all the other things I do I'm basically a tool
+builder. So I'm going off to work for <a href="http://puppetlabs.com">Puppet Labs</a> to build
+infrastructure tools that don't suck. That sort of pretty specific
+work is something that <em>should</em> be done outside government in my
+opinion. I'm a pretty firm believer in "government should only do what
+only government can do" (<a href="https://www.gov.uk/design-principles#second">design principle number 2</a> for those that
+haven't memorised them yet). And if I'm honest, focusing on something
+smaller than fixing a country's civic infrastructure is appealing for
+now.</p>
+
+<p>I'll let you in on a secret; I didn't join what became GDS because of
+the GOV.UK project. I joined to work with friends I'd not yet had the
+chance to work with and to see the inside of a growing organisation
+from the start. I remember <a href="http://twitter.com/tomskitomski">Tom Loosemore</a> promising me we'd be 200
+people in 3 years! As far as anyone knows we're 650+ people. That's
+about a person a day for 2 years. I'm absolutely not saying that came
+without a cost, but for me being part of that that was part of the
+point - so I can be a little accepting with hindsight.</p>
+
+<p>For me, apart from all the short term things (side-note: this job now
+has me thinking £10million is a small amount of money and 2 years is a
+small amount of time) there is one big mission:</p>
+
+<blockquote><p>Make government a sustainable part of the UK tech community</p></blockquote>
+
+<p>That means in 10 years time experienced tech people from across the
+country, as well as people straight from university, choosing to work
+for government. Not just for some abstract and personal reason (though
+that's fine too), but because it's a a genuinely interesting place to
+work. That one's on us.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Going fast in government]]></title>
     <link href="http://www.morethanseven.net/2013/02/17/going-fast-in-government/"/>
-    <updated>2013-02-17T17:08:00-08:00</updated>
+    <updated>2013-02-17T17:08:00+00:00</updated>
     <id>http://www.morethanseven.net/2013/02/17/going-fast-in-government</id>
     <content type="html"><![CDATA[<p>About a month ago I had the good fortune of speaking at the "London Web Performance":http://www.meetup.com/London-Web-Performance-Group/ meetup. This was one of the first talks I've done about our work at The Government Digital Service since the luanch of GOV.UK back in October. The topic was all about moving quickly in a large organisation (The UK Civil Service is about 450,000 people so I think it counts) and featured just a hand full of technical and organisational tricks we used.</p>
 
@@ -30,7 +84,7 @@
   <entry>
     <title type="html"><![CDATA[Shipping]]></title>
     <link href="http://www.morethanseven.net/2012/10/21/shipping/"/>
-    <updated>2012-10-21T21:50:00-07:00</updated>
+    <updated>2012-10-21T21:50:00+01:00</updated>
     <id>http://www.morethanseven.net/2012/10/21/shipping</id>
     <content type="html"><![CDATA[<p>Last week we shipped "GOV.UK":https://www.gov.uk. Over the last year we've built a team to build a website. Now we're busy building a culture too. I've got so much that needs writing up about everything we've been up to. Hopefully I'll make a start in the next week or so.</p>
 ]]></content>
@@ -39,7 +93,7 @@
   <entry>
     <title type="html"><![CDATA[On Her Majesty's Digital Service]]></title>
     <link href="http://www.morethanseven.net/2011/08/19/On-her-majestys-digital-service/"/>
-    <updated>2011-08-19T00:00:00-07:00</updated>
+    <updated>2011-08-19T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/08/19/On-her-majestys-digital-service</id>
     <content type="html"><![CDATA[<p>This blog post is mainly an excuse to use the pun in the title. It's also an opportunity to tell folks that don't already know I'll be starting a new job on Monday working for the UK Government. I'm going to be work for the "Government Digital Service":http://digital.cabinetoffice.gov.uk/, a new department tasked with a pretty wide range of sorting the Government out online.</p>
 

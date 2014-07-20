@@ -4,7 +4,7 @@
   <title><![CDATA[Category: clojure | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/clojure/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[First Experience Building Something With Clojure]]></title>
     <link href="http://www.morethanseven.net/2011/12/26/First-experience-building-something-with-clojure/"/>
-    <updated>2011-12-26T00:00:00-08:00</updated>
+    <updated>2011-12-26T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2011/12/26/First-experience-building-something-with-clojure</id>
     <content type="html"><![CDATA[<p>I nearly always try and grab some time over Christmas to try something new and this year I'd been planning on spending some time with Clojure. I have several friends who are big fans, but dipping in and out of a book hadn't really worked. What I needed was an itch to scratch.</p>
 

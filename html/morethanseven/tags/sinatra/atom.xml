@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sinatra | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/sinatra/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Sinatra On Glassfish Example]]></title>
     <link href="http://www.morethanseven.net/2010/11/28/Sinatra-on-glassfish-example/"/>
-    <updated>2010-11-28T00:00:00-08:00</updated>
+    <updated>2010-11-28T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2010/11/28/Sinatra-on-glassfish-example</id>
     <content type="html"><![CDATA[<p>I magically turned into a Java developer last week for a bit when I had to do some integration with a SOAP based API that really really wanted me to write Java on client as well. That led me down the route of having a good look at Jruby (which I've used before, mainly for testing using celerity) and in particular how easy it was to use native Java classes in Jruby (very, very easy as it turns out).</p>
 
@@ -82,7 +82,7 @@ end</pre>
   <entry>
     <title type="html"><![CDATA[Sinatra Simple Example]]></title>
     <link href="http://www.morethanseven.net/2009/02/01/sinatra-simple-example/"/>
-    <updated>2009-02-01T00:00:00-08:00</updated>
+    <updated>2009-02-01T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2009/02/01/sinatra-simple-example</id>
     <content type="html"><![CDATA[<p>I've been playing around with the "Sinarta":http://www.sinatrarb.com/ Ruby web development framework recently and building a "larger than usual Hello World Example":http://github.com/garethr/sinatra-hello-world. It's describes itself as <em>a DSL for quickly creating web-applications in Ruby with minimal effort</em> (what is it about Ruby people and their obsession with calling everything a DSL?). In reality it's a great little web framework. It deals with a minimal set of the things you really need to do as part of any application - URL handling and routing, HTTP request and response handling, etc. It reminds me of "web.py":http://webpy.org/ in it's minimalist approach which is definitely a good thing.</p>
 

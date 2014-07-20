@@ -4,7 +4,7 @@
   <title><![CDATA[Category: integrity | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/integrity/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Git Pre Recieve Hook For Integrity]]></title>
     <link href="http://www.morethanseven.net/2010/07/11/Git-pre-recieve-hook-for-integrity/"/>
-    <updated>2010-07-11T00:00:00-07:00</updated>
+    <updated>2010-07-11T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2010/07/11/Git-pre-recieve-hook-for-integrity</id>
     <content type="html"><![CDATA[<p>I'm getting married rather soon so time has been somewhat short (in a good way) for just hacking on stuff, but I've finally found a little bit of time to play with something I've been mulling over for a while. Namely a continuous deployment workflow using the integrity continous integration server.</p>
 
@@ -30,7 +30,7 @@
   <entry>
     <title type="html"><![CDATA[Local Continuous Integration with Integrity]]></title>
     <link href="http://www.morethanseven.net/2008/12/28/local-continuous-integration-integrity/"/>
-    <updated>2008-12-28T00:00:00-08:00</updated>
+    <updated>2008-12-28T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2008/12/28/local-continuous-integration-integrity</id>
     <content type="html"><![CDATA[<p>"Integrity":http://integrityapp.com/ is ace. I'm a huge fan of working under the ever watchful eye of a "Continuous Integration":http://en.wikipedia.org/wiki/Continuous_integration server. I'm also becoming more and more of a fan of Git, and "GitHub":http://github.com, for my "personal projects":http://github.com/garethr. At work we run "CruiseControl":http://cruisecontrol.sourceforge.net/ and it does it's job well, but locally I only use it for larger projects. It comes with a little overhead and if I'm just hacking on the train I rarely check on it's status.</p>
 

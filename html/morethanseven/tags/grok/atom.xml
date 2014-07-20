@@ -4,7 +4,7 @@
   <title><![CDATA[Category: grok | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/grok/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Tale Of A Grok Pattern]]></title>
     <link href="http://www.morethanseven.net/2012/08/19/Tale-of-a-grok-pattern/"/>
-    <updated>2012-08-19T00:00:00-07:00</updated>
+    <updated>2012-08-19T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2012/08/19/Tale-of-a-grok-pattern</id>
     <content type="html"><![CDATA[<p>I'm all of a sudden adding lots more code to GitHub. Here's the latest project, "grok patterns for logstash":https://github.com/garethr/logstash-patterns. At the moment this repo only contains one new pattern but I'm hoping to add more, and maybe even for others to add more too.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: solaris | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/solaris/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Django and WSGI deployment on Solaris]]></title>
     <link href="http://www.morethanseven.net/2009/08/21/django-wsgi-deployment-solaris/"/>
-    <updated>2009-08-21T00:00:00-07:00</updated>
+    <updated>2009-08-21T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/08/21/django-wsgi-deployment-solaris</id>
     <content type="html"><![CDATA[<p>Now I'm generally an Ubuntu guy, but I've just had the need to setup some boxes running Solaris for Django and a handful of WSGI applications. I know my way around Ubuntu pretty well. I know all the packages I need to install and in what order. Hell, I even have all that scripted so I can just run a command and it works by magic. I'll script the following steps if I can do when I get round to it but here, in one list, are the installation instructions for Apache, mod_wsgi, Mysql, MySQLdb, setuptools and memcached that worked for me on the latest version of "Open Solaris":http://www.opensolaris.com/ (2009.06 at the time of writing).</p>
 

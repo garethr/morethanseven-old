@@ -4,7 +4,7 @@
   <title><![CDATA[Category: image-host | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/image-host/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Hosting Images on App Engine]]></title>
     <link href="http://www.morethanseven.net/2009/02/05/hosting-images-app-engine/"/>
-    <updated>2009-02-05T00:00:00-08:00</updated>
+    <updated>2009-02-05T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2009/02/05/hosting-images-app-engine</id>
     <content type="html"><![CDATA[<p>I like adding images to the occasional blog post but don't do it as often as I want to. The reason being I can hardly ever be bothered to resize images. It means opening up a memory hogging application, fiddling around for a few minutes and then saving it out somewhere, then uploading said image to my server. All of those things bore me.</p>
 

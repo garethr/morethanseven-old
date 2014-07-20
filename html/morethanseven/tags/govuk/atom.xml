@@ -4,7 +4,7 @@
   <title><![CDATA[Category: govuk | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/govuk/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Government Service Design Manual]]></title>
     <link href="http://www.morethanseven.net/2013/03/23/government-service-design-manual/"/>
-    <updated>2013-03-23T17:04:00-07:00</updated>
+    <updated>2013-03-23T17:04:00+00:00</updated>
     <id>http://www.morethanseven.net/2013/03/23/government-service-design-manual</id>
     <content type="html"><![CDATA[<p>I've not been writing many blog posts lately, but I have been doing quite a bit of writing elsewhere. One of the things I've had a hand in at work is the new "Government Service Design Manual":https://www.gov.uk/service-manual. This is the work of many people I work with as well as further afield. It's intended to be a good starting place to find information about building high quality digital services.</p>
 
@@ -46,7 +46,7 @@
   <entry>
     <title type="html"><![CDATA[Going fast in government]]></title>
     <link href="http://www.morethanseven.net/2013/02/17/going-fast-in-government/"/>
-    <updated>2013-02-17T17:08:00-08:00</updated>
+    <updated>2013-02-17T17:08:00+00:00</updated>
     <id>http://www.morethanseven.net/2013/02/17/going-fast-in-government</id>
     <content type="html"><![CDATA[<p>About a month ago I had the good fortune of speaking at the "London Web Performance":http://www.meetup.com/London-Web-Performance-Group/ meetup. This was one of the first talks I've done about our work at The Government Digital Service since the luanch of GOV.UK back in October. The topic was all about moving quickly in a large organisation (The UK Civil Service is about 450,000 people so I think it counts) and featured just a hand full of technical and organisational tricks we used.</p>
 
@@ -60,7 +60,7 @@
   <entry>
     <title type="html"><![CDATA[Shipping]]></title>
     <link href="http://www.morethanseven.net/2012/10/21/shipping/"/>
-    <updated>2012-10-21T21:50:00-07:00</updated>
+    <updated>2012-10-21T21:50:00+01:00</updated>
     <id>http://www.morethanseven.net/2012/10/21/shipping</id>
     <content type="html"><![CDATA[<p>Last week we shipped "GOV.UK":https://www.gov.uk. Over the last year we've built a team to build a website. Now we're busy building a culture too. I've got so much that needs writing up about everything we've been up to. Hopefully I'll make a start in the next week or so.</p>
 ]]></content>
@@ -69,7 +69,7 @@
   <entry>
     <title type="html"><![CDATA[Dashboards At Gov.Uk]]></title>
     <link href="http://www.morethanseven.net/2012/02/19/Dashboards-at-govuk/"/>
-    <updated>2012-02-19T00:00:00-08:00</updated>
+    <updated>2012-02-19T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2012/02/19/Dashboards-at-govuk</id>
     <content type="html"><![CDATA[<p>This is a bit of a cheat blog post really. I've been crazy busy all month with little time for anything except work (specifically shipping the first release of "www.gov.uk":https://www.gov.uk/). I have had a little time to blog over on the Cabinet Office blog though, about work we've done with dashboards.</p>
 

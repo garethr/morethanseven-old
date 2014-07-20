@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jruby | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/jruby/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Self Contained Jruby Web Applications]]></title>
     <link href="http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications/"/>
-    <updated>2012-04-06T00:00:00-07:00</updated>
+    <updated>2012-04-06T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2012/04/06/Self-contained-jruby-web-applications</id>
     <content type="html"><![CDATA[<p>Several things seemed to come together at once to make me want to hack on this particular project. In no particular order:</p>
 
@@ -130,7 +130,7 @@ Percentage of the requests served within a certain time (ms)
   <entry>
     <title type="html"><![CDATA[Smoke Testing With Cucumber On Sysadvent]]></title>
     <link href="http://www.morethanseven.net/2010/12/20/Smoke-testing-with-cucumber-on-sysadvent/"/>
-    <updated>2010-12-20T00:00:00-08:00</updated>
+    <updated>2010-12-20T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2010/12/20/Smoke-testing-with-cucumber-on-sysadvent</id>
     <content type="html"><![CDATA[<p>I wrote a quick article last week for the excellent "sysadvent":http://sysadvent.blogspot.com advent calendar, "Smoke Testing Deployments with Cucumber":http://sysadvent.blogspot.com/2010/12/day-17-smoke-testing-deployments-using.html talks a bit more about using a few of my favourite tools to check whether a deployment just broke anything important.</p>
 ]]></content>
@@ -139,7 +139,7 @@ Percentage of the requests served within a certain time (ms)
   <entry>
     <title type="html"><![CDATA[Sinatra On Glassfish Example]]></title>
     <link href="http://www.morethanseven.net/2010/11/28/Sinatra-on-glassfish-example/"/>
-    <updated>2010-11-28T00:00:00-08:00</updated>
+    <updated>2010-11-28T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2010/11/28/Sinatra-on-glassfish-example</id>
     <content type="html"><![CDATA[<p>I magically turned into a Java developer last week for a bit when I had to do some integration with a SOAP based API that really really wanted me to write Java on client as well. That led me down the route of having a good look at Jruby (which I've used before, mainly for testing using celerity) and in particular how easy it was to use native Java classes in Jruby (very, very easy as it turns out).</p>
 

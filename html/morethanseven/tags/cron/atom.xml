@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cron | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/cron/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Version Control And Deployment Of Cron Jobs]]></title>
     <link href="http://www.morethanseven.net/2011/05/07/Version-control-and-deployment-of-cron-jobs/"/>
-    <updated>2011-05-07T00:00:00-07:00</updated>
+    <updated>2011-05-07T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/05/07/Version-control-and-deployment-of-cron-jobs</id>
     <content type="html"><![CDATA[<p>A recent question on Twitter prompted me to write a quick blog post about managing cron jobs. As more and more people want to automate provisioning and deployment of web applications some, maybe previously manually managed, items come into the fold.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: memcache | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/memcache/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Gmemsess]]></title>
     <link href="http://www.morethanseven.net/2008/12/06/gmemsess/"/>
-    <updated>2008-12-06T00:00:00-08:00</updated>
+    <updated>2008-12-06T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2008/12/06/gmemsess</id>
     <content type="html"><![CDATA[<p>I've been looking at different ways of using simple sessions on App Engine, in particular for one shot flash messaging after redirects and the like. Their are some issues with Cookie support at the moment but  "Gmemsess":http://code.google.com/p/gmemsess/ solved my problem perfectly.</p>
 

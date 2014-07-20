@@ -4,7 +4,7 @@
   <title><![CDATA[Category: brightbox | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/brightbox/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Site For Vagrant Base Boxes]]></title>
     <link href="http://www.morethanseven.net/2011/03/12/Site-for-vagrant-base-boxes/"/>
-    <updated>2011-03-12T00:00:00-08:00</updated>
+    <updated>2011-03-12T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2011/03/12/Site-for-vagrant-base-boxes</id>
     <content type="html"><![CDATA[<p>A brief "conversation with Matt Keating":https://twitter.com/#!/garethr/status/40785392445685760 on Twitter finally pushed me over the edge and I've built a site I'd been meaning to do for a while.</p>
 

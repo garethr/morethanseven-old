@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vmware | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/vmware/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Python On Cloudfoundry]]></title>
     <link href="http://www.morethanseven.net/2011/05/15/Python-on-cloudfoundry/"/>
-    <updated>2011-05-15T00:00:00-07:00</updated>
+    <updated>2011-05-15T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/05/15/Python-on-cloudfoundry</id>
     <content type="html"><![CDATA[<p>For those that haven't yet had a look "Cloudfoundry":http://cloudfoundry.com/ from VMware is two things, one of which is nice, one of which is very cool indeed:</p>
 
@@ -41,7 +41,7 @@
   <entry>
     <title type="html"><![CDATA[Why You Should Be Using Virtualisation]]></title>
     <link href="http://www.morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation/"/>
-    <updated>2010-11-04T00:00:00-07:00</updated>
+    <updated>2010-11-04T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2010/11/04/Why-you-should-be-using-virtualisation</id>
     <content type="html"><![CDATA[<p>My main development machine for a while has been an apple laptop. From looking around at conferences, offices and usergroups I know I'm not alone. But I don't really <em>run</em> code on my mac very often, certainly not for work. I might edit the code on my mac but I execute it running in a virtualised Linux environment matching (as close as possible) the production environment it's going to end up in. This blog post is an attempt to explain why this is a good idea to the majority of people who develop on a mac (or a windows machine) and deploy to something else. This isn't language specific either. You might be working on small PHP web sites or huge Python applications, you'll still one day run into the same issues.</p>
 
@@ -153,7 +153,7 @@ vagrant up</pre>
   <entry>
     <title type="html"><![CDATA[Headless VMWare Fusion]]></title>
     <link href="http://www.morethanseven.net/2008/09/27/headless-vmware-fusion/"/>
-    <updated>2008-09-27T00:00:00-07:00</updated>
+    <updated>2008-09-27T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2008/09/27/headless-vmware-fusion</id>
     <content type="html"><![CDATA[<p>The latest version of "VMWare Fusion":http://www.vmware.com/products/fusion/ lets you run virtual machines in headless mode. Which is pretty handy if you're using a Linux VM to mirror your live environment. The strange thing is that it's not enabled by default. To enable it you need to run the following on your console: <code>defaults write com.vmware.fusion fluxCapacitor -bool YES</code></p>
 ]]></content>

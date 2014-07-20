@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/python/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[EC2 Tasks For Fabric]]></title>
     <link href="http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric/"/>
-    <updated>2011-12-31T00:00:00-08:00</updated>
+    <updated>2011-12-31T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2011/12/31/Ec2-tasks-for-fabric</id>
     <content type="html"><![CDATA[<p>For running ad-hoc commands across a small number of servers you really can't beat "Fabric":http://fabfile.org. It requires nothing other than ssh installed on the servers, is generally just a one-line install and requires next to no syntaxtic fluff between you and the commands you want running. It's much more of a swiss army knife to Capistranos bread knife.</p>
 
@@ -60,7 +60,7 @@ instance-name-8 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
   <entry>
     <title type="html"><![CDATA[Python On Cloudfoundry]]></title>
     <link href="http://www.morethanseven.net/2011/05/15/Python-on-cloudfoundry/"/>
-    <updated>2011-05-15T00:00:00-07:00</updated>
+    <updated>2011-05-15T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2011/05/15/Python-on-cloudfoundry</id>
     <content type="html"><![CDATA[<p>For those that haven't yet had a look "Cloudfoundry":http://cloudfoundry.com/ from VMware is two things, one of which is nice, one of which is very cool indeed:</p>
 
@@ -85,7 +85,7 @@ instance-name-8 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
   <entry>
     <title type="html"><![CDATA[A Continuous Deployment Example Setup]]></title>
     <link href="http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup/"/>
-    <updated>2011-03-20T00:00:00-07:00</updated>
+    <updated>2011-03-20T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2011/03/20/A-continuous-deployment-example-setup</id>
     <content type="html"><![CDATA[<p>One of the reasons behind getting around to building "Vagrantbox.es":http://www.vagrantbox.es recently was I was giving a talk to a group of startups on "The Difference Engine":http://thedifferenceengine.eu/ programme and I wanted to have an example project to demonstrate various things. I wanted to demonstrate everything from sensible version control habbits, configuration management, basic orcestration and most importantly a solid deployment process. I've decided to write up what I'm doing for deployment because I think it's pretty nice, and for all the talk about Continuous Deployment I haven't seen many examples of code and configuration to make it happen.</p>
 
@@ -168,7 +168,7 @@ instance-name-8 (xx.xxx.xxx.xx, xxx.xx.xx.xx)
   <entry>
     <title type="html"><![CDATA[Using Checkinstall With Virtualenv For Python Deployments]]></title>
     <link href="http://www.morethanseven.net/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments/"/>
-    <updated>2011-01-29T00:00:00-08:00</updated>
+    <updated>2011-01-29T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2011/01/29/Using-checkinstall-with-virtualenv-for-python-deployments</id>
     <content type="html"><![CDATA[<p>Michael Brunton-Spall wrote last week about some "frustrations with packagings and deploying Python web applications":http://www.brunton-spall.co.uk/post/2011/01/26/packaging-and-deploying-python-web-apps/. Although his experience was with Python, the problems he describes are the same for Ruby and PHP and a whole host of languages. The following example uses Python, but works equally as well for anything else.</p>
 
@@ -242,7 +242,7 @@ cp /home/stage/myapplication /var/www/apps/</pre>
   <entry>
     <title type="html"><![CDATA[Solr Libraries and Good API Design]]></title>
     <link href="http://www.morethanseven.net/2011/01/01/Solr-libraries-and-good-api-design/"/>
-    <updated>2011-01-01T00:00:00-08:00</updated>
+    <updated>2011-01-01T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2011/01/01/Solr-libraries-and-good-api-design</id>
     <content type="html"><![CDATA[<p>I'm a huge "Solr":http://wiki.apache.org/solr/ fan. Once you understand what it does (it's a search engine, which means more than you think) and how it works you spot lots of thorny problems that map to it's features really well. In my experience it's also very fast and very stable once installed and setup. Oh, and the community support is great as well.</p>
 

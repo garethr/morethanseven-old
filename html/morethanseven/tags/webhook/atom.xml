@@ -4,7 +4,7 @@
   <title><![CDATA[Category: webhook | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/webhook/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[APIs in 2009 - XMPP and WebHooks]]></title>
     <link href="http://www.morethanseven.net/2009/01/02/apis-2009-xmpp-and-webhooks/"/>
-    <updated>2009-01-02T00:00:00-08:00</updated>
+    <updated>2009-01-02T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2009/01/02/apis-2009-xmpp-and-webhooks</id>
     <content type="html"><![CDATA[<p>Everyone has to have a post with a year in the title at the start of the year so I thought I better write something. Rather than one of those personal retrospective emails I thought I'd go for something different - a look at what I'd like to see in APIs in the coming year.</p>
 

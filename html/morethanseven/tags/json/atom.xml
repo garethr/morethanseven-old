@@ -4,7 +4,7 @@
   <title><![CDATA[Category: json | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/json/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Piston And Sanitising Json Callbacks]]></title>
     <link href="http://www.morethanseven.net/2010/03/08/Piston-and-sanitising-json-callbacks/"/>
-    <updated>2010-03-08T00:00:00-08:00</updated>
+    <updated>2010-03-08T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2010/03/08/Piston-and-sanitising-json-callbacks</id>
     <content type="html"><![CDATA[<p>I'm a big fan of "Piston":http://bitbucket.org/jespern/django-piston, the django app for creating RESTful web services. As part of a project at work I ended up looking through the source code, mainly at some of the neat tricks of serialisation of objects. While poking around I came across something in my mind that wanted fixing. This being open source rather than just file a bug report I setup a "bitbucket":http://bitbucket.org account and got hacking.</p>
 
@@ -58,7 +58,7 @@ if is_valid_jsonp_callback_value(cb):
   <entry>
     <title type="html"><![CDATA[Jsonpickle]]></title>
     <link href="http://www.morethanseven.net/2009/01/29/jsonpickle/"/>
-    <updated>2009-01-29T00:00:00-08:00</updated>
+    <updated>2009-01-29T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2009/01/29/jsonpickle</id>
     <content type="html"><![CDATA[<p>"Jsonpickle":http://code.google.com/p/jsonpickle is a Python library for serializing any arbitrary object graph into JSON. The advantage over something like simplejson is the <em>arbitrary</em> part, simplejson throws errors when you try and serialize some types of objects. I also prefer the jsonpickle API (encode, decode) over simplejson (dump, dumps, load, loads).</p>
 ]]></content>

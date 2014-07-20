@@ -4,7 +4,7 @@
   <title><![CDATA[Category: webdev | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/webdev/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Beyond Basic Web Development]]></title>
     <link href="http://www.morethanseven.net/2009/05/25/beyond-basic-web-development/"/>
-    <updated>2009-05-25T00:00:00-07:00</updated>
+    <updated>2009-05-25T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/05/25/beyond-basic-web-development</id>
     <content type="html"><![CDATA[<p>I did a talk at the recent barcamp North East on web development tools. Specifically I wanted to talk about the fact that an awful lot of people just use the basic stack of tools they are familiar with. So Microsoft people will just use C#, MSSQL and ISS and lots of people just use PHP, MySQL and Apache. I'm not saying their is anything wrong with those tools, but if they are all you have in your tool box you're limited how well designed your software can be.</p>
 

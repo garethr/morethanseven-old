@@ -4,7 +4,7 @@
   <title><![CDATA[Category: pypi | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/pypi/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Your Own PyPi server]]></title>
     <link href="http://www.morethanseven.net/2009/08/15/your-own-pypi-server/"/>
-    <updated>2009-08-15T00:00:00-07:00</updated>
+    <updated>2009-08-15T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/08/15/your-own-pypi-server</id>
     <content type="html"><![CDATA[<p>So one of the problems with using pip or easy_install as part of an automated deployment process is they rely on an internet connection. More than that, they rely on PyPi being up as it's a centralised system, unlike all the apt package mirrors.</p>
 
@@ -39,7 +39,7 @@
   <entry>
     <title type="html"><![CDATA[Urltest on PyPi]]></title>
     <link href="http://www.morethanseven.net/2009/06/24/urltest-pypi/"/>
-    <updated>2009-06-24T00:00:00-07:00</updated>
+    <updated>2009-06-24T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/06/24/urltest-pypi</id>
     <content type="html"><![CDATA[<p>I've been meaning to add some of my code to the "Python Package Index":http://pypi.python.org for a while and  have finally gotten around to it with "Urltest":http://github.com/garethr/urltest/tree/master, my simple DSL for testing WSGI apps.</p>
 

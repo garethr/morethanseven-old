@@ -4,7 +4,7 @@
   <title><![CDATA[Category: puppet | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/puppet/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[A template for Puppet modules]]></title>
     <link href="http://www.morethanseven.net/2014/02/05/a-template-for-puppet-modules/"/>
-    <updated>2014-02-05T15:20:00-08:00</updated>
+    <updated>2014-02-05T15:20:00+00:00</updated>
     <id>http://www.morethanseven.net/2014/02/05/a-template-for-puppet-modules</id>
     <content type="html"><![CDATA[<p>A little while ago I published a <a href="https://github.com/garethr/puppet-module-skeleton">template writing your own puppet modules</a>. It's
 very opinionated but comes out of the box with lots of the tools you
@@ -137,7 +137,7 @@ or open an issue.</p>
   <entry>
     <title type="html"><![CDATA[Code coverage for Puppet modules]]></title>
     <link href="http://www.morethanseven.net/2014/01/25/code-coverage-for-puppet-modules/"/>
-    <updated>2014-01-25T17:23:00-08:00</updated>
+    <updated>2014-01-25T17:23:00+00:00</updated>
     <id>http://www.morethanseven.net/2014/01/25/code-coverage-for-puppet-modules</id>
     <content type="html"><![CDATA[<p>One of my favourite topics for a while now has been <em>infrastructure as
 code</em>. Part of that involves introducing well understood programming
@@ -222,7 +222,7 @@ options and hopefully to integrate with the <a href="https://coveralls.io/docs/a
   <entry>
     <title type="html"><![CDATA[Web application security tools]]></title>
     <link href="http://www.morethanseven.net/2013/04/23/web-application-security-tools/"/>
-    <updated>2013-04-23T07:57:00-07:00</updated>
+    <updated>2013-04-23T07:57:00+01:00</updated>
     <id>http://www.morethanseven.net/2013/04/23/web-application-security-tools</id>
     <content type="html"><![CDATA[<p>I've become increasingly interested in web application security issues over the last year or so. Working in Government will do that to you. And I've come to the conclusion that a) there are lots of good open source security tools, b) many of them are terribly packaged and c) most developers don't use any of them.</p>
 
@@ -267,7 +267,7 @@ options and hopefully to integrate with the <a href="https://coveralls.io/docs/a
   <entry>
     <title type="html"><![CDATA[On the forge]]></title>
     <link href="http://www.morethanseven.net/2012/12/03/on-the-forge/"/>
-    <updated>2012-12-03T08:18:00-08:00</updated>
+    <updated>2012-12-03T08:18:00+00:00</updated>
     <id>http://www.morethanseven.net/2012/12/03/on-the-forge</id>
     <content type="html"><![CDATA[<p>I've been spending a bit of time recently pushing a few Puppet modules to the "Forge":http://forge.puppetlabs.com. This is Puppetlabs attempt to make a central repository of reusable puppet modules. I started doing it as a bit of an experiment, to find out what I liked and what worked and I decided to writeup a few opinions.</p>
 
@@ -332,7 +332,7 @@ options and hopefully to integrate with the <a href="https://coveralls.io/docs/a
   <entry>
     <title type="html"><![CDATA[Riemann Puppet Module]]></title>
     <link href="http://www.morethanseven.net/2012/08/11/Riemann-puppet-module/"/>
-    <updated>2012-08-11T00:00:00-07:00</updated>
+    <updated>2012-08-11T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2012/08/11/Riemann-puppet-module</id>
     <content type="html"><![CDATA[<p>Thanks to an "errant tweet":https://twitter.com/bitprophet/status/233626675307479040 I started playing with "Riemann":http://aphyr.github.com/riemann/ again. It ticks lots of boxes for me, from the clojure to configuration as code and the overloadable dashboard application. What started as using Puppet and Vagrant to investigate Riemann turned into a full blown tool and module writing exercise, resulting in two related projects on GitHub.</p>
 

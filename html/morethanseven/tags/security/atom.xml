@@ -4,7 +4,7 @@
   <title><![CDATA[Category: security | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/security/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Using OWASP ZAP from the command line]]></title>
     <link href="http://www.morethanseven.net/2014/06/23/using-owasp-zap-from-the-command-line/"/>
-    <updated>2014-06-23T08:24:00-07:00</updated>
+    <updated>2014-06-23T08:24:00+01:00</updated>
     <id>http://www.morethanseven.net/2014/06/23/using-owasp-zap-from-the-command-line</id>
     <content type="html"><![CDATA[<p>I'm a big fan of <a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">OWASP ZAP</a> or
 the Zed Attack Proxy. It's suprisingly user friendly and nicely pulls of
@@ -80,7 +80,7 @@ support into <a href="http://gauntlt.org">Gauntlt</a>, only time will tell.</p>
   <entry>
     <title type="html"><![CDATA[Making the web secure, one unit test at a time]]></title>
     <link href="http://www.morethanseven.net/2013/12/29/making-the-web-secure/"/>
-    <updated>2013-12-29T14:28:00-08:00</updated>
+    <updated>2013-12-29T14:28:00+00:00</updated>
     <id>http://www.morethanseven.net/2013/12/29/making-the-web-secure</id>
     <content type="html"><![CDATA[<p><em>Originally written as part of <a href="http://sysadvent.blogspot.co.uk/2013/12/day-21-making-web-secure-one-unit-test.html">Sysadvent 2013</a>.</em></p>
 
@@ -271,7 +271,7 @@ development and operations teams. Here's a few  places to start with:</p>
   <entry>
     <title type="html"><![CDATA[Web application security tools]]></title>
     <link href="http://www.morethanseven.net/2013/04/23/web-application-security-tools/"/>
-    <updated>2013-04-23T07:57:00-07:00</updated>
+    <updated>2013-04-23T07:57:00+01:00</updated>
     <id>http://www.morethanseven.net/2013/04/23/web-application-security-tools</id>
     <content type="html"><![CDATA[<p>I've become increasingly interested in web application security issues over the last year or so. Working in Government will do that to you. And I've come to the conclusion that a) there are lots of good open source security tools, b) many of them are terribly packaged and c) most developers don't use any of them.</p>
 
@@ -316,7 +316,7 @@ development and operations teams. Here's a few  places to start with:</p>
   <entry>
     <title type="html"><![CDATA[Piston And Sanitising Json Callbacks]]></title>
     <link href="http://www.morethanseven.net/2010/03/08/Piston-and-sanitising-json-callbacks/"/>
-    <updated>2010-03-08T00:00:00-08:00</updated>
+    <updated>2010-03-08T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2010/03/08/Piston-and-sanitising-json-callbacks</id>
     <content type="html"><![CDATA[<p>I'm a big fan of "Piston":http://bitbucket.org/jespern/django-piston, the django app for creating RESTful web services. As part of a project at work I ended up looking through the source code, mainly at some of the neat tricks of serialisation of objects. While poking around I came across something in my mind that wanted fixing. This being open source rather than just file a bug report I setup a "bitbucket":http://bitbucket.org account and got hacking.</p>
 

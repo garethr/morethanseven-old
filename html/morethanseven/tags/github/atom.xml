@@ -4,7 +4,7 @@
   <title><![CDATA[Category: github | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/github/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[The Vagrantbox.es Story]]></title>
     <link href="http://www.morethanseven.net/2012/07/01/The-vagrantbox.es-story/"/>
-    <updated>2012-07-01T00:00:00-07:00</updated>
+    <updated>2012-07-01T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2012/07/01/The-vagrantbox.es-story</id>
     <content type="html"><![CDATA[<p>A few weeks ago now "Vagrantbox.es":http://www.vagrantbox.es/ (a website I maintain for third party hosted "Vagrant":http://vagrantup.com/ base boxes) dissapeared from the internet for a few days. This was completely my fault, the (lovely) hosting people "ep.io":https://www.ep.io/ had unfortunately closed down the service they had in beta and I'd been so busy that I hadn't had chance to move it elsewhere.</p>
 
@@ -33,7 +33,7 @@
   <entry>
     <title type="html"><![CDATA[Talking To Jenkins From Campfire With Hubot]]></title>
     <link href="http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot/"/>
-    <updated>2012-01-06T00:00:00-08:00</updated>
+    <updated>2012-01-06T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2012/01/06/Talking-to-jenkins-from-campfire-with-hubot</id>
     <content type="html"><![CDATA[<p>In what turned out to be a productive holiday hacking with languages I'd not used before, I got round to writing some coffeescript on node.js. This was more to do with scratching a personal itch that pure experimentation. I had a play with "Janky":https://github.com/github/janky (Github's Jenkins/Hubot mashup) but found it a little opinionated on the Jenkins side, but the campfire integration is excellent. Looking at the Jenkins commands in "hubot-scripts":https://github.com/github/hubot-scripts/ though I found those even more opinionated.</p>
 
@@ -59,7 +59,7 @@
   <entry>
     <title type="html"><![CDATA[Why Developers Should Care About System Packages]]></title>
     <link href="http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages/"/>
-    <updated>2011-01-16T00:00:00-08:00</updated>
+    <updated>2011-01-16T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2011/01/16/Why-developers-should-care-about-system-packages</id>
     <content type="html"><![CDATA[<p>First a bit of background. I'm a software developer (lately in Ruby and a tiny bit of Java, previously in Python, C# and PHP; yes I got around a bit), but have spent enough time looking after production hardware (mainly debian, solaris and recently a bit of RHEL) to have a feel for sysadmin work. I even have friends who are systems administrators. I mainly use a shiny apple laptop for my development work, but I actually execute all the code on Linux virtual machines. The aim of this post is to bridge a divide, not start a flame war about specific tools.</p>
 
@@ -202,7 +202,7 @@ The following packages are currently pending an upgrade:
   <entry>
     <title type="html"><![CDATA[Testing WSGI Application with Urltest]]></title>
     <link href="http://www.morethanseven.net/2009/06/04/testing-wsgi-application-urltest/"/>
-    <updated>2009-06-04T00:00:00-07:00</updated>
+    <updated>2009-06-04T00:00:00+01:00</updated>
     <id>http://www.morethanseven.net/2009/06/04/testing-wsgi-application-urltest</id>
     <content type="html"><![CDATA[<p>I found myself wanted something to make writing high level, functional tests for WSGI application easier and quicker. If I liked the term I'd call it a domain specific language for testing URLs. Basically I found myself writing a lot of tests like:</p>
 
@@ -235,7 +235,7 @@ verify_urls(urls, application)
   <entry>
     <title type="html"><![CDATA[Github Links to Lines of Code]]></title>
     <link href="http://www.morethanseven.net/2009/03/22/github-links-lines-code/"/>
-    <updated>2009-03-22T00:00:00-07:00</updated>
+    <updated>2009-03-22T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2009/03/22/github-links-lines-code</id>
     <content type="html"><![CDATA[<p>Just saw this and thought it was cool. You can "link to a specific line, or set of lines":http://github.com/garethr/booky/blob/08615163198a2b51353aeba07f25ec9ed477d60c/src/booky/lib/builder.py#L17-24 on GitHub. All you need to do is append something like #L17-24 to specify highlighting lines 17 to 24.</p>
 ]]></content>

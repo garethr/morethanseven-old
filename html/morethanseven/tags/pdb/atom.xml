@@ -4,7 +4,7 @@
   <title><![CDATA[Category: pdb | Morethanseven]]></title>
   <link href="http://www.morethanseven.net/tags/pdb/atom.xml" rel="self"/>
   <link href="http://www.morethanseven.net/"/>
-  <updated>2014-06-23T08:46:24-07:00</updated>
+  <updated>2014-07-20T20:18:02+01:00</updated>
   <id>http://www.morethanseven.net/</id>
   <author>
     <name><![CDATA[Gareth Rushgrove]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[PDB and AppEngine]]></title>
     <link href="http://www.morethanseven.net/2009/02/07/pdb-and-appengine/"/>
-    <updated>2009-02-07T00:00:00-08:00</updated>
+    <updated>2009-02-07T00:00:00+00:00</updated>
     <id>http://www.morethanseven.net/2009/02/07/pdb-and-appengine</id>
     <content type="html"><![CDATA[<p>It turns out App Engine breaks the default behaviour of the Python debugger PDB by sending STDOUT to the browser. But with a "little bit of python":http://jjinux.blogspot.com/2008/05/python-debugging-google-app-engine-apps.html you can put it back in.</p>
 
